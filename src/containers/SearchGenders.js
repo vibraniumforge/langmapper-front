@@ -19,7 +19,6 @@ class SearchGenders extends React.Component {
   };
 
   handleOnSubmit = e => {
-    console.log("handleOnSubmit fires");
     e.preventDefault();
     fetch(`http://localhost:3001/api/v1/search/gender/${this.state.formInput}`)
       .then(res => res.json())
