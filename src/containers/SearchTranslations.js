@@ -19,10 +19,9 @@ class SearchTranslations extends React.Component {
   };
 
   handleOnSubmit = e => {
-    console.log("handleOnSubmit fires");
     e.preventDefault();
     fetch(
-      `http://localhost:3001/api/v1/search//etymology/${this.state.formInput}`
+      `http://localhost:3001/api/v1/search/translation/${this.state.formInput}`
     )
       .then(res => res.json())
       .then(res =>
