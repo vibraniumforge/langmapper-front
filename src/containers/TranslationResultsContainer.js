@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import EtymologyResultCard from "../components/TranslationResultCard.js";
+import TranslationResultCard from "../components/TranslationResultCard.js";
 
 class TranslationResultsContainer extends Component {
   render() {
@@ -7,7 +7,7 @@ class TranslationResultsContainer extends Component {
       this.props.results.length > 0
         ? this.props.results.map(translation => {
             return (
-              <EtymologyResultCard
+              <TranslationResultCard
                 translation={translation}
                 key={translation.id}
               />
