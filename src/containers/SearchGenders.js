@@ -1,25 +1,33 @@
 import React from "react";
-import ResultsContainer from "./ResultsContainer.js";
+import GenderResultsContainer from "./GenderResultsContainer.js";
 
-class Search extends React.Component {
+class SearchGenders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formInput: "gold",
-      results: []
+      formInput: "goose",
+      results: [],
+      searchedWord: "goose" || this.state.formInput
     };
   }
 
   handleOnChange = e => {
-    this.setState({ formInput: e.target.value }, () => console.log(this.state));
+    this.setState(
+      { formInput: e.target.value, searchedWord: e.target.value },
+      () => console.log(this.state)
+    );
   };
 
   handleOnSubmit = e => {
     console.log("handleOnSubmit fires");
     e.preventDefault();
-    fetch(`http://localhost:3001/api/v1/search/?query=${this.state.formInput}`)
+    fetch(`http://localhost:3001/api/v1/search/gender/${this.state.formInput}`)
       .then(res => res.json())
-      .then(res => this.setState({ results: res }))
+      .then(res =>
+        this.setState({ results: res, formInput: "" }, () =>
+          console.log(this.state)
+        )
+      )
       .catch(err => console.log(err));
   };
 
@@ -37,10 +45,13 @@ class Search extends React.Component {
           />
           <input type="submit" value="Search" />
         </form>
-        <ResultsContainer results={this.state.results} />
+        <GenderResultsContainer
+          results={this.state.results}
+          searchedWord={this.state.searchedWord}
+        />
       </>
     );
   }
 }
 
-export default Search;
+export default SearchGenders;
