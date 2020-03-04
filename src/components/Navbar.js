@@ -14,14 +14,11 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/search_genders">
           Find all Genders of a Word
         </NavLink>
-        <NavLink activeClassName="selected" to="/search_genders">
-          Create a new Word
+        <NavLink activeClassName="selected" to="/search_etymologies">
+          Search by content of Etymology
         </NavLink>
-        <NavLink activeClassName="selected" to="/search_genders">
-          Create a new Translation
-        </NavLink>
-        <NavLink activeClassName="selected" to="/search_genders">
-          Create a new Language
+        <NavLink activeClassName="selected" to="/grouped_etymologies">
+          Search Etymology Grouped
         </NavLink>
       </div>
     );
