@@ -5,7 +5,7 @@ class GroupEtymologyResultCard extends Component {
     return (
       <div className="group-etymology-result-card">
         <p>
-          <b>Languages: </b>Languages: {this.props.result[1].join(", ")}
+          <b>Languages: </b>: {this.props.result[1].join(", ")}
         </p>
         <p>
           <b>Definition: </b>
