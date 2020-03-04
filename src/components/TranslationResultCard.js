@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class ResultCard extends Component {
   render() {
     return (
-      <div id="translation-result-card">
+      <div className="translation-result-card">
         <p>Language: {this.props.translation.language.name}</p>
         <p>Translation: {this.props.translation.translation}</p>
         <p>Romanization: {this.props.translation.romanization}</p>
