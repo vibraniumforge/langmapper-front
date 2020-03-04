@@ -3,7 +3,6 @@ import EtymologyResultCard from "../components/EtymologyResultCard.js";
 
 class EtymologyResultsContainer extends Component {
   render() {
-    console.log(this.props);
     const cards =
       this.props.results.length > 0
         ? this.props.results.map(translation => {

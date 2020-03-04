@@ -22,11 +22,7 @@ class SearchGenders extends React.Component {
     e.preventDefault();
     fetch(`http://localhost:3001/api/v1/search/gender/${this.state.formInput}`)
       .then(res => res.json())
-      .then(res =>
-        this.setState({ results: res, formInput: "" }, () =>
-          console.log(this.state)
-        )
-      )
+      .then(res => this.setState({ results: res, formInput: "" }))
       .catch(err => console.log(err));
   };
 

@@ -12,7 +12,7 @@ class SearchEtymologies extends React.Component {
   }
 
   handleOnChange = e => {
-    this.setState({ formInput: e.target.value }, () => console.log(this.state));
+    this.setState({ formInput: e.target.value });
   };
 
   handleOnSubmit = e => {

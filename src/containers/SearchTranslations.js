@@ -24,11 +24,7 @@ class SearchTranslations extends React.Component {
       `http://localhost:3001/api/v1/search/translation/${this.state.formInput}`
     )
       .then(res => res.json())
-      .then(res =>
-        this.setState({ results: res, formInput: "" }, () =>
-          console.log(this.state)
-        )
-      )
+      .then(res => this.setState({ results: res, formInput: "" }))
       .catch(err => console.log(err));
   };
 
