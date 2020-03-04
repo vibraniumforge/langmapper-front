@@ -5,11 +5,10 @@ class EtysByMacrofamily extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formInput: "copper",
+      selectedFamily: "",
       results: [],
-      searchedWord: "",
       macrofamilies: [],
-      selectedFamily: ""
+      searchedFamily: ""
     };
   }
 
@@ -25,7 +24,9 @@ class EtysByMacrofamily extends React.Component {
   }
 
   handleOnChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value }, () =>
+      console.log(this.state)
+    );
   };
 
   handleOnSubmit = e => {
@@ -34,16 +35,17 @@ class EtysByMacrofamily extends React.Component {
       this.state.selectedFamily === ""
         ? "Indo-European"
         : this.state.selectedFamily;
-    fetch(
-      `http://localhost:3001/api/v1/search/grouped_etymology/${this.state.formInput}/${family}`
-    )
+    fetch(`http://localhost:3001/api/v1/search/all_by_macrofamily/${family}`)
       .then(res => res.json())
       .then(res =>
-        this.setState({
-          results: res,
-          searchedWord: this.state.formInput,
-          formInput: ""
-        })
+        this.setState(
+          {
+            results: res.data,
+            searchedFamily: this.state.selectedFamily,
+            selectedFamily: ""
+          },
+          () => console.log(this.state)
+        )
       )
       .catch(err => console.log(err));
   };
@@ -60,33 +62,24 @@ class EtysByMacrofamily extends React.Component {
     return (
       <>
         <form onSubmit={e => this.handleOnSubmit(e)}>
-          <input
-            type="text"
-            id="search"
-            name="formInput"
-            placeholder="Search here"
-            className="input"
-            onChange={e => this.handleOnChange(e)}
-            value={this.state.formInput}
-          />
           <select
             id="select"
             name="selectedFamily"
-            value={this.state.formInput}
+            value={this.state.selectedFamily}
             onChange={this.handleOnChange}
           >
             <option value="">Select One</option>
             {macrofamilies}
           </select>
           <input
-            disabled={!this.state.formInput}
+            disabled={!this.state.selectedFamily}
             type="submit"
             value="Search"
           />
         </form>
         <EtysByMacrofamilyContainer
           results={this.state.results}
-          searchedWord={this.state.searchedWord}
+          searchedFamily={this.state.searchedFamily}
         />
       </>
     );
