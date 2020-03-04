@@ -20,6 +20,9 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/grouped_etymologies">
           Search Etymology Grouped
         </NavLink>
+        <NavLink activeClassName="selected" to="/all_by_macrofamily">
+          All Translations by Macrofamily
+        </NavLink>
       </div>
     );
   }
