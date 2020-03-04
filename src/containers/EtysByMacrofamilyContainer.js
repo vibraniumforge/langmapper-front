@@ -13,7 +13,7 @@ class EtysByMacrofamilyContainer extends Component {
 
     return (
       <div id="card-container">
-        <h3>Word: {this.props.searchedWord}</h3>
+        <h3>Family: {this.props.searchedFamily}</h3>
         {cards}
       </div>
     );
