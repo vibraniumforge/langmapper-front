@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import SearchTranslations from "./containers/SearchTranslations.js";
 import SearchGenders from "./containers/SearchGenders.js";
 import SearchEtymologies from "./containers/SearchEtymologies.js";
+import GroupEtymologies from "./containers/GroupEtymologies.js";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/search_translations" component={SearchTranslations} />
             <Route path="/search_genders" component={SearchGenders} />
             <Route path="/search_etymologies" component={SearchEtymologies} />
+            <Route path="/grouped_etymologies" component={GroupEtymologies} />
             {/* <Route path="/select_amtrak_station" component={AmtrakStationSelect} />
         <Route path="/view_user_trains" component={ViewUserTrains} />
         <Route path="/new_user_train" component={NewTrainForm} />
