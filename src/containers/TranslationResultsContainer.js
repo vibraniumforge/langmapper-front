@@ -16,10 +16,10 @@ class TranslationResultsContainer extends Component {
         : null;
 
     return (
-      <div id="card-container">
+      <>
         <h3>Word: {this.props.searchedWord}</h3>
-        {cards}
-      </div>
+        <div id="card-container">{cards}</div>
+      </>
     );
   }
 }

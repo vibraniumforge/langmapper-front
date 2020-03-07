@@ -3,7 +3,6 @@ import EtysByMacrofamilyCard from "../components/EtysByMacrofamilyCard.js";
 
 class EtysByMacrofamilyContainer extends Component {
   render() {
-    console.log(this.props);
     const cards =
       this.props.results.length > 0
         ? this.props.results.map((result, index) => {
@@ -12,10 +11,10 @@ class EtysByMacrofamilyContainer extends Component {
         : null;
 
     return (
-      <div id="card-container">
-        <h3>Family: {this.props.searchedFamily}</h3>
-        {cards}
-      </div>
+      <>
+        <h3>{this.props.searchedFamily}</h3>
+        <div id="card-container">{cards}</div>
+      </>
     );
   }
 }
