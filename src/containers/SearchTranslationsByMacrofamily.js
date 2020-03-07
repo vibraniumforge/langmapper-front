@@ -1,7 +1,7 @@
 import React from "react";
-import EtysByMacrofamilyContainer from "./EtysByMacrofamilyContainer.js";
+import TranslationsByMacrofamilyResultsContainer from "./TranslationsByMacrofamilyResultsContainer.js";
 
-class EtysByMacrofamily extends React.Component {
+class TranslationsByMacrofamily extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +34,9 @@ class EtysByMacrofamily extends React.Component {
       this.state.selectedFamily === ""
         ? "Indo-European"
         : this.state.selectedFamily;
-    fetch(`http://localhost:3001/api/v1/search/all_by_macrofamily/${family}`)
+    fetch(
+      `http://localhost:3001/api/v1/search/all_translations_by_macrofamily/${family}`
+    )
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -64,7 +66,7 @@ class EtysByMacrofamily extends React.Component {
             value={this.state.selectedFamily}
             onChange={this.handleOnChange}
           >
-            <option value="">Select One</option>
+            <option value="">Select One Macrofamily</option>
             {macrofamilies}
           </select>
           <input
@@ -74,7 +76,7 @@ class EtysByMacrofamily extends React.Component {
           />
         </form>
         <h3>{this.state.searchedFamily}</h3>
-        <EtysByMacrofamilyContainer
+        <TranslationsByMacrofamilyResultsContainer
           selectedFamily={this.state.searchedFamily}
           results={this.state.results}
         />
@@ -83,4 +85,4 @@ class EtysByMacrofamily extends React.Component {
   }
 }
 
-export default EtysByMacrofamily;
+export default TranslationsByMacrofamily;
