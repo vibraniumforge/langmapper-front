@@ -5,11 +5,12 @@ class GroupEtymologies extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formInput: "copper",
+      selectedWord: "",
       results: [],
       searchedWord: "",
       macrofamilies: [],
-      selectedFamily: ""
+      selectedFamily: "",
+      allWords: []
     };
   }
 
@@ -19,6 +20,14 @@ class GroupEtymologies extends React.Component {
       .then(res =>
         this.setState({
           macrofamilies: res.data
+        })
+      )
+      .catch(err => console.log(err));
+    fetch(`http://localhost:3001/api/v1/search/all_word_names`)
+      .then(res => res.json())
+      .then(res =>
+        this.setState({
+          allWords: res.data
         })
       )
       .catch(err => console.log(err));
@@ -35,13 +44,13 @@ class GroupEtymologies extends React.Component {
         ? "Indo-European"
         : this.state.selectedFamily;
     fetch(
-      `http://localhost:3001/api/v1/search/grouped_etymology/${this.state.formInput}/${family}`
+      `http://localhost:3001/api/v1/search/grouped_etymology/${this.state.selectedWord}/${family}`
     )
       .then(res => res.json())
       .then(res =>
         this.setState({
           results: res,
-          searchedWord: this.state.formInput,
+          searchedWord: this.state.selectedWord,
           formInput: ""
         })
       )
@@ -49,6 +58,12 @@ class GroupEtymologies extends React.Component {
   };
 
   render() {
+    const allWords =
+      this.state.allWords.length > 0
+        ? this.state.allWords.map(word => {
+            return <option key={word.id}>{word.name}</option>;
+          })
+        : null;
     const macrofamilies =
       this.state.macrofamilies && this.state.macrofamilies.length > 0
         ? this.state.macrofamilies.map((macrofamily, index) => {
@@ -60,7 +75,7 @@ class GroupEtymologies extends React.Component {
     return (
       <>
         <form onSubmit={e => this.handleOnSubmit(e)}>
-          <input
+          {/* <input
             type="text"
             id="search"
             name="formInput"
@@ -68,18 +83,27 @@ class GroupEtymologies extends React.Component {
             className="input"
             onChange={e => this.handleOnChange(e)}
             value={this.state.formInput}
-          />
+          /> */}
+          <select
+            id="select"
+            name="selectedWord"
+            value={this.state.selectedWord}
+            onChange={this.handleOnChange}
+          >
+            <option value="">Select One Word</option>
+            {allWords}
+          </select>
           <select
             id="select"
             name="selectedFamily"
             value={this.state.selectedFamily}
             onChange={this.handleOnChange}
           >
-            <option value="">Select One</option>
+            <option value="">Select One Macrofamily</option>
             {macrofamilies}
           </select>
           <input
-            disabled={!this.state.formInput}
+            disabled={!this.state.selectedWord}
             type="submit"
             value="Search"
           />
