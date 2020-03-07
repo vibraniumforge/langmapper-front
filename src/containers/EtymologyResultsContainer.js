@@ -13,13 +13,16 @@ class EtymologyResultsContainer extends Component {
               />
             );
           })
-        : "No results found";
+        : null;
 
     return (
-      <div id="card-container">
+      <>
         <h3>Query Term: {this.props.searchedWord}</h3>
-        {cards}
-      </div>
+        {this.props.searchedWord && this.props.results.length === 0 ? (
+          <h6>No results found</h6>
+        ) : null}
+        <div id="card-container">{cards}</div>
+      </>
     );
   }
 }
