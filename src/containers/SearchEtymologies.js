@@ -22,10 +22,11 @@ class SearchEtymologies extends React.Component {
     )
       .then(res => res.json())
       .then(res =>
-        this.setState(
-          { results: res, searchedWord: this.state.formInput, formInput: "" },
-          () => console.log(this.state)
-        )
+        this.setState({
+          results: res,
+          searchedWord: this.state.formInput,
+          formInput: ""
+        })
       )
       .catch(err => console.log(err));
   };
