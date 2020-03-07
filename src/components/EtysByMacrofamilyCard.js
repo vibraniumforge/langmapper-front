@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 class EtysByMacrofamilyCard extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className="etymology-result-card">
         <p>Language: {this.props.result.name}</p>
