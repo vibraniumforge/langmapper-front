@@ -17,16 +17,15 @@ class EtysByMacrofamily extends React.Component {
       .then(res => res.json())
       .then(res =>
         this.setState({
-          macrofamilies: res.data
+          macrofamilies: res.data,
+          searchedFamily: ""
         })
       )
       .catch(err => console.log(err));
   }
 
   handleOnChange = e => {
-    this.setState({ [e.target.name]: e.target.value }, () =>
-      console.log(this.state)
-    );
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleOnSubmit = e => {
@@ -38,14 +37,11 @@ class EtysByMacrofamily extends React.Component {
     fetch(`http://localhost:3001/api/v1/search/all_by_macrofamily/${family}`)
       .then(res => res.json())
       .then(res =>
-        this.setState(
-          {
-            results: res.data,
-            searchedFamily: this.state.selectedFamily,
-            selectedFamily: ""
-          },
-          () => console.log(this.state)
-        )
+        this.setState({
+          results: res.data,
+          searchedFamily: this.state.selectedFamily,
+          selectedFamily: ""
+        })
       )
       .catch(err => console.log(err));
   };
@@ -77,9 +73,10 @@ class EtysByMacrofamily extends React.Component {
             value="Search"
           />
         </form>
+        <h3>{this.state.searchedFamily}</h3>
         <EtysByMacrofamilyContainer
+          selectedFamily={this.state.searchedFamily}
           results={this.state.results}
-          searchedFamily={this.state.searchedFamily}
         />
       </>
     );
