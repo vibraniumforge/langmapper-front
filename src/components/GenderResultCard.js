@@ -14,7 +14,7 @@ class GenderResultCard extends Component {
         genderClass = "neuter";
     }
     return (
-      <div id="gender-result-card" className={genderClass}>
+      <div className={`gender-result-card ${genderClass}`}>
         <p>Family: {this.props.translation.family}</p>
         <p>Language: {this.props.translation.language}</p>
         <p>Translation: {this.props.translation.romanization}</p>
