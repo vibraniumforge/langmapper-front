@@ -15,11 +15,17 @@ class GenderResultCard extends Component {
     }
     return (
       <div className={`gender-result-card ${genderClass}`}>
-        <p>Family: {this.props.translation.family}</p>
-        <p>Language: {this.props.translation.language}</p>
-        <p>Translation: {this.props.translation.romanization}</p>
         <p>
-          Gender:{" "}
+          <strong>Family: </strong> {this.props.translation.family}
+        </p>
+        <p>
+          <strong>Language: </strong> {this.props.translation.language}
+        </p>
+        <p>
+          <strong>Translation: </strong> {this.props.translation.romanization}
+        </p>
+        <p>
+          <strong>Gender: </strong>
           {this.props.translation.gender ? (
             <span className="">
               {this.props.translation.gender.toUpperCase()}
