@@ -18,10 +18,11 @@ const getLanguagesCount = () => {
   fetch(`${url}/search/language_count`)
     .then(res => res.json())
     .then(res => {
-      return (result = res.data);
+      result = res.data;
+      console.log(result);
+      return result;
     })
     .catch(err => console.log(err));
-  return result;
 };
 
 const getWordCount = () => {
