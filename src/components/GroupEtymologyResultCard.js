@@ -5,11 +5,11 @@ class GroupEtymologyResultCard extends Component {
     return (
       <div className="group-etymology-result-card">
         <p>
-          <b>Languages: </b>
+          <strong>Languages: </strong>
           {this.props.result[1].join(", ")}
         </p>
         <p>
-          <b>Definition: </b>
+          <strong>Etymology: </strong>
           {this.props.result[0] !== "Null"
             ? this.props.result[0]
             : "None Found"}
