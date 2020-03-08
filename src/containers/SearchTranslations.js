@@ -13,7 +13,6 @@ class SearchTranslations extends React.Component {
   }
 
   componentDidMount() {
-    // fetch(`http://localhost:3001/api/v1/words`)
     fetch(`http://localhost:3001/api/v1/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
