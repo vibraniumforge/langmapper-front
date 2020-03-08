@@ -47,6 +47,7 @@ class ViewAllWords extends Component {
   render() {
     return (
       <>
+        <h3>All Words</h3>
         <ViewAllWordsResultsContainer
           onHandleDelete={this.onHandleDelete}
           results={this.state.results}
