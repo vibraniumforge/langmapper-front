@@ -33,7 +33,7 @@ class SearchTranslations extends React.Component {
   handleOnSubmit = e => {
     e.preventDefault();
     fetch(
-      `http://localhost:3001/api/v1/search/translation/${this.state.selectedWord}`
+      `http://localhost:3001/api/v1/search/translation/${this.state.selectedWord.toLowerCase()}`
     )
       .then(res => res.json())
       .then(res =>
