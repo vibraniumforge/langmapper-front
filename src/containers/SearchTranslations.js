@@ -18,7 +18,7 @@ class SearchTranslations extends React.Component {
       .then(res => res.json())
       .then(res =>
         this.setState({
-          allWords: res
+          allWords: res.data
         })
       )
       .catch(err => console.log(err));
