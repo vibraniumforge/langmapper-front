@@ -4,8 +4,14 @@ class ViewAllWordsResultCard extends Component {
   render() {
     return (
       <div className="translation-result-card">
-        <p>ID: {this.props.translation.id}</p>
-        <p>Name: {this.props.translation.name}</p>
+        <p>
+          <strong>ID: </strong>
+          {this.props.translation.id}
+        </p>
+        <p>
+          <strong>Name: </strong>
+          {this.props.translation.name}
+        </p>
         <button
           onClick={e => this.props.onHandleDelete(e, this.props.translation.id)}
         >
