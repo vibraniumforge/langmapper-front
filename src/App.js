@@ -10,6 +10,10 @@ import SearchEtymologies from "./containers/SearchEtymologies.js";
 import GroupEtymologies from "./containers/GroupEtymologies.js";
 import SearchTranslationsByMacrofamily from "./containers/SearchTranslationsByMacrofamily.js";
 import SearchTranslationsByLanguage from "./containers/SearchTranslationsByLanguage.js";
+import WordForm from "./containers/WordForm.js";
+import ViewAllWords from "./containers/ViewAllWords.js";
+import LanguageForm from "./containers/LanguageForm.js";
+import ViewAllLanguages from "./containers/ViewAllLanguages.js";
 
 function App() {
   return (
@@ -31,6 +35,12 @@ function App() {
               path="/all_translations_by_language"
               component={SearchTranslationsByLanguage}
             />
+            <Route path="/new_word" component={WordForm} />
+            <Route path="/edit_word" component={WordForm} />
+            <Route path="/all_words" component={ViewAllWords} />
+            <Route path="/new_language" component={LanguageForm} />
+            <Route path="/edit_language" component={LanguageForm} />
+            <Route path="/all_languages" component={ViewAllLanguages} />
           </Switch>
         </div>
       </Router>
