@@ -3,14 +3,13 @@ import React from "react";
 const url = `http://localhost:3001/api/v1`;
 
 const getTranslationsCount = () => {
-  let result;
-  fetch(`${url}/search/translation_count`)
+  return fetch(`${url}/search/translation_count`)
     .then(res => res.json())
     .then(res => {
-      return (result = res.data);
+      console.log(res.data);
+      return res.data;
     })
     .catch(err => console.log(err));
-  return result;
 };
 
 const getLanguagesCount = () => {
@@ -19,7 +18,6 @@ const getLanguagesCount = () => {
     .then(res => res.json())
     .then(res => {
       result = res.data;
-      console.log(result);
       return result;
     })
     .catch(err => console.log(err));
