@@ -49,7 +49,7 @@ class ViewAllLanguagesResultCard extends Component {
         </p>
         <p>
           <strong>Alive: </strong>
-          {this.props.translation.alive === "t" ? "true" : "false"}
+          {this.props.translation.alive === "f" ? "false" : "true"}
         </p>
 
         <button
