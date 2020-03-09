@@ -5,16 +5,16 @@ class TranslationByLanguageResultCard extends Component {
     return (
       <div className="translation-result-card">
         <p>
-          <strong>Language: </strong>
-          {this.props.translation.language_name}
-        </p>
-        <p>
           <strong>Translation: </strong>
           {this.props.translation.translation}
         </p>
         <p>
           <strong>Romanization: </strong>
           {this.props.translation.romanization}
+        </p>
+        <p>
+          <strong>Gender: </strong>
+          {this.props.translation.gender}
         </p>
         <a href={this.props.translation.link}>Wiktionary</a>
         <p>
