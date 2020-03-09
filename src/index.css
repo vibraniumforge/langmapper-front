@@ -81,8 +81,6 @@ li {
   width: 20%;
   margin: 10px;
   box-sizing: border-box;
-  overflow: scroll;
-  /* margin: auto; */
 }
 
 .translation-result-card {
