@@ -29,7 +29,6 @@ class WordForm extends Component {
   };
 
   clearForm = () => {
-    console.log("clearForm fires");
     this.setState({ wordName: "" });
   };
 
