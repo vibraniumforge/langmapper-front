@@ -4,7 +4,7 @@ import TranslationByMacrofamilyResultCard from "../components/TranslationByMacro
 class TranslationsByMacrofamilyResultsContainer extends Component {
   render() {
     const cards =
-      this.props.results.length > 0
+      this.props.results && this.props.results.length > 0
         ? this.props.results.map((result, index) => {
             return (
               <TranslationByMacrofamilyResultCard key={index} result={result} />
