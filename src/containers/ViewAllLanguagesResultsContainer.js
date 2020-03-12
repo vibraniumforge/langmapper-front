@@ -5,13 +5,13 @@ class ViewAllLanguagessResultsContainer extends Component {
   render() {
     const cards =
       this.props.results.length > 0
-        ? this.props.results.map(translation => {
+        ? this.props.results.map(language => {
             return (
               <ViewAllLanguagesResultCard
-                translation={translation}
+                language={language}
                 onHandleDelete={this.props.onHandleDelete}
                 onHandleEdit={this.props.onHandleEdit}
-                key={translation.id}
+                key={language.id}
               />
             );
           })
