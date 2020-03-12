@@ -71,8 +71,6 @@ li {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* flex-flow: row wrap; */
-  /* shorthand for the 2 above */
   justify-content: center;
 }
 
