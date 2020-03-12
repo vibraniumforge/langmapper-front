@@ -13,6 +13,7 @@ import WordForm from "./containers/WordForm.js";
 import ViewAllWords from "./containers/ViewAllWords.js";
 import LanguageForm from "./containers/LanguageForm.js";
 import ViewAllLanguages from "./containers/ViewAllLanguages.js";
+import SearchByArea from "./containers/SearchByArea.js";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/new_language" component={LanguageForm} />
             <Route path="/edit_language" component={LanguageForm} />
             <Route path="/all_languages" component={ViewAllLanguages} />
+            <Route path="/search_by_area" component={SearchByArea} />
           </Switch>
         </div>
       </Router>
