@@ -5,6 +5,10 @@ class TranslationByLanguageResultCard extends Component {
     return (
       <div className="translation-result-card">
         <p>
+          <strong>Word: </strong>
+          {this.props.translation.name}
+        </p>
+        <p>
           <strong>Translation: </strong>
           {this.props.translation.translation}
         </p>
