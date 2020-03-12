@@ -6,50 +6,50 @@ class ViewAllLanguagesResultCard extends Component {
       <div className="language-result-card">
         <p>
           <strong>ID: </strong>
-          {this.props.translation.id}
+          {this.props.language.id}
         </p>
         <p>
           <strong>Name: </strong>
-          {this.props.translation.name}
+          {this.props.language.name}
         </p>
         <p>
           <strong>Abbreviation: </strong>
-          {this.props.translation.abbreviation}
+          {this.props.language.abbreviation}
         </p>
         <p>
           <strong>Alphabet: </strong>
-          {this.props.translation.alphabet}
+          {this.props.language.alphabet}
         </p>
         <p>
           <strong>Macrofamily: </strong>
-          {this.props.translation.macrofamily}
+          {this.props.language.macrofamily}
         </p>
         <p>
           <strong>Family: </strong>
-          {this.props.translation.family}
+          {this.props.language.family}
         </p>
         <p>
-          <strong>Subfamily:</strong> {this.props.translation.subfamily}
+          <strong>Subfamily:</strong> {this.props.language.subfamily}
         </p>
         <p>
           <strong>Area: </strong>
-          {this.props.translation.area}
+          {this.props.language.area}
         </p>
         <p>
           <strong>Area 2: </strong>
-          {this.props.translation.area2}
+          {this.props.language.area2}
         </p>
         <p>
           <strong>Area 3: </strong>
-          {this.props.translation.area3}
+          {this.props.language.area3}
         </p>
         <p>
           <strong>Notes: </strong>
-          {this.props.translation.notes}
+          {this.props.language.notes}
         </p>
         <p>
           <strong>Alive: </strong>
-          {this.props.translation.alive === "f" ? "false" : "true"}
+          {this.props.language.alive === "f" ? "false" : "true"}
         </p>
 
         <button
