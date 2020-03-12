@@ -17,8 +17,7 @@ class TranslationsByMacrofamily extends React.Component {
       .then(res => res.json())
       .then(res =>
         this.setState({
-          macrofamilies: res.data,
-          searchedFamily: ""
+          macrofamilies: res.data
         })
       )
       .catch(err => console.log(err));
@@ -52,8 +51,8 @@ class TranslationsByMacrofamily extends React.Component {
     const macrofamilies =
       this.state.macrofamilies && this.state.macrofamilies.length > 0
         ? this.state.macrofamilies.map((macrofamily, index) => {
-            return macrofamily.macrofamily ? (
-              <option key={index}>{macrofamily.macrofamily}</option>
+            return macrofamily ? (
+              <option key={index}>{macrofamily}</option>
             ) : null;
           })
         : null;
