@@ -45,15 +45,6 @@ class SearchTranslationsByLanguage extends React.Component {
             onChange={e => this.handleOnChange(e)}
             value={this.state.selectedLanguage}
           />
-          {/* <select
-            id="select"
-            name="selectedWord"
-            value={this.state.selectedWord}
-            onChange={this.handleOnChange}
-          >
-            <option value="">Select One Word</option>
-            {allWords}
-          </select> */}
           <input
             disabled={!this.state.selectedLanguage}
             type="submit"
