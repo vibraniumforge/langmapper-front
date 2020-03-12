@@ -41,6 +41,9 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/all_languages">
           View all Languages
         </NavLink>
+        <NavLink activeClassName="selected" to="/search_by_area">
+          Search Language by Area
+        </NavLink>
       </div>
     );
   }
