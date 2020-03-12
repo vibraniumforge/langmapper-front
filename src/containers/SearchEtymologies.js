@@ -5,27 +5,27 @@ class SearchEtymologies extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formInput: "Celtic",
+      searchWord: "",
       results: [],
-      searchedWord: ""
+      selectedWord: ""
     };
   }
 
   handleOnChange = e => {
-    this.setState({ formInput: e.target.value });
+    this.setState({ searchWord: e.target.value });
   };
 
   handleOnSubmit = e => {
     e.preventDefault();
     fetch(
-      `http://localhost:3001/api/v1/search/etymology/${this.state.formInput}`
+      `http://localhost:3001/api/v1/search/etymology/${this.state.searchWord}`
     )
       .then(res => res.json())
       .then(res =>
         this.setState({
           results: res,
-          searchedWord: this.state.formInput,
-          formInput: ""
+          selectedWord: this.state.searchWord,
+          searchWord: ""
         })
       )
       .catch(err => console.log(err));
@@ -41,13 +41,17 @@ class SearchEtymologies extends React.Component {
             placeholder="Search here"
             className="input"
             onChange={e => this.handleOnChange(e)}
-            value={this.state.formInput}
+            value={this.state.searchWord}
           />
-          <input type="submit" value="Search" />
+          <input
+            disabled={!this.state.searchWord}
+            type="submit"
+            value="Search"
+          />
         </form>
         <EtymologyResultsContainer
           results={this.state.results}
-          searchedWord={this.state.searchedWord}
+          selectedWord={this.state.selectedWord}
         />
       </>
     );
