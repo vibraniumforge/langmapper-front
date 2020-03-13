@@ -14,7 +14,7 @@ class TranslationsByMacrofamilyResultsContainer extends Component {
 
     return (
       <>
-        <h3>{this.props.searchedFamily}</h3>
+        <h3>Family: {this.props.searchedFamily}</h3>
         <div id="card-container">{cards}</div>
       </>
     );

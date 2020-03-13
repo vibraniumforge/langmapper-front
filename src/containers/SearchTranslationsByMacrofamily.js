@@ -74,10 +74,9 @@ class TranslationsByMacrofamily extends React.Component {
             value="Search"
           />
         </form>
-        <h3>{this.state.searchedFamily}</h3>
         <TranslationsByMacrofamilyResultsContainer
-          selectedFamily={this.state.searchedFamily}
           results={this.state.results}
+          searchedFamily={this.state.searchedFamily}
         />
       </>
     );
