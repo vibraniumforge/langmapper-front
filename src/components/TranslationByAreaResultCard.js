@@ -6,6 +6,10 @@ class TranslationByAreaResultCard extends Component {
     return (
       <div className="translation-result-card">
         <p>
+          <strong>Language: </strong>
+          {this.props.translation.name}
+        </p>
+        <p>
           <strong>Macrofamily: </strong>
           {this.props.translation.macrofamily}
         </p>
