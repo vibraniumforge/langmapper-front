@@ -13,7 +13,8 @@ import WordForm from "./containers/WordForm.js";
 import ViewAllWords from "./containers/ViewAllWords.js";
 import LanguageForm from "./containers/LanguageForm.js";
 import ViewAllLanguages from "./containers/ViewAllLanguages.js";
-import SearchByArea from "./containers/SearchByArea.js";
+import SearchLanguagesByArea from "./containers/SearchLanguagesByArea.js";
+import SearchTranslationsByArea from "./containers/SearchTranslationsByArea.js";
 
 function App() {
   return (
@@ -35,13 +36,20 @@ function App() {
               path="/all_translations_by_language"
               component={SearchTranslationsByLanguage}
             />
+            <Route
+              path="/search_languages_by_area"
+              component={SearchLanguagesByArea}
+            />
+            <Route
+              path="/search_translations_by_area"
+              component={SearchTranslationsByArea}
+            />
             <Route path="/new_word" component={WordForm} />
             <Route path="/edit_word" component={WordForm} />
             <Route path="/all_words" component={ViewAllWords} />
             <Route path="/new_language" component={LanguageForm} />
             <Route path="/edit_language" component={LanguageForm} />
             <Route path="/all_languages" component={ViewAllLanguages} />
-            <Route path="/search_by_area" component={SearchByArea} />
           </Switch>
         </div>
       </Router>
