@@ -5,7 +5,7 @@ class SearchTranslationsByLanguage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formInput: "",
+      selectedLanguage: "",
       results: [],
       searchedLanguage: ""
     };
@@ -13,21 +13,21 @@ class SearchTranslationsByLanguage extends React.Component {
 
   handleOnChange = e => {
     this.setState({
-      formInput: e.target.value
+      selectedLanguage: e.target.value
     });
   };
 
   handleOnSubmit = e => {
     e.preventDefault();
     fetch(
-      `http://localhost:3001/api/v1/search/all_translations_by_language/${this.state.formInput}`
+      `http://localhost:3001/api/v1/search/all_translations_by_language/${this.state.selectedLanguage}`
     )
       .then(res => res.json())
       .then(res =>
         this.setState({
           results: res.data,
-          searchedLanguage: this.state.formInput,
-          formInput: ""
+          searchedLanguage: this.state.selectedLanguage,
+          selectedLanguage: ""
         })
       )
       .catch(err => console.log(err));
@@ -43,18 +43,13 @@ class SearchTranslationsByLanguage extends React.Component {
             placeholder="Input Language: "
             className="input"
             onChange={e => this.handleOnChange(e)}
-            value={this.state.formInput}
+            value={this.state.selectedLanguage}
           />
-          {/* <select
-            id="select"
-            name="selectedWord"
-            value={this.state.selectedWord}
-            onChange={this.handleOnChange}
-          >
-            <option value="">Select One Word</option>
-            {allWords}
-          </select> */}
-          <input type="submit" value="Search" />
+          <input
+            disabled={!this.state.selectedLanguage}
+            type="submit"
+            value="Search"
+          />
         </form>
         <TranslationsByLanguageResultsContainer
           results={this.state.results}

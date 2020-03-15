@@ -72,7 +72,11 @@ class SearchTranslations extends React.Component {
             <option value="">Select One Word</option>
             {allWords}
           </select>
-          <input type="submit" value="Search" />
+          <input
+            disabled={!this.state.selectedWord}
+            type="submit"
+            value="Search"
+          />
         </form>
         <TranslationsResultsContainer
           results={this.state.results}

@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 
-class TranslationByLanguageResultCard extends Component {
+class TranslationByAreaResultCard extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="translation-result-card">
         <p>
-          <strong>Word: </strong>
-          {this.props.translation.name}
+          <strong>Macrofamily: </strong>
+          {this.props.translation.macrofamily}
+        </p>
+        <p>
+          <strong>Family: </strong>
+          {this.props.translation.family}
+        </p>
+        <p>
+          <strong>Subfamily: </strong>
+          {this.props.translation.subfamily}
         </p>
         <p>
           <strong>Translation: </strong>
@@ -32,4 +41,4 @@ class TranslationByLanguageResultCard extends Component {
   }
 }
 
-export default TranslationByLanguageResultCard;
+export default TranslationByAreaResultCard;

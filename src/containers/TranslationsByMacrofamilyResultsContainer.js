@@ -4,7 +4,7 @@ import TranslationByMacrofamilyResultCard from "../components/TranslationByMacro
 class TranslationsByMacrofamilyResultsContainer extends Component {
   render() {
     const cards =
-      this.props.results.length > 0
+      this.props.results && this.props.results.length > 0
         ? this.props.results.map((result, index) => {
             return (
               <TranslationByMacrofamilyResultCard key={index} result={result} />
@@ -14,7 +14,7 @@ class TranslationsByMacrofamilyResultsContainer extends Component {
 
     return (
       <>
-        <h3>{this.props.searchedFamily}</h3>
+        <h3>Family: {this.props.searchedFamily}</h3>
         <div id="card-container">{cards}</div>
       </>
     );

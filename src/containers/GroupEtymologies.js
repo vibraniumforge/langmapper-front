@@ -67,8 +67,8 @@ class GroupEtymologies extends React.Component {
     const macrofamilies =
       this.state.macrofamilies && this.state.macrofamilies.length > 0
         ? this.state.macrofamilies.map((macrofamily, index) => {
-            return macrofamily.macrofamily ? (
-              <option key={index}>{macrofamily.macrofamily}</option>
+            return macrofamily ? (
+              <option key={index}>{macrofamily}</option>
             ) : null;
           })
         : null;

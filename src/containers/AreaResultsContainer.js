@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ViewAllLanguagesResultCard from "../components/ViewAllLanguagesResultCard.js";
 
-class ViewAllLanguagessResultsContainer extends Component {
+class AreaResultsContainer extends Component {
   render() {
     const cards =
       this.props.results.length > 0
@@ -9,8 +9,6 @@ class ViewAllLanguagessResultsContainer extends Component {
             return (
               <ViewAllLanguagesResultCard
                 language={language}
-                onHandleDelete={this.props.onHandleDelete}
-                onHandleEdit={this.props.onHandleEdit}
                 key={language.id}
               />
             );
@@ -19,11 +17,15 @@ class ViewAllLanguagessResultsContainer extends Component {
 
     return (
       <>
-        <h3>All Languages</h3>
+        <h3>Area: {this.props.searchedArea}</h3>
+        <h3>Location: {this.props.searchedLocation}</h3>
+        {this.props.searchedWord && this.props.results.length === 0 ? (
+          <h6>No results found</h6>
+        ) : null}
         <div id="card-container">{cards}</div>
       </>
     );
   }
 }
 
-export default ViewAllLanguagessResultsContainer;
+export default AreaResultsContainer;

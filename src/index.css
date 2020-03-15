@@ -27,7 +27,7 @@ li {
   font-size: 20px;
   text-align: center;
   font-weight: bold;
-  height: 40px;
+  height: 80px;
   margin-bottom: 10px;
 }
 
@@ -42,7 +42,7 @@ li {
 }
 
 #navbar a:hover {
-  background-color: powderblue;
+  background-color: white;
 }
 
 .male {
@@ -71,8 +71,6 @@ li {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* flex-flow: row wrap; */
-  /* shorthand for the 2 above */
   justify-content: center;
 }
 
@@ -81,6 +79,7 @@ li {
   width: 20%;
   margin: 10px;
   box-sizing: border-box;
+  overflow: scroll;
 }
 
 .translation-result-card {
