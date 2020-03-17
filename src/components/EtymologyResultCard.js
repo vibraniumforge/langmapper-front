@@ -5,6 +5,9 @@ class EtymologyResultCard extends Component {
     return (
       <div className="translation-result-card">
         <p>
+          <strong>Word: </strong> {this.props.translation.word.name}
+        </p>
+        <p>
           <strong>Language: </strong> {this.props.translation.language.name}
         </p>
         <p>
@@ -17,7 +20,7 @@ class EtymologyResultCard extends Component {
         <p>
           <strong>Etymology: </strong>
           {this.props.translation.etymology
-            ? this.props.translation.etymology.slice(0, 140)
+            ? this.props.translation.etymology
             : "None found"}
         </p>
       </div>

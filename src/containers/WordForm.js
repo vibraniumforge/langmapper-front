@@ -23,7 +23,6 @@ class WordForm extends Component {
       body: JSON.stringify({ name: this.state.wordName })
     })
       .then(res => res.json())
-      .then(res => console.log(res))
       .then(this.clearForm())
       .catch(err => console.log(err));
   };
