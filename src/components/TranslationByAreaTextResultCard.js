@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 class TranslationByAreaResultCard extends Component {
   render() {
-    console.log(this.props);
-    console.log(this.props[0]);
     return (
       <div className="translation-result-card">
         <p>
