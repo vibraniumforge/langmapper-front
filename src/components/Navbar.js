@@ -47,12 +47,12 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/search_translations_by_area">
           Search Translations by Area
         </NavLink>
-        <NavLink
+        {/* <NavLink
           activeClassName="selected"
           to="/search_translations_by_area_text"
         >
           Search Translations by Area Text
-        </NavLink>
+        </NavLink> */}
       </div>
     );
   }

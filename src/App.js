@@ -15,7 +15,7 @@ import LanguageForm from "./containers/LanguageForm.js";
 import ViewAllLanguages from "./containers/ViewAllLanguages.js";
 import SearchLanguagesByArea from "./containers/SearchLanguagesByArea.js";
 import SearchTranslationsByArea from "./containers/SearchTranslationsByArea.js";
-import SearchTranslationsByAreaText from "./containers/SearchTranslationsByAreaText.js";
+// import SearchTranslationsByAreaText from "./containers/SearchTranslationsByAreaText.js";
 
 function App() {
   return (
@@ -45,10 +45,10 @@ function App() {
               path="/search_translations_by_area"
               component={SearchTranslationsByArea}
             />
-            <Route
+            {/* <Route
               path="/search_translations_by_area_text"
               component={SearchTranslationsByAreaText}
-            />
+            /> */}
             <Route path="/new_word" component={WordForm} />
             <Route path="/edit_word" component={WordForm} />
             <Route path="/all_words" component={ViewAllWords} />
