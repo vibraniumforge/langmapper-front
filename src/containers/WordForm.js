@@ -14,13 +14,13 @@ class WordForm extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    fetch(`http://localhost:3001/api/v1/words/?name=${this.state.wordName}`, {
+    fetch(`http://localhost:3001/api/v1/words/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ name: this.state.wordName })
+      body: JSON.stringify({ word: { word_name: this.state.wordName } })
     })
       .then(res => res.json())
       .then(this.clearForm())
