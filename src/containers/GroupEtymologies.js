@@ -61,7 +61,7 @@ class GroupEtymologies extends React.Component {
     const allWords =
       this.state.allWords.length > 0
         ? this.state.allWords.map(word => {
-            return <option key={word.id}>{word.name}</option>;
+            return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
     const macrofamilies =
@@ -75,15 +75,6 @@ class GroupEtymologies extends React.Component {
     return (
       <>
         <form onSubmit={e => this.handleOnSubmit(e)}>
-          {/* <input
-            type="text"
-            id="search"
-            name="formInput"
-            placeholder="Search here"
-            className="input"
-            onChange={e => this.handleOnChange(e)}
-            value={this.state.formInput}
-          /> */}
           <select
             id="select"
             name="selectedWord"
