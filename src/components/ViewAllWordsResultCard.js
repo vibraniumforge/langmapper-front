@@ -10,7 +10,11 @@ class ViewAllWordsResultCard extends Component {
         </p>
         <p>
           <strong>Name: </strong>
-          {this.props.translation.name}
+          {this.props.translation.word_name}
+        </p>
+        <p>
+          <strong>Definition: </strong>
+          {this.props.translation.definition}
         </p>
         <button
           onClick={e => this.props.onHandleDelete(e, this.props.translation.id)}
