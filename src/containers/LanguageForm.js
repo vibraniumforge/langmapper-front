@@ -10,7 +10,7 @@ class LanguageForm extends Component {
       macrofamily: "Uralic",
       family: "Finnic",
       subfamily: "Fake here",
-      area: "Europe",
+      area1: "Europe",
       area2: "North Europe",
       area3: "Finland",
       notes: "Note: this is fake.",
@@ -68,7 +68,7 @@ class LanguageForm extends Component {
         macrofamily: this.state.macrofamily,
         family: this.state.family,
         subfamily: this.state.subfamily,
-        area: this.state.area,
+        area1: this.state.area1,
         area2: this.state.area2,
         area3: this.state.area3,
         notes: this.state.notes,
@@ -92,7 +92,7 @@ class LanguageForm extends Component {
       macrofamily: "",
       family: "",
       subfamily: "",
-      area: "",
+      area1: "",
       area2: "",
       area3: "",
       notes: "",
@@ -181,13 +181,13 @@ class LanguageForm extends Component {
             />
           </div>
           <div>
-            <label htmlFor="area">Area: </label>
+            <label htmlFor="area1">Area 1: </label>
             <input
               type="text"
-              id="area"
-              name="area"
-              placeholder="Area"
-              value={this.state.area}
+              id="area1"
+              name="area1"
+              placeholder="Area 1"
+              value={this.state.area1}
               onChange={this.handleOnChange}
             />
             <label htmlFor="area2">Area 2: </label>
@@ -210,7 +210,7 @@ class LanguageForm extends Component {
             />
           </div>
           <div>
-            <label htmlFor="area2">Notes: </label>
+            <label htmlFor="notes">Notes: </label>
             <textarea
               id="notes"
               name="notes"

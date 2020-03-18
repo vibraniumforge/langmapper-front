@@ -32,8 +32,8 @@ class ViewAllLanguagesResultCard extends Component {
           <strong>Subfamily:</strong> {this.props.language.subfamily}
         </p>
         <p>
-          <strong>Area: </strong>
-          {this.props.language.area}
+          <strong>Area 1: </strong>
+          {this.props.language.area1}
         </p>
         <p>
           <strong>Area 2: </strong>
