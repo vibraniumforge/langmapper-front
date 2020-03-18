@@ -1,5 +1,7 @@
 import React from "react";
 import TranslationsByAreaResultsContainer from "./TranslationsByAreaResultsContainer.js";
+import europeCopyMap from "../images/europe_copy_template.svg";
+const fs = require("fs");
 
 class SearchTranslationsByArea extends React.Component {
   constructor(props) {
@@ -11,7 +13,8 @@ class SearchTranslationsByArea extends React.Component {
       allLocations: [],
       results: [],
       searchedWord: "",
-      searchedLocation: ""
+      searchedLocation: "",
+      imageResults: []
     };
   }
 
@@ -47,25 +50,53 @@ class SearchTranslationsByArea extends React.Component {
     )
       .then(res => res.json())
       .then(res =>
-        this.setState(
-          {
-            results: res.data,
-            searchedLocation: this.state.selectedLocation,
-            searchedWord: this.state.selectedWord,
-            selectedLocation: "",
-            selectedWord: ""
-          },
-          () => console.log(this.state)
-        )
+        this.setState({
+          results: res.data,
+          searchedLocation: this.state.selectedLocation,
+          searchedWord: this.state.selectedWord,
+          selectedLocation: "",
+          selectedWord: ""
+        })
       )
       .catch(err => console.log(err));
+    fetch(
+      `http://localhost:3001/api/v1/search/all_translations_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
+    )
+      .then(res => res.json())
+      .then(res =>
+        this.setState({
+          imageResults: res.data
+        })
+      )
+      .catch(err => console.log(err));
+  };
+
+  makeImg = () => {
+    console.log("makeImg fires");
+    console.log(europeCopyMap);
+    const resultsArray = [...this.state.imageResults];
+    fs.writeFile("../images/europe_template_copy.svg", (err, data) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        console.log(data);
+      }
+    });
+    let fileName = fs.writeFile("../images/europe_template_copy.svg");
+    let counter = 0;
+    for (let language in resultsArray) {
+      console.log(`${language}, ${counter}`);
+      fileName = fileName.replace("$" + language[0], resultsArray[counter][1]);
+      counter++;
+    }
   };
 
   render() {
     const allWords =
       this.state.allWords.length > 0
         ? this.state.allWords.map(word => {
-            return <option key={word.id}>{word.name}</option>;
+            return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
     const allLocations =
@@ -96,11 +127,12 @@ class SearchTranslationsByArea extends React.Component {
             {allWords}
           </select>
           <input
-            disabled={!this.state.searchedLocation && !this.state.selectedWord}
+            disabled={!this.state.selectedLocation || !this.state.selectedWord}
             type="submit"
             value="Search"
           />
         </form>
+        {/* <img src={europeCopyMap} alt="europe map" /> */}
         <TranslationsByAreaResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
