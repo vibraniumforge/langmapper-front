@@ -25,6 +25,9 @@ class GenderResultCard extends Component {
           <strong>Translation: </strong> {this.props.translation.romanization}
         </p>
         <p>
+          <strong>Romanization: </strong> {this.props.translation.romanization}
+        </p>
+        <p>
           <strong>Gender: </strong>
           {this.props.translation.gender ? (
             <span className="">
