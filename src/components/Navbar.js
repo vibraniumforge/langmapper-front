@@ -45,13 +45,10 @@ class Navbar extends Component {
           Search Languages by Area
         </NavLink>
         <NavLink activeClassName="selected" to="/search_translations_by_area">
-          Create Map by Area
+          Create Etymology Map by Area
         </NavLink>
-        {/* <NavLink
-          activeClassName="selected"
-          to="/search_translations_by_area_text"
-        >
-          Search Translations by Area Text
+        {/* <NavLink activeClassName="selected" to="/search_genders_by_area">
+          Create Gender Map by Area
         </NavLink> */}
       </div>
     );
