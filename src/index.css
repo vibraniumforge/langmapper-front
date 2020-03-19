@@ -79,7 +79,8 @@ li {
   width: 20%;
   margin: 10px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .translation-result-card {
@@ -88,7 +89,8 @@ li {
   width: 20%;
   margin: 10px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .group-etymology-result-card {
@@ -100,7 +102,8 @@ li {
   width: 25%;
   margin: 10px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .etymology-result-card {
@@ -111,7 +114,8 @@ li {
   width: 24%;
   margin: 5px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .language-result-card {
@@ -122,5 +126,6 @@ li {
   width: 24%;
   margin: 5px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
