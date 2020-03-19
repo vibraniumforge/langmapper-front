@@ -32,11 +32,11 @@ class ViewAllLanguages extends Component {
       }
     })
       .then(res => res.json())
-      .then(res => this.deletelanguage(res))
+      .then(res => this.deleteLanguageFromPage(res))
       .catch(err => console.log(err));
   };
 
-  deletelanguage = res => {
+  deleteLanguageFromPage = res => {
     const languageId = res.data.id;
     let languageAr = [...this.state.results];
     let newLanguagesAr = languageAr.filter(language => {
