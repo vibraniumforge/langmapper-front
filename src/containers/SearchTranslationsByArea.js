@@ -1,6 +1,6 @@
 import React from "react";
 import TranslationsByAreaResultsContainer from "./TranslationsByAreaResultsContainer.js";
-import europeCopyMap from "../images/europe_copy_template.svg";
+// import europeCopyMap from "../images/europe_copy_template.svg";
 const fs = require("fs");
 
 class SearchTranslationsByArea extends React.Component {
@@ -8,7 +8,7 @@ class SearchTranslationsByArea extends React.Component {
     super(props);
     this.state = {
       selectedLocation: "Europe",
-      selectedWord: "copper",
+      selectedWord: "silver",
       allWords: [],
       allLocations: [],
       results: [],
@@ -73,7 +73,7 @@ class SearchTranslationsByArea extends React.Component {
 
   makeImg = () => {
     console.log("makeImg fires");
-    console.log(europeCopyMap);
+    // console.log(europeCopyMap);
     const resultsArray = [...this.state.imageResults];
     fs.writeFile("../images/europe_template_copy.svg", (err, data) => {
       if (err) {
