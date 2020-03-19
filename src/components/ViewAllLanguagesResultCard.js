@@ -53,12 +53,12 @@ class ViewAllLanguagesResultCard extends Component {
         </p>
 
         <button
-          onClick={e => this.props.onHandleDelete(e, this.props.translation.id)}
+          onClick={e => this.props.onHandleDelete(e, this.props.language.id)}
         >
           Delete
         </button>
         <button
-          onClick={e => this.props.onHandleEdit(e, this.props.translation.id)}
+          onClick={e => this.props.onHandleEdit(e, this.props.language.id)}
         >
           Edit
         </button>
