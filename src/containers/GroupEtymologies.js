@@ -49,7 +49,7 @@ class GroupEtymologies extends React.Component {
       .then(res => res.json())
       .then(res =>
         this.setState({
-          results: res,
+          results: res.data,
           searchedWord: this.state.selectedWord,
           formInput: ""
         })
