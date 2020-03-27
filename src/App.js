@@ -45,10 +45,6 @@ function App() {
               path="/search_translations_by_area"
               component={SearchTranslationsByArea}
             />
-            {/* <Route
-              path="/search_translations_by_area_text"
-              component={SearchTranslationsByAreaText}
-            /> */}
             <Route path="/new_word" component={WordForm} />
             <Route path="/edit_word" component={WordForm} />
             <Route path="/all_words" component={ViewAllWords} />
