@@ -1,5 +1,5 @@
 import React from "react";
-import AreaResultsContainer from "./AreaResultsContainer.js";
+import SearchLanguagesByAreaResultsContainer from "./SearchLanguagesByAreaResultsContainer.js";
 
 class SearchLanguagesByArea extends React.Component {
   constructor(props) {
@@ -84,7 +84,7 @@ class SearchLanguagesByArea extends React.Component {
             className={this.state.selectedLocation ? "submit-btn" : "disabled"}
           />
         </form>
-        <AreaResultsContainer
+        <SearchLanguagesByAreaResultsContainer
           results={this.state.results}
           searchedLocation={this.state.searchedLocation}
         />
