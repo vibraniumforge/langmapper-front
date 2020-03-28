@@ -1,5 +1,5 @@
 import React from "react";
-import TranslationsByLanguageResultsContainer from "./TranslationsByLanguageResultsContainer.js";
+import SearchTranslationsByLanguageResultsContainer from "./SearchTranslationsByLanguageResultsContainer.js";
 
 class SearchTranslationsByLanguage extends React.Component {
   constructor(props) {
@@ -52,7 +52,7 @@ class SearchTranslationsByLanguage extends React.Component {
             className={this.state.selectedLanguage ? "submit-btn" : "disabled"}
           />
         </form>
-        <TranslationsByLanguageResultsContainer
+        <SearchTranslationsByLanguageResultsContainer
           results={this.state.results}
           searchedLanguage={this.state.searchedLanguage}
         />
