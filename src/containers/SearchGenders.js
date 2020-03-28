@@ -68,6 +68,7 @@ class SearchGenders extends React.Component {
             disabled={!this.state.selectedWord}
             type="submit"
             value="Search"
+            className={this.state.selectedWord ? "submit-btn" : "disabled"}
           />
         </form>
         <GenderResultsContainer
