@@ -5,10 +5,8 @@ class SearchByArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedArea: "",
       selectedLocation: "",
       allLocations: [],
-      searchedArea: "",
       searchedLocation: "",
       results: []
     };
@@ -83,11 +81,11 @@ class SearchByArea extends React.Component {
             disabled={!this.state.selectedLocation}
             type="submit"
             value="Search"
+            className={this.state.selectedLocation ? "submit-btn" : "disabled"}
           />
         </form>
         <AreaResultsContainer
           results={this.state.results}
-          searchedArea={this.state.searchedArea}
           searchedLocation={this.state.searchedLocation}
         />
       </>
