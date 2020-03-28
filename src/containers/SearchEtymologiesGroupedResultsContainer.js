@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GroupEtymologyResultCard from "../components/GroupEtymologyResultCard.js";
 
-class GroupEtymologyResultsContainer extends Component {
+class SearchEtymologiesGroupedResultsContainer extends Component {
   render() {
     const cards =
       this.props.results && this.props.results.length > 0
@@ -20,4 +20,4 @@ class GroupEtymologyResultsContainer extends Component {
   }
 }
 
-export default GroupEtymologyResultsContainer;
+export default SearchEtymologiesGroupedResultsContainer;
