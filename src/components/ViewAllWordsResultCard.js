@@ -18,6 +18,7 @@ class ViewAllWordsResultCard extends Component {
         </p>
         <button
           onClick={e => this.props.onHandleDelete(e, this.props.translation.id)}
+          className="card-delete-btn"
         >
           Delete
         </button>
