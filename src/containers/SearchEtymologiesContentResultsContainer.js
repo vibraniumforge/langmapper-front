@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import EtymologyResultCard from "../components/EtymologyResultCard.js";
 
-class EtymologyResultsContainer extends Component {
+class SearchEtymologiesContentResultsContainer extends Component {
   render() {
     const cards =
       this.props.results.length > 0
@@ -27,4 +27,4 @@ class EtymologyResultsContainer extends Component {
   }
 }
 
-export default EtymologyResultsContainer;
+export default SearchEtymologiesContentResultsContainer;

@@ -1,7 +1,7 @@
 import React from "react";
-import EtymologyResultsContainer from "./EtymologyResultsContainer.js";
+import SearchEtymologiesContentResultsContainer from "./SearchEtymologiesContentResultsContainer.js";
 
-class SearchEtymologies extends React.Component {
+class SearchEtymologiesContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,7 +50,7 @@ class SearchEtymologies extends React.Component {
             className={this.state.searchWord ? "submit-btn" : "disabled"}
           />
         </form>
-        <EtymologyResultsContainer
+        <SearchEtymologiesContentResultsContainer
           results={this.state.results}
           selectedWord={this.state.selectedWord}
         />
@@ -59,4 +59,4 @@ class SearchEtymologies extends React.Component {
   }
 }
 
-export default SearchEtymologies;
+export default SearchEtymologiesContent;
