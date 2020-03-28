@@ -50,10 +50,6 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/create_etymology_map">
           Create Etymology Map by Area
         </NavLink>
-
-        {/* <NavLink activeClassName="selected" to="/search_genders_by_area">
-          Create Gender Map by Area
-        </NavLink> */}
       </div>
     );
   }
