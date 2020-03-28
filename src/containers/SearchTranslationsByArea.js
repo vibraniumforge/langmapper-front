@@ -127,9 +127,14 @@ class SearchTranslationsByArea extends React.Component {
             {allWords}
           </select>
           <input
-            disabled={!this.state.selectedLocation || !this.state.selectedWord}
             type="submit"
             value="Search"
+            className={
+              this.state.selectedLocation && this.state.selectedWord
+                ? "submit-btn"
+                : "disabled"
+            }
+            disabled={!this.state.selectedLocation || !this.state.selectedWord}
           />
         </form>
         {/* <img src={europeCopyMap} alt="europe map" /> */}

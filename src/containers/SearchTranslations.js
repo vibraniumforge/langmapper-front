@@ -65,9 +65,10 @@ class SearchTranslations extends React.Component {
             {allWords}
           </select>
           <input
-            disabled={!this.state.selectedWord}
             type="submit"
             value="Search"
+            className={this.state.selectedWord ? "submit-btn" : "disabled"}
+            disabled={!this.state.selectedWord}
           />
         </form>
         <TranslationsResultsContainer

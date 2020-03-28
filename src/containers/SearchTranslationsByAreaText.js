@@ -99,6 +99,11 @@ class SearchTranslationsByAreaText extends React.Component {
             disabled={!this.state.searchedLocation && !this.state.selectedWord}
             type="submit"
             value="Search"
+            className={
+              this.state.searchedLocation && this.state.selectedWord
+                ? "submit-btn"
+                : "disabled"
+            }
           />
         </form>
         <TranslationsByAreaResultsContainerText

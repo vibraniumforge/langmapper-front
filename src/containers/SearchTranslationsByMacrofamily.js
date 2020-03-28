@@ -72,6 +72,7 @@ class TranslationsByMacrofamily extends React.Component {
             disabled={!this.state.selectedFamily}
             type="submit"
             value="Search"
+            className={this.state.selectedFamily ? "submit-btn" : "disabled"}
           />
         </form>
         <TranslationsByMacrofamilyResultsContainer

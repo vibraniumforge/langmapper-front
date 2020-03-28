@@ -46,9 +46,10 @@ class SearchTranslationsByLanguage extends React.Component {
             value={this.state.selectedLanguage}
           />
           <input
-            disabled={!this.state.selectedLanguage}
             type="submit"
             value="Search"
+            disabled={!this.state.selectedLanguage}
+            className={this.state.selectedLanguage ? "submit-btn" : "disabled"}
           />
         </form>
         <TranslationsByLanguageResultsContainer
