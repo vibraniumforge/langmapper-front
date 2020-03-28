@@ -17,7 +17,7 @@ class EtymologyResultsContainer extends Component {
 
     return (
       <>
-        <h3>Query Term: {this.props.selectedWord}</h3>
+        <h3>Search Term: {this.props.selectedWord}</h3>
         {this.props.searchedWord && this.props.results.length === 0 ? (
           <h6>No results found</h6>
         ) : null}
