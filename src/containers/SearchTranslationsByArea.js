@@ -19,6 +19,11 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   componentDidMount() {
+    this.getAllWordNames();
+    this.getAllAreas();
+  }
+
+  getAllWordNames() {
     fetch(`http://localhost:3001/api/v1/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
@@ -27,6 +32,9 @@ class SearchTranslationsByArea extends React.Component {
         })
       )
       .catch(err => console.log(err));
+  }
+
+  getAllAreas() {
     fetch(`http://localhost:3001/api/v1/search/all_areas`)
       .then(res => res.json())
       .then(res =>
@@ -68,7 +76,7 @@ class SearchTranslationsByArea extends React.Component {
           imageResults: res.data
         })
       )
-      .catch(err => console.log(err));
+      .catch(err => console.warn(err));
   };
 
   makeImg = () => {
