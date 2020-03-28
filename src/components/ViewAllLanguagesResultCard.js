@@ -2,6 +2,9 @@ import React, { Component } from "react";
 
 class ViewAllLanguagesResultCard extends Component {
   render() {
+    if (this.props.language.id === 2) {
+      console.log("this.props.language.alive=", this.props.language.alive);
+    }
     return (
       <div className="language-result-card">
         <p>
@@ -49,18 +52,22 @@ class ViewAllLanguagesResultCard extends Component {
         </p>
         <p>
           <strong>Alive: </strong>
-          {this.props.language.alive === "f" ? "false" : "true"}
+          {this.props.language.alive === "f" ||
+          this.props.language.alive === false
+            ? "false"
+            : "true"}
         </p>
-
-        <button
-          onClick={e => this.props.onHandleDelete(e, this.props.language.id)}
-        >
-          Delete
-        </button>
         <button
           onClick={e => this.props.onHandleEdit(e, this.props.language.id)}
+          className="card-edit-btn"
         >
           Edit
+        </button>
+        <button
+          onClick={e => this.props.onHandleDelete(e, this.props.language.id)}
+          className="card-delete-btn"
+        >
+          Delete
         </button>
       </div>
     );
