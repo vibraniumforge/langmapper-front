@@ -9,10 +9,10 @@ class Navbar extends Component {
           Home
         </NavLink>
         <NavLink activeClassName="selected" to="/search_translations">
-          Find All Translations of a Word
+          Search All Translations of a Word
         </NavLink>
         <NavLink activeClassName="selected" to="/search_genders">
-          Find all Genders of a Word
+          Search all Genders of a Word
         </NavLink>
         <NavLink activeClassName="selected" to="/search_etymologies">
           Search by content of Etymology
@@ -24,10 +24,10 @@ class Navbar extends Component {
           activeClassName="selected"
           to="/all_translations_by_macrofamily"
         >
-          All Translations by Macrofamily
+          Search all Translations by Macrofamily
         </NavLink>
         <NavLink activeClassName="selected" to="/all_translations_by_language">
-          All Translations by Language
+          Search all Translations by Language
         </NavLink>
         <NavLink activeClassName="selected" to="/new_word">
           Create a New Word
