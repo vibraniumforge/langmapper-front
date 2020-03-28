@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TranslationByMacrofamilyResultCard from "../components/TranslationByMacrofamilyResultCard.js";
 
-class TranslationsByMacrofamilyResultsContainer extends Component {
+class SearchTranslationsByMacrofamilyResultsContainer extends Component {
   render() {
     const cards =
       this.props.results && this.props.results.length > 0
@@ -21,4 +21,4 @@ class TranslationsByMacrofamilyResultsContainer extends Component {
   }
 }
 
-export default TranslationsByMacrofamilyResultsContainer;
+export default SearchTranslationsByMacrofamilyResultsContainer;

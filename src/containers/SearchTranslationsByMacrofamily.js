@@ -1,7 +1,7 @@
 import React from "react";
-import TranslationsByMacrofamilyResultsContainer from "./TranslationsByMacrofamilyResultsContainer.js";
+import SearchTranslationsByMacrofamilyResultsContainer from "./SearchTranslationsByMacrofamilyResultsContainer.js";
 
-class TranslationsByMacrofamily extends React.Component {
+class SearchTranslationsByMacrofamily extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,7 +75,7 @@ class TranslationsByMacrofamily extends React.Component {
             className={this.state.selectedFamily ? "submit-btn" : "disabled"}
           />
         </form>
-        <TranslationsByMacrofamilyResultsContainer
+        <SearchTranslationsByMacrofamilyResultsContainer
           results={this.state.results}
           searchedFamily={this.state.searchedFamily}
         />
@@ -84,4 +84,4 @@ class TranslationsByMacrofamily extends React.Component {
   }
 }
 
-export default TranslationsByMacrofamily;
+export default SearchTranslationsByMacrofamily;
