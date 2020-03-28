@@ -47,7 +47,8 @@ class ViewAllLanguages extends Component {
 
   onHandleEdit = (e, languageId) => {
     e.preventDefault();
-    this.props.history.push("edit_language");
+    console.log("languageId=", languageId);
+    this.props.history.push(`/edit_language/${languageId}`);
   };
 
   render() {
