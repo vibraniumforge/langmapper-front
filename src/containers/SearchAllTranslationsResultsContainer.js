@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TranslationResultCard from "../components/TranslationResultCard.js";
 
-class TranslationResultsContainer extends Component {
+class SearchAllTranslationsResultsContainer extends Component {
   render() {
     const cards =
       this.props.results.length > 0
@@ -24,4 +24,4 @@ class TranslationResultsContainer extends Component {
   }
 }
 
-export default TranslationResultsContainer;
+export default SearchAllTranslationsResultsContainer;

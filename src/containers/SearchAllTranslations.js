@@ -1,7 +1,7 @@
 import React from "react";
-import TranslationsResultsContainer from "./TranslationResultsContainer.js";
+import SearchAllTranslationsResultsContainer from "./SearchAllTranslationsResultsContainer.js";
 
-class SearchTranslations extends React.Component {
+class SearchAllTranslations extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,7 +71,7 @@ class SearchTranslations extends React.Component {
             disabled={!this.state.selectedWord}
           />
         </form>
-        <TranslationsResultsContainer
+        <SearchAllTranslationsResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
         />
@@ -80,4 +80,4 @@ class SearchTranslations extends React.Component {
   }
 }
 
-export default SearchTranslations;
+export default SearchAllTranslations;
