@@ -1,7 +1,7 @@
 import React from "react";
 import AreaResultsContainer from "./AreaResultsContainer.js";
 
-class SearchByArea extends React.Component {
+class SearchLanguagesByArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -93,4 +93,4 @@ class SearchByArea extends React.Component {
   }
 }
 
-export default SearchByArea;
+export default SearchLanguagesByArea;
