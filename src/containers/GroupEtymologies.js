@@ -10,6 +10,7 @@ class GroupEtymologies extends React.Component {
       searchedWord: "",
       macrofamilies: [],
       selectedFamily: "",
+      searchedFamily: "",
       allWords: []
     };
   }
@@ -51,6 +52,7 @@ class GroupEtymologies extends React.Component {
         this.setState({
           results: res.data,
           searchedWord: this.state.selectedWord,
+          searchedFamily: this.state.selectedFamily,
           formInput: ""
         })
       )
@@ -103,6 +105,7 @@ class GroupEtymologies extends React.Component {
         <GroupEtymologyResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
+          searchedFamily={this.state.searchedFamily}
         />
       </>
     );
