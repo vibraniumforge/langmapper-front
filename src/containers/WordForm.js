@@ -35,7 +35,7 @@ class WordForm extends Component {
     return (
       <>
         <form onSubmit={e => this.handleOnSubmit(e)}>
-          <label htmlFor="word-name">Word: </label>
+          <label htmlFor="word-name">New Word: </label>
           <input
             id="word-name"
             type="text"
@@ -44,7 +44,12 @@ class WordForm extends Component {
             value={this.state.wordName}
             onChange={this.handleOnChange}
           />
-          <input disabled={!this.state.wordName} type="submit" value="Submit" />
+          <input
+            type="submit"
+            value="Submit"
+            className={this.state.wordName ? "submit-btn" : "disabled"}
+            disabled={!this.state.wordName}
+          />
         </form>
       </>
     );
