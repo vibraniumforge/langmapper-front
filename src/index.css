@@ -65,6 +65,7 @@ li {
 
 #select {
   margin: 10px;
+  font-size: 20px;
 }
 
 #card-container {
@@ -128,4 +129,97 @@ li {
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+button {
+  cursor: pointer;
+}
+
+.submit-btn {
+  margin: 10px;
+  font-size: 20px;
+  border: 2px solid black;
+  color: green;
+  background-color: lightgreen;
+}
+
+.clear-btn {
+  margin: 10px;
+  font-size: 20px;
+  border: 2px solid black;
+  color: black;
+  background-color: yellow;
+}
+
+.cancel-btn {
+  margin: 10px;
+  font-size: 20px;
+  border: 2px solid black;
+  color: black;
+  background-color: red;
+}
+
+.disabled {
+  margin: 10px;
+  font-size: 20px;
+  border: 2px solid black;
+  color: white;
+  background-color: gray;
+}
+
+.card-edit-btn {
+  font-size: 20px;
+  border: 2px solid black;
+  color: black;
+  background-color: yellow;
+  margin: 5px;
+}
+
+.card-delete-btn {
+  font-size: 20px;
+  border: 2px solid black;
+  color: black;
+  background-color: red;
+}
+
+input {
+  margin: 20px;
+}
+
+textarea {
+  width: 200px;
+  height: 100px;
+}
+
+table {
+  width: 99%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  color: red;
+  background-color: black;
+  font-size: 20px;
+  /* font-weight: bold; */
+  padding: 15px;
+}
+
+thead {
+  padding-bottom: 15px;
+  color: blue;
+}
+
+td {
+  padding-bottom: 15px;
+}
+
+#landing-page {
+  color: white;
+  background-image: url("./images/875px-Rosetta_Stone.JPG");
+  background-color: #cccccc;
+  height: 500px; /* You must set a specified height */
+  height: 100%;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
 }
