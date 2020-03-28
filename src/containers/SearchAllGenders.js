@@ -1,7 +1,7 @@
 import React from "react";
-import GenderResultsContainer from "./GenderResultsContainer.js";
+import SearchAllGendersResultsContainer from "./SearchAllGendersResultsContainer.js";
 
-class SearchGenders extends React.Component {
+class SearchAllGenders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,7 +71,7 @@ class SearchGenders extends React.Component {
             className={this.state.selectedWord ? "submit-btn" : "disabled"}
           />
         </form>
-        <GenderResultsContainer
+        <SearchAllGendersResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
         />
@@ -80,4 +80,4 @@ class SearchGenders extends React.Component {
   }
 }
 
-export default SearchGenders;
+export default SearchAllGenders;
