@@ -29,6 +29,12 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/all_translations_by_language">
           Search all Translations by Language
         </NavLink>
+        <NavLink activeClassName="selected" to="/search_languages_by_area">
+          Search Languages by Area
+        </NavLink>
+        <NavLink activeClassName="selected" to="/search_translations_by_area">
+          Search Translations by Area
+        </NavLink>
         <NavLink activeClassName="selected" to="/new_word">
           Create a New Word
         </NavLink>
@@ -40,12 +46,6 @@ class Navbar extends Component {
         </NavLink>
         <NavLink activeClassName="selected" to="/all_languages">
           View all Languages
-        </NavLink>
-        <NavLink activeClassName="selected" to="/search_languages_by_area">
-          Search Languages by Area
-        </NavLink>
-        <NavLink activeClassName="selected" to="/search_translations_by_area">
-          Search Translations by Area
         </NavLink>
         <NavLink activeClassName="selected" to="/create_etymology_map">
           Create Etymology Map by Area
