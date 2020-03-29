@@ -2,9 +2,6 @@ import React, { Component } from "react";
 
 class ViewAllLanguagesResultCard extends Component {
   render() {
-    if (this.props.language.id === 2) {
-      console.log("this.props.language.alive=", this.props.language.alive);
-    }
     return (
       <div className="language-result-card">
         <p>
