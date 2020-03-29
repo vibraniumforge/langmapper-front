@@ -5,8 +5,8 @@ class SearchTranslationsByArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLocation: "Europe",
-      selectedWord: "silver",
+      selectedLocation: "",
+      selectedWord: "",
       allWords: [],
       allLocations: [],
       results: [],
@@ -65,16 +65,6 @@ class SearchTranslationsByArea extends React.Component {
         })
       )
       .catch(err => console.log(err));
-    fetch(
-      `http://localhost:3001/api/v1/search/all_translations_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
-    )
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          imageResults: res.data
-        })
-      )
-      .catch(err => console.warn(err));
   };
 
   render() {
@@ -122,7 +112,7 @@ class SearchTranslationsByArea extends React.Component {
             disabled={!this.state.selectedLocation || !this.state.selectedWord}
           />
         </form>
-        {/* <img src={europeCopyMap} alt="europe map" /> */}
+
         <SearchTranslationsByAreaResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
