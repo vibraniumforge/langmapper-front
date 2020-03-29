@@ -1,20 +1,8 @@
 import React, { Component } from "react";
-import TranslationByAreaResultCard from "../components/TranslationByAreaResultCard.js";
 
 class SearchTranslationsByAreaResultsContainer extends Component {
   render() {
-    // const cards =
-    //   this.props.results && this.props.results.length > 0
-    //     ? this.props.results.map(translation => {
-    //         return (
-    //           <TranslationByAreaResultCard
-    //             translation={translation}
-    //             key={translation.id}
-    //           />
-    //         );
-    //       })
-    //     : null;
-    const info =
+    const translations =
       this.props.results && this.props.results.length > 0
         ? this.props.results.map(translation => {
             return (
@@ -38,20 +26,24 @@ class SearchTranslationsByAreaResultsContainer extends Component {
         : null;
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Language</th>
-            <th>Translation</th>
-            <th>Romanization</th>
-            <th>Gender</th>
-            <th>Macrofamily</th>
-            <th>Family</th>
-            <th>Etymology</th>
-          </tr>
-        </thead>
-        <tbody>{info}</tbody>
-      </table>
+      <>
+        <h3>Location: {this.props.searchedLocation}</h3>
+        <h3>Word: {this.props.searchedWord}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Language</th>
+              <th>Translation</th>
+              <th>Romanization</th>
+              <th>Gender</th>
+              <th>Macrofamily</th>
+              <th>Family</th>
+              <th>Etymology</th>
+            </tr>
+          </thead>
+          <tbody>{translations}</tbody>
+        </table>
+      </>
     );
   }
 }
