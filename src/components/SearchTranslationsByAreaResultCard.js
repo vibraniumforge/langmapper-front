@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class TranslationByAreaResultCard extends Component {
+class SearchTranslationsByAreaResultCard extends Component {
   render() {
     return (
       <div className="translation-result-card">
@@ -44,4 +44,4 @@ class TranslationByAreaResultCard extends Component {
   }
 }
 
-export default TranslationByAreaResultCard;
+export default SearchTranslationsByAreaResultCard;
