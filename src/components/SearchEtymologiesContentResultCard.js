@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
-class EtymologyResultCard extends Component {
+class SearchEtymologiesContentResultCard extends Component {
   render() {
     return (
       <div className="translation-result-card">
         <p>
-          <strong>Word: </strong> {this.props.translation.word.name}
+          <strong>Word: </strong> {this.props.translation.word.word_name}
         </p>
         <p>
           <strong>Language: </strong> {this.props.translation.language.name}
@@ -28,4 +28,4 @@ class EtymologyResultCard extends Component {
   }
 }
 
-export default EtymologyResultCard;
+export default SearchEtymologiesContentResultCard;
