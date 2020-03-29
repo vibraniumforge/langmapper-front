@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class GroupEtymologyResultCard extends Component {
+class SearchEtymologiesGroupedResultCard extends Component {
   render() {
     return (
       <div className="group-etymology-result-card">
@@ -19,4 +19,4 @@ class GroupEtymologyResultCard extends Component {
   }
 }
 
-export default GroupEtymologyResultCard;
+export default SearchEtymologiesGroupedResultCard;
