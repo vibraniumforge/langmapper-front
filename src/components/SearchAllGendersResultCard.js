@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class GenderResultCard extends Component {
+class SearchAllGendersResultCard extends Component {
   render() {
     let genderClass;
     switch (this.props.translation.gender) {
@@ -43,4 +43,4 @@ class GenderResultCard extends Component {
   }
 }
 
-export default GenderResultCard;
+export default SearchAllGendersResultCard;
