@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import EtymologyResultCard from "../components/EtymologyResultCard.js";
+import SearchEtymologiesContentResultCard from "../components/SearchEtymologiesContentResultCard.js";
 
 class SearchEtymologiesContentResultsContainer extends Component {
   render() {
@@ -7,7 +7,7 @@ class SearchEtymologiesContentResultsContainer extends Component {
       this.props.results.length > 0
         ? this.props.results.map(translation => {
             return (
-              <EtymologyResultCard
+              <SearchEtymologiesContentResultCard
                 translation={translation}
                 key={translation.id}
               />

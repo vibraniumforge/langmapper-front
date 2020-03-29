@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TranslationByMacrofamilyResultCard from "../components/TranslationByMacrofamilyResultCard.js";
+import SearchTranslationsByMacrofamilyResultCard from "../components/SearchTranslationsByMacrofamilyResultCard.js";
 
 class SearchTranslationsByMacrofamilyResultsContainer extends Component {
   render() {
@@ -7,7 +7,10 @@ class SearchTranslationsByMacrofamilyResultsContainer extends Component {
       this.props.results && this.props.results.length > 0
         ? this.props.results.map((result, index) => {
             return (
-              <TranslationByMacrofamilyResultCard key={index} result={result} />
+              <SearchTranslationsByMacrofamilyResultCard
+                key={index}
+                result={result}
+              />
             );
           })
         : null;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TranslationByLanguageResultCard from "../components/TranslationByLanguageResultCard.js";
+import SearchTranslationsByLanguageResultCard from "../components/SearchTranslationsByLanguageResultCard.js";
 
 class SearchTranslationsByLanguageResultsContainer extends Component {
   render() {
@@ -7,7 +7,7 @@ class SearchTranslationsByLanguageResultsContainer extends Component {
       this.props.results.length > 0
         ? this.props.results.map(translation => {
             return (
-              <TranslationByLanguageResultCard
+              <SearchTranslationsByLanguageResultCard
                 translation={translation}
                 key={translation.id}
               />
