@@ -33,6 +33,12 @@ class SearchTranslationsByLanguage extends React.Component {
       .catch(err => console.log(err));
   };
 
+  onHandleEdit = (e, translationId) => {
+    e.preventDefault();
+    console.log("translationId=", translationId);
+    this.props.history.push(`/edit_translation/${translationId}`);
+  };
+
   render() {
     return (
       <>
@@ -55,6 +61,7 @@ class SearchTranslationsByLanguage extends React.Component {
         <SearchTranslationsByLanguageResultsContainer
           results={this.state.results}
           searchedLanguage={this.state.searchedLanguage}
+          onHandleEdit={this.onHandleEdit}
         />
       </>
     );
