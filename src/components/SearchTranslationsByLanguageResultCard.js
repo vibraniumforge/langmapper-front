@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-class TranslationByLanguageResultCard extends Component {
+class SearchTranslationsByLanguageResultCard extends Component {
   render() {
     return (
       <div className="translation-result-card">
         <p>
           <strong>Word: </strong>
-          {this.props.translation.name}
+          {this.props.translation.word_name}
         </p>
         <p>
           <strong>Translation: </strong>
@@ -27,9 +27,15 @@ class TranslationByLanguageResultCard extends Component {
             ? this.props.translation.etymology.slice(0, 140)
             : "None found"}
         </p>
+        <button
+          onClick={e => this.props.onHandleEdit(e, this.props.translation.id)}
+          className="card-edit-btn"
+        >
+          Edit
+        </button>
       </div>
     );
   }
 }
 
-export default TranslationByLanguageResultCard;
+export default SearchTranslationsByLanguageResultCard;
