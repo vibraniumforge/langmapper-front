@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class TranslationResultCard extends Component {
+class SearchAllTranslationsResultCard extends Component {
   render() {
     return (
       <div className="translation-result-card">
@@ -28,4 +28,4 @@ class TranslationResultCard extends Component {
   }
 }
 
-export default TranslationResultCard;
+export default SearchAllTranslationsResultCard;
