@@ -10,6 +10,7 @@ class SearchTranslationsByLanguageResultsContainer extends Component {
               <SearchTranslationsByLanguageResultCard
                 translation={translation}
                 key={translation.id}
+                onHandleEdit={this.props.onHandleEdit}
               />
             );
           })
