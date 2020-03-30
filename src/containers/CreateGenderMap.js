@@ -289,7 +289,10 @@ class CreateGenderMap extends React.Component {
           src={`${url}/search/all_genders_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}/my_europe_copy_template.svg`}
           alt="europe map"
         /> */}
-        <img src={`${url}/search/all_genders_by_area_img/`} alt="europe map" />
+        <img
+          src={`${url}/search/all_genders_by_area_img/`}
+          alt="europe language map"
+        />
         <CreateEtymologyMapResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
