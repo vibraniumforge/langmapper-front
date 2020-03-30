@@ -27,12 +27,6 @@ class SearchTranslationsByLanguageResultCard extends Component {
             ? this.props.translation.etymology.slice(0, 140)
             : "None found"}
         </p>
-        <button
-          onClick={e => this.props.onHandleEdit(e, this.props.translation.id)}
-          className="card-edit-btn"
-        >
-          Edit
-        </button>
       </div>
     );
   }
