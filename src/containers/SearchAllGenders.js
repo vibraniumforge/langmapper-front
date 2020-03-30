@@ -1,6 +1,8 @@
 import React from "react";
 import SearchAllGendersResultsContainer from "./SearchAllGendersResultsContainer.js";
 
+const REACT_APP_URL = process.env.REACT_APP_URL;
+
 class SearchAllGenders extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,7 @@ class SearchAllGenders extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/api/v1/search/all_word_names`)
+    fetch(`${REACT_APP_URL}/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -31,9 +33,7 @@ class SearchAllGenders extends React.Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    fetch(
-      `http://localhost:3001/api/v1/search/gender/${this.state.selectedWord}`
-    )
+    fetch(`${REACT_APP_URL}/search/gender/${this.state.selectedWord}`)
       .then(res => res.json())
       .then(res =>
         this.setState({

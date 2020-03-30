@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+const REACT_APP_URL = process.env.REACT_APP_URL;
+
 class TranslationForm extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +28,7 @@ class TranslationForm extends Component {
   getTranslationById = () => {
     const splitLang = this.props.location.pathname.split("/");
     const translationId = splitLang[splitLang.length - 1];
-    return fetch(`http://localhost:3001/api/v1/translations/${translationId}`)
+    return fetch(`${REACT_APP_URL}/translations/${translationId}`)
       .then(res => res.json())
       .then(res => {
         console.log("RESULT=", res);
@@ -58,7 +60,7 @@ class TranslationForm extends Component {
     e.preventDefault();
     const splitLang = this.props.location.pathname.split("/");
     const translationId = splitLang[splitLang.length - 1];
-    fetch(`http://localhost:3001/api/v1/translations/${translationId}`, {
+    fetch(`${REACT_APP_URL}/translations/${translationId}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",

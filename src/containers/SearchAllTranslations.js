@@ -1,6 +1,8 @@
 import React from "react";
 import SearchAllTranslationsResultsContainer from "./SearchAllTranslationsResultsContainer.js";
 
+const REACT_APP_URL = process.env.REACT_APP_URL;
+
 class SearchAllTranslations extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,7 @@ class SearchAllTranslations extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/api/v1/search/all_word_names`)
+    fetch(`${REACT_APP_URL}/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -32,7 +34,7 @@ class SearchAllTranslations extends React.Component {
   handleOnSubmit = e => {
     e.preventDefault();
     fetch(
-      `http://localhost:3001/api/v1/search/translation/${this.state.selectedWord.toLowerCase()}`
+      `${REACT_APP_URL}/search/translation/${this.state.selectedWord.toLowerCase()}`
     )
       .then(res => res.json())
       .then(res =>

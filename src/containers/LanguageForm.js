@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+const REACT_APP_URL = process.env.REACT_APP_URL;
 class LanguageForm extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +63,7 @@ class LanguageForm extends Component {
   };
 
   getAllAlphabets = () => {
-    fetch(`http://localhost:3001/api/v1/search/all_macrofamily_names`)
+    fetch(`${REACT_APP_URL}/search/all_macrofamily_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -73,7 +74,7 @@ class LanguageForm extends Component {
   };
 
   getAllMacrofamilies = () => {
-    fetch(`http://localhost:3001/api/v1/search/all_alphabet_names`)
+    fetch(`${REACT_APP_URL}/search/all_alphabet_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -89,7 +90,7 @@ class LanguageForm extends Component {
     }
     const splitLang = this.props.location.pathname.split("/");
     const languageId = splitLang[splitLang.length - 1];
-    return fetch(`http://localhost:3001/api/v1/languages/${languageId}`)
+    return fetch(`${REACT_APP_URL}/languages/${languageId}`)
       .then(res => res.json())
       .then(res => {
         console.log("RESULT=", res);
@@ -123,7 +124,7 @@ class LanguageForm extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    fetch(`http://localhost:3001/api/v1/languages/`, {
+    fetch(`${REACT_APP_URL}/api/v1/languages/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -159,7 +160,7 @@ class LanguageForm extends Component {
     e.preventDefault();
     const splitLang = this.props.location.pathname.split("/");
     const languageId = splitLang[splitLang.length - 1];
-    fetch(`http://localhost:3001/api/v1/languages/${languageId}`, {
+    fetch(`${REACT_APP_URL}/languages/${languageId}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",

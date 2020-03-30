@@ -3,6 +3,8 @@ import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsConta
 // import europeCopyMap from "../images/europe_copy_template.svg";
 const fs = require("fs");
 
+const REACT_APP_URL = process.env.REACT_APP_URL;
+
 class CreateEtymologyMap extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class CreateEtymologyMap extends React.Component {
   }
 
   getAllWordNames() {
-    fetch(`http://localhost:3001/api/v1/search/all_word_names`)
+    fetch(`${REACT_APP_URL}/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -35,7 +37,7 @@ class CreateEtymologyMap extends React.Component {
   }
 
   getAllAreas() {
-    fetch(`http://localhost:3001/api/v1/search/all_areas`)
+    fetch(`${REACT_APP_URL}/search/all_areas`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -54,7 +56,7 @@ class CreateEtymologyMap extends React.Component {
   handleOnSubmit = e => {
     e.preventDefault();
     fetch(
-      `http://localhost:3001/api/v1/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
+      `${REACT_APP_URL}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
       .then(res => res.json())
       .then(res =>
@@ -68,7 +70,7 @@ class CreateEtymologyMap extends React.Component {
       )
       .catch(err => console.log(err));
     fetch(
-      `http://localhost:3001/api/v1/search/all_etymologies_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
+      `${REACT_APP_URL}/search/all_etymologies_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
       .then(res => res.json())
       .then(res =>

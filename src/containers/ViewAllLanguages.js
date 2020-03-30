@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ViewAllLanguagesResultsContainer from "./ViewAllLanguagesResultsContainer.js";
 
-const url = `http://localhost:3001/api/v1/languages`;
+const REACT_APP_URL = process.env.REACT_APP_URL;
 
 class ViewAllLanguages extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class ViewAllLanguages extends Component {
   }
 
   getLanguages = () => {
-    fetch(`${url}`)
+    fetch(`${REACT_APP_URL}`)
       .then(res => res.json())
       .then(res => this.setState({ results: res }))
       .catch(err => console.log(err));
@@ -24,7 +24,7 @@ class ViewAllLanguages extends Component {
 
   onHandleDelete = (e, languageId) => {
     e.preventDefault();
-    fetch(`${url}/${languageId}`, {
+    fetch(`${REACT_APP_URL}/${languageId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

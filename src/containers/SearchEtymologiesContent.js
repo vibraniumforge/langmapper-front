@@ -1,6 +1,8 @@
 import React from "react";
 import SearchEtymologiesContentResultsContainer from "./SearchEtymologiesContentResultsContainer.js";
 
+const REACT_APP_URL = process.env.REACT_APP_URL;
+
 class SearchEtymologiesContent extends React.Component {
   constructor(props) {
     super(props);
@@ -17,9 +19,7 @@ class SearchEtymologiesContent extends React.Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    fetch(
-      `http://localhost:3001/api/v1/search/etymology/${this.state.searchWord}`
-    )
+    fetch(`${REACT_APP_URL}/search/etymology/${this.state.searchWord}`)
       .then(res => res.json())
       .then(res =>
         this.setState({

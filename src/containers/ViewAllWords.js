@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ViewAllWordsResultsContainer from "./ViewAllWordsResultsContainer.js";
 
-const url = `http://localhost:3001/api/v1/words`;
+const REACT_APP_URL = process.env.REACT_APP_URL;
+
 class ViewAllWords extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,7 @@ class ViewAllWords extends Component {
   }
 
   getWords = () => {
-    fetch(`${url}`)
+    fetch(`${REACT_APP_URL}/words`)
       .then(res => res.json())
       .then(res => this.setState({ results: res }))
       .catch(err => console.log(err));
@@ -23,7 +24,7 @@ class ViewAllWords extends Component {
 
   onHandleDelete = (e, wordId) => {
     e.preventDefault();
-    fetch(`${url}/${wordId}`, {
+    fetch(`${REACT_APP_URL}/words/${wordId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

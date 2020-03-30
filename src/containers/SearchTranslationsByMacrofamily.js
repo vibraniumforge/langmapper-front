@@ -1,6 +1,8 @@
 import React from "react";
 import SearchTranslationsByMacrofamilyResultsContainer from "./SearchTranslationsByMacrofamilyResultsContainer.js";
 
+const REACT_APP_URL = process.env.REACT_APP_URL;
+
 class SearchTranslationsByMacrofamily extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,7 @@ class SearchTranslationsByMacrofamily extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/api/v1/search/all_macrofamily_names`)
+    fetch(`${REACT_APP_URL}/search/all_macrofamily_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -33,9 +35,7 @@ class SearchTranslationsByMacrofamily extends React.Component {
       this.state.selectedFamily === ""
         ? "Indo-European"
         : this.state.selectedFamily;
-    fetch(
-      `http://localhost:3001/api/v1/search/all_translations_by_macrofamily/${family}`
-    )
+    fetch(`${REACT_APP_URL}/search/all_translations_by_macrofamily/${family}`)
       .then(res => res.json())
       .then(res =>
         this.setState({

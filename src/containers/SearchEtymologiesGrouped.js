@@ -1,6 +1,8 @@
 import React from "react";
 import SearchEtymologiesGroupedResultsContainer from "./SearchEtymologiesGroupedResultsContainer.js";
 
+const REACT_APP_URL = process.env.REACT_APP_URL;
+
 class SearchEtymologiesGrouped extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,7 @@ class SearchEtymologiesGrouped extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/api/v1/search/all_macrofamily_names`)
+    fetch(`${REACT_APP_URL}/search/all_macrofamily_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -24,7 +26,7 @@ class SearchEtymologiesGrouped extends React.Component {
         })
       )
       .catch(err => console.log(err));
-    fetch(`http://localhost:3001/api/v1/search/all_word_names`)
+    fetch(`${REACT_APP_URL}/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -45,7 +47,7 @@ class SearchEtymologiesGrouped extends React.Component {
         ? "Indo-European"
         : this.state.selectedFamily;
     fetch(
-      `http://localhost:3001/api/v1/search/grouped_etymology/${this.state.selectedWord}/${family}`
+      `${REACT_APP_URL}/search/grouped_etymology/${this.state.selectedWord}/${family}`
     )
       .then(res => res.json())
       .then(res =>

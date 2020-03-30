@@ -1,6 +1,8 @@
 import React from "react";
 import SearchTranslationsByAreaResultsContainer from "./SearchTranslationsByAreaResultsContainer.js";
 
+const REACT_APP_URL = process.env.REACT_APP_URL;
+
 class SearchTranslationsByArea extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   getAllWordNames() {
-    fetch(`http://localhost:3001/api/v1/search/all_word_names`)
+    fetch(`${REACT_APP_URL}/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -33,7 +35,7 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   getAllAreas() {
-    fetch(`http://localhost:3001/api/v1/search/all_areas`)
+    fetch(`${REACT_APP_URL}/search/all_areas`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -52,7 +54,7 @@ class SearchTranslationsByArea extends React.Component {
   handleOnSubmit = e => {
     e.preventDefault();
     fetch(
-      `http://localhost:3001/api/v1/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
+      `${REACT_APP_URL}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
       .then(res => res.json())
       .then(res =>

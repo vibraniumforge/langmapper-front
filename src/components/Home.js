@@ -1,6 +1,7 @@
 import React from "react";
 
-const url = `http://localhost:3001/api/v1`;
+// const url = `http://localhost:3001/api/v1`;
+const REACT_APP_URL = process.env.REACT_APP_URL;
 
 class Home extends React.Component {
   state = {
@@ -15,9 +16,9 @@ class Home extends React.Component {
     this.getTranslationsCount();
     this.getWordCount();
     Promise.all([
-      fetch(`${url}/search/language_count`),
-      fetch(`${url}/search/translation_count`),
-      fetch(`${url}/search/word_count`)
+      fetch(`${REACT_APP_URL}/search/language_count`),
+      fetch(`${REACT_APP_URL}/search/translation_count`),
+      fetch(`${REACT_APP_URL}/search/word_count`)
     ])
       .then(([res1, res2, res3]) =>
         Promise.all([res1.json(), res2.json(), res3.json()])
@@ -34,7 +35,7 @@ class Home extends React.Component {
   }
 
   getLanguagesCount = () => {
-    fetch(`${url}/search/language_count`)
+    fetch(`${REACT_APP_URL}/search/language_count`)
       .then(res => res.json())
       .then(res => {
         this.setState({ languagesCount: res.data });
@@ -43,7 +44,7 @@ class Home extends React.Component {
   };
 
   getTranslationsCount = () => {
-    fetch(`${url}/search/translation_count`)
+    fetch(`${REACT_APP_URL}/search/translation_count`)
       .then(res => res.json())
       .then(res => {
         this.setState({ translationsCount: res.data });
@@ -52,7 +53,7 @@ class Home extends React.Component {
   };
 
   getWordCount = () => {
-    fetch(`${url}/search/word_count`)
+    fetch(`${REACT_APP_URL}/search/word_count`)
       .then(res => res.json())
       .then(res => {
         this.setState({ wordCount: res.data });
