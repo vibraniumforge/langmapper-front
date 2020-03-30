@@ -16,8 +16,9 @@ import ViewAllLanguages from "./containers/ViewAllLanguages.js";
 import SearchLanguagesByArea from "./containers/SearchLanguagesByArea.js";
 import SearchTranslationsByArea from "./containers/SearchTranslationsByArea.js";
 import TranslationForm from "./containers/TranslationForm.js";
+import CreateTranslationMap from "./containers/CreateTranslationMap.js";
 import CreateEtymologyMap from "./containers/CreateEtymologyMap.js";
-// import SearchTranslationsByAreaText from "./containers/SearchTranslationsByAreaText.js";
+import CreateGenderMap from "./containers/CreateGenderMap.js";
 
 function App() {
   return (
@@ -64,9 +65,14 @@ function App() {
             <Route path="/all_languages" component={ViewAllLanguages} />
             <Route path="/edit_translation" component={TranslationForm} />
             <Route
+              path="/create_translation_map"
+              component={CreateTranslationMap}
+            />
+            <Route
               path="/create_etymology_map"
               component={CreateEtymologyMap}
             />
+            <Route path="/create_gender_map" component={CreateGenderMap} />
           </Switch>
         </div>
       </Router>
