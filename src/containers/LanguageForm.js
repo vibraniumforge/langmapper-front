@@ -127,7 +127,7 @@ class LanguageForm extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    fetch(`${url}/api/v1/languages/`, {
+    fetch(`${url}/languages/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
