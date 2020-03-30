@@ -213,6 +213,14 @@ td {
   padding-bottom: 15px;
 }
 
+.table-edit-btn {
+  font-size: 20px;
+  border: 2px solid black;
+  color: yellow;
+  background-color: black;
+  margin: 5px;
+}
+
 #landing-page {
   color: white;
   background-image: url("./images/875px-Rosetta_Stone.JPG");
