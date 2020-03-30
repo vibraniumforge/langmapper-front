@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class CreateEtymologyMapResultsContainer extends Component {
+class CreateTranslationMapResultsContainer extends Component {
   render() {
     console.log(this.props);
     const translations =
@@ -57,4 +57,4 @@ class CreateEtymologyMapResultsContainer extends Component {
   }
 }
 
-export default CreateEtymologyMapResultsContainer;
+export default CreateTranslationMapResultsContainer;
