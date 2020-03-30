@@ -20,6 +20,8 @@ import CreateTranslationMap from "./containers/CreateTranslationMap.js";
 import CreateEtymologyMap from "./containers/CreateEtymologyMap.js";
 import CreateGenderMap from "./containers/CreateGenderMap.js";
 
+// require("dotenv").config();
+
 function App() {
   return (
     <div className="App">
@@ -62,6 +64,11 @@ function App() {
             <Route path="/all_words" component={ViewAllWords} />
             <Route path="/new_language" component={LanguageForm} />
             <Route path="/edit_language" component={LanguageForm} />
+            {/* <Route
+              path="/edit_translation"
+              render={(props = <EditLanguageForm {...props} />)}
+            /> */}
+            {/* change the above */}
             <Route path="/all_languages" component={ViewAllLanguages} />
             <Route path="/edit_translation" component={TranslationForm} />
             <Route
