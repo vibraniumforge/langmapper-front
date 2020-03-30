@@ -163,13 +163,13 @@ class CreateEtymologyMap extends React.Component {
             disabled={!this.state.selectedLocation || !this.state.selectedWord}
           />
         </form>
-        <img src={europeCopyMap} alt="europe map" />
         <CreateEtymologyMapResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
           searchedLocation={this.state.searchedLocation}
           onHandleEdit={this.onHandleEdit}
         />
+        <img src={europeCopyMap} alt="europe map" />
       </>
     );
   }

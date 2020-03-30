@@ -1,6 +1,6 @@
 import React from "react";
 import CreateTranslationMapResultsContainer from "./CreateTranslationMapResultsContainer.js";
-// import europeCopyMap from "../images/europe_copy_template.svg";
+import europeCopyMap from "../images/my_europe_template.svg";
 const fs = require("fs");
 
 // const REACT_APP_URL = process.env.REACT_APP_URL;
@@ -155,13 +155,13 @@ class CreateTranslationMap extends React.Component {
             disabled={!this.state.selectedLocation || !this.state.selectedWord}
           />
         </form>
-        {/* <img src={europeCopyMap} alt="europe map" /> */}
         <CreateTranslationMapResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
           searchedLocation={this.state.searchedLocation}
           onHandleEdit={this.onHandleEdit}
         />
+        <img src={europeCopyMap} alt="europe map" />
       </>
     );
   }
