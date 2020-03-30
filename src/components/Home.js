@@ -13,9 +13,9 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.getLanguagesCount();
-    this.getTranslationsCount();
-    this.getWordCount();
+    // this.getLanguagesCount();
+    // this.getTranslationsCount();
+    // this.getWordCount();
     Promise.all([
       fetch(`${url}/search/language_count`),
       fetch(`${url}/search/translation_count`),
@@ -35,32 +35,32 @@ class Home extends React.Component {
       .catch(err => console.log(err));
   }
 
-  getLanguagesCount = () => {
-    fetch(`${url}/search/language_count`)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({ languagesCount: res.data });
-      })
-      .catch(err => console.log(err));
-  };
+  //   getLanguagesCount = () => {
+  //     fetch(`${url}/search/language_count`)
+  //       .then(res => res.json())
+  //       .then(res => {
+  //         this.setState({ languagesCount: res.data });
+  //       })
+  //       .catch(err => console.log(err));
+  //   };
 
-  getTranslationsCount = () => {
-    fetch(`${url}/search/translation_count`)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({ translationsCount: res.data });
-      })
-      .catch(err => console.log(err));
-  };
+  //   getTranslationsCount = () => {
+  //     fetch(`${url}/search/translation_count`)
+  //       .then(res => res.json())
+  //       .then(res => {
+  //         this.setState({ translationsCount: res.data });
+  //       })
+  //       .catch(err => console.log(err));
+  //   };
 
-  getWordCount = () => {
-    fetch(`${url}/search/word_count`)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({ wordCount: res.data });
-      })
-      .catch(err => console.log(err));
-  };
+  //   getWordCount = () => {
+  //     fetch(`${url}/search/word_count`)
+  //       .then(res => res.json())
+  //       .then(res => {
+  //         this.setState({ wordCount: res.data });
+  //       })
+  //       .catch(err => console.log(err));
+  //   };
 
   render() {
     return this.state.complete ? (
