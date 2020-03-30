@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
-class CreateEtymologyMapResultsContainer extends Component {
+class CreateGenderMapResultsContainer extends Component {
   render() {
-    console.log(this.props);
     const translations =
       this.props.results && this.props.results.length > 0
         ? this.props.results.map(translation => {
@@ -57,4 +56,4 @@ class CreateEtymologyMapResultsContainer extends Component {
   }
 }
 
-export default CreateEtymologyMapResultsContainer;
+export default CreateGenderMapResultsContainer;
