@@ -76,12 +76,14 @@ class TranslationForm extends Component {
     })
       .then(res => res.json())
       .then(this.clearForm())
-      .then(this.props.history.push("/all_translations_by_language"))
+      //   .then(this.props.history.push("/all_translations_by_language"))
+      .then(this.props.history.goBack())
       .catch(err => console.log(err));
   };
 
   cancelFormAction = () => {
-    this.props.history.push("/all_translations_by_language");
+    // this.props.history.push("/all_translations_by_language");
+    this.props.history.goBack();
   };
 
   clearForm = () => {
