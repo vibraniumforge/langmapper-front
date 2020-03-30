@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SearchTranslationsByAreaResultsContainer extends Component {
+class CreateEtymologyMapResultsContainer extends Component {
   render() {
     const translations =
       this.props.results && this.props.results.length > 0
@@ -19,6 +19,14 @@ class SearchTranslationsByAreaResultsContainer extends Component {
                 <td>{translation.family}</td>
                 <td>
                   {translation.etymology ? translation.etymology : "None Found"}
+                </td>
+                <td>
+                  <button
+                    onClick={e => this.props.onHandleEdit(e, translation.id)}
+                    className="table-edit-btn"
+                  >
+                    Edit
+                  </button>
                 </td>
               </tr>
             );
@@ -48,4 +56,4 @@ class SearchTranslationsByAreaResultsContainer extends Component {
   }
 }
 
-export default SearchTranslationsByAreaResultsContainer;
+export default CreateEtymologyMapResultsContainer;
