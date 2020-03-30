@@ -68,7 +68,7 @@ class CreateEtymologyMap extends React.Component {
       )
       .catch(err => console.log(err));
     fetch(
-      `http://localhost:3001/api/v1/search/all_translations_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
+      `http://localhost:3001/api/v1/search/all_etymologies_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
       .then(res => res.json())
       .then(res =>
@@ -77,6 +77,12 @@ class CreateEtymologyMap extends React.Component {
         })
       )
       .catch(err => console.warn(err));
+  };
+
+  onHandleEdit = (e, translationId) => {
+    e.preventDefault();
+    console.log("translationId=", translationId);
+    this.props.history.push(`/edit_translation/${translationId}`);
   };
 
   makeImg = () => {
@@ -150,6 +156,7 @@ class CreateEtymologyMap extends React.Component {
           results={this.state.results}
           searchedWord={this.state.searchedWord}
           searchedLocation={this.state.searchedLocation}
+          onHandleEdit={this.onHandleEdit}
         />
       </>
     );
