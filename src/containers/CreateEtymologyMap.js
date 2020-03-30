@@ -1,11 +1,11 @@
 import React from "react";
 import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsContainer.js";
-// import europeCopyMap from "../images/europe_copy_template.svg";
+import europeCopyMap from "../images/my_europe_template.svg";
 const fs = require("fs");
 
 // const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+const url = "http://localhost:3001/api/v1";
+// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class CreateEtymologyMap extends React.Component {
   constructor(props) {
@@ -75,10 +75,17 @@ class CreateEtymologyMap extends React.Component {
       `${url}/search/all_etymologies_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
       .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        return res;
+      })
       .then(res =>
-        this.setState({
-          imageResults: res.data
-        })
+        this.setState(
+          {
+            imageResults: res.data
+          },
+          () => this.makeImg()
+        )
       )
       .catch(err => console.warn(err));
   };
@@ -91,7 +98,8 @@ class CreateEtymologyMap extends React.Component {
 
   makeImg = () => {
     console.log("makeImg fires");
-    // console.log(europeCopyMap);
+    console.log("this.state.imageResults=", this.state.imageResults);
+    console.log(europeCopyMap);
     const resultsArray = [...this.state.imageResults];
     fs.writeFile("../images/europe_template_copy.svg", (err, data) => {
       if (err) {
@@ -155,7 +163,7 @@ class CreateEtymologyMap extends React.Component {
             disabled={!this.state.selectedLocation || !this.state.selectedWord}
           />
         </form>
-        {/* <img src={europeCopyMap} alt="europe map" /> */}
+        <img src={europeCopyMap} alt="europe map" />
         <CreateEtymologyMapResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
