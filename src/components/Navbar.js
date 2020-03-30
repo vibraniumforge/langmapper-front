@@ -47,8 +47,14 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/all_languages">
           View all Languages
         </NavLink>
+        <NavLink activeClassName="selected" to="/create_translation_map">
+          Create Translation Map by Area
+        </NavLink>
         <NavLink activeClassName="selected" to="/create_etymology_map">
           Create Etymology Map by Area
+        </NavLink>
+        <NavLink activeClassName="selected" to="/create_gender_map">
+          Create Gender Map by Area
         </NavLink>
       </div>
     );
