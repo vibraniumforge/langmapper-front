@@ -1,7 +1,9 @@
 import React from "react";
 import SearchLanguagesByAreaResultsContainer from "./SearchLanguagesByAreaResultsContainer.js";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class SearchLanguagesByArea extends React.Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class SearchLanguagesByArea extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${REACT_APP_URL}/search/all_areas`)
+    fetch(`${url}/search/all_areas`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -33,9 +35,7 @@ class SearchLanguagesByArea extends React.Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    fetch(
-      `${REACT_APP_URL}/search/all_languages_by_area/${this.state.selectedLocation}`
-    )
+    fetch(`${url}/search/all_languages_by_area/${this.state.selectedLocation}`)
       .then(res => res.json())
       .then(res =>
         this.setState({

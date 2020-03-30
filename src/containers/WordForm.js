@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class WordForm extends Component {
   constructor(props) {
@@ -17,8 +19,7 @@ class WordForm extends Component {
   }
 
   getAllWordNames() {
-    // fetch(`http://localhost:3001/api/v1/search/all_word_names`)
-    fetch(`${REACT_APP_URL}/search/all_word_names`)
+    fetch(`${url}/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -51,8 +52,7 @@ class WordForm extends Component {
   handleOnSubmit = e => {
     e.preventDefault();
     if (this.state.ableToSubmit) {
-      //   fetch(`http://localhost:3001/api/v1/words/`, {
-      fetch(`${REACT_APP_URL}/words/`, {
+      fetch(`${url}/words/`, {
         method: "POST",
         headers: {
           Accept: "application/json",

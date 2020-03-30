@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import ViewAllWordsResultsContainer from "./ViewAllWordsResultsContainer.js";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class ViewAllWords extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ class ViewAllWords extends Component {
   }
 
   getWords = () => {
-    fetch(`${REACT_APP_URL}/words`)
+    fetch(`${url}/words`)
       .then(res => res.json())
       .then(res => this.setState({ results: res }))
       .catch(err => console.log(err));
@@ -24,7 +26,7 @@ class ViewAllWords extends Component {
 
   onHandleDelete = (e, wordId) => {
     e.preventDefault();
-    fetch(`${REACT_APP_URL}/words/${wordId}`, {
+    fetch(`${url}/words/${wordId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

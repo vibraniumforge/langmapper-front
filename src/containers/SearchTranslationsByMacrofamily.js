@@ -1,7 +1,9 @@
 import React from "react";
 import SearchTranslationsByMacrofamilyResultsContainer from "./SearchTranslationsByMacrofamilyResultsContainer.js";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class SearchTranslationsByMacrofamily extends React.Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class SearchTranslationsByMacrofamily extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${REACT_APP_URL}/search/all_macrofamily_names`)
+    fetch(`${url}/search/all_macrofamily_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -35,7 +37,7 @@ class SearchTranslationsByMacrofamily extends React.Component {
       this.state.selectedFamily === ""
         ? "Indo-European"
         : this.state.selectedFamily;
-    fetch(`${REACT_APP_URL}/search/all_translations_by_macrofamily/${family}`)
+    fetch(`${url}/search/all_translations_by_macrofamily/${family}`)
       .then(res => res.json())
       .then(res =>
         this.setState({

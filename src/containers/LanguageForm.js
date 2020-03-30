@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+
 class LanguageForm extends Component {
   constructor(props) {
     super(props);
@@ -63,7 +66,7 @@ class LanguageForm extends Component {
   };
 
   getAllAlphabets = () => {
-    fetch(`${REACT_APP_URL}/search/all_macrofamily_names`)
+    fetch(`${url}/search/all_macrofamily_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -74,7 +77,7 @@ class LanguageForm extends Component {
   };
 
   getAllMacrofamilies = () => {
-    fetch(`${REACT_APP_URL}/search/all_alphabet_names`)
+    fetch(`${url}/search/all_alphabet_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -90,7 +93,7 @@ class LanguageForm extends Component {
     }
     const splitLang = this.props.location.pathname.split("/");
     const languageId = splitLang[splitLang.length - 1];
-    return fetch(`${REACT_APP_URL}/languages/${languageId}`)
+    return fetch(`${url}/languages/${languageId}`)
       .then(res => res.json())
       .then(res => {
         console.log("RESULT=", res);
@@ -124,7 +127,7 @@ class LanguageForm extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    fetch(`${REACT_APP_URL}/api/v1/languages/`, {
+    fetch(`${url}/api/v1/languages/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -160,7 +163,7 @@ class LanguageForm extends Component {
     e.preventDefault();
     const splitLang = this.props.location.pathname.split("/");
     const languageId = splitLang[splitLang.length - 1];
-    fetch(`${REACT_APP_URL}/languages/${languageId}`, {
+    fetch(`${url}/languages/${languageId}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",

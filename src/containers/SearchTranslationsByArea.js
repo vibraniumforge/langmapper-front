@@ -1,7 +1,9 @@
 import React from "react";
 import SearchTranslationsByAreaResultsContainer from "./SearchTranslationsByAreaResultsContainer.js";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class SearchTranslationsByArea extends React.Component {
   constructor(props) {
@@ -24,7 +26,7 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   getAllWordNames() {
-    fetch(`${REACT_APP_URL}/search/all_word_names`)
+    fetch(`${url}/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -35,7 +37,7 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   getAllAreas() {
-    fetch(`${REACT_APP_URL}/search/all_areas`)
+    fetch(`${url}/search/all_areas`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -54,7 +56,7 @@ class SearchTranslationsByArea extends React.Component {
   handleOnSubmit = e => {
     e.preventDefault();
     fetch(
-      `${REACT_APP_URL}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
+      `${url}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
       .then(res => res.json())
       .then(res =>

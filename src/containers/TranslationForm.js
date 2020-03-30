@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class TranslationForm extends Component {
   constructor(props) {
@@ -28,7 +30,7 @@ class TranslationForm extends Component {
   getTranslationById = () => {
     const splitLang = this.props.location.pathname.split("/");
     const translationId = splitLang[splitLang.length - 1];
-    return fetch(`${REACT_APP_URL}/translations/${translationId}`)
+    return fetch(`${url}/translations/${translationId}`)
       .then(res => res.json())
       .then(res => {
         console.log("RESULT=", res);
@@ -60,7 +62,7 @@ class TranslationForm extends Component {
     e.preventDefault();
     const splitLang = this.props.location.pathname.split("/");
     const translationId = splitLang[splitLang.length - 1];
-    fetch(`${REACT_APP_URL}/translations/${translationId}`, {
+    fetch(`${url}/translations/${translationId}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",

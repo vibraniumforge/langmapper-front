@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import ViewAllLanguagesResultsContainer from "./ViewAllLanguagesResultsContainer.js";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class ViewAllLanguages extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ class ViewAllLanguages extends Component {
   }
 
   getLanguages = () => {
-    fetch(`${REACT_APP_URL}`)
+    fetch(`${url}/languages`)
       .then(res => res.json())
       .then(res => this.setState({ results: res }))
       .catch(err => console.log(err));
@@ -24,7 +26,7 @@ class ViewAllLanguages extends Component {
 
   onHandleDelete = (e, languageId) => {
     e.preventDefault();
-    fetch(`${REACT_APP_URL}/${languageId}`, {
+    fetch(`${url}/${languageId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

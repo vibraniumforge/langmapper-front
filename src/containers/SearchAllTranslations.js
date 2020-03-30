@@ -1,7 +1,9 @@
 import React from "react";
 import SearchAllTranslationsResultsContainer from "./SearchAllTranslationsResultsContainer.js";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class SearchAllTranslations extends React.Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class SearchAllTranslations extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${REACT_APP_URL}/search/all_word_names`)
+    fetch(`${url}/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -33,9 +35,7 @@ class SearchAllTranslations extends React.Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    fetch(
-      `${REACT_APP_URL}/search/translation/${this.state.selectedWord.toLowerCase()}`
-    )
+    fetch(`${url}/search/translation/${this.state.selectedWord.toLowerCase()}`)
       .then(res => res.json())
       .then(res =>
         this.setState({

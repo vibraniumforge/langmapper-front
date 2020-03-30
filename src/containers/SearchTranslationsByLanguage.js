@@ -1,7 +1,9 @@
 import React from "react";
 import SearchTranslationsByLanguageResultsContainer from "./SearchTranslationsByLanguageResultsContainer.js";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class SearchTranslationsByLanguage extends React.Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class SearchTranslationsByLanguage extends React.Component {
   handleOnSubmit = e => {
     e.preventDefault();
     fetch(
-      `${REACT_APP_URL}/search/all_translations_by_language/${this.state.selectedLanguage}`
+      `${url}/search/all_translations_by_language/${this.state.selectedLanguage}`
     )
       .then(res => res.json())
       .then(res =>

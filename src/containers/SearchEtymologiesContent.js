@@ -1,7 +1,9 @@
 import React from "react";
 import SearchEtymologiesContentResultsContainer from "./SearchEtymologiesContentResultsContainer.js";
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class SearchEtymologiesContent extends React.Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class SearchEtymologiesContent extends React.Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    fetch(`${REACT_APP_URL}/search/etymology/${this.state.searchWord}`)
+    fetch(`${url}/search/etymology/${this.state.searchWord}`)
       .then(res => res.json())
       .then(res =>
         this.setState({

@@ -3,7 +3,9 @@ import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsConta
 // import europeCopyMap from "../images/europe_copy_template.svg";
 const fs = require("fs");
 
-const REACT_APP_URL = process.env.REACT_APP_URL;
+// const REACT_APP_URL = process.env.REACT_APP_URL;
+// const url = 'http://localhost:3001/api/v1'
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class CreateGenderMap extends React.Component {
   constructor(props) {
@@ -26,8 +28,7 @@ class CreateGenderMap extends React.Component {
   }
 
   getAllWordNames() {
-    console.log(REACT_APP_URL);
-    fetch(`${REACT_APP_URL}/search/all_word_names`)
+    fetch(`${url}/search/all_word_names`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -38,7 +39,7 @@ class CreateGenderMap extends React.Component {
   }
 
   getAllAreas() {
-    fetch(`${REACT_APP_URL}/search/all_areas`)
+    fetch(`${url}/search/all_areas`)
       .then(res => res.json())
       .then(res =>
         this.setState({
@@ -57,7 +58,7 @@ class CreateGenderMap extends React.Component {
   handleOnSubmit = e => {
     e.preventDefault();
     fetch(
-      `${REACT_APP_URL}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
+      `${url}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
       .then(res => res.json())
       .then(res =>
@@ -71,7 +72,7 @@ class CreateGenderMap extends React.Component {
       )
       .catch(err => console.log(err));
     fetch(
-      `${REACT_APP_URL}/search/all_genders_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
+      `${url}/search/all_genders_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
       .then(res => res.json())
       .then(res =>
