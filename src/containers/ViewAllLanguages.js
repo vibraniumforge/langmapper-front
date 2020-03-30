@@ -26,7 +26,7 @@ class ViewAllLanguages extends Component {
 
   onHandleDelete = (e, languageId) => {
     e.preventDefault();
-    fetch(`${url}/${languageId}`, {
+    fetch(`${url}/languages/${languageId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
