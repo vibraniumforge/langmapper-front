@@ -36,8 +36,8 @@ class CreateTranslationMapResultsContainer extends Component {
 
     return (
       <>
-        <h3>Location: {this.props.searchedLocation}</h3>
-        <h3>Word: {this.props.searchedWord}</h3>
+        {/* <h3>Location: {this.props.searchedLocation}</h3>
+        <h3>Word: {this.props.searchedWord}</h3> */}
         <table>
           <thead>
             <tr>
