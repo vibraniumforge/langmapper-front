@@ -56,6 +56,7 @@ class CreateGenderMap extends React.Component {
   };
 
   handleOnSubmit = e => {
+    console.log("handleOnSubmit fires");
     e.preventDefault();
     fetch(
       `${url}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
@@ -71,6 +72,7 @@ class CreateGenderMap extends React.Component {
         })
       )
       .catch(err => console.log(err));
+    console.log("handleOnSubmit fires");
     fetch(
       `${url}/search/all_genders_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
@@ -289,10 +291,11 @@ class CreateGenderMap extends React.Component {
           src={`${url}/search/all_genders_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}/my_europe_copy_template.svg`}
           alt="europe map"
         /> */}
-        <img
+        {/* <img
           src={`${url}/search/all_genders_by_area_img/`}
           alt="europe language map"
-        />
+        /> */}
+        <img src={this.state.imageResults} alt="europe language map" />
         <CreateEtymologyMapResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
