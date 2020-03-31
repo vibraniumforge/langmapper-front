@@ -1,7 +1,5 @@
 import React from "react";
 import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsContainer.js";
-import europeCopyMap from "../images/my_europe_template.svg";
-const fs = require("fs");
 
 // const REACT_APP_URL = process.env.REACT_APP_URL;
 const url = "http://localhost:3001/api/v1";
@@ -18,7 +16,7 @@ class CreateEtymologyMap extends React.Component {
       results: [],
       searchedWord: "",
       searchedLocation: "",
-      imageResults: []
+      imageResults: ""
     };
   }
 
@@ -74,19 +72,16 @@ class CreateEtymologyMap extends React.Component {
     fetch(
       `${url}/search/all_etymologies_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
-      .then(res => res.json())
+      .then(res => res.blob())
       .then(res => {
         console.log(res);
         return res;
       })
-      .then(res =>
-        this.setState(
-          {
-            imageResults: res.data
-          },
-          () => this.makeImg()
-        )
-      )
+      .then(images => {
+        let outside = URL.createObjectURL(images);
+        console.log("outside=", outside);
+        this.setState({ imageResults: outside });
+      })
       .catch(err => console.warn(err));
   };
 
@@ -94,28 +89,6 @@ class CreateEtymologyMap extends React.Component {
     e.preventDefault();
     console.log("translationId=", translationId);
     this.props.history.push(`/edit_translation/${translationId}`);
-  };
-
-  makeImg = () => {
-    console.log("makeImg fires");
-    console.log("this.state.imageResults=", this.state.imageResults);
-    console.log(europeCopyMap);
-    const resultsArray = [...this.state.imageResults];
-    fs.writeFile("../images/europe_template_copy.svg", (err, data) => {
-      if (err) {
-        console.log(err);
-        return;
-      } else {
-        console.log(data);
-      }
-    });
-    let fileName = fs.writeFile("../images/europe_template_copy.svg");
-    let counter = 0;
-    for (let language in resultsArray) {
-      console.log(`${language}, ${counter}`);
-      fileName = fileName.replace("$" + language[0], resultsArray[counter][1]);
-      counter++;
-    }
   };
 
   render() {
@@ -163,13 +136,17 @@ class CreateEtymologyMap extends React.Component {
             disabled={!this.state.selectedLocation || !this.state.selectedWord}
           />
         </form>
+        <h3>Location: {this.state.searchedLocation}</h3>
+        <h3>Word: {this.state.searchedWord}</h3>
+        {this.state.imageResults ? (
+          <img src={this.state.imageResults} alt="europe language map" />
+        ) : null}
         <CreateEtymologyMapResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
           searchedLocation={this.state.searchedLocation}
           onHandleEdit={this.onHandleEdit}
         />
-        <img src={europeCopyMap} alt="europe map" />
       </>
     );
   }

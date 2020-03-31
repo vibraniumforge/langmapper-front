@@ -1,11 +1,9 @@
 import React from "react";
 import CreateTranslationMapResultsContainer from "./CreateTranslationMapResultsContainer.js";
-import europeCopyMap from "../images/my_europe_template.svg";
-const fs = require("fs");
 
 // const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+const url = "http://localhost:3001/api/v1";
+// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class CreateTranslationMap extends React.Component {
   constructor(props) {
@@ -18,7 +16,7 @@ class CreateTranslationMap extends React.Component {
       results: [],
       searchedWord: "",
       searchedLocation: "",
-      imageResults: []
+      imageResults: ""
     };
   }
 
@@ -71,15 +69,16 @@ class CreateTranslationMap extends React.Component {
         })
       )
       .catch(err => console.log(err));
+
     fetch(
       `${url}/search/all_translations_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          imageResults: res.data
-        })
-      )
+      .then(res => res.blob())
+      .then(images => {
+        let outside = URL.createObjectURL(images);
+        console.log("outside=", outside);
+        this.setState({ imageResults: outside });
+      })
       .catch(err => console.warn(err));
   };
 
@@ -87,27 +86,6 @@ class CreateTranslationMap extends React.Component {
     e.preventDefault();
     console.log("translationId=", translationId);
     this.props.history.push(`/edit_translation/${translationId}`);
-  };
-
-  makeImg = () => {
-    console.log("makeImg fires");
-    // console.log(europeCopyMap);
-    const resultsArray = [...this.state.imageResults];
-    fs.writeFile("../images/europe_template_copy.svg", (err, data) => {
-      if (err) {
-        console.log(err);
-        return;
-      } else {
-        console.log(data);
-      }
-    });
-    let fileName = fs.writeFile("../images/europe_template_copy.svg");
-    let counter = 0;
-    for (let language in resultsArray) {
-      console.log(`${language}, ${counter}`);
-      fileName = fileName.replace("$" + language[0], resultsArray[counter][1]);
-      counter++;
-    }
   };
 
   render() {
@@ -155,13 +133,17 @@ class CreateTranslationMap extends React.Component {
             disabled={!this.state.selectedLocation || !this.state.selectedWord}
           />
         </form>
+        <h3>Location: {this.state.searchedLocation}</h3>
+        <h3>Word: {this.state.searchedWord}</h3>
+        {this.state.imageResults ? (
+          <img src={this.state.imageResults} alt="europe language map" />
+        ) : null}
         <CreateTranslationMapResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
           searchedLocation={this.state.searchedLocation}
           onHandleEdit={this.onHandleEdit}
         />
-        <img src={europeCopyMap} alt="europe map" />
       </>
     );
   }
