@@ -2,15 +2,15 @@ import React from "react";
 import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsContainer.js";
 
 // const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = "http://localhost:3001/api/v1";
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+const url = "http://localhost:3001/api/v1";
+// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class CreateEtymologyMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedLocation: "Europe",
-      selectedWord: "silver",
+      selectedWord: "",
       allWords: [],
       allLocations: [],
       results: [],
@@ -114,7 +114,8 @@ class CreateEtymologyMap extends React.Component {
             onChange={this.handleOnChange}
           >
             <option value="">Select One Location</option>
-            {allLocations}
+            {/* {allLocations} */}
+            <option value="Europe">Europe</option>
           </select>
           <select
             id="select"

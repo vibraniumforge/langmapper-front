@@ -10,7 +10,7 @@ class CreateGenderMap extends React.Component {
     super(props);
     this.state = {
       selectedLocation: "Europe",
-      selectedWord: "silver",
+      selectedWord: "",
       allWords: [],
       allLocations: [],
       results: [],
@@ -115,7 +115,8 @@ class CreateGenderMap extends React.Component {
             onChange={this.handleOnChange}
           >
             <option value="">Select One Location</option>
-            {allLocations}
+            {/* {allLocations} */}
+            <option value="Europe">Europe</option>
           </select>
           <select
             id="select"
