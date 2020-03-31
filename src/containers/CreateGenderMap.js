@@ -1,11 +1,11 @@
 import React from "react";
-import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsContainer.js";
+import CreateGenderMapResultsContainer from "./CreateGenderMapResultsContainer.js";
 import europeCopyMap from "../images/my_europe_template.svg";
 const fs = require("fs");
 
 // const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+const url = "http://localhost:3001/api/v1";
+// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class CreateGenderMap extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class CreateGenderMap extends React.Component {
       results: [],
       searchedWord: "",
       searchedLocation: "",
-      imageResults: []
+      imageResults: ""
     };
   }
 
@@ -66,29 +66,27 @@ class CreateGenderMap extends React.Component {
         this.setState({
           results: res.data,
           searchedLocation: this.state.selectedLocation,
-          searchedWord: this.state.selectedWord
-          //   selectedLocation: "",
-          //   selectedWord: ""
+          searchedWord: this.state.selectedWord,
+          selectedLocation: "",
+          selectedWord: ""
         })
       )
       .catch(err => console.log(err));
-    console.log("handleOnSubmit fires");
+
     fetch(
       `${url}/search/all_genders_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
+      .then(res => res.blob())
       .then(res => {
         console.log(res);
         return res;
       })
-      .then(res => res.json())
-      .then(res =>
-        this.setState(
-          {
-            imageResults: res.data
-          },
-          () => this.makeImg()
-        )
-      )
+      .then(images => {
+        // Then create a local URL for that image and print it
+        let outside = URL.createObjectURL(images);
+        console.log("outside=", outside);
+        this.setState({ imageResults: outside });
+      })
       .catch(err => console.warn(err));
   };
 
@@ -295,8 +293,13 @@ class CreateGenderMap extends React.Component {
           src={`${url}/search/all_genders_by_area_img/`}
           alt="europe language map"
         /> */}
-        <img src={this.state.imageResults} alt="europe language map" />
-        <CreateEtymologyMapResultsContainer
+        <h3>Location: {this.state.searchedLocation}</h3>
+        <h3>Word: {this.state.searchedWord}</h3>
+        {this.state.imageResults ? (
+          <img src={this.state.imageResults} alt="europe language map" />
+        ) : null}
+
+        <CreateGenderMapResultsContainer
           results={this.state.results}
           searchedWord={this.state.searchedWord}
           searchedLocation={this.state.searchedLocation}
