@@ -35,15 +35,15 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/search_translations_by_area">
           Search Translations by Area
         </NavLink>
-        <NavLink activeClassName="selected" to="/new_word">
+        {/* <NavLink activeClassName="selected" to="/new_word">
           Create a New Word
-        </NavLink>
+        </NavLink> */}
         <NavLink activeClassName="selected" to="/all_words">
           View all Words
         </NavLink>
-        <NavLink activeClassName="selected" to="/new_language">
+        {/* <NavLink activeClassName="selected" to="/new_language">
           Create a new Language
-        </NavLink>
+        </NavLink> */}
         <NavLink activeClassName="selected" to="/all_languages">
           View all Languages
         </NavLink>
