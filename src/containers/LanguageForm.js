@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
+// const url = "http://localhost:3001/api/v1";
 const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class LanguageForm extends Component {
@@ -65,7 +65,7 @@ class LanguageForm extends Component {
     }
   };
 
-  getAllAlphabets = () => {
+  getAllMacrofamilies = () => {
     fetch(`${url}/search/all_macrofamily_names`)
       .then(res => res.json())
       .then(res =>
@@ -76,7 +76,7 @@ class LanguageForm extends Component {
       .catch(err => console.log(err));
   };
 
-  getAllMacrofamilies = () => {
+  getAllAlphabets = () => {
     fetch(`${url}/search/all_alphabet_names`)
       .then(res => res.json())
       .then(res =>
