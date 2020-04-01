@@ -22,7 +22,7 @@ class CreateTranslationMap extends React.Component {
 
   componentDidMount() {
     this.getAllWordNames();
-    this.getAllAreas();
+    // this.getAllAreas();
   }
 
   getAllWordNames() {
