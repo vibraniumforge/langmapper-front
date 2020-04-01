@@ -51,7 +51,7 @@ class Navbar extends Component {
           Create Translation Map by Area
         </NavLink>
         <NavLink activeClassName="selected" to="/create_etymology_map">
-          Create Etymology Map by Area
+          Create Etymology Map by Area (Beta)
         </NavLink>
         <NavLink activeClassName="selected" to="/create_gender_map">
           Create Gender Map by Area
