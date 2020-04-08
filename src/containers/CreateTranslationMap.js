@@ -2,8 +2,8 @@ import React from "react";
 import CreateTranslationMapResultsContainer from "./CreateTranslationMapResultsContainer.js";
 
 // const REACT_APP_URL = process.env.REACT_APP_URL;
-const url = "http://localhost:3001/api/v1";
-// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+// const url = "http://localhost:3001/api/v1";
+const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class CreateTranslationMap extends React.Component {
   constructor(props) {
