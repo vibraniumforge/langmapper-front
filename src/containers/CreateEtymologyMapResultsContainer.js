@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CreateEtymologyRow from "../components/CreateEtymologyRow.js";
 
 class CreateEtymologyMapResultsContainer extends Component {
   render() {
@@ -6,29 +7,11 @@ class CreateEtymologyMapResultsContainer extends Component {
       this.props.results && this.props.results.length > 0
         ? this.props.results.map(translation => {
             return (
-              <tr key={translation.id}>
-                <td>{translation.name}</td>
-                <td>{translation.translation}</td>
-                <td>{translation.romanization}</td>
-                <td>{translation.gender}</td>
-                <td>
-                  {translation.macrofamily === "Indo-European"
-                    ? "I.E."
-                    : translation.macrofamily}
-                </td>
-                <td>{translation.family}</td>
-                <td>
-                  {translation.etymology ? translation.etymology : "None Found"}
-                </td>
-                <td>
-                  <button
-                    onClick={e => this.props.onHandleEdit(e, translation.id)}
-                    className="table-edit-btn"
-                  >
-                    Edit
-                  </button>
-                </td>
-              </tr>
+              <CreateEtymologyRow
+                key={translation.t_id}
+                translation={translation}
+                onHandleEdit={this.props.onHandleEdit}
+              />
             );
           })
         : null;
