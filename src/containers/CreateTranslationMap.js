@@ -2,8 +2,8 @@ import React from "react";
 import CreateTranslationMapResultsContainer from "./CreateTranslationMapResultsContainer.js";
 
 // const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = "http://localhost:3001/api/v1";
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+const url = "http://localhost:3001/api/v1";
+// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class CreateTranslationMap extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class CreateTranslationMap extends React.Component {
 
   componentDidMount() {
     this.getAllWordNames();
-    // this.getAllAreas();
+    // this.getAllLocations();
   }
 
   getAllWordNames() {
@@ -36,7 +36,7 @@ class CreateTranslationMap extends React.Component {
       .catch(err => console.log(err));
   }
 
-  getAllAreas() {
+  getAllLocations() {
     fetch(`${url}/search/all_areas`)
       .then(res => res.json())
       .then(res =>
@@ -76,7 +76,6 @@ class CreateTranslationMap extends React.Component {
       .then(res => res.blob())
       .then(images => {
         let outside = URL.createObjectURL(images);
-        console.log("outside=", outside);
         this.setState({ imageResults: outside });
       })
       .catch(err => console.warn(err));
@@ -84,7 +83,6 @@ class CreateTranslationMap extends React.Component {
 
   onHandleEdit = (e, translationId) => {
     e.preventDefault();
-    console.log("translationId=", translationId);
     this.props.history.push(`/edit_translation/${translationId}`);
   };
 
@@ -95,12 +93,12 @@ class CreateTranslationMap extends React.Component {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
-    const allLocations =
-      this.state.allLocations && this.state.allLocations.length > 0
-        ? this.state.allLocations.map((location, index) => {
-            return location ? <option key={index}>{location}</option> : null;
-          })
-        : null;
+    // const allLocations =
+    //   this.state.allLocations && this.state.allLocations.length > 0
+    //     ? this.state.allLocations.map((location, index) => {
+    //         return location ? <option key={index}>{location}</option> : null;
+    //       })
+    //     : null;
     return (
       <>
         <form onSubmit={e => this.handleOnSubmit(e)}>

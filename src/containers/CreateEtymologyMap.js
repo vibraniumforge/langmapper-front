@@ -22,7 +22,7 @@ class CreateEtymologyMap extends React.Component {
 
   componentDidMount() {
     this.getAllWordNames();
-    // this.getAllAreas();
+    // this.getAllLocations();
   }
 
   getAllWordNames() {
@@ -36,7 +36,7 @@ class CreateEtymologyMap extends React.Component {
       .catch(err => console.log(err));
   }
 
-  getAllAreas() {
+  getAllLocations() {
     fetch(`${url}/search/all_areas`)
       .then(res => res.json())
       .then(res =>
@@ -73,13 +73,8 @@ class CreateEtymologyMap extends React.Component {
       `${url}/search/all_etymologies_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
       .then(res => res.blob())
-      .then(res => {
-        console.log(res);
-        return res;
-      })
       .then(images => {
         let outside = URL.createObjectURL(images);
-        console.log("outside=", outside);
         this.setState({ imageResults: outside });
       })
       .catch(err => console.warn(err));
@@ -87,7 +82,6 @@ class CreateEtymologyMap extends React.Component {
 
   onHandleEdit = (e, translationId) => {
     e.preventDefault();
-    console.log("translationId=", translationId);
     this.props.history.push(`/edit_translation/${translationId}`);
   };
 
@@ -98,12 +92,12 @@ class CreateEtymologyMap extends React.Component {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
-    const allLocations =
-      this.state.allLocations && this.state.allLocations.length > 0
-        ? this.state.allLocations.map((location, index) => {
-            return location ? <option key={index}>{location}</option> : null;
-          })
-        : null;
+    // const allLocations =
+    //   this.state.allLocations && this.state.allLocations.length > 0
+    //     ? this.state.allLocations.map((location, index) => {
+    //         return location ? <option key={index}>{location}</option> : null;
+    //       })
+    //     : null;
     return (
       <>
         <form onSubmit={e => this.handleOnSubmit(e)}>
