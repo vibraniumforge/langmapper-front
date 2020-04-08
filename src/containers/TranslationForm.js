@@ -30,6 +30,7 @@ class TranslationForm extends Component {
   getTranslationById = () => {
     const splitLang = this.props.location.pathname.split("/");
     const translationId = splitLang[splitLang.length - 1];
+    console.log("translationId=", translationId);
     return fetch(`${url}/translations/${translationId}`)
       .then(res => res.json())
       .then(res => {
