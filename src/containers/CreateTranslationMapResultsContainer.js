@@ -3,7 +3,6 @@ import CreateTranslationRow from "../components/CreateTranslationRow.js";
 
 class CreateTranslationMapResultsContainer extends Component {
   render() {
-    console.log(this.props);
     const translations =
       this.props.results && this.props.results.length > 0
         ? this.props.results.map(translation => {
