@@ -16,7 +16,8 @@ class CreateGenderMap extends React.Component {
       results: [],
       searchedWord: "",
       searchedLocation: "",
-      imageResults: ""
+      imageResults: "",
+      definition: "",
     };
   }
 
@@ -27,58 +28,66 @@ class CreateGenderMap extends React.Component {
 
   getAllWordNames() {
     fetch(`${url}/search/all_word_names`)
-      .then(res => res.json())
-      .then(res =>
+      .then((res) => res.json())
+      .then((res) =>
         this.setState({
-          allWords: res.data
+          allWords: res.data,
         })
       )
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   getAllLocations() {
     fetch(`${url}/search/all_areas`)
-      .then(res => res.json())
-      .then(res =>
+      .then((res) => res.json())
+      .then((res) =>
         this.setState({
-          allLocations: res.data
+          allLocations: res.data,
         })
       )
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  handleOnSubmit = e => {
+  handleOnSubmit = (e) => {
     e.preventDefault();
     fetch(
       `${url}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
-      .then(res => res.json())
-      .then(res =>
+      .then((res) => res.json())
+      .then((res) =>
         this.setState({
           results: res.data,
           searchedLocation: this.state.selectedLocation,
           searchedWord: this.state.selectedWord,
-          selectedLocation: "",
-          selectedWord: ""
+          //   selectedLocation: "",
+          //   selectedWord: "",
         })
       )
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
 
     fetch(
       `${url}/search/all_genders_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
     )
-      .then(res => res.blob())
-      .then(images => {
+      .then((res) => res.blob())
+      .then((images) => {
         let outside = URL.createObjectURL(images);
         this.setState({ imageResults: outside });
       })
-      .catch(err => console.warn(err));
+      .catch((err) => console.warn(err));
+    fetch(`${url}/search/word_definition/${this.state.selectedWord}`)
+      .then((res) => res.json())
+      .then((res) =>
+        this.setState({
+          definition: res.data,
+        })
+      )
+      .catch((err) => console.warn(err));
   };
 
   onHandleEdit = (e, translationId) => {
@@ -89,7 +98,7 @@ class CreateGenderMap extends React.Component {
   render() {
     const allWords =
       this.state.allWords.length > 0
-        ? this.state.allWords.map(word => {
+        ? this.state.allWords.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
@@ -101,7 +110,7 @@ class CreateGenderMap extends React.Component {
     //     : null;
     return (
       <>
-        <form onSubmit={e => this.handleOnSubmit(e)}>
+        <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <select
             id="select"
             name="selectedLocation"
@@ -132,17 +141,9 @@ class CreateGenderMap extends React.Component {
             disabled={!this.state.selectedLocation || !this.state.selectedWord}
           />
         </form>
-        {/* <img src={europeCopyMap} alt="europe map" /> */}
-        {/* <img
-          src={`${url}/search/all_genders_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}/my_europe_copy_template.svg`}
-          alt="europe map"
-        /> */}
-        {/* <img
-          src={`${url}/search/all_genders_by_area_img/`}
-          alt="europe language map"
-        /> */}
-        <h3>Location: {this.state.searchedLocation}</h3>
+        {/* <h3>Location: {this.state.searchedLocation}</h3> */}
         <h3>Word: {this.state.searchedWord}</h3>
+        <h3>Definition: {this.state.definition}</h3>
         {this.state.imageResults ? (
           <img src={this.state.imageResults} alt="europe language map" />
         ) : null}
