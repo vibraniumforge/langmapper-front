@@ -16,14 +16,14 @@ class CreateTranslationRow extends Component {
         </td>
         <td>{translation.family}</td>
         <td>{translation.etymology ? translation.etymology : "None Found"}</td>
-        <td>
+        {/* <td>
           <button
             onClick={e => this.props.onHandleEdit(e, translation.t_id)}
             className="table-edit-btn"
           >
             Edit
           </button>
-        </td>
+        </td> */}
       </tr>
     );
   }
