@@ -54,7 +54,7 @@ class ViewAllLanguagesResultCard extends Component {
             ? "false"
             : "true"}
         </p>
-        <button
+        {/* <button
           onClick={e => this.props.onHandleEdit(e, this.props.language.id)}
           className="card-edit-btn"
         >
@@ -65,7 +65,7 @@ class ViewAllLanguagesResultCard extends Component {
           className="card-delete-btn"
         >
           Delete
-        </button>
+        </button> */}
       </div>
     );
   }

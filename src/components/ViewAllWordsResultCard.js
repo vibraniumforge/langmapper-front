@@ -16,12 +16,12 @@ class ViewAllWordsResultCard extends Component {
           <strong>Definition: </strong>
           {this.props.translation.definition}
         </p>
-        <button
+        {/* <button
           onClick={e => this.props.onHandleDelete(e, this.props.translation.id)}
           className="card-delete-btn"
         >
           Delete
-        </button>
+        </button> */}
       </div>
     );
   }
