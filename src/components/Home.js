@@ -76,8 +76,13 @@ class Home extends React.Component {
           <ol>
             <li>
               <strong>Search All Translations of a Word</strong> - This shows
-              the all the genders of a word in the various included languages.
-              Blue is masculine, red is feminine. Gray is either neuter or not
+              the all the translations of a word in the various included
+              languages.
+            </li>
+            <li>
+              <strong>Search All Genders of a Word</strong> - This shows the all
+              the genders of a word in the various included languages. Blue is
+              masculine, red is feminine. Gray is either neuter or not
               applicable, like in English.
             </li>
             <li>
@@ -98,7 +103,7 @@ class Home extends React.Component {
             </li>
             <li>
               <strong>Search Languages by Area</strong> - This shows the all the
-              languages in our DB in a certain geographic area.
+              languages in the DB in a certain geographic area.
             </li>
             <li>
               <strong>Search Translations by Area</strong> - This shows the all
@@ -108,11 +113,11 @@ class Home extends React.Component {
             </li>
             <li>
               <strong>View All Words</strong> - Displays all the words currently
-              in our DB and the definition.
+              in the DB and the definition.
             </li>
             <li>
               <strong>View all Languages</strong> - Displays all the languages
-              in our DB and some info about them.
+              in the DB and some info about them.
             </li>
             <li>
               <strong>Create Translation Map by Area</strong> - Show a map of an
