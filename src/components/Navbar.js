@@ -18,14 +18,14 @@ class Navbar extends Component {
           Search by content of Etymology
         </NavLink>
         <NavLink activeClassName="selected" to="/grouped_etymologies">
-          Search Etymology Grouped
+          Search Etymology Grouped (Beta)
         </NavLink>
-        <NavLink
+        {/* <NavLink
           activeClassName="selected"
           to="/all_translations_by_macrofamily"
         >
           Search all Translations by Macrofamily
-        </NavLink>
+        </NavLink> */}
         <NavLink activeClassName="selected" to="/all_translations_by_language">
           Search all Translations by Language
         </NavLink>
