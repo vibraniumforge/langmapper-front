@@ -22,7 +22,7 @@ li {
 }
 
 #navbar {
-  background-color: blue;
+  background-color: gray;
   padding: 10px;
   font-size: 20px;
   text-align: center;
@@ -33,7 +33,7 @@ li {
 
 #navbar a {
   margin: 16px;
-  color: red;
+  color: black;
   text-decoration: none;
 }
 
