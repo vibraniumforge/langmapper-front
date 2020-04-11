@@ -17,49 +17,38 @@ class TranslationForm extends Component {
       translation: "",
       alphabets: [],
       macrofamilies: [],
-      editMode: null
+      editMode: null,
     };
   }
 
   componentDidMount() {
-    console.log("componentDidMount fires");
-    console.log("this.props.location.pathname=", this.props.location.pathname);
     this.getTranslationById();
   }
 
   getTranslationById = () => {
     const splitLang = this.props.location.pathname.split("/");
     const translationId = splitLang[splitLang.length - 1];
-    console.log("translationId=", translationId);
     return fetch(`${url}/translations/${translationId}`)
-      .then(res => res.json())
-      .then(res => {
-        console.log("RESULT=", res);
-        return res;
+      .then((res) => res.json())
+      .then((res) => {
+        this.setState({
+          language: res.language.name,
+          word: res.word.word_name,
+          etymology: res.etymology,
+          gender: res.gender,
+          link: res.link,
+          romanization: res.romanization,
+          translation: res.translation,
+        });
       })
-      .then(res => {
-        this.setState(
-          {
-            language: res.language.name,
-            word: res.word.word_name,
-            etymology: res.etymology,
-            gender: res.gender,
-            link: res.link,
-            romanization: res.romanization,
-            translation: res.translation
-          },
-          () => console.log(this.state)
-        );
-      })
-
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleOnPatch = e => {
+  handleOnPatch = (e) => {
     e.preventDefault();
     const splitLang = this.props.location.pathname.split("/");
     const translationId = splitLang[splitLang.length - 1];
@@ -67,7 +56,7 @@ class TranslationForm extends Component {
       method: "PATCH",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         translation: {
@@ -75,15 +64,15 @@ class TranslationForm extends Component {
           word: this.state.word,
           etymology: this.state.etymology,
           gender: this.state.gender,
-          link: this.state.link
-        }
-      })
+          link: this.state.link,
+        },
+      }),
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(this.clearForm())
       //   .then(this.props.history.push("/all_translations_by_language"))
       .then(this.props.history.goBack())
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   cancelFormAction = () => {
@@ -99,14 +88,14 @@ class TranslationForm extends Component {
       gender: "",
       link: "",
       romanization: "",
-      translation: ""
+      translation: "",
     });
   };
 
   render() {
     return (
       <>
-        <form id="new-lang-form" onSubmit={e => this.handleOnPatch(e)}>
+        <form id="new-lang-form" onSubmit={(e) => this.handleOnPatch(e)}>
           <h3>Edit a Translation</h3>
           <div>
             <label htmlFor="name">Language: </label>
