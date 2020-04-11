@@ -32,59 +32,45 @@ class LanguageForm extends Component {
       alive: "",
       alphabets: [],
       macrofamilies: [],
-      editMode: null
+      editMode: null,
     };
   }
 
   componentDidMount() {
-    console.log("componentDidMount fires");
-    console.log("this.props.location.pathname=", this.props.location.pathname);
     this.getAllAlphabets();
     this.getAllMacrofamilies();
     this.setEditMode();
     this.getLanguageById();
   }
 
-  //   componentDidUpdate() {
-  //     console.log("componentDidUpdate fires");
-  //     console.log("this.props.location.pathname=", this.props.location.pathname);
-  //     // this.setEditMode();
-  //   }
-
   setEditMode = () => {
-    console.log("setEditMode fires");
-    console.log("this.props.location.pathname=", this.props.location.pathname);
     if (this.props.location.pathname === "/new_language") {
-      this.setState({ editMode: false }, () =>
-        console.log("Edit Mode=", this.state.editMode)
-      );
+      this.setState({ editMode: false });
     } else {
-      this.setState({ editMode: true }, () =>
-        console.log("Edit Mode=", this.state.editMode)
-      );
+      this.setState({ editMode: true });
     }
   };
 
   getAllMacrofamilies = () => {
     fetch(`${url}/search/all_macrofamily_names`)
-      .then(res => res.json())
-      .then(res =>
+      .then((res) => res.json())
+      .then((res) =>
         this.setState({
-          macrofamilies: res.data
+          macrofamilies: res.data,
         })
       )
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   getAllAlphabets = () => {
     fetch(`${url}/search/all_alphabet_names`)
-      .then(res => res.json())
-      .then(res =>
+      .then((res) => res.json())
+      .then((res) =>
         this.setState({
-          alphabets: res.data
+          alphabets: res.data,
         })
       )
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   getLanguageById = () => {
@@ -94,44 +80,37 @@ class LanguageForm extends Component {
     const splitLang = this.props.location.pathname.split("/");
     const languageId = splitLang[splitLang.length - 1];
     return fetch(`${url}/languages/${languageId}`)
-      .then(res => res.json())
-      .then(res => {
-        console.log("RESULT=", res);
-        return res;
-      })
-      .then(res => {
-        this.setState(
-          {
-            name: res.name,
-            abbreviation: res.abbreviation,
-            alphabet: res.alphabet,
-            macrofamily: res.macrofamily,
-            family: res.family,
-            subfamily: res.subfamily,
-            area1: res.area1,
-            area2: res.area2,
-            area3: res.area3,
-            notes: res.notes,
-            alive: res.alive
-          },
-          () => console.log(this.state)
-        );
+      .then((res) => res.json())
+      .then((res) => {
+        this.setState({
+          name: res.name,
+          abbreviation: res.abbreviation,
+          alphabet: res.alphabet,
+          macrofamily: res.macrofamily,
+          family: res.family,
+          subfamily: res.subfamily,
+          area1: res.area1,
+          area2: res.area2,
+          area3: res.area3,
+          notes: res.notes,
+          alive: res.alive,
+        });
       })
 
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleOnSubmit = e => {
+  handleOnSubmit = (e) => {
     e.preventDefault();
     fetch(`${url}/languages/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         language: {
@@ -145,21 +124,17 @@ class LanguageForm extends Component {
           area2: this.state.area2,
           area3: this.state.area3,
           notes: this.state.notes,
-          alive: this.state.alive
-        }
-      })
+          alive: this.state.alive,
+        },
+      }),
     })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res);
-        return res;
-      })
+      .then((res) => res.json())
       .then(this.clearForm)
       .then(this.props.history.push("/all_languages"))
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
-  handleOnPatch = e => {
+  handleOnPatch = (e) => {
     e.preventDefault();
     const splitLang = this.props.location.pathname.split("/");
     const languageId = splitLang[splitLang.length - 1];
@@ -167,7 +142,7 @@ class LanguageForm extends Component {
       method: "PATCH",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         language: {
@@ -182,29 +157,21 @@ class LanguageForm extends Component {
           area3: this.state.area3,
           notes: this.state.notes,
           alive:
-            this.state.alive === "t" || this.state.alive === true ? true : false
-        }
-      })
+            this.state.alive === "t" || this.state.alive === true
+              ? true
+              : false,
+        },
+      }),
     })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res);
-        return res;
-      })
-      //   .then(this.updateCards(languageId, languageInfo))
+      .then((res) => res.json())
       .then(this.clearForm())
       .then(this.props.history.push("/all_languages"))
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   cancelFormAction = () => {
     this.props.history.push("/all_languages");
   };
-
-  // updateCards=(languageId, languageInfo)=> {
-  //     const
-  //     this.state.
-  // }
 
   clearForm = () => {
     this.setState({
@@ -218,7 +185,7 @@ class LanguageForm extends Component {
       area2: "",
       area3: "",
       notes: "",
-      alive: ""
+      alive: "",
     });
   };
 
@@ -243,8 +210,8 @@ class LanguageForm extends Component {
           id="new-lang-form"
           onSubmit={
             this.state.editMode
-              ? e => this.handleOnPatch(e)
-              : e => this.handleOnSubmit(e)
+              ? (e) => this.handleOnPatch(e)
+              : (e) => this.handleOnSubmit(e)
           }
         >
           {this.state.editMode ? (
