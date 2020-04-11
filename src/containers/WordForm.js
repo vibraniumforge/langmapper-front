@@ -10,7 +10,7 @@ class WordForm extends Component {
     this.state = {
       wordName: "",
       allWords: [],
-      ableToSubmit: null
+      ableToSubmit: null,
     };
   }
 
@@ -20,16 +20,16 @@ class WordForm extends Component {
 
   getAllWordNames() {
     fetch(`${url}/search/all_word_names`)
-      .then(res => res.json())
-      .then(res =>
+      .then((res) => res.json())
+      .then((res) =>
         this.setState({
-          allWords: res.data.map(word => word.word_name)
+          allWords: res.data.map((word) => word.word_name),
         })
       )
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value }, () =>
       this.ableToSubmit()
     );
@@ -37,32 +37,26 @@ class WordForm extends Component {
 
   ableToSubmit = () => {
     if (this.state.allWords.includes(this.state.wordName.toLowerCase())) {
-      console.log("Word already exists");
-      this.setState({ ableToSubmit: false }, () =>
-        console.log(this.state.ableToSubmit)
-      );
+      this.setState({ ableToSubmit: false });
     } else {
-      console.log("OK");
-      this.setState({ ableToSubmit: true }, () =>
-        console.log(this.state.ableToSubmit)
-      );
+      this.setState({ ableToSubmit: true });
     }
   };
 
-  handleOnSubmit = e => {
+  handleOnSubmit = (e) => {
     e.preventDefault();
     if (this.state.ableToSubmit) {
       fetch(`${url}/words/`, {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ word: { word_name: this.state.wordName } })
+        body: JSON.stringify({ word: { word_name: this.state.wordName } }),
       })
-        .then(res => res.json())
+        .then((res) => res.json())
         .then(this.clearForm())
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     }
   };
 
@@ -73,7 +67,7 @@ class WordForm extends Component {
   render() {
     return (
       <>
-        <form onSubmit={e => this.handleOnSubmit(e)}>
+        <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <label htmlFor="word-name">New Word: </label>
           <input
             id="word-name"
