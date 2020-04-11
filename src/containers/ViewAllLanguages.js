@@ -9,7 +9,7 @@ class ViewAllLanguages extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: []
+      results: [],
     };
   }
 
@@ -19,9 +19,9 @@ class ViewAllLanguages extends Component {
 
   getLanguages = () => {
     fetch(`${url}/languages`)
-      .then(res => res.json())
-      .then(res => this.setState({ results: res }))
-      .catch(err => console.log(err));
+      .then((res) => res.json())
+      .then((res) => this.setState({ results: res }))
+      .catch((err) => console.log(err));
   };
 
   onHandleDelete = (e, languageId) => {
@@ -30,18 +30,18 @@ class ViewAllLanguages extends Component {
       method: "DELETE",
       headers: {
         Accept: "application/json",
-        "content-type": "application/json"
-      }
+        "content-type": "application/json",
+      },
     })
-      .then(res => res.json())
-      .then(res => this.deleteLanguageFromPage(res))
-      .catch(err => console.log(err));
+      .then((res) => res.json())
+      .then((res) => this.deleteLanguageFromPage(res))
+      .catch((err) => console.log(err));
   };
 
-  deleteLanguageFromPage = res => {
+  deleteLanguageFromPage = (res) => {
     const languageId = res.data.id;
     let languageAr = [...this.state.results];
-    let newLanguagesAr = languageAr.filter(language => {
+    let newLanguagesAr = languageAr.filter((language) => {
       return language.id !== languageId;
     });
     this.setState({ results: newLanguagesAr });
@@ -49,7 +49,6 @@ class ViewAllLanguages extends Component {
 
   onHandleEdit = (e, languageId) => {
     e.preventDefault();
-    console.log("languageId=", languageId);
     this.props.history.push(`/edit_language/${languageId}`);
   };
 
