@@ -5,7 +5,7 @@ class CreateEtymologyMapResultsContainer extends Component {
   render() {
     const translations =
       this.props.results && this.props.results.length > 0
-        ? this.props.results.map(translation => {
+        ? this.props.results.map((translation) => {
             return (
               <CreateEtymologyRow
                 key={translation.t_id}
@@ -24,11 +24,11 @@ class CreateEtymologyMapResultsContainer extends Component {
           <thead>
             <tr>
               <th>Language</th>
+              <th>Macrofamily</th>
+              <th>Family</th>
               <th>Translation</th>
               <th>Romanization</th>
               <th>Gender</th>
-              <th>Macrofamily</th>
-              <th>Family</th>
               <th>Etymology</th>
             </tr>
           </thead>

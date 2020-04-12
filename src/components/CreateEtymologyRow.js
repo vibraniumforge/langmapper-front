@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { genderHelper, genderColorHelper } from "../helpers/genderHelper.js";
 
 class CreateEtymologyRow extends Component {
   render() {
@@ -6,16 +7,26 @@ class CreateEtymologyRow extends Component {
     return (
       <tr key={translation.id}>
         <td>{translation.name}</td>
-        <td>{translation.translation}</td>
-        <td>{translation.romanization}</td>
-        <td>{translation.gender}</td>
         <td>
           {translation.macrofamily === "Indo-European"
             ? "I.E."
             : translation.macrofamily}
         </td>
         <td>{translation.family}</td>
-        <td>{translation.etymology ? translation.etymology : "None Found"}</td>
+        <td>{translation.translation}</td>
+        <td>
+          {translation.translation === translation.romanization
+            ? null
+            : translation.romanization}
+        </td>
+        <td className={genderColorHelper(translation.gender)}>
+          {genderHelper(translation.macrofamily, translation.name)
+            ? translation.gender
+            : "-"}
+        </td>
+        <td className="table-etymology">
+          {translation.etymology ? translation.etymology : "None Found"}
+        </td>
         {/* <td>
           <button
             onClick={e => this.props.onHandleEdit(e, translation.t_id)}
