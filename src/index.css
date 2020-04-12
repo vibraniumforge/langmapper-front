@@ -22,7 +22,7 @@ li {
 }
 
 #navbar {
-  background-color: gray;
+  background-color: lightgray;
   padding: 10px;
   font-size: 20px;
   text-align: center;
@@ -207,14 +207,19 @@ table {
 thead {
   padding-bottom: 15px;
   color: black;
-  background-color: gray;
+  background-color: lightgray;
 }
 
 td {
   padding-bottom: 15px;
+  padding-left: 15px;
   border-bottom: 1px solid #ddd;
   text-align: left;
 }
+
+/* .table-etymology {
+  padding-left: 20px;
+} */
 
 .male-result {
   color: blue;
@@ -226,11 +231,6 @@ td {
 
 .neuter-result {
   color: gray;
-}
-
-.table-etymology {
-  text-align: left;
-  padding-left: 40px;
 }
 
 .table-edit-btn {
@@ -276,5 +276,7 @@ ol {
 }
 
 li {
+  text-align: left;
   margin: 15px;
+  font-size: 20px;
 }
