@@ -16,7 +16,13 @@ class SearchAllTranslationsResultCard extends Component {
           <strong>Romanization: </strong>
           {this.props.translation.romanization}
         </p>
-        <a href={this.props.translation.link}>Wiktionary</a>
+        <p>
+          <strong>Gender: </strong>
+          {this.props.translation.gender}
+        </p>
+        <p>
+          <a href={this.props.translation.link}>Wiktionary</a>
+        </p>
         <p>
           <strong>Etymology: </strong>
           {this.props.translation.etymology
