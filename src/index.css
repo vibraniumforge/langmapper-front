@@ -192,7 +192,7 @@ textarea {
 }
 
 table {
-  width: 99%;
+  width: 90%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -201,16 +201,36 @@ table {
   background-color: white;
   font-size: 20px;
   /* font-weight: bold; */
-  padding: 15px;
+  padding: 30px;
 }
 
 thead {
   padding-bottom: 15px;
-  color: blue;
+  color: black;
+  background-color: gray;
 }
 
 td {
   padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.male-result {
+  color: blue;
+}
+
+.female-result {
+  color: red;
+}
+
+.neuter-result {
+  color: gray;
+}
+
+.table-etymology {
+  text-align: left;
+  padding-left: 40px;
 }
 
 .table-edit-btn {
