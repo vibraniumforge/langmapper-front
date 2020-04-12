@@ -8,6 +8,7 @@ const genderHelper = (macrofamily, language) => {
     "Konkani",
     "Ossetian",
     "Persian",
+    "Scots",
   ];
   if (macrofamily !== "Indo-European" && macrofamily !== "Afro-Asiatic") {
     return false;
