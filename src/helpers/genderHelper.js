@@ -1,5 +1,4 @@
 const genderHelper = (macrofamily, language) => {
-  console.log("genderHelper fires");
   const genderlessLangs = [
     "Afrikaans",
     "Armenian",
