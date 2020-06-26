@@ -73,3 +73,9 @@ export const deleteWord = (id) => {
       .catch((err) => console.log(err));
   };
 };
+
+export const clearGetWordById = () => {
+  return {
+    type: "CLEAR_GET_WORD_BY_ID",
+  };
+};
