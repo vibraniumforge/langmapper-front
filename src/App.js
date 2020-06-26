@@ -11,7 +11,7 @@ import SearchTranslationsByMacrofamily from "./containers/SearchTranslationsByMa
 import SearchTranslationsByLanguage from "./containers/SearchTranslationsByLanguage.js";
 import WordForm from "./containers/WordForm.js";
 import ViewAllWords from "./containers/ViewAllWords.js";
-import LanguageForm from "./containers/LanguageForm.js";
+import EditLanguageForm from "./containers/EditLanguageForm.js";
 import ViewAllLanguages from "./containers/ViewAllLanguages.js";
 import SearchLanguagesByArea from "./containers/SearchLanguagesByArea.js";
 import SearchTranslationsByArea from "./containers/SearchTranslationsByArea.js";
@@ -62,8 +62,8 @@ function App() {
             <Route path="/new_word" component={WordForm} />
             <Route path="/edit_word" component={WordForm} />
             <Route path="/all_words" component={ViewAllWords} />
-            <Route path="/new_language" component={LanguageForm} />
-            <Route path="/edit_language" component={LanguageForm} />
+            {/* <Route path="/new_language" component={LanguageForm} /> */}
+            <Route path="/edit_language" component={EditLanguageForm} />
             {/* <Route
               path="/edit_translation"
               render={(props = <EditLanguageForm {...props} />)}
