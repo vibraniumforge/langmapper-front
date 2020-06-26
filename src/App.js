@@ -9,7 +9,8 @@ import SearchEtymologiesContent from "./containers/SearchEtymologiesContent.js";
 import SearchEtymologiesGrouped from "./containers/SearchEtymologiesGrouped.js";
 import SearchTranslationsByMacrofamily from "./containers/SearchTranslationsByMacrofamily.js";
 import SearchTranslationsByLanguage from "./containers/SearchTranslationsByLanguage.js";
-import WordForm from "./containers/WordForm.js";
+import NewWordForm from "./containers/NewWordForm.js";
+import EditWordForm from "./containers/EditWordForm.js";
 import ViewAllWords from "./containers/ViewAllWords.js";
 import EditLanguageForm from "./containers/EditLanguageForm.js";
 import ViewAllLanguages from "./containers/ViewAllLanguages.js";
@@ -59,8 +60,8 @@ function App() {
               path="/search_translations_by_area"
               component={SearchTranslationsByArea}
             />
-            <Route path="/new_word" component={WordForm} />
-            <Route path="/edit_word" component={WordForm} />
+            <Route path="/new_word" component={NewWordForm} />
+            <Route path="/edit_word" component={EditWordForm} />
             <Route path="/all_words" component={ViewAllWords} />
             {/* <Route path="/new_language" component={LanguageForm} /> */}
             <Route path="/edit_language" component={EditLanguageForm} />
