@@ -4,13 +4,14 @@ import ViewAllWordsResultCard from "../components/ViewAllWordsResultCard.js";
 class ViewAllWordsResultsContainer extends Component {
   render() {
     const cards =
-      this.props.results.length > 0
-        ? this.props.results.map(translation => {
+      this.props.words.length > 0
+        ? this.props.words.map((word) => {
             return (
               <ViewAllWordsResultCard
-                translation={translation}
+                word={word}
+                onHandleEdit={this.props.onHandleEdit}
                 onHandleDelete={this.props.onHandleDelete}
-                key={translation.id}
+                key={word.id}
               />
             );
           })
