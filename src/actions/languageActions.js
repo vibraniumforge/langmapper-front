@@ -24,22 +24,6 @@ export const getLanguageById = (id) => {
   };
 };
 
-export const deleteLanguage = (id) => {
-  return (dispatch) => {
-    const params = {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "content-type": "application/json",
-      },
-    };
-    fetch(`${url}/languages/${id}`, params)
-      .then((res) => res.json())
-      .then((res) => dispatch({ type: "DELETE_LANGUAGE", payload: res.data }))
-      .catch((err) => console.log(err));
-  };
-};
-
 export const editLanguage = (id, editedLanguage) => {
   return (dispatch) => {
     const params = {
@@ -53,6 +37,22 @@ export const editLanguage = (id, editedLanguage) => {
     fetch(`${url}/languages/${id}`, params)
       .then((res) => res.json())
       .then((res) => dispatch({ type: "EDIT_LANGUAGE", payload: res.data }))
+      .catch((err) => console.log(err));
+  };
+};
+
+export const deleteLanguage = (id) => {
+  return (dispatch) => {
+    const params = {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "content-type": "application/json",
+      },
+    };
+    fetch(`${url}/languages/${id}`, params)
+      .then((res) => res.json())
+      .then((res) => dispatch({ type: "DELETE_LANGUAGE", payload: res.data }))
       .catch((err) => console.log(err));
   };
 };
