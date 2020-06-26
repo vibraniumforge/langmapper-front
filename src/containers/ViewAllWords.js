@@ -1,51 +1,47 @@
 import React, { Component } from "react";
 import ViewAllWordsResultsContainer from "./ViewAllWordsResultsContainer.js";
 
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import {
+  getWords,
+  getWordById,
+  createWord,
+  editWord,
+  deleteWord,
+} from "../actions/wordActions.js";
+
 // const REACT_APP_URL = process.env.REACT_APP_URL;
 // const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class ViewAllWords extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      results: []
-    };
-  }
-
   componentDidMount() {
-    this.getWords();
+    this.props.getWords();
   }
-
-  getWords = () => {
-    fetch(`${url}/words`)
-      .then(res => res.json())
-      .then(res => this.setState({ results: res }))
-      .catch(err => console.log(err));
-  };
 
   onHandleDelete = (e, wordId) => {
     e.preventDefault();
-    fetch(`${url}/words/${wordId}`, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "content-type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(res => this.deleteWord(res))
-      .catch(err => console.log(err));
+    this.props.deleteWord(wordId);
   };
 
-  deleteWord = res => {
-    const wordId = res.data.id;
-    let wordsAr = [...this.state.results];
-    let newWordsAr = wordsAr.filter(word => {
-      return word.id !== wordId;
-    });
-    this.setState({ results: newWordsAr });
+  onHandleEdit = (e, wordId) => {
+    e.preventDefault();
+    this.props.getWordById(wordId);
+    this.props.history.push(`/edit_word/${wordId}`);
+    // this.props.editWord(wordId);
   };
+
+  //   deleteWordFromDom = (res) => {
+  //     const wordId = res.data.id;
+  //     let wordsAr = [...this.state.results];
+  //     let newWordsAr = wordsAr.filter((word) => {
+  //       return word.id !== wordId;
+  //     });
+  //     this.setState({ results: newWordsAr });
+  //   };
 
   render() {
     return (
@@ -53,11 +49,31 @@ class ViewAllWords extends Component {
         <h3>All Words</h3>
         <ViewAllWordsResultsContainer
           onHandleDelete={this.onHandleDelete}
-          results={this.state.results}
+          onHandleEdit={this.onHandleEdit}
+          words={this.props.words}
         />
       </>
     );
   }
 }
 
-export default ViewAllWords;
+const mapStateToProps = (state) => ({
+  words: state.words.words,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      getWords,
+      getWordById,
+      createWord,
+      editWord,
+      deleteWord,
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ViewAllWords)
+);
