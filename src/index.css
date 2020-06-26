@@ -84,6 +84,16 @@ li {
   overflow-y: scroll;
 }
 
+.word-result-card {
+  height: 200px;
+  border: 10px solid blue;
+  width: 20%;
+  margin: 10px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 .translation-result-card {
   height: 200px;
   border: 10px solid blue;
