@@ -14,10 +14,6 @@ import {
 // const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 class Home extends React.Component {
-  //   state = {
-  //     complete: false,
-  //   };
-
   componentDidMount() {
     this.props.getWordsCount();
     this.props.getTranslationsCount();
@@ -25,7 +21,9 @@ class Home extends React.Component {
   }
 
   render() {
-    return (
+    return this.props.wordsCount > 0 &&
+      this.props.wordsCount > 0 &&
+      this.props.wordsCount > 0 ? (
       <>
         <div id="landing-page">
           <h1>Welcome to LangMapper! The language research tool!</h1>
@@ -103,7 +101,7 @@ class Home extends React.Component {
           </ol>
         </div>
       </>
-    );
+    ) : null;
   }
 }
 
