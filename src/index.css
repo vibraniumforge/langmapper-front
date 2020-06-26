@@ -245,11 +245,11 @@ td {
   color: white;
   background-image: url("./images/875px-Rosetta_Stone.JPG");
   background-color: #cccccc;
-  height: 500px; /* You must set a specified height */
   height: 100%;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px 0px;
 }
 
 .input-error {
