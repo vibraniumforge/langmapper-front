@@ -31,10 +31,10 @@ export const createWord = (word) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ word }),
+    body: JSON.stringify({ word_name: word }),
   };
   return (dispatch) => {
-    fetch(`${url}/words}`, data)
+    fetch(`${url}/words`, data)
       .then((res) => res.json())
       .then((res) => dispatch({ type: "CREATE_WORD", payload: res }))
       .catch((err) => console.log(err));
