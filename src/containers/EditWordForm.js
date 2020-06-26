@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { editWord } from "../actions/wordActions.js";
+import { editWord, clearGetWordById } from "../actions/wordActions.js";
 
 class EditWordForm extends Component {
   constructor(props) {
@@ -22,9 +22,9 @@ class EditWordForm extends Component {
   //     }
   //   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.wordDefinition !== nextProps.wordDefinition) {
-      this.setState({ wordDefinition: this.props.wordDefinition });
+      this.setState({ wordDefinition: nextProps.wordDefinition });
     }
   }
 
@@ -61,6 +61,7 @@ class EditWordForm extends Component {
   };
 
   handleOnSubmit = (e) => {
+    e.preventDefault();
     const word = this.state;
     this.props.editWord(word);
     this.clearForm();
@@ -73,11 +74,13 @@ class EditWordForm extends Component {
 
   cancelFormAction = () => {
     this.props.history.push("/all_words");
+    this.setState({ wordDefinition: "" });
+    this.props.clearGetWordById();
   };
 
   render() {
     console.log(this.props);
-    return (
+    return this.props.wordDefinition ? (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <h4>
@@ -94,8 +97,7 @@ class EditWordForm extends Component {
               type="text"
               name="wordDefinition"
               placeholder="Enter definition here"
-              className={""}
-              value={this.state.wordDefinition}
+              value={this.state.wordDefinition || ""}
               onChange={this.handleOnChange}
             />
           </div>
@@ -118,16 +120,16 @@ class EditWordForm extends Component {
           </button>
         </form>
       </>
-    );
+    ) : null;
   }
 }
 
-const mapStateToProps = (state) => ({
-  wordDefinition: state.words.wordToUpdate.definition,
-});
+const mapStateToProps = (state) => {
+  return { wordDefinition: state.words.wordToUpdate.definition };
+};
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ editWord }, dispatch);
+  return bindActionCreators({ editWord, clearGetWordById }, dispatch);
 };
 
 export default withRouter(
