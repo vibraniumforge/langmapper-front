@@ -16,7 +16,7 @@ import EditLanguageForm from "./containers/EditLanguageForm.js";
 import ViewAllLanguages from "./containers/ViewAllLanguages.js";
 import SearchLanguagesByArea from "./containers/SearchLanguagesByArea.js";
 import SearchTranslationsByArea from "./containers/SearchTranslationsByArea.js";
-import TranslationForm from "./containers/TranslationForm.js";
+import EditTranslationForm from "./containers/EditTranslationForm.js";
 import CreateTranslationMap from "./containers/CreateTranslationMap.js";
 import CreateEtymologyMap from "./containers/CreateEtymologyMap.js";
 import CreateGenderMap from "./containers/CreateGenderMap.js";
@@ -71,7 +71,7 @@ function App() {
             /> */}
             {/* change the above */}
             <Route path="/all_languages" component={ViewAllLanguages} />
-            <Route path="/edit_translation" component={TranslationForm} />
+            <Route path="/edit_translation" component={EditTranslationForm} />
             <Route
               path="/create_translation_map"
               component={CreateTranslationMap}
