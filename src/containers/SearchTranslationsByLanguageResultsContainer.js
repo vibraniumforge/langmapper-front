@@ -4,12 +4,14 @@ import SearchTranslationsByLanguageResultCard from "../components/SearchTranslat
 class SearchTranslationsByLanguageResultsContainer extends Component {
   render() {
     const cards =
-      this.props.results && this.props.results.length > 0
-        ? this.props.results.map((translation) => {
+      this.props.translations && this.props.translations.length > 0
+        ? this.props.translations.map((translation) => {
             return (
               <SearchTranslationsByLanguageResultCard
                 translation={translation}
                 key={translation.id}
+                onHandleDelete={this.props.onHandleDelete}
+                onHandleEdit={this.props.onHandleEdit}
               />
             );
           })
