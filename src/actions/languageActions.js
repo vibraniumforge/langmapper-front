@@ -25,15 +25,15 @@ export const getLanguageById = (id) => {
 };
 
 export const editLanguage = (id, editedLanguage) => {
+  const params = {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ language: editedLanguage }),
+  };
   return (dispatch) => {
-    const params = {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ language: editedLanguage }),
-    };
     fetch(`${url}/languages/${id}`, params)
       .then((res) => res.json())
       .then((res) => dispatch({ type: "EDIT_LANGUAGE", payload: res.data }))
