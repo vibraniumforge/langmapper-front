@@ -3,6 +3,7 @@ const initialState = {
   languageToUpdate: "",
   alphabetNames: [],
   macrofamilyNames: [],
+  languageAreaNames: [],
 };
 
 export default function languageReducer(state = initialState, action) {
@@ -18,6 +19,7 @@ export default function languageReducer(state = initialState, action) {
         ...state,
         languageToUpdate: action.payload,
       };
+
     //   no POST/CREATE
     case "EDIT_LANGUAGE":
       const updatedLanguage = {
@@ -50,16 +52,22 @@ export default function languageReducer(state = initialState, action) {
         ...state,
         languages: newLanguages,
       };
-    case "GET_ALL_ALPHABET_NAMES":
+    case "GET_ALL_LANGUAGE_ALPHABET_NAMES":
       return {
         ...state,
         alphabetNames: action.payload,
       };
-    case "GET_ALL_MACROFAMILY_NAMES":
+    case "GET_ALL_LANGUAGE_MACROFAMILY_NAMES":
       return {
         ...state,
         macrofamilyNames: action.payload,
       };
+    case "GET_LANGUAGE_AREA_NAMES": {
+      return {
+        ...state,
+        languageAreaNames: action.payload,
+      };
+    }
     default:
       return state;
   }
