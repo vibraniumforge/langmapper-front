@@ -1,6 +1,8 @@
 const initialState = {
   translations: [],
   translationToUpdate: "",
+  searchedTranslationsByArea: [],
+  searchedTranslationsByLanguage: [],
 };
 
 export default function translationReducer(state = initialState, action) {
@@ -11,11 +13,13 @@ export default function translationReducer(state = initialState, action) {
         ...state,
         translations: action.payload,
       };
-    case "GET_TRANSLATIONS_BY_LANGUAGE":
+
+    case "CLEAR_GET_TRANSLATIONS":
       return {
         ...state,
-        translations: action.payload,
+        translations: [],
       };
+
     case "GET_TRANSLATIONS_BY_ID":
       return {
         ...state,
@@ -54,6 +58,29 @@ export default function translationReducer(state = initialState, action) {
         ...state,
         translations: newTranslations,
       };
+
+    case "GET_TRANSLATIONS_BY_LANGUAGE":
+      return {
+        ...state,
+        searchedTranslationsByLanguage: action.payload,
+      };
+    case "CLEAR_GET_TRANSLATIONS_BY_LANGUAGE":
+      return {
+        ...state,
+        searchedTranslationsByLanguage: [],
+      };
+    case "GET_TRANSLATIONS_BY_AREA":
+      return {
+        ...state,
+        searchedTranslationsByArea: action.payload,
+      };
+
+    case "CLEAR_GET_TRANSLATIONS_BY_AREA":
+      return {
+        ...state,
+        searchedTranslationsByArea: [],
+      };
+
     default:
       return state;
   }
