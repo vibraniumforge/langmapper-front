@@ -1,56 +1,41 @@
 import React, { Component } from "react";
 import ViewAllLanguagesResultsContainer from "./ViewAllLanguagesResultsContainer.js";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import {
+  getLanguages,
+  getLanguageById,
+  editLanguage,
+  deleteLanguage,
+} from "../actions/languageActions.js";
 
 class ViewAllLanguages extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      results: [],
-    };
-  }
-
   componentDidMount() {
-    this.getLanguages();
+    this.props.getLanguages();
   }
 
-  getLanguages = () => {
-    fetch(`${url}/languages`)
-      .then((res) => res.json())
-      .then((res) => this.setState({ results: res }))
-      .catch((err) => console.log(err));
+  onHandleEdit = (e, languageId) => {
+    e.preventDefault();
+    this.props.getLanguageById(languageId);
+    this.props.history.push(`/edit_language/${languageId}`);
   };
 
   onHandleDelete = (e, languageId) => {
     e.preventDefault();
-    fetch(`${url}/languages/${languageId}`, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => this.deleteLanguageFromPage(res))
-      .catch((err) => console.log(err));
+    this.props.deleteLanguage(languageId);
   };
 
-  deleteLanguageFromPage = (res) => {
-    const languageId = res.data.id;
-    let languageAr = [...this.state.results];
-    let newLanguagesAr = languageAr.filter((language) => {
-      return language.id !== languageId;
-    });
-    this.setState({ results: newLanguagesAr });
-  };
-
-  onHandleEdit = (e, languageId) => {
-    e.preventDefault();
-    this.props.history.push(`/edit_language/${languageId}`);
-  };
+  //   deleteLanguageFromPage = (res) => {
+  //     const languageId = res.data.id;
+  //     let languageAr = [...this.state.results];
+  //     let newLanguagesAr = languageAr.filter((language) => {
+  //       return language.id !== languageId;
+  //     });
+  //     this.setState({ results: newLanguagesAr });
+  //   };
 
   render() {
     return (
@@ -58,11 +43,29 @@ class ViewAllLanguages extends Component {
         <ViewAllLanguagesResultsContainer
           onHandleDelete={this.onHandleDelete}
           onHandleEdit={this.onHandleEdit}
-          results={this.state.results}
+          languages={this.props.languages}
         />
       </>
     );
   }
 }
 
-export default ViewAllLanguages;
+const mapStateToProps = (state) => ({
+  languages: state.languages.languages,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      getLanguages,
+      getLanguageById,
+      editLanguage,
+      deleteLanguage,
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ViewAllLanguages)
+);
