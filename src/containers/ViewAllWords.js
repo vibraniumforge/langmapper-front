@@ -9,7 +9,6 @@ import {
   getWords,
   getWordById,
   createWord,
-  editWord,
   deleteWord,
 } from "../actions/wordActions.js";
 
@@ -67,7 +66,6 @@ const mapDispatchToProps = (dispatch) => {
       getWords,
       getWordById,
       createWord,
-      editWord,
       deleteWord,
     },
     dispatch
