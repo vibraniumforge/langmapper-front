@@ -10,10 +10,6 @@ import {
   getAllMacrofamilies,
 } from "../actions/languageActions.js";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = "http://localhost:3001/api/v1";
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
-
 class LanguageForm extends Component {
   constructor(props) {
     super(props);
@@ -31,152 +27,44 @@ class LanguageForm extends Component {
       alive: "",
       alphabetNames: [],
       macrofamilyNames: [],
-      editMode: null,
     };
   }
 
   componentDidMount() {
-    // this.props.getAllAlphabets();
-    // this.props.getAllMacrofamilies();
-    this.setEditMode();
-    // this.getLanguageById();
+    Promise.all([
+      this.props.getAllAlphabets(),
+      this.props.getAllMacrofamilies(),
+    ]);
   }
 
-  componentDidUpdate(prevProps) {
-    // console.log(prevProps);
-    console.log(this.props.languageToUpdate);
-    console.log(this.props.alphabetNames);
-    console.log(this.props.macrofamilyNames);
-
-    if (
-      //   this.props.languageToUpdate.id !== "" &&
-      //   this.props.alphabetNames.length > 0 &&
-      //   this.props.macrofamilyNames.length > 0
-      this.props.languageToUpdate["id"] &&
-      this.props.languageToUpdate !== prevProps.languageToUpdate
-
-      //   this.props.alphabetNames &&
-      //   this.props.alphabetNames !== prevProps.alphabetNames &&
-      //   this.props.macrofamilyNames &&
-      //   this.props.macrofamilyNames !== prevProps.macrofamilyNames
-    ) {
-      //   this.props.getAllAlphabets();
-      //   this.props.getAllMacrofamilies();
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props.languageToUpdate !== nextProps.languageToUpdate) {
       this.setState(
         {
-          name: this.props.languageToUpdate.name,
-          abbreviation: this.props.languageToUpdate.abbreviation,
-          alphabet: this.props.languageToUpdate.alphabet,
-          macrofamily: this.props.languageToUpdate.macrofamily,
-          family: this.props.languageToUpdate.family,
-          subfamily: this.props.languageToUpdate.subfamily,
-          area1: this.props.languageToUpdate.area1,
-          area2: this.props.languageToUpdate.area2,
-          area3: this.props.languageToUpdate.area3,
-          notes: this.props.languageToUpdate.notes,
-          alive: this.props.languageToUpdate.alive,
-          //   alphabetNames: [...prevState.alphabetNames, this.props.alphabetNames],
-          //   macrofamilyNames: [
-          //     ...prevState.macrofamilyNames,
-          //     this.props.macrofamilyNames,
-          //   ],
-          alphabetNames: this.props.alphabetNames,
-          macrofamilyNames: this.props.macrofamilyNames,
+          name: nextProps.languageToUpdate.name,
+          abbreviation: nextProps.languageToUpdate.abbreviation,
+          alphabet: nextProps.languageToUpdate.alphabet,
+          macrofamily: nextProps.languageToUpdate.macrofamily,
+          family: nextProps.languageToUpdate.family,
+          subfamily: nextProps.languageToUpdate.subfamily,
+          area1: nextProps.languageToUpdate.area1,
+          area2: nextProps.languageToUpdate.area2,
+          area3: nextProps.languageToUpdate.area3,
+          notes: nextProps.languageToUpdate.notes,
+          alive: nextProps.languageToUpdate.alive,
+          alphabetNames: nextProps.alphabetNames,
+          macrofamilyNames: nextProps.macrofamilyNames,
         },
         () => console.log(this.state)
       );
     }
   }
 
-  setEditMode = () => {
-    if (this.props.location.pathname === "/new_language") {
-      this.setState({ editMode: false });
-    } else {
-      this.setState({ editMode: true });
-    }
-  };
-
-  //   getAllMacrofamilies = () => {
-  //     fetch(`${url}/search/all_macrofamily_names`)
-  //       .then((res) => res.json())
-  //       .then((res) =>
-  //         this.setState({
-  //           macrofamilies: res.data,
-  //         })
-  //       )
-  //       .catch((err) => console.log(err));
-  //   };
-
-  //   getAllAlphabets = () => {
-  //     fetch(`${url}/search/all_alphabet_names`)
-  //       .then((res) => res.json())
-  //       .then((res) =>
-  //         this.setState({
-  //           alphabets: res.data,
-  //         })
-  //       )
-  //       .catch((err) => console.log(err));
-  //   };
-
-  getLanguageById = () => {
-    if (this.props.location.pathname === "/new_language") {
-      return;
-    }
-    const splitLang = this.props.location.pathname.split("/");
-    const languageId = splitLang[splitLang.length - 1];
-    console.log(this.props);
-    this.props.getLanguageById(languageId).then((res) => {
-      this.setState({
-        name: res.name,
-        abbreviation: res.abbreviation,
-        alphabet: res.alphabet,
-        macrofamily: res.macrofamily,
-        family: res.family,
-        subfamily: res.subfamily,
-        area1: res.area1,
-        area2: res.area2,
-        area3: res.area3,
-        notes: res.notes,
-        alive: res.alive,
-      });
-    });
-  };
-
   handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   handleOnSubmit = (e) => {
-    e.preventDefault();
-    fetch(`${url}/languages/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        language: {
-          name: this.state.name,
-          abbreviation: this.state.abbreviation,
-          alphabet: this.state.alphabet,
-          macrofamily: this.state.macrofamily,
-          family: this.state.family,
-          subfamily: this.state.subfamily,
-          area1: this.state.area1,
-          area2: this.state.area2,
-          area3: this.state.area3,
-          notes: this.state.notes,
-          alive: this.state.alive,
-        },
-      }),
-    })
-      .then((res) => res.json())
-      .then(this.clearForm)
-      .then(this.props.history.push("/all_languages"))
-      .catch((err) => console.log(err));
-  };
-
-  handleOnPatch = (e) => {
     e.preventDefault();
     const splitLang = this.props.location.pathname.split("/");
     const languageId = splitLang[splitLang.length - 1];
@@ -194,39 +82,10 @@ class LanguageForm extends Component {
       alive:
         this.state.alive === "t" || this.state.alive === true ? true : false,
     };
+    console.log(editedLanguage);
     this.props.editLanguage(languageId, editedLanguage);
     this.clearForm();
     this.props.history.push("/all_languages");
-
-    // fetch(`${url}/languages/${languageId}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     language: {
-    //       name: this.state.name,
-    //       abbreviation: this.state.abbreviation,
-    //       alphabet: this.state.alphabet,
-    //       macrofamily: this.state.macrofamily,
-    //       family: this.state.family,
-    //       subfamily: this.state.subfamily,
-    //       area1: this.state.area1,
-    //       area2: this.state.area2,
-    //       area3: this.state.area3,
-    //       notes: this.state.notes,
-    //       alive:
-    //         this.state.alive === "t" || this.state.alive === true
-    //           ? true
-    //           : false,
-    //     },
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then(this.clearForm())
-    //   .then(this.props.history.push("/all_languages"))
-    //   .catch((err) => console.log(err));
   };
 
   cancelFormAction = () => {
@@ -252,35 +111,25 @@ class LanguageForm extends Component {
   };
 
   render() {
-    const macrofamilies =
-      this.state.macrofamilyNames && this.state.macrofamilyNames.length > 0
-        ? this.state.macrofamilyNames.map((macrofamily, index) => {
-            return macrofamily ? (
-              <option key={index}>{macrofamily}</option>
-            ) : null;
-          })
-        : null;
     const alphabets =
-      this.state.alphabetNames && this.state.alphabetNames.length > 0
-        ? this.state.alphabetNames.map((alphabet, index) => {
-            return alphabet ? <option key={index}>{alphabet}</option> : null;
+      this.props.alphabetNames && this.props.alphabetNames.length > 0
+        ? this.props.alphabetNames.map((alphabet, index) => {
+            return <option key={index}>{alphabet}</option>;
           })
         : null;
-    return (
+    const macrofamilies =
+      this.props.macrofamilyNames && this.props.macrofamilyNames.length > 0
+        ? this.props.macrofamilyNames.map((macrofamily, index) => {
+            return <option key={index}>{macrofamily}</option>;
+          })
+        : null;
+    console.log(alphabets);
+    console.log(macrofamilies);
+
+    return this.props.languageToUpdate && alphabets && macrofamilies ? (
       <>
-        <form
-          id="new-lang-form"
-          onSubmit={
-            this.state.editMode
-              ? (e) => this.handleOnPatch(e)
-              : (e) => this.handleOnSubmit(e)
-          }
-        >
-          {this.state.editMode ? (
-            <h3>Edit a Language</h3>
-          ) : (
-            <h3>Create a new Language</h3>
-          )}
+        <form id="new-lang-form" onSubmit={(e) => this.handleOnSubmit(e)}>
+          <h3>Edit a Language</h3>
           <div>
             <label htmlFor="name">Name: </label>
             <input
@@ -288,7 +137,7 @@ class LanguageForm extends Component {
               id="name"
               name="name"
               placeholder="Language Name"
-              value={this.state.name}
+              value={this.state.name || ""}
               onChange={this.handleOnChange}
             />
             <label htmlFor="abbreviation">Abbreviation: </label>
@@ -297,14 +146,14 @@ class LanguageForm extends Component {
               id="abbreviation"
               name="abbreviation"
               placeholder="Language Abbreviation"
-              value={this.state.abbreviation}
+              value={this.state.abbreviation || ""}
               onChange={this.handleOnChange}
             />
             <label htmlFor="alphabet">Alphabet: </label>
             <select
               id="alphabet"
               name="alphabet"
-              value={this.state.alphabet}
+              value={this.state.alphabet || ""}
               onChange={this.handleOnChange}
             >
               <option value="">Select One Alphabet</option>
@@ -316,7 +165,7 @@ class LanguageForm extends Component {
             <select
               id="macrofamily"
               name="macrofamily"
-              value={this.state.macrofamily}
+              value={this.state.macrofamily || ""}
               onChange={this.handleOnChange}
             >
               <option value="">Select One Macrofamily</option>
@@ -329,7 +178,7 @@ class LanguageForm extends Component {
               id="family"
               name="family"
               placeholder="Language Family"
-              value={this.state.family}
+              value={this.state.family || ""}
               onChange={this.handleOnChange}
             />
             <label htmlFor="subfamily">Subfamily: </label>
@@ -338,7 +187,7 @@ class LanguageForm extends Component {
               id="subfamily"
               name="subfamily"
               placeholder="Language Subfamily"
-              value={this.state.subfamily}
+              value={this.state.subfamily || ""}
               onChange={this.handleOnChange}
             />
           </div>
@@ -349,7 +198,7 @@ class LanguageForm extends Component {
               id="area1"
               name="area1"
               placeholder="Area 1"
-              value={this.state.area1}
+              value={this.state.area1 || ""}
               onChange={this.handleOnChange}
             />
             <label htmlFor="area2">Area 2: </label>
@@ -358,7 +207,7 @@ class LanguageForm extends Component {
               id="area2"
               name="area2"
               placeholder="Another Area?"
-              value={this.state.area2}
+              value={this.state.area2 || ""}
               onChange={this.handleOnChange}
             />
             <label htmlFor="area3">Area 3: </label>
@@ -367,7 +216,7 @@ class LanguageForm extends Component {
               id="area3"
               name="area3"
               placeholder="Another Area??"
-              value={this.state.area3}
+              value={this.state.area3 || ""}
               onChange={this.handleOnChange}
             />
           </div>
@@ -377,7 +226,7 @@ class LanguageForm extends Component {
               id="notes"
               name="notes"
               placeholder="Notes"
-              value={this.state.notes}
+              value={this.state.notes || ""}
               onChange={this.handleOnChange}
             />
             <label htmlFor="alive">Alive?: </label>
@@ -405,7 +254,7 @@ class LanguageForm extends Component {
           <input
             type="submit"
             className={this.state.name ? "submit-btn" : "disabled"}
-            value={this.state.editMode ? "Update" : "Submit"}
+            value="Update"
             disabled={!this.state.name}
           />
           <button type="button" className="clear-btn" onClick={this.clearForm}>
@@ -420,7 +269,7 @@ class LanguageForm extends Component {
           </button>
         </form>
       </>
-    );
+    ) : null;
   }
 }
 
