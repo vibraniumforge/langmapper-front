@@ -28,15 +28,6 @@ class ViewAllLanguages extends Component {
     this.props.deleteLanguage(languageId);
   };
 
-  //   deleteLanguageFromPage = (res) => {
-  //     const languageId = res.data.id;
-  //     let languageAr = [...this.state.results];
-  //     let newLanguagesAr = languageAr.filter((language) => {
-  //       return language.id !== languageId;
-  //     });
-  //     this.setState({ results: newLanguagesAr });
-  //   };
-
   render() {
     return (
       <>
