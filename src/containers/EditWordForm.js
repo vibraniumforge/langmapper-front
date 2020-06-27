@@ -28,19 +28,6 @@ class EditWordForm extends Component {
     }
   }
 
-  //   shouldComponentUpdate(nextProps) {
-  //     if (
-  //       this.props.wordDefinition === nextProps.wordDefinition &&
-  //       this.props.wordDefinition
-  //     ) {
-  //       console.log("if");
-  //       return true;
-  //     } else {
-  //       console.log("else");
-  //       return false;
-  //     }
-  //   }
-
   componentDidUpdate(prevProps) {
     console.log(this.state);
     if (
@@ -62,8 +49,11 @@ class EditWordForm extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    const word = this.state;
-    this.props.editWord(word);
+    const word = {
+      definition: this.state.wordDefinition,
+    };
+    const wordId = this.props.location.pathname.split("/").pop();
+    this.props.editWord(wordId, word);
     this.clearForm();
     this.props.history.push("/all_words");
   };
@@ -79,7 +69,6 @@ class EditWordForm extends Component {
   };
 
   render() {
-    console.log(this.props);
     return this.props.wordDefinition ? (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
