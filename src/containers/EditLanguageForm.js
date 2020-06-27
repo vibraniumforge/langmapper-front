@@ -82,7 +82,6 @@ class LanguageForm extends Component {
       alive:
         this.state.alive === "t" || this.state.alive === true ? true : false,
     };
-    console.log(editedLanguage);
     this.props.editLanguage(languageId, editedLanguage);
     this.clearForm();
     this.props.history.push("/all_languages");
