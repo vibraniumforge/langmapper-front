@@ -4,12 +4,15 @@ import SearchTranslationsByAreaResultCard from "../components/SearchTranslations
 class SearchTranslationsByAreaResultsContainer extends Component {
   render() {
     const cards =
-      this.props.results.length > 0
-        ? this.props.results.map(translation => {
+      this.props.searchedTranslationsByArea &&
+      this.props.searchedTranslationsByArea.length > 0
+        ? this.props.searchedTranslationsByArea.map((translation) => {
             return (
               <SearchTranslationsByAreaResultCard
                 translation={translation}
                 key={translation.id}
+                onHandleEdit={this.props.onHandleEdit}
+                onHandleDelete={this.props.onHandleDelete}
               />
             );
           })
