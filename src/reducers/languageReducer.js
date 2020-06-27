@@ -23,7 +23,7 @@ export default function languageReducer(state = initialState, action) {
       const updatedLanguage = {
         id: action.payload.id,
         name: action.payload.name,
-        abbreviation: action.payload.id,
+        abbreviation: action.payload.abbreviation,
         alphabet: action.payload.alphabet,
         macrofamily: action.payload.macrofamily,
         family: action.payload.family,
