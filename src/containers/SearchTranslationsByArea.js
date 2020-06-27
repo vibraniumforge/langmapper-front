@@ -1,9 +1,22 @@
 import React from "react";
 import SearchTranslationsByAreaResultsContainer from "./SearchTranslationsByAreaResultsContainer.js";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import { getWords } from "../actions/wordActions.js";
+
+import { getAllLanguageAreas } from "../actions/languageActions.js";
+
+import {
+  getTranslationById,
+  clearGetTranslationById,
+  editTranslation,
+  deleteTranslation,
+  searchTranslationsByArea,
+  clearSearchTranslationsByArea,
+} from "../actions/translationActions.js";
 
 class SearchTranslationsByArea extends React.Component {
   constructor(props) {
@@ -16,77 +29,64 @@ class SearchTranslationsByArea extends React.Component {
       results: [],
       searchedWord: "",
       searchedLocation: "",
-      imageResults: []
     };
   }
 
   componentDidMount() {
-    this.getAllWordNames();
-    this.getAllAreas();
+    this.props.clearGetTranslationById();
+    // this.props.clearSearchTranslationsByArea();
+    // this.props.clearSearchTranslationsByLanguage();
+    this.props.getWords();
+    this.props.getAllLanguageAreas();
   }
 
-  getAllWordNames() {
-    fetch(`${url}/search/all_word_names`)
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          allWords: res.data
-        })
-      )
-      .catch(err => console.log(err));
-  }
-
-  getAllAreas() {
-    fetch(`${url}/search/all_areas`)
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          allLocations: res.data
-        })
-      )
-      .catch(err => console.log(err));
-  }
-
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  handleOnSubmit = e => {
+  handleOnSubmit = (e) => {
     e.preventDefault();
-    fetch(
-      `${url}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
-    )
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          results: res.data,
-          searchedLocation: this.state.selectedLocation,
-          searchedWord: this.state.selectedWord,
-          selectedLocation: "",
-          selectedWord: ""
-        })
-      )
-      .catch(err => console.log(err));
+    this.props.searchTranslationsByArea(
+      this.state.selectedLocation,
+      this.state.selectedWord
+    );
+    this.setState({
+      searchedLocation: this.state.selectedLocation,
+      searchedWord: this.state.selectedWord,
+      selectedLocation: "",
+      selectedWord: "",
+    });
+  };
+
+  onHandleEdit = (e, translationId) => {
+    e.preventDefault();
+    this.props.getTranslationById(translationId);
+    this.props.history.push(`/edit_translation/${translationId}`);
+  };
+
+  onHandleDelete = (e, translationId) => {
+    e.preventDefault();
+    this.props.deleteTranslation(translationId);
   };
 
   render() {
     const allWords =
-      this.state.allWords.length > 0
-        ? this.state.allWords.map(word => {
+      this.props.words && this.props.words.length > 0
+        ? this.props.words.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
     const allLocations =
-      this.state.allLocations && this.state.allLocations.length > 0
-        ? this.state.allLocations.map((location, index) => {
+      this.props.languageAreaNames && this.props.languageAreaNames.length > 0
+        ? this.props.languageAreaNames.map((location, index) => {
             return location ? <option key={index}>{location}</option> : null;
           })
         : null;
     return (
       <>
-        <form onSubmit={e => this.handleOnSubmit(e)}>
+        <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <select
             id="select"
             name="selectedLocation"
@@ -118,13 +118,39 @@ class SearchTranslationsByArea extends React.Component {
         </form>
 
         <SearchTranslationsByAreaResultsContainer
-          results={this.state.results}
+          searchedTranslationsByArea={this.props.searchedTranslationsByArea}
           searchedWord={this.state.searchedWord}
           searchedLocation={this.state.searchedLocation}
+          onHandleDelete={this.onHandleDelete}
+          onHandleEdit={this.onHandleEdit}
         />
       </>
     );
   }
 }
 
-export default SearchTranslationsByArea;
+const mapStateToProps = (state) => ({
+  words: state.words.words,
+  languageAreaNames: state.languages.languageAreaNames,
+  searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      getWords,
+      getAllLanguageAreas,
+      getTranslationById,
+      clearGetTranslationById,
+      editTranslation,
+      deleteTranslation,
+      searchTranslationsByArea,
+      clearSearchTranslationsByArea,
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchTranslationsByArea)
+);
