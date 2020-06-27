@@ -41,19 +41,19 @@ export const createWord = (word) => {
   };
 };
 
-export const editWord = (id, word) => {
+export const editWord = (id, editedWord) => {
   const data = {
     method: "PATCH",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ word }),
+    body: JSON.stringify({ word: editedWord }),
   };
   return (dispatch) => {
     fetch(`${url}/words/${id}`, data)
       .then((res) => res.json())
-      .then((res) => dispatch({ type: "EDIT_WORD", payload: res }))
+      .then((res) => dispatch({ type: "EDIT_WORD", payload: res.data }))
       .catch((err) => console.log(err));
   };
 };
