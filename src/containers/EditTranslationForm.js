@@ -46,8 +46,7 @@ class TranslationForm extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    const splitLang = this.props.location.pathname.split("/");
-    const translationId = splitLang[splitLang.length - 1];
+    const translationId = this.props.location.pathname.split("/").pop();
     const editedTranslation = {
       language: this.state.language,
       word: this.state.word,
@@ -57,7 +56,9 @@ class TranslationForm extends Component {
     };
     this.props.editTranslation(translationId, editedTranslation);
     this.clearForm();
-    this.props.history.push("/all_translations_by_language");
+
+    this.props.history.goBack();
+    // this.props.history.push("/all_translations_by_language");
   };
 
   cancelFormAction = () => {

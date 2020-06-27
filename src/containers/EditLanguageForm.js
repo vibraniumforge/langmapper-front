@@ -66,8 +66,7 @@ class LanguageForm extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    const splitLang = this.props.location.pathname.split("/");
-    const languageId = splitLang[splitLang.length - 1];
+    const languageId = this.props.location.pathname.split("/").pop();
     const editedLanguage = {
       name: this.state.name,
       abbreviation: this.state.abbreviation,
