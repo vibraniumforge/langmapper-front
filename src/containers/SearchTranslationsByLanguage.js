@@ -1,52 +1,62 @@
 import React from "react";
 import SearchTranslationsByLanguageResultsContainer from "./SearchTranslationsByLanguageResultsContainer.js";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import {
+  searchTranslationsByLanguage,
+  getTranslationById,
+  deleteTranslation,
+} from "../actions/translationActions.js";
 
 class SearchTranslationsByLanguage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedLanguage: "",
-      results: [],
-      searchedLanguage: ""
+      searchedLanguage: "",
     };
   }
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({
-      selectedLanguage: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  handleOnSubmit = e => {
+  handleOnSubmit = (e) => {
     e.preventDefault();
-    fetch(
-      `${url}/search/all_translations_by_language/${this.state.selectedLanguage}`
-    )
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          results: res.data,
-          searchedLanguage: this.state.selectedLanguage,
-          selectedLanguage: ""
-        })
-      )
-      .catch(err => console.log(err));
+    this.props.searchTranslationsByLanguage(this.state.selectedLanguage);
+    this.setState({
+      searchedLanguage: this.state.selectedLanguage,
+      selectedLanguage: "",
+    });
+  };
+
+  onHandleEdit = (e, translationId) => {
+    e.preventDefault();
+    this.props.getTranslationById(translationId);
+    this.props.history.push(`/edit_translation/${translationId}`);
+  };
+
+  onHandleDelete = (e, translationId) => {
+    e.preventDefault();
+    this.props.deleteTranslation(translationId);
   };
 
   render() {
     return (
       <>
-        <form onSubmit={e => this.handleOnSubmit(e)}>
+        <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <input
             type="text"
             id="search"
+            name="selectedLanguage"
             placeholder="Input Language: "
             className="input"
-            onChange={e => this.handleOnChange(e)}
+            onChange={(e) => this.handleOnChange(e)}
             value={this.state.selectedLanguage}
           />
           <input
@@ -57,12 +67,31 @@ class SearchTranslationsByLanguage extends React.Component {
           />
         </form>
         <SearchTranslationsByLanguageResultsContainer
-          results={this.state.results}
+          translations={this.props.translations}
           searchedLanguage={this.state.searchedLanguage}
+          onHandleDelete={this.onHandleDelete}
+          onHandleEdit={this.onHandleEdit}
         />
       </>
     );
   }
 }
 
-export default SearchTranslationsByLanguage;
+const mapStateToProps = (state) => ({
+  translations: state.translations.translations,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      searchTranslationsByLanguage,
+      getTranslationById,
+      deleteTranslation,
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchTranslationsByLanguage)
+);
