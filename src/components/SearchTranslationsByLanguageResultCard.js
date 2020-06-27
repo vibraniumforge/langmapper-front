@@ -1,35 +1,45 @@
-import React, { Component } from "react";
+import React from "react";
 
-class SearchTranslationsByLanguageResultCard extends Component {
-  render() {
-    return (
-      <div className="translation-result-card">
-        <p>
-          <strong>Word: </strong>
-          {this.props.translation.word_name}
-        </p>
-        <p>
-          <strong>Translation: </strong>
-          {this.props.translation.translation}
-        </p>
-        <p>
-          <strong>Romanization: </strong>
-          {this.props.translation.romanization}
-        </p>
-        <p>
-          <strong>Gender: </strong>
-          {this.props.translation.gender}
-        </p>
-        <a href={this.props.translation.link}>Wiktionary</a>
-        <p>
-          <strong>Etymology: </strong>
-          {this.props.translation.etymology
-            ? this.props.translation.etymology.slice(0, 140)
-            : "None found"}
-        </p>
-      </div>
-    );
-  }
-}
+export const SearchTranslationsByLanguageResultCard = (props) => {
+  return (
+    <div className="translation-result-card">
+      <p>
+        <strong>Word: </strong>
+        {props.translation.word_name}
+      </p>
+      <p>
+        <strong>Translation: </strong>
+        {props.translation.translation}
+      </p>
+      <p>
+        <strong>Romanization: </strong>
+        {props.translation.romanization}
+      </p>
+      <p>
+        <strong>Gender: </strong>
+        {props.translation.gender}
+      </p>
+      <a href={props.translation.link}>Wiktionary</a>
+      <p>
+        <strong>Etymology: </strong>
+        {props.translation.etymology
+          ? props.translation.etymology.slice(0, 140)
+          : "None found"}
+      </p>
+      <button
+        onClick={(e) => props.onHandleEdit(e, props.translation.id)}
+        className="card-edit-btn"
+      >
+        Edit
+      </button>
+      <button
+        onClick={(e) => props.onHandleDelete(e, props.translation.id)}
+        className="card-delete-btn"
+      >
+        Delete
+      </button>
+    </div>
+  );
+};
 
 export default SearchTranslationsByLanguageResultCard;
