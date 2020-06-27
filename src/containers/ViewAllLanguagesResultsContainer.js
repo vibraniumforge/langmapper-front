@@ -4,8 +4,8 @@ import ViewAllLanguagesResultCard from "../components/ViewAllLanguagesResultCard
 class ViewAllLanguagessResultsContainer extends Component {
   render() {
     const cards =
-      this.props.results.length > 0
-        ? this.props.results.map(language => {
+      this.props.languages && this.props.languages.length > 0
+        ? this.props.languages.map((language) => {
             return (
               <ViewAllLanguagesResultCard
                 language={language}
