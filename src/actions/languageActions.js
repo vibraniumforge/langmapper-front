@@ -62,7 +62,7 @@ export const getAllAlphabets = () => {
     fetch(`${url}/search/all_alphabet_names`)
       .then((res) => res.json())
       .then((res) =>
-        dispatch({ type: "GET_ALL_ALPHABET_NAMES", payload: res.data })
+        dispatch({ type: "GET_ALL_LANGUAGE_ALPHABET_NAMES", payload: res.data })
       )
       .catch((err) => console.log(err));
   };
@@ -73,7 +73,24 @@ export const getAllMacrofamilies = () => {
     fetch(`${url}/search/all_macrofamily_names`)
       .then((res) => res.json())
       .then((res) =>
-        dispatch({ type: "GET_ALL_MACROFAMILY_NAMES", payload: res.data })
+        dispatch({
+          type: "GET_ALL_LANGUAGE_MACROFAMILY_NAMES",
+          payload: res.data,
+        })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const getAllLanguageAreas = () => {
+  return (dispatch) => {
+    fetch(`${url}//search/all_areas`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({
+          type: "GET_LANGUAGE_AREA_NAMES",
+          payload: res.data,
+        })
       )
       .catch((err) => console.log(err));
   };
