@@ -30,17 +30,7 @@ class ViewAllWords extends Component {
     e.preventDefault();
     this.props.getWordById(wordId);
     this.props.history.push(`/edit_word/${wordId}`);
-    // this.props.editWord(wordId);
   };
-
-  //   deleteWordFromDom = (res) => {
-  //     const wordId = res.data.id;
-  //     let wordsAr = [...this.state.results];
-  //     let newWordsAr = wordsAr.filter((word) => {
-  //       return word.id !== wordId;
-  //     });
-  //     this.setState({ results: newWordsAr });
-  //   };
 
   render() {
     return (
