@@ -24,7 +24,14 @@ export const getTranslationById = (id) => {
   };
 };
 
+export const clearGetTranslationById = () => {
+  return {
+    type: "CLEAR_GET_TRANSLATION_BY_ID",
+  };
+};
+
 export const editTranslation = (id, editedTranslation) => {
+  console.log("fires", editedTranslation);
   const params = {
     method: "PATCH",
     headers: {
@@ -50,18 +57,12 @@ export const deleteTranslation = (id) => {
     },
   };
   return (dispatch) => {
-    fetch(`${url}/languages/${id}`, params)
+    fetch(`${url}/translations/${id}`, params)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "DELETE_TRANSLATION", payload: res.data })
       )
       .catch((err) => console.log(err));
-  };
-};
-
-export const clearGetTranslationById = () => {
-  return {
-    type: "CLEAR_GET_TRANSLATION_BY_ID",
   };
 };
 
@@ -73,5 +74,28 @@ export const searchTranslationsByLanguage = (language) => {
         dispatch({ type: "GET_TRANSLATIONS_BY_LANGUAGE", payload: res.data })
       )
       .catch((err) => console.log(err));
+  };
+};
+
+export const clearSearchTranslationsByLanguage = () => {
+  return {
+    type: "CLEAR_GET_TRANSLATIONS_BY_LANGUAGE",
+  };
+};
+
+export const searchTranslationsByArea = (area, word) => {
+  return (dispatch) => {
+    fetch(`${url}/search/all_translations_by_area/${area}/${word}`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({ type: "GET_TRANSLATIONS_BY_AREA", payload: res.data })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const clearSearchTranslationsByArea = () => {
+  return {
+    type: "CLEAR_GET_TRANSLATIONS_BY_AREA",
   };
 };
