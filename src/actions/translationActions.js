@@ -6,14 +6,14 @@ const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 //     ? "http://localhost:3001/api/v1"
 //     : "https://secure-refuge-32252.herokuapp.com/api/v1";
 
-export const getTranslations = () => {
-  return (dispatch) => {
-    fetch(`${url}/translations`)
-      .then((res) => res.json())
-      .then((res) => dispatch({ type: "GET_TRANSLATIONS", payload: res }))
-      .catch((err) => console.log(err));
-  };
-};
+// export const getTranslations = () => {
+//   return (dispatch) => {
+//     fetch(`${url}/translations`)
+//       .then((res) => res.json())
+//       .then((res) => dispatch({ type: "GET_TRANSLATIONS", payload: res }))
+//       .catch((err) => console.log(err));
+//   };
+// };
 
 export const getTranslationById = (id) => {
   return (dispatch) => {
@@ -97,5 +97,22 @@ export const searchTranslationsByArea = (area, word) => {
 export const clearSearchTranslationsByArea = () => {
   return {
     type: "CLEAR_GET_TRANSLATIONS_BY_AREA",
+  };
+};
+
+export const searchTranslationsByWord = (word) => {
+  return (dispatch) => {
+    fetch(`${url}/search/translations/${word}`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({ type: "GET_TRANSLATIONS_BY_WORD", payload: res.data })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const clearSearchTranslationsByWord = () => {
+  return {
+    type: "CLEAR_GET_TRANSLATIONS_BY_WORD",
   };
 };
