@@ -17,8 +17,14 @@ code {
   text-align: center;
 }
 
-li {
+ol {
   list-style-type: none;
+}
+
+li {
+  text-align: left;
+  margin: 15px;
+  font-size: 20px;
 }
 
 #navbar {
@@ -281,12 +287,6 @@ td {
   max-height: 1rem;
 }
 
-ol {
-  list-style-type: none;
-}
-
-li {
-  text-align: left;
-  margin: 15px;
-  font-size: 20px;
+.wiktionary-icon {
+  height: 1em;
 }
