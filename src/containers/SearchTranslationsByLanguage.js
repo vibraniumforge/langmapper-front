@@ -67,7 +67,9 @@ class SearchTranslationsByLanguage extends React.Component {
           />
         </form>
         <SearchTranslationsByLanguageResultsContainer
-          translations={this.props.translations}
+          searchedTranslationsByLanguage={
+            this.props.searchedTranslationsByLanguage
+          }
           searchedLanguage={this.state.searchedLanguage}
           onHandleDelete={this.onHandleDelete}
           onHandleEdit={this.onHandleEdit}
@@ -78,7 +80,8 @@ class SearchTranslationsByLanguage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  translations: state.translations.translations,
+  searchedTranslationsByLanguage:
+    state.translations.searchedTranslationsByLanguage,
 });
 
 const mapDispatchToProps = (dispatch) => {
