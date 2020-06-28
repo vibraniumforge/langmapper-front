@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 import Home from "./components/Home";
-import SearchAllTranslations from "./containers/SearchAllTranslations.js";
+import SearchTranslationsByWord from "./containers/SearchTranslationsByWord.js";
 import SearchAllGenders from "./containers/SearchAllGenders.js";
 import SearchEtymologiesContent from "./containers/SearchEtymologiesContent.js";
 import SearchEtymologiesGrouped from "./containers/SearchEtymologiesGrouped.js";
@@ -33,7 +33,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route
               path="/search_translations"
-              component={SearchAllTranslations}
+              component={SearchTranslationsByWord}
             />
             <Route path="/search_genders" component={SearchAllGenders} />
             <Route
