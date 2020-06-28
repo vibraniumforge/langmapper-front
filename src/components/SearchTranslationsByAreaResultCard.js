@@ -31,12 +31,23 @@ export const SearchTranslationsByAreaResultCard = (props) => {
         <strong>Gender: </strong>
         {props.translation.gender}
       </p>
-      <a href={props.translation.link}>Wiktionary</a>
       <p>
         <strong>Etymology: </strong>
         {props.translation.etymology
           ? props.translation.etymology.slice(0, 140)
           : "None found"}
+      </p>
+      <p>
+        {" "}
+        <strong>
+          <a
+            href={props.translation.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Wiktionary
+          </a>
+        </strong>
       </p>
       <button
         onClick={(e) => props.onHandleEdit(e, props.translation.t_id)}

@@ -24,13 +24,19 @@ class TranslationsByMacrofamilyCard extends Component {
           <strong>Gender: </strong>
           {this.props.result.gender ? this.props.result.gender : null}
         </p>
-        <a href={this.props.result.link}>Wiktionary</a>
         <p>
           <strong>Etymology: </strong>
           {this.props.result.etymology
             ? this.props.result.etymology.slice(0, 140)
             : "None found"}
         </p>
+        <a
+          href={this.props.result.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Wiktionary
+        </a>
       </div>
     );
   }
