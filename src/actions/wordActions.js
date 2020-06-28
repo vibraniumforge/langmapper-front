@@ -69,7 +69,7 @@ export const deleteWord = (id) => {
   return (dispatch) => {
     fetch(`${url}/words/${id}`, data)
       .then((res) => res.json())
-      .then((res) => dispatch({ type: "DELETE_WORD", payload: res }))
+      .then((res) => dispatch({ type: "DELETE_WORD", payload: res.data }))
       .catch((err) => console.log(err));
   };
 };
