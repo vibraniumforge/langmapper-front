@@ -33,11 +33,14 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   componentDidMount() {
-    this.props.clearGetTranslationById();
+    // this.props.clearGetTranslationById();
     // this.props.clearSearchTranslationsByArea();
-    // this.props.clearSearchTranslationsByLanguage();
-    this.props.getWords();
-    this.props.getAllLanguageAreas();
+    if (this.props.words.length === 0) {
+      this.props.getWords();
+    }
+    if (this.props.languageAreaNames.length === 0) {
+      this.props.getAllLanguageAreas();
+    }
   }
 
   handleOnChange = (e) => {
@@ -62,6 +65,9 @@ class SearchTranslationsByArea extends React.Component {
 
   onHandleEdit = (e, translationId) => {
     e.preventDefault();
+    if (this.props.searchedTranslationsByArea.length === 0) {
+      this.props.getTranslationById(translationId);
+    }
     this.props.getTranslationById(translationId);
     this.props.history.push(`/edit_translation/${translationId}`);
   };
