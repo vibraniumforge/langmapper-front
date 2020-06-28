@@ -1,10 +1,10 @@
 // const url = "http://localhost:3001/api/v1";
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
-// const url =
-//   process.env.REACT_APP_ENVIRONMENT === "development"
-//     ? "http://localhost:3001/api/v1"
-//     : "https://secure-refuge-32252.herokuapp.com/api/v1";
+const url =
+  process.env.REACT_APP_ENVIRONMENT === "development"
+    ? "http://localhost:3001/api/v1"
+    : "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 export const getWords = () => {
   return (dispatch) => {
