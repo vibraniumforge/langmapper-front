@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export default function languageReducer(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case "GET_WORDS_COUNT":
       return {

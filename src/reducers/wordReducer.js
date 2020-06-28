@@ -4,7 +4,6 @@ const initialState = {
 };
 
 export default function wordReducer(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case "GET_WORDS":
       return {
