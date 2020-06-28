@@ -3,6 +3,7 @@ const initialState = {
   translationToUpdate: "",
   searchedTranslationsByArea: [],
   searchedTranslationsByLanguage: [],
+  searchedTranslationsByWord: [],
 };
 
 export default function translationReducer(state = initialState, action) {
@@ -45,10 +46,31 @@ export default function translationReducer(state = initialState, action) {
       return {
         ...state,
         translations: state.translations.map((translation) => {
-          return translation.id === action.payload.id
+          return translation.t_id === action.payload.id
             ? (translation = updatedTranslation)
             : translation;
         }),
+        searchedTranslationsByArea: state.searchedTranslationsByArea.map(
+          (translation) => {
+            return translation.t_id === action.payload.id
+              ? (translation = updatedTranslation)
+              : translation;
+          }
+        ),
+        searchedTranslationsByLanguage: state.searchedTranslationsByLanguage.map(
+          (translation) => {
+            return translation.t_id === action.payload.id
+              ? (translation = updatedTranslation)
+              : translation;
+          }
+        ),
+        searchedTranslationsByWord: state.searchedTranslationsByWord.map(
+          (translation) => {
+            return translation.t_id === action.payload.id
+              ? (translation = updatedTranslation)
+              : translation;
+          }
+        ),
       };
     case "DELETE_TRANSLATION":
       const newTranslations = state.translations.filter(
@@ -79,6 +101,17 @@ export default function translationReducer(state = initialState, action) {
       return {
         ...state,
         searchedTranslationsByArea: [],
+      };
+    case "GET_TRANSLATIONS_BY_WORD":
+      return {
+        ...state,
+        searchedTranslationsByWord: action.payload,
+      };
+
+    case "CLEAR_GET_TRANSLATIONS_BY_WORD":
+      return {
+        ...state,
+        searchedTranslationsByWord: [],
       };
 
     default:
