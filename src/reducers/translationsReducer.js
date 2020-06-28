@@ -4,6 +4,8 @@ const initialState = {
   searchedTranslationsByArea: [],
   searchedTranslationsByLanguage: [],
   searchedTranslationsByWord: [],
+  searchWord: "",
+  searchArea: "",
 };
 
 export default function translationReducer(state = initialState, action) {
@@ -112,6 +114,30 @@ export default function translationReducer(state = initialState, action) {
       return {
         ...state,
         searchedTranslationsByWord: [],
+      };
+
+    case "GET_SEARCH_AREA":
+      return {
+        ...state,
+        searchArea: action.payload,
+      };
+
+    case "CLEAR_SEARCH_AREA":
+      return {
+        ...state,
+        searchArea: [],
+      };
+
+    case "GET_SEARCH_WORD":
+      return {
+        ...state,
+        searchWord: action.payload,
+      };
+
+    case "CLEAR_SEARCH_WORD":
+      return {
+        ...state,
+        searchWord: [],
       };
 
     default:
