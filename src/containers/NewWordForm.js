@@ -25,7 +25,8 @@ class NewWordForm extends Component {
     this.props.history.push("/all_words");
   };
 
-  clearForm = () => {
+  cancelFormAction = () => {
+    this.props.history.push("/all_words");
     this.setState({ wordName: "" });
   };
 
@@ -51,6 +52,13 @@ class NewWordForm extends Component {
             }
             disabled={!this.state.wordName.length === 0}
           />
+          <button
+            type="button"
+            className="cancel-btn"
+            onClick={this.cancelFormAction}
+          >
+            Cancel
+          </button>
         </form>
       </>
     );
