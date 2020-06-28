@@ -16,19 +16,18 @@ import {
   deleteTranslation,
   searchTranslationsByArea,
   clearSearchTranslationsByArea,
+  getSearchArea,
+  clearSearchArea,
+  getSearchWord,
+  clearSearchWord,
 } from "../actions/translationActions.js";
 
 class SearchTranslationsByArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLocation: "",
+      selectedArea: "",
       selectedWord: "",
-      allWords: [],
-      allLocations: [],
-      results: [],
-      searchedWord: "",
-      searchedLocation: "",
     };
   }
 
@@ -52,13 +51,14 @@ class SearchTranslationsByArea extends React.Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
     this.props.searchTranslationsByArea(
-      this.state.selectedLocation,
+      this.state.selectedArea,
       this.state.selectedWord
     );
+
+    this.props.getSearchArea(this.state.selectedArea);
+    this.props.getSearchWord(this.state.selectedWord);
     this.setState({
-      searchedLocation: this.state.selectedLocation,
-      searchedWord: this.state.selectedWord,
-      selectedLocation: "",
+      selectedArea: "",
       selectedWord: "",
     });
   };
@@ -84,10 +84,10 @@ class SearchTranslationsByArea extends React.Component {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
-    const allLocations =
+    const allAreas =
       this.props.languageAreaNames && this.props.languageAreaNames.length > 0
-        ? this.props.languageAreaNames.map((location, index) => {
-            return location ? <option key={index}>{location}</option> : null;
+        ? this.props.languageAreaNames.map((area, index) => {
+            return area ? <option key={index}>{area}</option> : null;
           })
         : null;
     return (
@@ -95,12 +95,12 @@ class SearchTranslationsByArea extends React.Component {
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <select
             id="select"
-            name="selectedLocation"
-            value={this.state.selectedLocation}
+            name="selectedArea"
+            value={this.state.selectedArea}
             onChange={this.handleOnChange}
           >
-            <option value="">Select One Location</option>
-            {allLocations}
+            <option value="">Select One Area</option>
+            {allAreas}
           </select>
           <select
             id="select"
@@ -115,18 +115,16 @@ class SearchTranslationsByArea extends React.Component {
             type="submit"
             value="Search"
             className={
-              this.state.selectedLocation && this.state.selectedWord
+              this.state.selectedArea && this.state.selectedWord
                 ? "submit-btn"
                 : "disabled"
             }
-            disabled={!this.state.selectedLocation || !this.state.selectedWord}
+            disabled={!this.state.selectedArea || !this.state.selectedWord}
           />
         </form>
 
         <SearchTranslationsByAreaResultsContainer
           searchedTranslationsByArea={this.props.searchedTranslationsByArea}
-          searchedWord={this.state.searchedWord}
-          searchedLocation={this.state.searchedLocation}
           onHandleDelete={this.onHandleDelete}
           onHandleEdit={this.onHandleEdit}
         />
@@ -152,6 +150,10 @@ const mapDispatchToProps = (dispatch) => {
       deleteTranslation,
       searchTranslationsByArea,
       clearSearchTranslationsByArea,
+      getSearchArea,
+      clearSearchArea,
+      getSearchWord,
+      clearSearchWord,
     },
     dispatch
   );
