@@ -41,9 +41,6 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/new_word">
           Create a New Word
         </NavLink>
-        {/* <NavLink activeClassName="selected" to="/new_language">
-          Create a new Language
-        </NavLink> */}
         <NavLink activeClassName="selected" to="/all_languages">
           View all Languages
         </NavLink>
