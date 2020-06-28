@@ -13,11 +13,11 @@ export const SearchTranslationsByAreaResultCard = (props) => {
       </p>
       <p>
         <strong>Family: </strong>
-        {props.translation.family}
+        {props.translation.family ? props.translation.family : "none"}
       </p>
       <p>
         <strong>Subfamily: </strong>
-        {props.translation.subfamily}
+        {props.translation.subfamily ? props.translation.subfamily : "none"}
       </p>
       <p>
         <strong>Translation: </strong>
@@ -29,7 +29,7 @@ export const SearchTranslationsByAreaResultCard = (props) => {
       </p>
       <p>
         <strong>Gender: </strong>
-        {props.translation.gender}
+        {props.translation.gender ? props.translation.gender : "none"}
       </p>
       <p>
         <strong>Etymology: </strong>
@@ -38,7 +38,11 @@ export const SearchTranslationsByAreaResultCard = (props) => {
           : "None found"}
       </p>
       <p>
-        {" "}
+        <img
+          src={require("../images/wiktionary.ico")}
+          alt="icon"
+          className="wiktionary-icon"
+        />
         <strong>
           <a
             href={props.translation.link}
