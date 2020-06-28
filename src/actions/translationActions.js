@@ -1,10 +1,10 @@
 // const url = "http://localhost:3001/api/v1";
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
 
-// const url =
-//   process.env.REACT_APP_ENVIRONMENT === "development"
-//     ? "http://localhost:3001/api/v1"
-//     : "https://secure-refuge-32252.herokuapp.com/api/v1";
+const url =
+  process.env.REACT_APP_ENV === "development"
+    ? "http://localhost:3001/api/v1"
+    : "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 // export const getTranslations = () => {
 //   return (dispatch) => {
@@ -114,5 +114,31 @@ export const searchTranslationsByWord = (word) => {
 export const clearSearchTranslationsByWord = () => {
   return {
     type: "CLEAR_GET_TRANSLATIONS_BY_WORD",
+  };
+};
+
+export const getSearchArea = (area) => {
+  return {
+    type: "GET_SEARCH_AREA",
+    payload: area,
+  };
+};
+
+export const clearSearchArea = () => {
+  return {
+    type: "CLEAR_SEARCH_AREA",
+  };
+};
+
+export const getSearchWord = (word) => {
+  return {
+    type: "GET_SEARCH_WORD",
+    payload: word,
+  };
+};
+
+export const clearSearchWord = () => {
+  return {
+    type: "CLEAR_SEARCH_WORD",
   };
 };
