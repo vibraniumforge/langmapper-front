@@ -4,10 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import {
-  editTranslation,
-  clearGetTranslationById,
-} from "../actions/translationActions.js";
+import { editTranslation } from "../actions/translationActions.js";
 
 class TranslationForm extends Component {
   constructor(props) {
@@ -67,8 +64,6 @@ class TranslationForm extends Component {
 
   clearForm = () => {
     this.setState({
-      language: "",
-      word: "",
       etymology: "",
       gender: "",
       link: "",
@@ -177,10 +172,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(
-    { editTranslation, clearGetTranslationById },
-    dispatch
-  );
+  return bindActionCreators({ editTranslation }, dispatch);
 };
 
 export default withRouter(
