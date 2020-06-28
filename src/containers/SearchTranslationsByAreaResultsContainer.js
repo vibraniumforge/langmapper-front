@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import SearchTranslationsByAreaResultCard from "../components/SearchTranslationsByAreaResultCard.js";
 
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
 class SearchTranslationsByAreaResultsContainer extends Component {
   render() {
     const cards =
@@ -20,12 +23,19 @@ class SearchTranslationsByAreaResultsContainer extends Component {
 
     return (
       <>
-        <h3>Location: {this.props.searchedLocation}</h3>
-        <h3>Word: {this.props.searchedWord}</h3>
+        <h3>Area: {this.props.searchArea}</h3>
+        <h3>Word: {this.props.searchWord}</h3>
         <div id="card-container">{cards}</div>
       </>
     );
   }
 }
 
-export default SearchTranslationsByAreaResultsContainer;
+const mapStateToProps = (state) => ({
+  searchArea: state.translations.searchArea,
+  searchWord: state.translations.searchWord,
+});
+
+export default withRouter(
+  connect(mapStateToProps, null)(SearchTranslationsByAreaResultsContainer)
+);
