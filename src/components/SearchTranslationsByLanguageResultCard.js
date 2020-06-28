@@ -26,6 +26,11 @@ export const SearchTranslationsByLanguageResultCard = (props) => {
           : "None found"}
       </p>
       <p>
+        <img
+          src={require("../images/wiktionary.ico")}
+          alt="icon"
+          className="wiktionary-icon"
+        />
         <strong>
           <a
             href={props.translation.link}

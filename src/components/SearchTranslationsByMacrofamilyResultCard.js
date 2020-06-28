@@ -30,13 +30,22 @@ class TranslationsByMacrofamilyCard extends Component {
             ? this.props.result.etymology.slice(0, 140)
             : "None found"}
         </p>
-        <a
-          href={this.props.result.link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Wiktionary
-        </a>
+        <p>
+          <img
+            src={require("../images/wiktionary.ico")}
+            alt="icon"
+            className="wiktionary-icon"
+          />
+          <strong>
+            <a
+              href={this.props.translation.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Wiktionary
+            </a>
+          </strong>
+        </p>
       </div>
     );
   }
