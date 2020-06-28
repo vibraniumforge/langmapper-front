@@ -4,7 +4,10 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { editTranslation } from "../actions/translationActions.js";
+import {
+  editTranslation,
+  searchTranslationsByArea,
+} from "../actions/translationActions.js";
 
 class TranslationForm extends Component {
   constructor(props) {
@@ -17,9 +20,6 @@ class TranslationForm extends Component {
       link: "",
       romanization: "",
       translation: "",
-      alphabets: [],
-      macrofamilies: [],
-      editMode: null,
     };
   }
 
@@ -45,17 +45,23 @@ class TranslationForm extends Component {
     e.preventDefault();
     const translationId = this.props.location.pathname.split("/").pop();
     const editedTranslation = {
-      language: this.state.language,
-      word: this.state.word,
+      //   language: this.state.language,
+      //   word: this.state.word,
       etymology: this.state.etymology,
       gender: this.state.gender,
       link: this.state.link,
+      romanization: this.state.romanization,
+      translation: this.state.translation,
     };
     this.props.editTranslation(translationId, editedTranslation);
     this.clearForm();
+    this.props.searchTranslationsByArea(
+      this.props.searchArea,
+      this.props.searchWord
+    );
 
-    this.props.history.goBack();
-    // this.props.history.push("/all_translations_by_language");
+    // this.props.history.goBack();
+    this.props.history.push("/search_translations_by_area");
   };
 
   cancelFormAction = () => {
@@ -168,11 +174,18 @@ class TranslationForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { translationToUpdate: state.translations.translationToUpdate };
+  return {
+    translationToUpdate: state.translations.translationToUpdate,
+    searchArea: state.translations.searchArea,
+    searchWord: state.translations.searchWord,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ editTranslation }, dispatch);
+  return bindActionCreators(
+    { editTranslation, searchTranslationsByArea },
+    dispatch
+  );
 };
 
 export default withRouter(
