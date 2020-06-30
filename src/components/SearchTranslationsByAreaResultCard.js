@@ -13,11 +13,11 @@ export const SearchTranslationsByAreaResultCard = (props) => {
       </p>
       <p>
         <strong>Family: </strong>
-        {props.translation.family ? props.translation.family : "none"}
+        {props.translation.family}
       </p>
       <p>
         <strong>Subfamily: </strong>
-        {props.translation.subfamily ? props.translation.subfamily : "none"}
+        {props.translation.subfamily}
       </p>
       <p>
         <strong>Translation: </strong>
@@ -29,13 +29,11 @@ export const SearchTranslationsByAreaResultCard = (props) => {
       </p>
       <p>
         <strong>Gender: </strong>
-        {props.translation.gender ? props.translation.gender : "none"}
+        {props.translation.gender}
       </p>
       <p>
         <strong>Etymology: </strong>
-        {props.translation.etymology
-          ? props.translation.etymology.slice(0, 140)
-          : "None found"}
+        {props.translation.etymology}
       </p>
       <p>
         <img
