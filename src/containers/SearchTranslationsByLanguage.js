@@ -1,9 +1,11 @@
 import React from "react";
 import SearchTranslationsByLanguageResultsContainer from "./SearchTranslationsByLanguageResultsContainer.js";
-
+import LanguageNameAutofill from "../components/LanguageNameAutofill.js";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+
+import { getLanguages } from "../actions/languageActions.js";
 
 import {
   searchTranslationsByLanguage,
@@ -15,23 +17,22 @@ class SearchTranslationsByLanguage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLanguage: "",
       searchedLanguage: "",
     };
   }
 
-  handleOnChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
+  componentDidMount() {
+    this.props.getLanguages();
+  }
 
-  handleOnSubmit = (e) => {
+  handleOnSubmit = (e, languageName) => {
     e.preventDefault();
-    this.props.searchTranslationsByLanguage(this.state.selectedLanguage);
+
+    this.props.searchTranslationsByLanguage(languageName);
     this.setState({
-      searchedLanguage: this.state.selectedLanguage,
-      selectedLanguage: "",
+      //   searchedLanguage: this.state.selectedLanguage,
+      searchedLanguage:
+        languageName.charAt(0).toUpperCase() + languageName.slice(1),
     });
   };
 
@@ -47,9 +48,19 @@ class SearchTranslationsByLanguage extends React.Component {
   };
 
   render() {
+    const langNames =
+      this.props.languages && this.props.languages.length > 0
+        ? this.props.languages.map((language) => {
+            return language.name;
+          })
+        : null;
     return (
       <>
-        <form onSubmit={(e) => this.handleOnSubmit(e)}>
+        <LanguageNameAutofill
+          langNames={langNames}
+          handleOnSubmit={this.handleOnSubmit}
+        />
+        {/* <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <input
             type="text"
             id="search"
@@ -59,13 +70,7 @@ class SearchTranslationsByLanguage extends React.Component {
             onChange={(e) => this.handleOnChange(e)}
             value={this.state.selectedLanguage}
           />
-          <input
-            type="submit"
-            value="Search"
-            disabled={!this.state.selectedLanguage}
-            className={this.state.selectedLanguage ? "submit-btn" : "disabled"}
-          />
-        </form>
+        </form> */}
         <SearchTranslationsByLanguageResultsContainer
           searchedTranslationsByLanguage={
             this.props.searchedTranslationsByLanguage
@@ -80,6 +85,7 @@ class SearchTranslationsByLanguage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  languages: state.languages.languages,
   searchedTranslationsByLanguage:
     state.translations.searchedTranslationsByLanguage,
 });
@@ -87,6 +93,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
+      getLanguages,
       searchTranslationsByLanguage,
       getTranslationById,
       deleteTranslation,
