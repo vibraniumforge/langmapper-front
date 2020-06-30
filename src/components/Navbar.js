@@ -17,9 +17,9 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/search_etymologies">
           Search by content of Etymology
         </NavLink>
-        <NavLink activeClassName="selected" to="/grouped_etymologies">
+        {/* <NavLink activeClassName="selected" to="/grouped_etymologies">
           Search Etymology Grouped (Beta)
-        </NavLink>
+        </NavLink> */}
         {/* <NavLink
           activeClassName="selected"
           to="/all_translations_by_macrofamily"
