@@ -9,7 +9,8 @@ const initialState = {
 };
 
 export default function translationReducer(state = initialState, action) {
-  console.log(action);
+  process.env.REACT_APP_NODE_ENV === "development" ? console.log(action) : null;
+
   switch (action.type) {
     case "GET_TRANSLATIONS":
       return {
