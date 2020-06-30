@@ -45,8 +45,6 @@ class TranslationForm extends Component {
     e.preventDefault();
     const translationId = this.props.location.pathname.split("/").pop();
     const editedTranslation = {
-      //   language: this.state.language,
-      //   word: this.state.word,
       etymology: this.state.etymology,
       gender: this.state.gender,
       link: this.state.link,
@@ -55,12 +53,10 @@ class TranslationForm extends Component {
     };
     this.props.editTranslation(translationId, editedTranslation);
     this.clearForm();
-    this.props.searchTranslationsByArea(
-      this.props.searchArea,
-      this.props.searchWord
-    );
-
-    // this.props.history.goBack();
+    // this.props.searchTranslationsByArea(
+    //   this.props.searchArea,
+    //   this.props.searchWord
+    // );
     this.props.history.push("/search_translations_by_area");
   };
 
@@ -142,7 +138,7 @@ class TranslationForm extends Component {
               id="gender"
               name="gender"
               placeholder="Gender"
-              value={this.state.gender || "None Found"}
+              value={this.state.gender || ""}
               onChange={this.handleOnChange}
             />
           </div>
@@ -152,7 +148,7 @@ class TranslationForm extends Component {
               id="etymology"
               name="etymology"
               placeholder="Etymology"
-              value={this.state.etymology || "None Found"}
+              value={this.state.etymology || ""}
               onChange={this.handleOnChange}
             />
           </div>
