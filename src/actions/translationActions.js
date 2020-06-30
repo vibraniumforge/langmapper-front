@@ -14,8 +14,11 @@ const url =
 //       .catch((err) => console.log(err));
 //   };
 // };
-console.log(process.env);
-console.log(url);
+
+if (process.env.REACT_APP_NODE_ENV === "development") {
+  console.log(process.env);
+  console.log(url);
+}
 
 export const getTranslationById = (id) => {
   return (dispatch) => {
