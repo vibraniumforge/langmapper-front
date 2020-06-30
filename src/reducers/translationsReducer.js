@@ -52,13 +52,13 @@ export default function translationReducer(state = initialState, action) {
             ? (translation = updatedTranslation)
             : translation;
         }),
-        searchedTranslationsByArea: state.searchedTranslationsByArea.map(
-          (translation) => {
-            return translation.t_id === action.payload.id
-              ? (translation = updatedTranslation)
-              : translation;
-          }
-        ),
+        // searchedTranslationsByArea: state.searchedTranslationsByArea.map(
+        //   (translation) => {
+        //     return translation.t_id === action.payload.id
+        //       ? (translation = updatedTranslation)
+        //       : translation;
+        //   }
+        // ),
         searchedTranslationsByLanguage: state.searchedTranslationsByLanguage.map(
           (translation) => {
             return translation.t_id === action.payload.id
