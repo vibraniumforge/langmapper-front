@@ -83,8 +83,9 @@ export const getAllMacrofamilies = () => {
 };
 
 export const getAllLanguageAreas = () => {
+  console.log("fires");
   return (dispatch) => {
-    fetch(`${url}//search/all_areas`)
+    fetch(`${url}/search/all_areas`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
