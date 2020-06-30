@@ -73,7 +73,7 @@ export const deleteTranslation = (id) => {
 
 export const searchTranslationsByLanguage = (language) => {
   return (dispatch) => {
-    fetch(`${url}/search/all_translations_by_language//${language}`)
+    fetch(`${url}/search/all_translations_by_language/${language}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "GET_TRANSLATIONS_BY_LANGUAGE", payload: res.data })
