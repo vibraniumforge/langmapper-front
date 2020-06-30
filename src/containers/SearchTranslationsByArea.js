@@ -11,15 +11,15 @@ import { getAllLanguageAreas } from "../actions/languageActions.js";
 
 import {
   getTranslationById,
-  clearGetTranslationById,
-  editTranslation,
+  //   clearGetTranslationById,
+  //   editTranslation,
   deleteTranslation,
   searchTranslationsByArea,
-  clearSearchTranslationsByArea,
+  //   clearSearchTranslationsByArea,
   getSearchArea,
-  clearSearchArea,
+  //   clearSearchArea,
   getSearchWord,
-  clearSearchWord,
+  //   clearSearchWord,
 } from "../actions/translationActions.js";
 
 class SearchTranslationsByArea extends React.Component {
@@ -32,8 +32,7 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.clearGetTranslationById();
-    // this.props.clearSearchTranslationsByArea();
+    console.log("cDM Fires");
     if (this.props.words.length === 0) {
       this.props.getWords();
     }
@@ -65,9 +64,6 @@ class SearchTranslationsByArea extends React.Component {
 
   onHandleEdit = (e, translationId) => {
     e.preventDefault();
-    if (this.props.searchedTranslationsByArea.length === 0) {
-      this.props.getTranslationById(translationId);
-    }
     this.props.getTranslationById(translationId);
     this.props.history.push(`/edit_translation/${translationId}`);
   };
@@ -90,6 +86,7 @@ class SearchTranslationsByArea extends React.Component {
             return area ? <option key={index}>{area}</option> : null;
           })
         : null;
+
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
@@ -145,15 +142,10 @@ const mapDispatchToProps = (dispatch) => {
       getWords,
       getAllLanguageAreas,
       getTranslationById,
-      clearGetTranslationById,
-      editTranslation,
       deleteTranslation,
       searchTranslationsByArea,
-      clearSearchTranslationsByArea,
       getSearchArea,
-      clearSearchArea,
       getSearchWord,
-      clearSearchWord,
     },
     dispatch
   );
