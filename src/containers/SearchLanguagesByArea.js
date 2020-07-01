@@ -1,98 +1,113 @@
 import React from "react";
 import SearchLanguagesByAreaResultsContainer from "./SearchLanguagesByAreaResultsContainer.js";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import {
+  getAllLanguageAreas,
+  getLanguagesByArea,
+  getLanguageById,
+  deleteLanguage,
+} from "../actions/languageActions.js";
 
 class SearchLanguagesByArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLocation: "",
-      allLocations: [],
-      searchedLocation: "",
-      results: []
+      selectedArea: "",
+      searchedArea: "",
     };
   }
 
   componentDidMount() {
-    fetch(`${url}/search/all_areas`)
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          allLocations: res.data
-        })
-      )
-      .catch(err => console.log(err));
+    if (this.props.languageAreaNames.length === 0) {
+      this.props.getAllLanguageAreas();
+    }
   }
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  handleOnSubmit = e => {
+  onHandleEdit = (e, languageId) => {
     e.preventDefault();
-    fetch(`${url}/search/all_languages_by_area/${this.state.selectedLocation}`)
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          results: res.data,
-          selectedArea: "",
-          selectedLocation: "",
-          searchedArea: this.state.selectedArea,
-          searchedLocation: this.state.selectedLocation
-        })
-      )
-      .catch(err => console.log(err));
+    this.props.getLanguageById(languageId);
+    this.props.history.push(`/edit_language/${languageId}`);
+  };
+
+  onHandleDelete = (e, languageId) => {
+    e.preventDefault();
+    this.props.deleteLanguage(languageId);
+  };
+
+  handleOnSubmit = (e) => {
+    e.preventDefault();
+    this.props.getLanguagesByArea(this.state.selectedArea);
+    this.setState({
+      selectedArea: "",
+      searchedArea: this.state.selectedArea,
+    });
   };
 
   render() {
-    const allLocations =
-      this.state.allLocations && this.state.allLocations.length > 0
-        ? this.state.allLocations.map((location, index) => {
-            return location ? <option key={index}>{location}</option> : null;
+    console.log(this.props);
+    const languageAreaNames =
+      this.props.languageAreaNames && this.props.languageAreaNames.length > 0
+        ? this.props.languageAreaNames.map((area, index) => {
+            return area ? <option key={index}>{area}</option> : null;
           })
         : null;
     return (
       <>
-        <form onSubmit={e => this.handleOnSubmit(e)}>
-          {/* <select
+        <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          <select
             id="select"
             name="selectedArea"
             value={this.state.selectedArea}
             onChange={this.handleOnChange}
           >
             <option value="">Select One Area</option>
-            <option value="area">Area 1</option>
-            <option value="area2">Area 2</option>
-            <option value="area3">Area 3</option>
-          </select> */}
-          <select
-            id="select"
-            name="selectedLocation"
-            value={this.state.selectedLocation}
-            onChange={this.handleOnChange}
-          >
-            <option value="">Select One Location</option>
-            {allLocations}
+            {languageAreaNames}
           </select>
           <input
-            disabled={!this.state.selectedLocation}
+            disabled={!this.state.selectedArea}
             type="submit"
             value="Search"
-            className={this.state.selectedLocation ? "submit-btn" : "disabled"}
+            className={this.state.selectedArea ? "submit-btn" : "disabled"}
           />
         </form>
         <SearchLanguagesByAreaResultsContainer
-          results={this.state.results}
-          searchedLocation={this.state.searchedLocation}
+          languagesByArea={this.props.languagesByArea}
+          searchedArea={this.state.searchedArea}
+          onHandleDelete={this.onHandleDelete}
+          onHandleEdit={this.onHandleEdit}
         />
       </>
     );
   }
 }
 
-export default SearchLanguagesByArea;
+const mapStateToProps = (state) => ({
+  languageAreaNames: state.languages.languageAreaNames,
+  languagesByArea: state.languages.languagesByArea,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      getAllLanguageAreas,
+      getLanguagesByArea,
+      getLanguageById,
+      deleteLanguage,
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchLanguagesByArea)
+);
