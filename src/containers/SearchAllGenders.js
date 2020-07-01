@@ -1,62 +1,69 @@
 import React from "react";
 import SearchAllGendersResultsContainer from "./SearchAllGendersResultsContainer.js";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import { getWords } from "../actions/wordActions.js";
+
+import {
+  searchTranslationsByWordGender,
+  getTranslationById,
+  deleteTranslation,
+} from "../actions/translationActions.js";
 
 class SearchAllGenders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedWord: "",
-      results: [],
       searchedWord: "",
-      allWords: []
     };
   }
 
   componentDidMount() {
-    fetch(`${url}/search/all_word_names`)
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          allWords: res.data
-        })
-      )
-      .catch(err => console.log(err));
+    if (this.props.words.length === 0) {
+      this.props.getWords();
+    }
   }
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({
-      selectedWord: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  handleOnSubmit = e => {
+  onHandleEdit = (e, translationId) => {
     e.preventDefault();
-    fetch(`${url}/search/gender/${this.state.selectedWord}`)
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          results: res,
-          searchedWord: this.state.selectedWord,
-          selectedWord: ""
-        })
-      )
-      .catch(err => console.log(err));
+    this.props.getTranslationById(translationId);
+    this.props.history.push(`/edit_translation/${translationId}`);
+  };
+
+  onHandleDelete = (e, translationId) => {
+    e.preventDefault();
+    this.props.deleteTranslation(translationId);
+  };
+
+  handleOnSubmit = (e) => {
+    e.preventDefault();
+    this.props.searchTranslationsByWordGender(this.state.selectedWord);
+    this.setState({
+      searchedWord: this.state.selectedWord,
+      selectedWord: "",
+    });
   };
 
   render() {
-    const allWords =
-      this.state.allWords.length > 0
-        ? this.state.allWords.map(word => {
+    const words =
+      this.props.words.length > 0
+        ? this.props.words.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
     return (
       <>
-        <form onSubmit={e => this.handleOnSubmit(e)}>
+        <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <select
             id="select"
             name="selectedWord"
@@ -64,7 +71,7 @@ class SearchAllGenders extends React.Component {
             onChange={this.handleOnChange}
           >
             <option value="">Select One Word</option>
-            {allWords}
+            {words}
           </select>
           <input
             disabled={!this.state.selectedWord}
@@ -74,12 +81,36 @@ class SearchAllGenders extends React.Component {
           />
         </form>
         <SearchAllGendersResultsContainer
-          results={this.state.results}
+          searchedTranslationsByWordGender={
+            this.props.searchedTranslationsByWordGender
+          }
           searchedWord={this.state.searchedWord}
+          onHandleDelete={this.onHandleDelete}
+          onHandleEdit={this.onHandleEdit}
         />
       </>
     );
   }
 }
 
-export default SearchAllGenders;
+const mapStateToProps = (state) => ({
+  words: state.words.words,
+  searchedTranslationsByWordGender:
+    state.translations.searchedTranslationsByWordGender,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      getWords,
+      searchTranslationsByWordGender,
+      getTranslationById,
+      deleteTranslation,
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchAllGenders)
+);
