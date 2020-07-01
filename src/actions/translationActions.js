@@ -158,3 +158,14 @@ export const searchTranslationsByWordGender = (word) => {
       .catch((err) => console.log(err));
   };
 };
+
+export const searchTranslationsByEtymology = (etymology_string) => {
+  return (dispatch) => {
+    fetch(`${url}/search/translations/etymology/${etymology_string}`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({ type: "GET_TRANSLATIONS_BY_ETYMOLOGY", payload: res.data })
+      )
+      .catch((err) => console.log(err));
+  };
+};
