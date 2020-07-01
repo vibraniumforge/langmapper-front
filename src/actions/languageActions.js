@@ -82,13 +82,13 @@ export const getAllMacrofamilies = () => {
   };
 };
 
-export const getAllLanguageAreas = () => {
+export const getAllLanguageAreaNames = () => {
   return (dispatch) => {
-    fetch(`${url}/search/all_areas`)
+    fetch(`${url}/search/languages/all_area_names`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
-          type: "GET_LANGUAGE_AREA_NAMES",
+          type: "GET_ALL_LANGUAGE_AREA_NAMES",
           payload: res.data,
         })
       )
