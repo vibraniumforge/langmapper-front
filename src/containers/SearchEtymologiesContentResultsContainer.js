@@ -4,8 +4,9 @@ import SearchEtymologiesContentResultCard from "../components/SearchEtymologiesC
 class SearchEtymologiesContentResultsContainer extends Component {
   render() {
     const cards =
-      this.props.results.length > 0
-        ? this.props.results.map(translation => {
+      this.props.searchedTranslationsByEtymology &&
+      this.props.searchedTranslationsByEtymology.length > 0
+        ? this.props.searchedTranslationsByEtymology.map((translation) => {
             return (
               <SearchEtymologiesContentResultCard
                 translation={translation}
