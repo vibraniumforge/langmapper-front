@@ -4,12 +4,15 @@ import SearchAllGendersResultCard from "../components/SearchAllGendersResultCard
 class SearchAllGendersResultsContainer extends Component {
   render() {
     const cards =
-      this.props.results.length > 0
-        ? this.props.results.map(translation => {
+      this.props.searchedTranslationsByWordGender &&
+      this.props.searchedTranslationsByWordGender.length > 0
+        ? this.props.searchedTranslationsByWordGender.map((translation) => {
             return (
               <SearchAllGendersResultCard
                 translation={translation}
                 key={translation.id}
+                onHandleDelete={this.props.onHandleDelete}
+                onHandleEdit={this.props.onHandleEdit}
               />
             );
           })
