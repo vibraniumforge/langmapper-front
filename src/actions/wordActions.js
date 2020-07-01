@@ -79,3 +79,26 @@ export const clearGetWordById = () => {
     type: "CLEAR_GET_WORD_BY_ID",
   };
 };
+
+export const getWordNames = () => {
+  return (dispatch) => {
+    fetch(`${url}/get/words/word_names`)
+      .then((res) => res.json())
+      .then((res) => dispatch({ type: "GET_WORD_NAMES", payload: res }))
+      .catch((err) => console.log(err));
+  };
+};
+
+export const getWordsCount = () => {
+  return (dispatch) => {
+    fetch(`${url}/get/words/words_count`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({
+          type: "GET_WORDS_COUNT",
+          payload: res.data,
+        })
+      )
+      .catch((err) => console.log(err));
+  };
+};
