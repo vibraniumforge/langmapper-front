@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 
 import { getWords } from "../actions/wordActions.js";
 
-import { getAllLanguageAreas } from "../actions/languageActions.js";
+import { getAllLanguageAreaNames } from "../actions/languageActions.js";
 
 import {
   getTranslationById,
@@ -32,11 +32,15 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.words.length === 0) {
+    debugger;
+    if (this.props.words && this.props.words.length === 0) {
       this.props.getWords();
     }
-    if (this.props.languageAreaNames.length === 0) {
-      this.props.getAllLanguageAreas();
+    if (
+      this.props.languageAreaNames &&
+      this.props.languageAreaNames.length === 0
+    ) {
+      this.props.getAllLanguageAreaNames();
     }
   }
 
@@ -139,7 +143,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       getWords,
-      getAllLanguageAreas,
+      getAllLanguageAreaNames,
       getTranslationById,
       deleteTranslation,
       searchTranslationsByArea,

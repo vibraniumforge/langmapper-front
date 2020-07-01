@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import {
-  getAllLanguageAreas,
+  getAllLanguageAreaNames,
   getLanguagesByArea,
   getLanguageById,
   deleteLanguage,
@@ -22,8 +22,11 @@ class SearchLanguagesByArea extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.languageAreaNames.length === 0) {
-      this.props.getAllLanguageAreas();
+    if (
+      this.props.languageAreaNames &&
+      this.props.languageAreaNames.length === 0
+    ) {
+      this.props.getAllLanguageAreaNames();
     }
   }
 
@@ -99,7 +102,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      getAllLanguageAreas,
+      getAllLanguageAreaNames,
       getLanguagesByArea,
       getLanguageById,
       deleteLanguage,
