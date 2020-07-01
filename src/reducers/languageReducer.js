@@ -62,7 +62,7 @@ export default function languageReducer(state = initialState, action) {
         ...state,
         macrofamilyNames: action.payload,
       };
-    case "GET_LANGUAGE_AREA_NAMES": {
+    case "GET_ALL_LANGUAGE_AREA_NAMES": {
       return {
         ...state,
         languageAreaNames: action.payload,
