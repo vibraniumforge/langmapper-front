@@ -32,7 +32,6 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
     if (this.props.words && this.props.words.length === 0) {
       this.props.getWords();
     }
