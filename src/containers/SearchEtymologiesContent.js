@@ -1,48 +1,45 @@
 import React from "react";
 import SearchEtymologiesContentResultsContainer from "./SearchEtymologiesContentResultsContainer.js";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import { searchTranslationsByEtymology } from "../actions/translationActions.js";
 
 class SearchEtymologiesContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       searchWord: "",
-      results: [],
-      selectedWord: ""
+      selectedWord: "",
     };
   }
 
-  handleOnChange = e => {
-    this.setState({ searchWord: e.target.value });
+  handleOnChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleOnSubmit = e => {
+  handleOnSubmit = (e) => {
     e.preventDefault();
-    fetch(`${url}/search/etymology/${this.state.searchWord}`)
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          results: res,
-          selectedWord: this.state.searchWord,
-          searchWord: ""
-        })
-      )
-      .catch(err => console.log(err));
+    this.props.searchTranslationsByEtymology(this.state.searchWord);
+    this.setState({
+      selectedWord: this.state.searchWord,
+      searchWord: "",
+    });
   };
 
   render() {
     return (
       <>
-        <form onSubmit={e => this.handleOnSubmit(e)}>
+        <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <input
             type="text"
             id="search"
+            name="searchWord"
             placeholder="Search here"
             className="input"
-            onChange={e => this.handleOnChange(e)}
+            onChange={(e) => this.handleOnChange(e)}
             value={this.state.searchWord}
           />
           <input
@@ -53,7 +50,9 @@ class SearchEtymologiesContent extends React.Component {
           />
         </form>
         <SearchEtymologiesContentResultsContainer
-          results={this.state.results}
+          searchedTranslationsByEtymology={
+            this.props.searchedTranslationsByEtymology
+          }
           selectedWord={this.state.selectedWord}
         />
       </>
@@ -61,4 +60,20 @@ class SearchEtymologiesContent extends React.Component {
   }
 }
 
-export default SearchEtymologiesContent;
+const mapStateToProps = (state) => ({
+  searchedTranslationsByEtymology:
+    state.translations.searchedTranslationsByEtymology,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      searchTranslationsByEtymology,
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchEtymologiesContent)
+);
