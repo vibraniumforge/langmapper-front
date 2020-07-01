@@ -32,7 +32,6 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   componentDidMount() {
-    console.log("cDM Fires");
     if (this.props.words.length === 0) {
       this.props.getWords();
     }
