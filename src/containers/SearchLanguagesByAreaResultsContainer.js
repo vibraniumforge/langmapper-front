@@ -4,12 +4,14 @@ import ViewAllLanguagesResultCard from "../components/ViewAllLanguagesResultCard
 class SearchLanguagesByAreaResultsContainer extends Component {
   render() {
     const cards =
-      this.props.results.length > 0
-        ? this.props.results.map(language => {
+      this.props.languagesByArea && this.props.languagesByArea.length > 0
+        ? this.props.languagesByArea.map((language) => {
             return (
               <ViewAllLanguagesResultCard
                 language={language}
                 key={language.id}
+                onHandleDelete={this.props.onHandleDelete}
+                onHandleEdit={this.props.onHandleEdit}
               />
             );
           })
