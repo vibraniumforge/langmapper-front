@@ -71,9 +71,11 @@ export const deleteTranslation = (id) => {
   };
 };
 
+// ++++++++++++++++++++++++++++++++++++++
+
 export const searchTranslationsByLanguage = (language) => {
   return (dispatch) => {
-    fetch(`${url}/search/all_translations_by_language/${language}`)
+    fetch(`${url}/search/translations/translations_by_language/${language}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "GET_TRANSLATIONS_BY_LANGUAGE", payload: res.data })
@@ -107,7 +109,7 @@ export const clearSearchTranslationsByArea = () => {
 
 export const searchTranslationsByWord = (word) => {
   return (dispatch) => {
-    fetch(`${url}/search/translations/${word}`)
+    fetch(`${url}/search/translations/word/${word}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "GET_TRANSLATIONS_BY_WORD", payload: res.data })
@@ -165,6 +167,20 @@ export const searchTranslationsByEtymology = (etymology_string) => {
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "GET_TRANSLATIONS_BY_ETYMOLOGY", payload: res.data })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const getTranslationsCount = () => {
+  return (dispatch) => {
+    fetch(`${url}/get/translations/translations_count`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({
+          type: "GET_TRANSLATIONS_COUNT",
+          payload: res.data,
+        })
       )
       .catch((err) => console.log(err));
   };
