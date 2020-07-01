@@ -3,11 +3,12 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import {
-  getWordsCount,
-  getTranslationsCount,
-  getLanguagesCount,
-} from "../actions/countActions";
+
+import { getLanguagesCount } from "../actions/languageActions";
+
+import { getTranslationsCount } from "../actions/translationActions";
+
+import { getWordsCount } from "../actions/wordActions";
 
 // const REACT_APP_URL = process.env.REACT_APP_URL;
 // const url = 'http://localhost:3001/api/v1'
@@ -106,9 +107,9 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  wordsCount: state.counts.wordsCount,
-  languagesCount: state.counts.languagesCount,
-  translationsCount: state.counts.translationsCount,
+  wordsCount: state.words.wordsCount,
+  languagesCount: state.languages.languagesCount,
+  translationsCount: state.translations.translationsCount,
 });
 
 const mapDispatchToProps = (dispatch) =>
