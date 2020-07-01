@@ -1,6 +1,7 @@
 const initialState = {
   languages: [],
   languageToUpdate: "",
+  languagesByArea: [],
   alphabetNames: [],
   macrofamilyNames: [],
   languageAreaNames: [],
@@ -65,6 +66,12 @@ export default function languageReducer(state = initialState, action) {
       return {
         ...state,
         languageAreaNames: action.payload,
+      };
+    }
+    case "GET_LANGUAGES_BY_AREA": {
+      return {
+        ...state,
+        languagesByArea: action.payload,
       };
     }
     default:
