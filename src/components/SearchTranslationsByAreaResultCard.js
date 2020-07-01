@@ -1,4 +1,5 @@
 import React from "react";
+import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
 
 export const SearchTranslationsByAreaResultCard = (props) => {
   return (
@@ -33,7 +34,7 @@ export const SearchTranslationsByAreaResultCard = (props) => {
       </p>
       <p>
         <strong>Etymology: </strong>
-        {props.translation.etymology + "..."}
+        {etymologyFormatHelper(props.translation.etymology)}
       </p>
       <p>
         <img
