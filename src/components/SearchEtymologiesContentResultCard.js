@@ -20,7 +20,7 @@ class SearchEtymologiesContentResultCard extends Component {
         <p>
           <strong>Etymology: </strong>
           {this.props.translation.etymology
-            ? this.props.translation.etymology
+            ? this.props.translation.etymology + "..."
             : "None found"}
         </p>
       </div>

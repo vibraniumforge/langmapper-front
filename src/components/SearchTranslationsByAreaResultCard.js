@@ -33,7 +33,7 @@ export const SearchTranslationsByAreaResultCard = (props) => {
       </p>
       <p>
         <strong>Etymology: </strong>
-        {props.translation.etymology}
+        {props.translation.etymology + "..."}
       </p>
       <p>
         <img

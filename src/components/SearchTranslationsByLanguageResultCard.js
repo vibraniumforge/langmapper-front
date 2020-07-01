@@ -22,7 +22,7 @@ export const SearchTranslationsByLanguageResultCard = (props) => {
       <p>
         <strong>Etymology: </strong>
         {props.translation.etymology
-          ? props.translation.etymology.slice(0, 140)
+          ? props.translation.etymology.slice(0, 140) + "..."
           : "None found"}
       </p>
       <p>
