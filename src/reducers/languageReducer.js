@@ -5,6 +5,7 @@ const initialState = {
   alphabetNames: [],
   macrofamilyNames: [],
   languageAreaNames: [],
+  languagesCount: 0,
 };
 
 export default function languageReducer(state = initialState, action) {
@@ -72,6 +73,12 @@ export default function languageReducer(state = initialState, action) {
       return {
         ...state,
         languagesByArea: action.payload,
+      };
+    }
+    case "GET_LANGUAGES_COUNT": {
+      return {
+        ...state,
+        languagesCount: action.payload,
       };
     }
     default:
