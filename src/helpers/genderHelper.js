@@ -9,12 +9,15 @@ const genderHelper = (macrofamily, language) => {
     "Persian",
     "Scots",
   ];
-  if (macrofamily !== "Indo-European" && macrofamily !== "Afro-Asiatic") {
+  const genderedFamilies = ["Indo-European", "Afro-Asiatic"];
+
+  if (!genderedFamilies.includes(macrofamily)) {
     return false;
   }
   if (genderlessLangs.includes(language)) {
     return false;
   }
+
   return true;
 };
 
