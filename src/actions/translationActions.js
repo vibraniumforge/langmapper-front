@@ -147,3 +147,14 @@ export const clearSearchWord = () => {
     type: "CLEAR_SEARCH_WORD",
   };
 };
+
+export const searchTranslationsByWordGender = (word) => {
+  return (dispatch) => {
+    fetch(`${url}/search/translations/gender/${word}`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({ type: "GET_TRANSLATIONS_BY_WORD_GENDER", payload: res.data })
+      )
+      .catch((err) => console.log(err));
+  };
+};
