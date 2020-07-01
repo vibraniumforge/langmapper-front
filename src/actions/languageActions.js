@@ -84,7 +84,7 @@ export const getAllMacrofamilies = () => {
 
 export const getAllLanguageAreaNames = () => {
   return (dispatch) => {
-    fetch(`${url}/search/languages/all_area_names`)
+    fetch(`${url}/get/languages/area_names`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
@@ -98,11 +98,25 @@ export const getAllLanguageAreaNames = () => {
 
 export const getLanguagesByArea = (area) => {
   return (dispatch) => {
-    fetch(`${url}/search/all_languages_by_area/${area}`)
+    fetch(`${url}/search/languages_by_area/${area}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
           type: "GET_LANGUAGES_BY_AREA",
+          payload: res.data,
+        })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const getLanguagesCount = () => {
+  return (dispatch) => {
+    fetch(`${url}/get/languages/languages_count`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({
+          type: "GET_LANGUAGES_COUNT",
           payload: res.data,
         })
       )
