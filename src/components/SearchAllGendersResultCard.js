@@ -1,5 +1,5 @@
 import React from "react";
-import { genderHelper, genderColorHelper } from "../helpers/genderHelper.js";
+import { genderHelper } from "../helpers/genderHelper.js";
 
 export const SearchAllGendersResultCard = (props) => {
   let genderClass;
@@ -29,14 +29,15 @@ export const SearchAllGendersResultCard = (props) => {
       </p>
       <p>
         <strong>Gender: </strong>
-        {genderHelper(props.translation.macrofamily, props.translation.name) &&
-        props.translation.gender ? (
-          <strong>
-            <span className="">{props.translation.gender.toUpperCase()}</span>
-          </strong>
-        ) : (
-          "-"
-        )}
+        <strong>
+          <span className="">
+            {genderHelper(
+              props.translation.macrofamily,
+              props.translation.name,
+              props.translation.gender
+            )}
+          </span>
+        </strong>
       </p>
       <p>
         <img
