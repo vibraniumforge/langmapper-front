@@ -1,4 +1,4 @@
-const genderHelper = (macrofamily, language) => {
+const genderHelper = (macrofamily, language, gender) => {
   const genderlessLangs = [
     "Afrikaans",
     "Armenian",
@@ -11,14 +11,16 @@ const genderHelper = (macrofamily, language) => {
   ];
   const genderedFamilies = ["Indo-European", "Afro-Asiatic"];
 
-  if (!genderedFamilies.includes(macrofamily)) {
-    return false;
+  if (
+    !genderedFamilies.includes(macrofamily) ||
+    genderlessLangs.includes(language)
+  ) {
+    return "N/A";
+  } else if (!gender) {
+    return "none found";
+  } else {
+    return gender.toUpperCase();
   }
-  if (genderlessLangs.includes(language)) {
-    return false;
-  }
-
-  return true;
 };
 
 const genderColorHelper = (gender) => {
