@@ -17,14 +17,13 @@ const genderHelper = (macrofamily, language, gender) => {
   ) {
     return "N/A";
   } else if (!gender) {
-    return "none found";
+    return "not found";
   } else {
     return gender.toUpperCase();
   }
 };
 
 const genderColorHelper = (macrofamily, language, gender) => {
-  //   debugger;
   if (
     !genderedFamilies.includes(macrofamily) ||
     genderlessLangs.includes(language)
@@ -36,6 +35,8 @@ const genderColorHelper = (macrofamily, language, gender) => {
         return "male";
       case "f":
         return "female";
+      case "n inan":
+        return "neuter";
       case "n":
         return "neuter";
       case null:
