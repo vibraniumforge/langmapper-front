@@ -29,7 +29,7 @@ const genderColorHelper = (macrofamily, language, gender) => {
     !genderedFamilies.includes(macrofamily) ||
     genderlessLangs.includes(language)
   ) {
-    return "no-gender";
+    return "none";
   } else {
     switch (gender) {
       case "m":
@@ -39,7 +39,7 @@ const genderColorHelper = (macrofamily, language, gender) => {
       case "n":
         return "neuter";
       case null:
-        return "yellow";
+        return "missing";
       default:
         return "none";
     }
