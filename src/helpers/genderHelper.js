@@ -1,16 +1,16 @@
-const genderHelper = (macrofamily, language, gender) => {
-  const genderlessLangs = [
-    "Afrikaans",
-    "Armenian",
-    "Bengali",
-    "English",
-    "Konkani",
-    "Ossetian",
-    "Persian",
-    "Scots",
-  ];
-  const genderedFamilies = ["Indo-European", "Afro-Asiatic"];
+const genderedFamilies = ["Indo-European", "Afro-Asiatic"];
+const genderlessLangs = [
+  "Afrikaans",
+  "Armenian",
+  "Bengali",
+  "English",
+  "Konkani",
+  "Ossetian",
+  "Persian",
+  "Scots",
+];
 
+const genderHelper = (macrofamily, language, gender) => {
   if (
     !genderedFamilies.includes(macrofamily) ||
     genderlessLangs.includes(language)
@@ -23,16 +23,26 @@ const genderHelper = (macrofamily, language, gender) => {
   }
 };
 
-const genderColorHelper = (gender) => {
-  switch (gender) {
-    case "m":
-      return "male-result";
-    case "f":
-      return "female-result";
-    case "n":
-      return "neuter-result";
-    default:
-      return "";
+const genderColorHelper = (macrofamily, language, gender) => {
+  //   debugger;
+  if (
+    !genderedFamilies.includes(macrofamily) ||
+    genderlessLangs.includes(language)
+  ) {
+    return "no-gender";
+  } else {
+    switch (gender) {
+      case "m":
+        return "male";
+      case "f":
+        return "female";
+      case "n":
+        return "neuter";
+      case null:
+        return "yellow";
+      default:
+        return "none";
+    }
   }
 };
 
