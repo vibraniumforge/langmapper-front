@@ -9,6 +9,8 @@ const initialState = {
   searchWord: "",
   searchArea: "",
   translationMapByArea: "",
+  translationMapByEtymology: "",
+  translationMapByGender: "",
 };
 
 export default function translationReducer(state = initialState, action) {
@@ -89,6 +91,8 @@ export default function translationReducer(state = initialState, action) {
         translations: newTranslations,
       };
 
+    //   ===========================
+
     case "GET_TRANSLATIONS_BY_LANGUAGE":
       return {
         ...state,
@@ -164,6 +168,16 @@ export default function translationReducer(state = initialState, action) {
       return {
         ...state,
         translationMapByArea: action.payload,
+      };
+    case "GET_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG":
+      return {
+        ...state,
+        translationMapByEtymology: action.payload,
+      };
+    case "GET_TRANSLATIONS_BY_AREA_GENDER_IMG":
+      return {
+        ...state,
+        translationMapByGender: action.payload,
       };
 
     default:
