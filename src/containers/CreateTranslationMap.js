@@ -1,52 +1,45 @@
 import React from "react";
 import CreateTranslationMapResultsContainer from "./CreateTranslationMapResultsContainer.js";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = "http://localhost:3001/api/v1";
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import { getWordNames, getWordDefinition } from "../actions/wordActions.js";
+
+import { getAllLanguageAreaNames } from "../actions/languageActions.js";
+
+import {
+  searchTranslationsByArea,
+  searchTranslationsByAreaImg,
+} from "../actions/translationActions.js";
 
 class CreateTranslationMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLocation: "Europe",
+      selectedArea: "Europe",
       selectedWord: "",
-      allWords: [],
-      allLocations: [],
-      results: [],
+      searchedArea: "",
       searchedWord: "",
-      searchedLocation: "",
-      imageResults: "",
-      definition: "",
     };
   }
 
   componentDidMount() {
-    this.getAllWordNames();
-    // this.getAllLocations();
+    this.props.getWordNames();
+    this.props.getAllLanguageAreaNames();
   }
 
-  getAllWordNames() {
-    fetch(`${url}/search/all_word_names`)
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          allWords: res.data,
-        })
-      )
-      .catch((err) => console.log(err));
-  }
-
-  getAllLocations() {
-    fetch(`${url}/search/all_areas`)
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          allLocations: res.data,
-        })
-      )
-      .catch((err) => console.log(err));
-  }
+  //   shouldComponentUpdate() {
+  //     debugger;
+  //     return (
+  //       this.props.wordNames > 0 ||
+  //       (this.props.wordDefinition.length > 0 &&
+  //         this.props.translationMapByArea &&
+  //         this.props.translationMapByArea.length > 0 &&
+  //         this.props.searchedTranslationsByArea.length > 0)
+  //     );
+  //   }
 
   handleOnChange = (e) => {
     this.setState({
@@ -56,38 +49,21 @@ class CreateTranslationMap extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    fetch(
-      `${url}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
-    )
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          results: res.data,
-          searchedLocation: this.state.selectedLocation,
-          searchedWord: this.state.selectedWord,
-          //   selectedLocation: "",
-          //   selectedWord: "",
-        })
-      )
-      .catch((err) => console.log(err));
-
-    fetch(
-      `${url}/search/all_translations_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
-    )
-      .then((res) => res.blob())
-      .then((images) => {
-        let outside = URL.createObjectURL(images);
-        this.setState({ imageResults: outside });
-      })
-      .catch((err) => console.warn(err));
-    fetch(`${url}/search/word_definition/${this.state.selectedWord}`)
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          definition: res.data,
-        })
-      )
-      .catch((err) => console.warn(err));
+    this.props.getWordDefinition(this.state.selectedWord);
+    this.props.searchTranslationsByArea(
+      this.state.selectedArea,
+      this.state.selectedWord
+    );
+    this.props.searchTranslationsByAreaImg(
+      this.state.selectedArea,
+      this.state.selectedWord
+    );
+    this.setState({
+      searchedArea: this.state.selectedArea,
+      searchedWord: this.state.selectedWord,
+      selectedArea: "Europe",
+      selectedWord: "",
+    });
   };
 
   onHandleEdit = (e, translationId) => {
@@ -96,29 +72,40 @@ class CreateTranslationMap extends React.Component {
   };
 
   render() {
+    console.log("fires");
     const allWords =
-      this.state.allWords.length > 0
-        ? this.state.allWords.map((word) => {
+      this.props.wordNames && this.props.wordNames.length > 0
+        ? this.props.wordNames.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
-    // const allLocations =
-    //   this.state.allLocations && this.state.allLocations.length > 0
-    //     ? this.state.allLocations.map((location, index) => {
-    //         return location ? <option key={index}>{location}</option> : null;
+    // const allAreas =
+    //   this.props.languageAreaNames && this.props.languageAreaNames.length > 0
+    //     ? this.props.languageAreaNames.map((area, index) => {
+    //         return area ? <option key={index}>{area}</option> : null;
     //       })
     //     : null;
+
+    let render;
+    if (
+      this.props.wordDefinition.length &&
+      this.props.translationMapByArea &&
+      this.props.searchedTranslationsByArea.length
+    ) {
+      console.log("if fires");
+      render = true;
+    }
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <select
             id="select"
-            name="selectedLocation"
-            value={this.state.selectedLocation}
+            name="selectedArea"
+            value={this.state.selectedArea}
             onChange={this.handleOnChange}
           >
-            <option value="">Select One Location</option>
-            {/* {allLocations} */}
+            <option value="">Choose Area</option>
+            {/* {allAreas} */}
             <option value="Europe">Europe</option>
           </select>
           <select
@@ -127,35 +114,65 @@ class CreateTranslationMap extends React.Component {
             value={this.state.selectedWord}
             onChange={this.handleOnChange}
           >
-            <option value="">Select One Word</option>
+            <option value="">Choose Word</option>
             {allWords}
           </select>
           <input
             type="submit"
             value="Search"
             className={
-              this.state.selectedLocation && this.state.selectedWord
+              this.state.selectedArea && this.state.selectedWord
                 ? "submit-btn"
                 : "disabled"
             }
-            disabled={!this.state.selectedLocation || !this.state.selectedWord}
+            disabled={!this.state.selectedArea || !this.state.selectedWord}
           />
         </form>
-        {/* <h3>Location: {this.state.searchedLocation}</h3> */}
-        <h3>Word: {this.state.searchedWord}</h3>
-        <h3>Definition: {this.state.definition}</h3>
-        {this.state.imageResults ? (
-          <img src={this.state.imageResults} alt="europe language map" />
+        {render ? (
+          <div>
+            {/* <h3>Area: {this.state.searchedArea}</h3> */}
+            <h3>Word: {this.state.searchedWord}</h3>
+            <h3>Definition: {this.props.wordDefinition}</h3>
+            <img
+              src={this.props.translationMapByArea}
+              alt="europe language map"
+              className="map"
+            />
+            <CreateTranslationMapResultsContainer
+              searchedTranslationsByArea={this.props.searchedTranslationsByArea}
+              searchedWord={this.state.searchedWord}
+              searchedArea={this.state.searchedArea}
+              onHandleEdit={this.onHandleEdit}
+            />
+          </div>
         ) : null}
-        <CreateTranslationMapResultsContainer
-          results={this.state.results}
-          searchedWord={this.state.searchedWord}
-          searchedLocation={this.state.searchedLocation}
-          onHandleEdit={this.onHandleEdit}
-        />
+        {/* should be spinner instead of null above */}
       </>
     );
   }
 }
 
-export default CreateTranslationMap;
+const mapStateToProps = (state) => ({
+  wordNames: state.words.wordNames,
+  wordDefinition: state.words.wordDefinition,
+  searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
+  translationMapByArea: state.translations.translationMapByArea,
+  languageAreaNames: state.languages.languageAreaNames,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      getWordNames,
+      getAllLanguageAreaNames,
+      getWordDefinition,
+      searchTranslationsByArea,
+      searchTranslationsByAreaImg,
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CreateTranslationMap)
+);
