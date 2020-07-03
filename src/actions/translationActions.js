@@ -1,6 +1,3 @@
-// const url = "http://localhost:3001/api/v1";
-// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
-
 const url =
   process.env.REACT_APP_NODE_ENV === "development"
     ? "http://localhost:3001/api/v1"
@@ -181,6 +178,22 @@ export const getTranslationsCount = () => {
           type: "GET_TRANSLATIONS_COUNT",
           payload: res.data,
         })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const searchTranslationsByAreaImg = (area, word) => {
+  return (dispatch) => {
+    let outside;
+    fetch(`${url}/search/all_translations_by_area_img/${area}/${word}`)
+      .then((res) => res.blob())
+      .then((images) => {
+        outside = URL.createObjectURL(images);
+        return outside;
+      })
+      .then((outside) =>
+        dispatch({ type: "GET_TRANSLATIONS_BY_AREA_IMG", payload: outside })
       )
       .catch((err) => console.log(err));
   };
