@@ -20,19 +20,19 @@ class CreateGenderRow extends Component {
             : translation.romanization}
         </td>
         <td
-          className={genderColorHelper(
-            translation.macrofamily,
-            translation.name,
-            translation.gender
-          )}
+          className={
+            genderColorHelper(
+              translation.macrofamily,
+              translation.name,
+              translation.gender
+            ) + "-result"
+          }
         >
           {genderHelper(
             translation.macrofamily,
             translation.name,
             translation.gender
-          )
-            ? translation.gender
-            : "-"}
+          )}
         </td>
         <td className="table-etymology">
           {translation.etymology ? translation.etymology : "None Found"}
