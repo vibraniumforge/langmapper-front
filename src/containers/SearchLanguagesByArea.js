@@ -57,7 +57,6 @@ class SearchLanguagesByArea extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     const languageAreaNames =
       this.props.languageAreaNames && this.props.languageAreaNames.length > 0
         ? this.props.languageAreaNames.map((area, index) => {
