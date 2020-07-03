@@ -1,20 +1,15 @@
 import React from "react";
-import { genderHelper } from "../helpers/genderHelper.js";
+import { genderHelper, genderColorHelper } from "../helpers/genderHelper.js";
 
 export const SearchAllGendersResultCard = (props) => {
-  let genderClass;
-  switch (props.translation.gender) {
-    case "m":
-      genderClass = "male";
-      break;
-    case "f":
-      genderClass = "female";
-      break;
-    default:
-      genderClass = "neuter";
-  }
   return (
-    <div className={`gender-result-card ${genderClass}`}>
+    <div
+      className={`gender-result-card ${genderColorHelper(
+        props.translation.macrofamily,
+        props.translation.name,
+        props.translation.gender
+      )}`}
+    >
       <p>
         <strong>Family: </strong> {props.translation.family}
       </p>
