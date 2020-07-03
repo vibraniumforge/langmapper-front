@@ -3,6 +3,7 @@ const initialState = {
   wordToUpdate: "",
   wordNames: [],
   wordsCount: 0,
+  wordDefinition: "",
 };
 
 export default function wordReducer(state = initialState, action) {
@@ -54,6 +55,11 @@ export default function wordReducer(state = initialState, action) {
       return {
         ...state,
         wordsCount: action.payload,
+      };
+    case "GET_WORD_DEFINITION":
+      return {
+        ...state,
+        wordDefinition: action.payload,
       };
     default:
       return state;
