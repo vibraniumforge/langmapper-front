@@ -4,11 +4,12 @@ import CreateTranslationRow from "../components/CreateTranslationRow.js";
 class CreateTranslationMapResultsContainer extends Component {
   render() {
     const translations =
-      this.props.results && this.props.results.length > 0
-        ? this.props.results.map((translation) => {
+      this.props.searchedTranslationsByArea &&
+      this.props.searchedTranslationsByArea.length > 0
+        ? this.props.searchedTranslationsByArea.map((translation) => {
             return (
               <CreateTranslationRow
-                key={translation.t_id}
+                key={translation.id}
                 translation={translation}
                 onHandleEdit={this.props.onHandleEdit}
               />
