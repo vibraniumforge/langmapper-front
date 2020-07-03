@@ -59,7 +59,7 @@ export const deleteLanguage = (id) => {
 
 export const getAllAlphabets = () => {
   return (dispatch) => {
-    fetch(`${url}/search/all_alphabet_names`)
+    fetch(`${url}/get/languages/alphabet_names`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "GET_ALL_LANGUAGE_ALPHABET_NAMES", payload: res.data })
@@ -70,7 +70,7 @@ export const getAllAlphabets = () => {
 
 export const getAllMacrofamilies = () => {
   return (dispatch) => {
-    fetch(`${url}/search/all_macrofamily_names`)
+    fetch(`${url}/get/languages/macrofamily_names`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
@@ -98,7 +98,7 @@ export const getAllLanguageAreaNames = () => {
 
 export const getLanguagesByArea = (area) => {
   return (dispatch) => {
-    fetch(`${url}/search/languages/languages_by_area/${area}`)
+    fetch(`${url}/search/languages/area/${area}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
