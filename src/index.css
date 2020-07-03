@@ -51,24 +51,6 @@ li {
   background-color: white;
 }
 
-.male {
-  background-color: powderblue;
-  color: blue;
-  border: 10px solid blue;
-}
-
-.female {
-  background-color: pink;
-  color: red;
-  border: 10px solid red;
-}
-
-.neuter {
-  background-color: white;
-  color: black;
-  border: 10px solid silver;
-}
-
 #select {
   margin: 10px;
   font-size: 20px;
@@ -102,13 +84,33 @@ li {
 .missing {
   color: black;
   background-color: white;
-  border: 10px solid black;
+  border: none;
 }
 
 .none {
   color: black;
   background-color: white;
   border: 10px solid black;
+}
+
+.male-result {
+  color: blue;
+}
+
+.female-result {
+  color: red;
+}
+
+.neuter-result {
+  color: gray;
+}
+
+.missing-result {
+  color: black;
+}
+
+.none-result {
+  color: black;
 }
 
 .gender-result-card {
