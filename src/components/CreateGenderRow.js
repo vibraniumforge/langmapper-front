@@ -19,8 +19,18 @@ class CreateGenderRow extends Component {
             ? null
             : translation.romanization}
         </td>
-        <td className={genderColorHelper(translation.gender)}>
-          {genderHelper(translation.macrofamily, translation.name)
+        <td
+          className={genderColorHelper(
+            translation.macrofamily,
+            translation.name,
+            translation.gender
+          )}
+        >
+          {genderHelper(
+            translation.macrofamily,
+            translation.name,
+            translation.gender
+          )
             ? translation.gender
             : "-"}
         </td>
