@@ -121,8 +121,6 @@ class LanguageForm extends Component {
             return <option key={index}>{macrofamily}</option>;
           })
         : null;
-    console.log(alphabets);
-    console.log(macrofamilies);
 
     return this.props.languageToUpdate && alphabets && macrofamilies ? (
       <>
