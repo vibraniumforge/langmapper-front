@@ -17,7 +17,7 @@ export const SearchAllGendersResultCard = (props) => {
         <strong>Language: </strong> {props.translation.name}
       </p>
       <p>
-        <strong>Translation: </strong> {props.translation.romanization}
+        <strong>Translation: </strong> {props.translation.translation}
       </p>
       <p>
         <strong>Romanization: </strong> {props.translation.romanization}
