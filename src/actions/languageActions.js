@@ -98,7 +98,7 @@ export const getAllLanguageAreaNames = () => {
 
 export const getLanguagesByArea = (area) => {
   return (dispatch) => {
-    fetch(`${url}/search/languages_by_area/${area}`)
+    fetch(`${url}/search/languages/languages_by_area/${area}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
