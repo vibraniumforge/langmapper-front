@@ -81,7 +81,7 @@ export const getWordNames = () => {
   return (dispatch) => {
     fetch(`${url}/get/words/word_names`)
       .then((res) => res.json())
-      .then((res) => dispatch({ type: "GET_WORD_NAMES", payload: res }))
+      .then((res) => dispatch({ type: "GET_WORD_NAMES", payload: res.data }))
       .catch((err) => console.log(err));
   };
 };
@@ -95,6 +95,17 @@ export const getWordsCount = () => {
           type: "GET_WORDS_COUNT",
           payload: res.data,
         })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const getWordDefinition = (word) => {
+  return (dispatch) => {
+    fetch(`${url}/search/words/definition/${word}`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({ type: "GET_WORD_DEFINITION", payload: res.data })
       )
       .catch((err) => console.log(err));
   };
