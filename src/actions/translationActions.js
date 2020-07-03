@@ -72,7 +72,7 @@ export const deleteTranslation = (id) => {
 
 export const searchTranslationsByLanguage = (language) => {
   return (dispatch) => {
-    fetch(`${url}/search/translations/translations_by_language/${language}`)
+    fetch(`${url}/search/translations/language/${language}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "GET_TRANSLATIONS_BY_LANGUAGE", payload: res.data })
@@ -89,7 +89,7 @@ export const clearSearchTranslationsByLanguage = () => {
 
 export const searchTranslationsByArea = (area, word) => {
   return (dispatch) => {
-    fetch(`${url}/search/all_translations_by_area/${area}/${word}`)
+    fetch(`${url}/search/translations/area/${area}/${word}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "GET_TRANSLATIONS_BY_AREA", payload: res.data })
@@ -194,6 +194,41 @@ export const searchTranslationsByAreaImg = (area, word) => {
       })
       .then((outside) =>
         dispatch({ type: "GET_TRANSLATIONS_BY_AREA_IMG", payload: outside })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const searchTranslationsByEtymologyImg = (area, word) => {
+  return (dispatch) => {
+    let outside;
+    fetch(`${url}/search/all_translations_by_area_img/${area}/${word}`)
+      .then((res) => res.blob())
+      .then((images) => {
+        outside = URL.createObjectURL(images);
+        return outside;
+      })
+      .then((outside) =>
+        dispatch({ type: "GET_TRANSLATIONS_BY_AREA_IMG", payload: outside })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const searchTranslationsByGenderImg = (area, word) => {
+  return (dispatch) => {
+    let outside;
+    fetch(`${url}/search/all_genders_by_area_img/${area}/${word}`)
+      .then((res) => res.blob())
+      .then((images) => {
+        outside = URL.createObjectURL(images);
+        return outside;
+      })
+      .then((outside) =>
+        dispatch({
+          type: "GET_TRANSLATIONS_BY_AREA_GENDER_IMG",
+          payload: outside,
+        })
       )
       .catch((err) => console.log(err));
   };
