@@ -29,7 +29,7 @@ class CreateTranslationRow extends Component {
         </td>
         {/* <td>
           <button
-            onClick={e => this.props.onHandleEdit(e, translation.t_id)}
+            onClick={(e) => this.props.onHandleEdit(e, translation.t_id)}
             className="table-edit-btn"
           >
             Edit
