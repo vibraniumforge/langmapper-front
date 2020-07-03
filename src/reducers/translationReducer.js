@@ -8,6 +8,7 @@ const initialState = {
   searchedTranslationsByEtymology: [],
   searchWord: "",
   searchArea: "",
+  translationMapByArea: "",
 };
 
 export default function translationReducer(state = initialState, action) {
@@ -158,6 +159,11 @@ export default function translationReducer(state = initialState, action) {
       return {
         ...state,
         translationsCount: action.payload,
+      };
+    case "GET_TRANSLATIONS_BY_AREA_IMG":
+      return {
+        ...state,
+        translationMapByArea: action.payload,
       };
 
     default:
