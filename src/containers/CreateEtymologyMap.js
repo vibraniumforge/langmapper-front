@@ -1,9 +1,12 @@
 import React from "react";
 import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsContainer.js";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = "http://localhost:3001/api/v1";
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import { getWordNames, getWordDefinition } from "../actions/wordActions.js";
+import { searchTranslationsByArea } from "../actions/translationActions.js";
 
 class CreateEtymologyMap extends React.Component {
   constructor(props) {
@@ -11,9 +14,6 @@ class CreateEtymologyMap extends React.Component {
     this.state = {
       selectedLocation: "Europe",
       selectedWord: "",
-      allWords: [],
-      allLocations: [],
-      results: [],
       searchedWord: "",
       searchedLocation: "",
       imageResults: "",
@@ -22,30 +22,7 @@ class CreateEtymologyMap extends React.Component {
   }
 
   componentDidMount() {
-    this.getAllWordNames();
-    // this.getAllLocations();
-  }
-
-  getAllWordNames() {
-    fetch(`${url}/search/all_word_names`)
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          allWords: res.data,
-        })
-      )
-      .catch((err) => console.log(err));
-  }
-
-  getAllLocations() {
-    fetch(`${url}/search/all_areas`)
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          allLocations: res.data,
-        })
-      )
-      .catch((err) => console.log(err));
+    this.props.getWordNames();
   }
 
   handleOnChange = (e) => {
@@ -56,37 +33,28 @@ class CreateEtymologyMap extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    fetch(
-      `${url}/search/all_translations_by_area/${this.state.selectedLocation}/${this.state.selectedWord}`
-    )
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          results: res.data,
-          searchedLocation: this.state.selectedLocation,
-          searchedWord: this.state.selectedWord,
-          //   selectedLocation: "",
-          //   selectedWord: ""
-        })
-      )
-      .catch((err) => console.log(err));
-    fetch(
-      `${url}/search/all_etymologies_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
-    )
-      .then((res) => res.blob())
-      .then((images) => {
-        let outside = URL.createObjectURL(images);
-        this.setState({ imageResults: outside });
-      })
-      .catch((err) => console.warn(err));
-    fetch(`${url}/search/word_definition/${this.state.selectedWord}`)
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          definition: res.data,
-        })
-      )
-      .catch((err) => console.warn(err));
+    this.props.searchTranslationsByArea(
+      this.state.selectedLocation,
+      this.state.selectedWord
+    );
+
+    this.setState({
+      searchedLocation: this.state.selectedLocation,
+      searchedWord: this.state.selectedWord,
+      //   selectedLocation: "",
+      //   selectedWord: ""
+    });
+
+    // fetch(
+    //   `${url}/search/all_etymologies_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
+    // )
+    //   .then((res) => res.blob())
+    //   .then((images) => {
+    //     let outside = URL.createObjectURL(images);
+    //     this.setState({ imageResults: outside });
+    //   })
+    //   .catch((err) => console.warn(err));
+    this.props.getWordDefinition(this.state.selectedWord);
   };
 
   onHandleEdit = (e, translationId) => {
@@ -96,8 +64,8 @@ class CreateEtymologyMap extends React.Component {
 
   render() {
     const allWords =
-      this.state.allWords.length > 0
-        ? this.state.allWords.map((word) => {
+      this.props.wordNames && this.props.wordNames.length > 0
+        ? this.props.wordNames.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
@@ -157,4 +125,22 @@ class CreateEtymologyMap extends React.Component {
   }
 }
 
-export default CreateEtymologyMap;
+const mapStateToProps = (state) => ({
+  wordNames: state.words.wordNames,
+  searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      getWordNames,
+      searchTranslationsByArea,
+      getWordDefinition,
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CreateEtymologyMap)
+);
