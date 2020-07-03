@@ -1,5 +1,6 @@
 import React from "react";
 import CreateTranslationMapResultsContainer from "./CreateTranslationMapResultsContainer.js";
+import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -22,6 +23,7 @@ class CreateTranslationMap extends React.Component {
       selectedWord: "",
       searchedArea: "",
       searchedWord: "",
+      isLoading: false,
     };
   }
 
@@ -63,6 +65,7 @@ class CreateTranslationMap extends React.Component {
       searchedWord: this.state.selectedWord,
       selectedArea: "Europe",
       selectedWord: "",
+      isLoading: true,
     });
   };
 
@@ -141,8 +144,9 @@ class CreateTranslationMap extends React.Component {
               onHandleEdit={this.onHandleEdit}
             />
           </div>
-        ) : null}
-        {/* should be spinner instead of null above */}
+        ) : (
+          <Spinner isLoading={this.state.isLoading} />
+        )}
       </>
     );
   }
