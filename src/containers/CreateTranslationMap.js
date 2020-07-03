@@ -72,7 +72,6 @@ class CreateTranslationMap extends React.Component {
   };
 
   render() {
-    console.log("fires");
     const allWords =
       this.props.wordNames && this.props.wordNames.length > 0
         ? this.props.wordNames.map((word) => {
@@ -92,7 +91,6 @@ class CreateTranslationMap extends React.Component {
       this.props.translationMapByArea &&
       this.props.searchedTranslationsByArea.length
     ) {
-      console.log("if fires");
       render = true;
     }
     return (
@@ -140,8 +138,6 @@ class CreateTranslationMap extends React.Component {
             />
             <CreateTranslationMapResultsContainer
               searchedTranslationsByArea={this.props.searchedTranslationsByArea}
-              searchedWord={this.state.searchedWord}
-              searchedArea={this.state.searchedArea}
               onHandleEdit={this.onHandleEdit}
             />
           </div>
@@ -154,10 +150,10 @@ class CreateTranslationMap extends React.Component {
 
 const mapStateToProps = (state) => ({
   wordNames: state.words.wordNames,
+  languageAreaNames: state.languages.languageAreaNames,
   wordDefinition: state.words.wordDefinition,
   searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
   translationMapByArea: state.translations.translationMapByArea,
-  languageAreaNames: state.languages.languageAreaNames,
 });
 
 const mapDispatchToProps = (dispatch) => {
