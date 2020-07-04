@@ -11,15 +11,10 @@ import { getAllLanguageAreaNames } from "../actions/languageActions.js";
 
 import {
   getTranslationById,
-  //   clearGetTranslationById,
-  //   editTranslation,
   deleteTranslation,
   searchTranslationsByArea,
-  //   clearSearchTranslationsByArea,
   getSearchArea,
-  //   clearSearchArea,
   getSearchWord,
-  //   clearSearchWord,
 } from "../actions/translationActions.js";
 
 class SearchTranslationsByArea extends React.Component {
