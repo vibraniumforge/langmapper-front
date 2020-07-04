@@ -9,7 +9,7 @@ class CreateEtymologyMapResultsContainer extends Component {
         ? this.props.searchedTranslationsByArea.map((translation) => {
             return (
               <CreateEtymologyRow
-                key={translation.t_id}
+                key={translation.id}
                 translation={translation}
                 onHandleEdit={this.props.onHandleEdit}
               />
