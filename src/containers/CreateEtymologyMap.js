@@ -1,5 +1,7 @@
 import React from "react";
 import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsContainer.js";
+import AreaSearchSelect from "../components/AreaSearchSelect.js";
+import WordSearchSelect from "../components/WordSearchSelect.js";
 import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
@@ -72,12 +74,12 @@ class CreateEtymologyMap extends React.Component {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
-    // const allAreas =
-    //   this.props.languageAreaNames && this.props.languageAreaNames.length > 0
-    //     ? this.props.languageAreaNames.map((area, index) => {
-    //         return area ? <option key={index}>{area}</option> : null;
-    //       })
-    //     : null;
+    const allAreas =
+      this.props.languageAreaNames && this.props.languageAreaNames.length > 0
+        ? this.props.languageAreaNames.map((area, index) => {
+            return area ? <option key={index}>{area}</option> : null;
+          })
+        : null;
     let render;
     if (
       this.props.wordDefinition.length &&
@@ -89,6 +91,11 @@ class CreateEtymologyMap extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          {/* <AreaSearchSelect
+            allAreas="Europe"
+            selectedArea={this.state.selectedArea}
+            handleOnChange={this.handleOnChange}
+          /> */}
           <select
             id="select"
             name="selectedArea"
@@ -99,15 +106,12 @@ class CreateEtymologyMap extends React.Component {
             {/* {allAreas} */}
             <option value="Europe">Europe</option>
           </select>
-          <select
-            id="select"
-            name="selectedWord"
-            value={this.state.selectedWord}
-            onChange={this.handleOnChange}
-          >
-            <option value="">Choose Word</option>
-            {allWords}
-          </select>
+
+          <WordSearchSelect
+            allWords={allWords}
+            selectedWord={this.state.selectedWord}
+            handleOnChange={this.handleOnChange}
+          />
           <input
             type="submit"
             value="Search"
