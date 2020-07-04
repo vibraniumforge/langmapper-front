@@ -26,12 +26,6 @@ export const getTranslationById = (id) => {
   };
 };
 
-export const clearGetTranslationById = () => {
-  return {
-    type: "CLEAR_GET_TRANSLATION_BY_ID",
-  };
-};
-
 export const editTranslation = (id, editedTranslation) => {
   console.log("fires", editedTranslation);
   const params = {
@@ -81,9 +75,14 @@ export const searchTranslationsByLanguage = (language) => {
   };
 };
 
-export const clearSearchTranslationsByLanguage = () => {
-  return {
-    type: "CLEAR_GET_TRANSLATIONS_BY_LANGUAGE",
+export const searchTranslationsByWord = (word) => {
+  return (dispatch) => {
+    fetch(`${url}/search/translations/word/${word}`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({ type: "GET_TRANSLATIONS_BY_WORD", payload: res.data })
+      )
+      .catch((err) => console.log(err));
   };
 };
 
@@ -98,29 +97,6 @@ export const searchTranslationsByArea = (area, word) => {
   };
 };
 
-export const clearSearchTranslationsByArea = () => {
-  return {
-    type: "CLEAR_GET_TRANSLATIONS_BY_AREA",
-  };
-};
-
-export const searchTranslationsByWord = (word) => {
-  return (dispatch) => {
-    fetch(`${url}/search/translations/word/${word}`)
-      .then((res) => res.json())
-      .then((res) =>
-        dispatch({ type: "GET_TRANSLATIONS_BY_WORD", payload: res.data })
-      )
-      .catch((err) => console.log(err));
-  };
-};
-
-export const clearSearchTranslationsByWord = () => {
-  return {
-    type: "CLEAR_GET_TRANSLATIONS_BY_WORD",
-  };
-};
-
 export const getSearchArea = (area) => {
   return {
     type: "GET_SEARCH_AREA",
@@ -128,22 +104,10 @@ export const getSearchArea = (area) => {
   };
 };
 
-export const clearSearchArea = () => {
-  return {
-    type: "CLEAR_SEARCH_AREA",
-  };
-};
-
 export const getSearchWord = (word) => {
   return {
     type: "GET_SEARCH_WORD",
     payload: word,
-  };
-};
-
-export const clearSearchWord = () => {
-  return {
-    type: "CLEAR_SEARCH_WORD",
   };
 };
 
@@ -200,16 +164,20 @@ export const searchTranslationsByAreaImg = (area, word) => {
 };
 
 export const searchTranslationsByEtymologyImg = (area, word) => {
+  console.log("fires");
   return (dispatch) => {
     let outside;
-    fetch(`${url}/search/all_translations_by_area_img/${area}/${word}`)
+    fetch(`${url}/search/all_etymologies_by_area_img/${area}/${word}`)
       .then((res) => res.blob())
       .then((images) => {
         outside = URL.createObjectURL(images);
         return outside;
       })
       .then((outside) =>
-        dispatch({ type: "GET_TRANSLATIONS_BY_AREA_IMG", payload: outside })
+        dispatch({
+          type: "GET_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG",
+          payload: outside,
+        })
       )
       .catch((err) => console.log(err));
   };
@@ -231,5 +199,17 @@ export const searchTranslationsByGenderImg = (area, word) => {
         })
       )
       .catch((err) => console.log(err));
+  };
+};
+
+export const isLoading = () => {
+  return {
+    type: "IS_LOADING",
+  };
+};
+
+export const isNotLoading = () => {
+  return {
+    type: "IS_NOT_LOADING",
   };
 };
