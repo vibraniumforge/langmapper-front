@@ -15,14 +15,17 @@ class SearchEtymologiesContentResultsContainer extends Component {
             );
           })
         : null;
-
     return (
       <>
-        <h3>Search Term: {this.props.selectedWord}</h3>
-        {this.props.searchedWord && this.props.results.length === 0 ? (
-          <h6>No results found</h6>
-        ) : null}
-        <div id="card-container">{cards}</div>
+        <h3>Search Term: {this.props.searchedWord}</h3>
+        {this.props.searchedWord &&
+        !this.props.isLoadingNow &&
+        this.props.searchedTranslationsByEtymology &&
+        this.props.searchedTranslationsByEtymology.length === 0 ? (
+          <h3>No results found</h3>
+        ) : (
+          <div id="card-container">{cards}</div>
+        )}
       </>
     );
   }

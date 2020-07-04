@@ -5,14 +5,17 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { searchTranslationsByEtymology } from "../actions/translationActions.js";
+import {
+  searchTranslationsByEtymology,
+  isLoading,
+} from "../actions/translationActions.js";
 
 class SearchEtymologiesContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchWord: "",
       selectedWord: "",
+      searchedWord: "",
     };
   }
 
@@ -22,10 +25,11 @@ class SearchEtymologiesContent extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    this.props.searchTranslationsByEtymology(this.state.searchWord);
+    this.props.isLoading();
+    this.props.searchTranslationsByEtymology(this.state.selectedWord);
     this.setState({
-      selectedWord: this.state.searchWord,
-      searchWord: "",
+      searchedWord: this.state.selectedWord,
+      selectedWord: "",
     });
   };
 
@@ -36,25 +40,29 @@ class SearchEtymologiesContent extends React.Component {
           <input
             type="text"
             id="search"
-            name="searchWord"
+            name="selectedWord"
             placeholder="Search here"
             className="input"
             onChange={(e) => this.handleOnChange(e)}
-            value={this.state.searchWord}
+            value={this.state.selectedWord}
           />
           <input
-            disabled={!this.state.searchWord}
+            disabled={!this.state.selectedWord}
             type="submit"
             value="Search"
-            className={this.state.searchWord ? "submit-btn" : "disabled"}
+            className={this.state.selectedWord ? "submit-btn" : "disabled"}
           />
         </form>
-        <SearchEtymologiesContentResultsContainer
-          searchedTranslationsByEtymology={
-            this.props.searchedTranslationsByEtymology
-          }
-          selectedWord={this.state.selectedWord}
-        />
+        {this.state.searchedWord &&
+        this.props.searchedTranslationsByEtymology ? (
+          <SearchEtymologiesContentResultsContainer
+            searchedTranslationsByEtymology={
+              this.props.searchedTranslationsByEtymology
+            }
+            isLoadingNow={this.props.isLoadingNow}
+            searchedWord={this.state.searchedWord}
+          />
+        ) : null}
       </>
     );
   }
@@ -63,12 +71,14 @@ class SearchEtymologiesContent extends React.Component {
 const mapStateToProps = (state) => ({
   searchedTranslationsByEtymology:
     state.translations.searchedTranslationsByEtymology,
+  isLoadingNow: state.translations.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       searchTranslationsByEtymology,
+      isLoading,
     },
     dispatch
   );
