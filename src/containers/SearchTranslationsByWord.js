@@ -1,5 +1,7 @@
 import React from "react";
 import SearchTranslationsByWordResultsContainer from "./SearchTranslationsByWordResultsContainer.js";
+import WordSearchSelect from "../components/WordSearchSelect.js";
+import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -9,6 +11,7 @@ import {
   getTranslationById,
   deleteTranslation,
   searchTranslationsByWord,
+  isLoading,
 } from "../actions/translationActions.js";
 
 import { getWords } from "../actions/wordActions.js";
@@ -18,9 +21,7 @@ class SearchTranslationsByWord extends React.Component {
     super(props);
     this.state = {
       selectedWord: "",
-      results: [],
       searchedWord: "",
-      allWords: [],
     };
   }
 
@@ -49,13 +50,14 @@ class SearchTranslationsByWord extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
+    this.props.isLoading();
     this.props.searchTranslationsByWord(this.state.selectedWord);
     this.setState({ searchedWord: this.state.selectedWord, selectedWord: "" });
   };
 
   render() {
     const allWords =
-      this.props.words && this.props.words.length > 0
+      this.props.words && this.props.words.length
         ? this.props.words.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
@@ -63,15 +65,11 @@ class SearchTranslationsByWord extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
-          <select
-            id="select"
-            name="selectedWord"
-            value={this.state.selectedWord}
-            onChange={this.handleOnChange}
-          >
-            <option value="">Select One Word</option>
-            {allWords}
-          </select>
+          <WordSearchSelect
+            allWords={allWords}
+            selectedWord={this.state.selectedWord}
+            handleOnChange={this.handleOnChange}
+          />
           <input
             type="submit"
             value="Search"
@@ -79,12 +77,16 @@ class SearchTranslationsByWord extends React.Component {
             disabled={!this.state.selectedWord}
           />
         </form>
-        <SearchTranslationsByWordResultsContainer
-          searchedTranslationsByWord={this.props.searchedTranslationsByWord}
-          searchedWord={this.state.searchedWord}
-          onHandleDelete={this.onHandleDelete}
-          onHandleEdit={this.onHandleEdit}
-        />
+        {this.state.searchedWord && this.props.searchedTranslationsByWord ? (
+          <SearchTranslationsByWordResultsContainer
+            searchedTranslationsByWord={this.props.searchedTranslationsByWord}
+            searchedWord={this.state.searchedWord}
+            onHandleDelete={this.onHandleDelete}
+            onHandleEdit={this.onHandleEdit}
+          />
+        ) : this.state.searchedWord ? (
+          <Spinner isLoading={this.props.isLoading} />
+        ) : null}
       </>
     );
   }
@@ -93,6 +95,7 @@ class SearchTranslationsByWord extends React.Component {
 const mapStateToProps = (state) => ({
   searchedTranslationsByWord: state.translations.searchedTranslationsByWord,
   words: state.words.words,
+  isLoadingNow: state.translations.isLoading,
   translationToUpdate: state.translations.translationToUpdate,
 });
 
@@ -100,6 +103,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       getWords,
+      isLoading,
       getTranslationById,
       deleteTranslation,
       searchTranslationsByWord,
