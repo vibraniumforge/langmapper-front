@@ -1,6 +1,6 @@
 import React from "react";
 import CreateGenderMapResultsContainer from "./CreateGenderMapResultsContainer.js";
-import AreaSearchSelect from "../components/AreaSearchSelect.js";
+// import AreaSearchSelect from "../components/AreaSearchSelect.js";
 import WordSearchSelect from "../components/WordSearchSelect.js";
 import Spinner from "../components/Spinner.js";
 
