@@ -131,7 +131,7 @@ class CreateEtymologyMap extends React.Component {
             />
 
             <CreateEtymologyMapResultsContainer
-              earchedTranslationsByArea={this.props.searchedTranslationsByArea}
+              searchedTranslationsByArea={this.props.searchedTranslationsByArea}
               onHandleEdit={this.onHandleEdit}
             />
           </div>
