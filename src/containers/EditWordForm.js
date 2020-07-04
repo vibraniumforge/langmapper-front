@@ -24,24 +24,28 @@ class EditWordForm extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.wordDefinition !== nextProps.wordDefinition) {
-      this.setState({ wordDefinition: nextProps.wordDefinition });
+      if (nextProps.wordDefinition === null) {
+        this.setState({ wordDefinition: " " });
+      } else {
+        this.setState({ wordDefinition: nextProps.wordDefinition });
+      }
     }
   }
 
-  componentDidUpdate(prevProps) {
-    console.log(this.state);
-    if (
-      this.props.wordDefinition &&
-      this.props.wordDefinition !== prevProps.wordDefinition
-    ) {
-      this.setState(
-        {
-          wordDefinition: this.props.wordDefinition,
-        },
-        () => console.log(this.state)
-      );
-    }
-  }
+  //   componentDidUpdate(prevProps) {
+  //     console.log(this.state);
+  //     if (
+  //       this.props.wordDefinition &&
+  //       this.props.wordDefinition !== prevProps.wordDefinition
+  //     ) {
+  //       this.setState(
+  //         {
+  //           wordDefinition: this.props.wordDefinition,
+  //         },
+  //         () => console.log(this.state)
+  //       );
+  //     }
+  //   }
 
   handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -68,7 +72,8 @@ class EditWordForm extends Component {
   };
 
   render() {
-    return this.props.wordDefinition ? (
+    return this.props.wordDefinition ||
+      (!this.props.wordDefinition && this.state.wordDefinition) ? (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <h4>
