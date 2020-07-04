@@ -11,6 +11,7 @@ const initialState = {
   translationMapByArea: "",
   translationMapByEtymology: "",
   translationMapByGender: "",
+  isLoading: false,
 };
 
 export default function translationReducer(state = initialState, action) {
@@ -19,27 +20,22 @@ export default function translationReducer(state = initialState, action) {
   }
 
   switch (action.type) {
+    case "IS_LOADING":
+      return {
+        ...state,
+        isLoading: true,
+      };
     case "GET_TRANSLATIONS":
       return {
         ...state,
         translations: action.payload,
+        isLoading: false,
       };
-
-    case "CLEAR_GET_TRANSLATIONS":
-      return {
-        ...state,
-        translations: [],
-      };
-
     case "GET_TRANSLATIONS_BY_ID":
       return {
         ...state,
         translationToUpdate: action.payload,
-      };
-    case "CLEAR_GET_TRANSLATION_BY_ID":
-      return {
-        ...state,
-        translationToUpdate: "",
+        isLoading: false,
       };
     //   no POST/CREATE
     case "EDIT_TRANSLATION":
@@ -97,33 +93,20 @@ export default function translationReducer(state = initialState, action) {
       return {
         ...state,
         searchedTranslationsByLanguage: action.payload,
-      };
-    case "CLEAR_GET_TRANSLATIONS_BY_LANGUAGE":
-      return {
-        ...state,
-        searchedTranslationsByLanguage: [],
+        isLoading: false,
       };
     case "GET_TRANSLATIONS_BY_AREA":
       return {
         ...state,
         searchedTranslationsByArea: action.payload,
+        isLoading: false,
       };
 
-    case "CLEAR_GET_TRANSLATIONS_BY_AREA":
-      return {
-        ...state,
-        searchedTranslationsByArea: [],
-      };
     case "GET_TRANSLATIONS_BY_WORD":
       return {
         ...state,
         searchedTranslationsByWord: action.payload,
-      };
-
-    case "CLEAR_GET_TRANSLATIONS_BY_WORD":
-      return {
-        ...state,
-        searchedTranslationsByWord: [],
+        isLoading: false,
       };
 
     case "GET_SEARCH_AREA":
@@ -131,33 +114,22 @@ export default function translationReducer(state = initialState, action) {
         ...state,
         searchArea: action.payload,
       };
-
-    case "CLEAR_SEARCH_AREA":
-      return {
-        ...state,
-        searchArea: [],
-      };
-
     case "GET_SEARCH_WORD":
       return {
         ...state,
         searchWord: action.payload,
       };
-
-    case "CLEAR_SEARCH_WORD":
-      return {
-        ...state,
-        searchWord: [],
-      };
     case "GET_TRANSLATIONS_BY_WORD_GENDER":
       return {
         ...state,
         searchedTranslationsByWordGender: action.payload,
+        isLoading: false,
       };
     case "GET_TRANSLATIONS_BY_ETYMOLOGY":
       return {
         ...state,
         searchedTranslationsByEtymology: action.payload,
+        isLoading: false,
       };
     case "GET_TRANSLATIONS_COUNT":
       return {
@@ -168,16 +140,19 @@ export default function translationReducer(state = initialState, action) {
       return {
         ...state,
         translationMapByArea: action.payload,
+        isLoading: false,
       };
     case "GET_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG":
       return {
         ...state,
         translationMapByEtymology: action.payload,
+        isLoading: false,
       };
     case "GET_TRANSLATIONS_BY_AREA_GENDER_IMG":
       return {
         ...state,
         translationMapByGender: action.payload,
+        isLoading: false,
       };
 
     default:
