@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { editWord, clearGetWordById } from "../actions/wordActions.js";
+import { editWord } from "../actions/wordActions.js";
 
 class EditWordForm extends Component {
   constructor(props) {
@@ -65,7 +65,6 @@ class EditWordForm extends Component {
   cancelFormAction = () => {
     this.props.history.push("/all_words");
     this.setState({ wordDefinition: "" });
-    this.props.clearGetWordById();
   };
 
   render() {
@@ -118,7 +117,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ editWord, clearGetWordById }, dispatch);
+  return bindActionCreators({ editWord }, dispatch);
 };
 
 export default withRouter(
