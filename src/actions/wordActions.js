@@ -71,12 +71,6 @@ export const deleteWord = (id) => {
   };
 };
 
-export const clearGetWordById = () => {
-  return {
-    type: "CLEAR_GET_WORD_BY_ID",
-  };
-};
-
 export const getWordNames = () => {
   return (dispatch) => {
     fetch(`${url}/get/words/word_names`)
