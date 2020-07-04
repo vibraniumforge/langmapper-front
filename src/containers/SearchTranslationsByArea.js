@@ -1,5 +1,8 @@
 import React from "react";
 import SearchTranslationsByAreaResultsContainer from "./SearchTranslationsByAreaResultsContainer.js";
+import AreaSearchSelect from "../components/AreaSearchSelect.js";
+import WordSearchSelect from "../components/WordSearchSelect.js";
+import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -15,6 +18,7 @@ import {
   searchTranslationsByArea,
   getSearchArea,
   getSearchWord,
+  isLoading,
 } from "../actions/translationActions.js";
 
 class SearchTranslationsByArea extends React.Component {
@@ -46,6 +50,7 @@ class SearchTranslationsByArea extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
+    this.props.isLoading();
     this.props.searchTranslationsByArea(
       this.state.selectedArea,
       this.state.selectedWord
@@ -71,40 +76,48 @@ class SearchTranslationsByArea extends React.Component {
   };
 
   render() {
-    const allWords =
-      this.props.words && this.props.words.length > 0
-        ? this.props.words.map((word) => {
-            return <option key={word.id}>{word.word_name}</option>;
-          })
-        : null;
     const allAreas =
       this.props.languageAreaNames && this.props.languageAreaNames.length > 0
         ? this.props.languageAreaNames.map((area, index) => {
             return area ? <option key={index}>{area}</option> : null;
           })
         : null;
+    const allWords =
+      this.props.words && this.props.words.length > 0
+        ? this.props.words.map((word) => {
+            return <option key={word.id}>{word.word_name}</option>;
+          })
+        : null;
 
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          {/* <AreaSearchSelect
+            allAreas={allAreas}
+            selectedArea={this.state.selectedArea}
+            handleOnChange={this.handleOnChange}
+          /> */}
           <select
             id="select"
             name="selectedArea"
             value={this.state.selectedArea}
             onChange={this.handleOnChange}
           >
-            <option value="">Select One Area</option>
-            {allAreas}
+            <option value="">Choose Area</option>
+            {/* {allAreas} */}
+            <option value="Europe">Europe</option>
           </select>
           <select
             id="select"
             name="selectedWord"
             value={this.state.selectedWord}
             onChange={this.handleOnChange}
-          >
-            <option value="">Select One Word</option>
-            {allWords}
-          </select>
+          ></select>
+          <WordSearchSelect
+            allWords={allWords}
+            selectedWord={this.state.selectedWord}
+            handleOnChange={this.handleOnChange}
+          />
           <input
             type="submit"
             value="Search"
@@ -113,15 +126,18 @@ class SearchTranslationsByArea extends React.Component {
                 ? "submit-btn"
                 : "disabled"
             }
-            disabled={!this.state.selectedArea || !this.state.selectedWord}
+            disabled={!this.state.selectedArea && this.state.selectedWord}
           />
         </form>
-
-        <SearchTranslationsByAreaResultsContainer
-          searchedTranslationsByArea={this.props.searchedTranslationsByArea}
-          onHandleDelete={this.onHandleDelete}
-          onHandleEdit={this.onHandleEdit}
-        />
+        {this.props.searchedTranslationsByArea ? (
+          <SearchTranslationsByAreaResultsContainer
+            searchedTranslationsByArea={this.props.searchedTranslationsByArea}
+            onHandleDelete={this.onHandleDelete}
+            onHandleEdit={this.onHandleEdit}
+          />
+        ) : (
+          <Spinner isLoading={this.props.isLoading} />
+        )}
       </>
     );
   }
@@ -131,6 +147,7 @@ const mapStateToProps = (state) => ({
   words: state.words.words,
   languageAreaNames: state.languages.languageAreaNames,
   searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
+  isLoadingNow: state.translations.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -143,6 +160,7 @@ const mapDispatchToProps = (dispatch) => {
       searchTranslationsByArea,
       getSearchArea,
       getSearchWord,
+      isLoading,
     },
     dispatch
   );
