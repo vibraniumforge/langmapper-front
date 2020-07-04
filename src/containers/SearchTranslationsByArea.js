@@ -1,6 +1,6 @@
 import React from "react";
 import SearchTranslationsByAreaResultsContainer from "./SearchTranslationsByAreaResultsContainer.js";
-import AreaSearchSelect from "../components/AreaSearchSelect.js";
+// import AreaSearchSelect from "../components/AreaSearchSelect.js";
 import WordSearchSelect from "../components/WordSearchSelect.js";
 import Spinner from "../components/Spinner.js";
 
@@ -76,12 +76,12 @@ class SearchTranslationsByArea extends React.Component {
   };
 
   render() {
-    const allAreas =
-      this.props.languageAreaNames && this.props.languageAreaNames.length > 0
-        ? this.props.languageAreaNames.map((area, index) => {
-            return area ? <option key={index}>{area}</option> : null;
-          })
-        : null;
+    // const allAreas =
+    //   this.props.languageAreaNames && this.props.languageAreaNames.length > 0
+    //     ? this.props.languageAreaNames.map((area, index) => {
+    //         return area ? <option key={index}>{area}</option> : null;
+    //       })
+    //     : null;
     const allWords =
       this.props.words && this.props.words.length > 0
         ? this.props.words.map((word) => {
@@ -107,12 +107,6 @@ class SearchTranslationsByArea extends React.Component {
             {/* {allAreas} */}
             <option value="Europe">Europe</option>
           </select>
-          <select
-            id="select"
-            name="selectedWord"
-            value={this.state.selectedWord}
-            onChange={this.handleOnChange}
-          ></select>
           <WordSearchSelect
             allWords={allWords}
             selectedWord={this.state.selectedWord}
