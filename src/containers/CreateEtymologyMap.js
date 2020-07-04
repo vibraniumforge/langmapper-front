@@ -1,28 +1,35 @@
 import React from "react";
 import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsContainer.js";
+import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { getWordNames, getWordDefinition } from "../actions/wordActions.js";
-import { searchTranslationsByArea } from "../actions/translationActions.js";
+
+import { getAllLanguageAreaNames } from "../actions/languageActions.js";
+
+import {
+  searchTranslationsByArea,
+  searchTranslationsByEtymologyImg,
+  isLoading,
+} from "../actions/translationActions.js";
 
 class CreateEtymologyMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLocation: "Europe",
+      selectedArea: "Europe",
       selectedWord: "",
+      searchedArea: "",
       searchedWord: "",
-      searchedLocation: "",
-      imageResults: "",
-      definition: "",
     };
   }
 
   componentDidMount() {
     this.props.getWordNames();
+    this.props.getAllLanguageAreaNames();
   }
 
   handleOnChange = (e) => {
@@ -33,28 +40,24 @@ class CreateEtymologyMap extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    this.props.searchTranslationsByArea(
-      this.state.selectedLocation,
-      this.state.selectedWord
-    );
-
-    this.setState({
-      searchedLocation: this.state.selectedLocation,
-      searchedWord: this.state.selectedWord,
-      //   selectedLocation: "",
-      //   selectedWord: ""
-    });
-
-    // fetch(
-    //   `${url}/search/all_etymologies_by_area_img/${this.state.selectedLocation}/${this.state.selectedWord}`
-    // )
-    //   .then((res) => res.blob())
-    //   .then((images) => {
-    //     let outside = URL.createObjectURL(images);
-    //     this.setState({ imageResults: outside });
-    //   })
-    //   .catch((err) => console.warn(err));
-    this.props.getWordDefinition(this.state.selectedWord);
+    Promise.all([
+      this.props.isLoading(),
+      this.props.getWordDefinition(this.state.selectedWord),
+      this.props.searchTranslationsByArea(
+        this.state.selectedArea,
+        this.state.selectedWord
+      ),
+      this.props.searchTranslationsByEtymologyImg(
+        this.state.selectedArea,
+        this.state.selectedWord
+      ),
+      this.setState({
+        searchedArea: this.state.selectedArea,
+        searchedWord: this.state.selectedWord,
+        selectedArea: "Europe",
+        selectedWord: "",
+      }),
+    ]);
   };
 
   onHandleEdit = (e, translationId) => {
@@ -69,23 +72,31 @@ class CreateEtymologyMap extends React.Component {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
-    // const allLocations =
-    //   this.state.allLocations && this.state.allLocations.length > 0
-    //     ? this.state.allLocations.map((location, index) => {
-    //         return location ? <option key={index}>{location}</option> : null;
+    // const allAreas =
+    //   this.props.languageAreaNames && this.props.languageAreaNames.length > 0
+    //     ? this.props.languageAreaNames.map((area, index) => {
+    //         return area ? <option key={index}>{area}</option> : null;
     //       })
     //     : null;
+    let render;
+    if (
+      this.props.wordDefinition.length &&
+      this.props.translationMapByEtymology &&
+      this.props.searchedTranslationsByArea.length
+    ) {
+      render = true;
+    }
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <select
             id="select"
-            name="selectedLocation"
-            value={this.state.selectedLocation}
+            name="selectedArea"
+            value={this.state.selectedArea}
             onChange={this.handleOnChange}
           >
-            <option value="">Select One Location</option>
-            {/* {allLocations} */}
+            <option value="">Select Area</option>
+            {/* {allAreas} */}
             <option value="Europe">Europe</option>
           </select>
           <select
@@ -94,32 +105,39 @@ class CreateEtymologyMap extends React.Component {
             value={this.state.selectedWord}
             onChange={this.handleOnChange}
           >
-            <option value="">Select One Word</option>
+            <option value="">Choose Word</option>
             {allWords}
           </select>
           <input
             type="submit"
             value="Search"
             className={
-              this.state.selectedLocation && this.state.selectedWord
+              this.state.selectedArea && this.state.selectedWord
                 ? "submit-btn"
                 : "disabled"
             }
-            disabled={!this.state.selectedLocation || !this.state.selectedWord}
+            disabled={!this.state.selectedArea || !this.state.selectedWord}
           />
         </form>
-        {/* <h3>Location: {this.state.searchedLocation}</h3> */}
-        <h3>Word: {this.state.searchedWord}</h3>
-        <h3>Definition: {this.state.definition}</h3>
-        {this.state.imageResults ? (
-          <img src={this.state.imageResults} alt="europe language map" />
+        {render ? (
+          <div>
+            {/* <h3>Area: {this.state.searchedArea}</h3> */}
+            <h3>Word: {this.state.searchedWord}</h3>
+            <h3>Definition: {this.props.wordDefinition}</h3>
+
+            <img
+              src={this.props.translationMapByEtymology}
+              alt="europe language map"
+            />
+
+            <CreateEtymologyMapResultsContainer
+              earchedTranslationsByArea={this.props.searchedTranslationsByArea}
+              onHandleEdit={this.onHandleEdit}
+            />
+          </div>
+        ) : this.state.searchedWord ? (
+          <Spinner isLoading={this.props.isLoading} />
         ) : null}
-        <CreateEtymologyMapResultsContainer
-          results={this.state.results}
-          searchedWord={this.state.searchedWord}
-          searchedLocation={this.state.searchedLocation}
-          onHandleEdit={this.onHandleEdit}
-        />
       </>
     );
   }
@@ -127,15 +145,21 @@ class CreateEtymologyMap extends React.Component {
 
 const mapStateToProps = (state) => ({
   wordNames: state.words.wordNames,
+  languageAreaNames: state.languages.languageAreaNames,
+  wordDefinition: state.words.wordDefinition,
   searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
+  translationMapByEtymology: state.translations.translationMapByEtymology,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       getWordNames,
-      searchTranslationsByArea,
+      getAllLanguageAreaNames,
       getWordDefinition,
+      searchTranslationsByArea,
+      searchTranslationsByEtymologyImg,
+      isLoading,
     },
     dispatch
   );
