@@ -1,5 +1,6 @@
 import React from "react";
 import SearchLanguagesByAreaResultsContainer from "./SearchLanguagesByAreaResultsContainer.js";
+import AreaSearchSelect from "../components/AreaSearchSelect.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -57,7 +58,7 @@ class SearchLanguagesByArea extends React.Component {
   };
 
   render() {
-    const languageAreaNames =
+    const allAreas =
       this.props.languageAreaNames && this.props.languageAreaNames.length > 0
         ? this.props.languageAreaNames.map((area, index) => {
             return area ? <option key={index}>{area}</option> : null;
@@ -66,15 +67,11 @@ class SearchLanguagesByArea extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
-          <select
-            id="select"
-            name="selectedArea"
-            value={this.state.selectedArea}
-            onChange={this.handleOnChange}
-          >
-            <option value="">Select One Area</option>
-            {languageAreaNames}
-          </select>
+          <AreaSearchSelect
+            allAreas={allAreas}
+            selectedArea={this.state.selectedArea}
+            handleOnChange={this.handleOnChange}
+          />
           <input
             disabled={!this.state.selectedArea}
             type="submit"
