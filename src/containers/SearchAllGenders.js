@@ -1,5 +1,6 @@
 import React from "react";
 import SearchAllGendersResultsContainer from "./SearchAllGendersResultsContainer.js";
+import WordSearchSelect from "../components/WordSearchSelect.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -55,8 +56,8 @@ class SearchAllGenders extends React.Component {
   };
 
   render() {
-    const words =
-      this.props.words.length > 0
+    const allWords =
+      this.props.words && this.props.words.length > 0
         ? this.props.words.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
@@ -64,20 +65,16 @@ class SearchAllGenders extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
-          <select
-            id="select"
-            name="selectedWord"
-            value={this.state.selectedWord}
-            onChange={this.handleOnChange}
-          >
-            <option value="">Select One Word</option>
-            {words}
-          </select>
+          <WordSearchSelect
+            allWords={allWords}
+            selectedWord={this.state.selectedWord}
+            handleOnChange={this.handleOnChange}
+          />
           <input
-            disabled={!this.state.selectedWord}
             type="submit"
             value="Search"
             className={this.state.selectedWord ? "submit-btn" : "disabled"}
+            disabled={!this.state.selectedWord}
           />
         </form>
         <SearchAllGendersResultsContainer
