@@ -9,7 +9,6 @@ import {
   getTranslationById,
   deleteTranslation,
   searchTranslationsByWord,
-  clearSearchTranslationsByWord,
 } from "../actions/translationActions.js";
 
 import { getWords } from "../actions/wordActions.js";
@@ -104,7 +103,6 @@ const mapDispatchToProps = (dispatch) => {
       getTranslationById,
       deleteTranslation,
       searchTranslationsByWord,
-      clearSearchTranslationsByWord,
     },
     dispatch
   );
