@@ -12,6 +12,7 @@ import { getAllLanguageAreaNames } from "../actions/languageActions.js";
 import {
   searchTranslationsByArea,
   searchTranslationsByGenderImg,
+  isLoading,
 } from "../actions/translationActions.js";
 
 class CreateGenderMap extends React.Component {
@@ -37,6 +38,7 @@ class CreateGenderMap extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
+    this.props.isLoading();
     this.props.getWordDefinition(this.state.selectedWord);
     this.props.searchTranslationsByArea(
       this.state.selectedArea,
@@ -156,6 +158,7 @@ const mapDispatchToProps = (dispatch) => {
       getWordDefinition,
       searchTranslationsByArea,
       searchTranslationsByGenderImg,
+      isLoading,
     },
     dispatch
   );
