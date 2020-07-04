@@ -13,6 +13,7 @@ import { getAllLanguageAreaNames } from "../actions/languageActions.js";
 import {
   searchTranslationsByArea,
   searchTranslationsByAreaImg,
+  isLoading,
 } from "../actions/translationActions.js";
 
 class CreateTranslationMap extends React.Component {
@@ -23,7 +24,6 @@ class CreateTranslationMap extends React.Component {
       selectedWord: "",
       searchedArea: "",
       searchedWord: "",
-      isLoading: false,
     };
   }
 
@@ -51,22 +51,24 @@ class CreateTranslationMap extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    this.props.getWordDefinition(this.state.selectedWord);
-    this.props.searchTranslationsByArea(
-      this.state.selectedArea,
-      this.state.selectedWord
-    );
-    this.props.searchTranslationsByAreaImg(
-      this.state.selectedArea,
-      this.state.selectedWord
-    );
-    this.setState({
-      searchedArea: this.state.selectedArea,
-      searchedWord: this.state.selectedWord,
-      selectedArea: "Europe",
-      selectedWord: "",
-      isLoading: true,
-    });
+    Promise.all([
+      this.props.isLoading(),
+      this.props.getWordDefinition(this.state.selectedWord),
+      this.props.searchTranslationsByArea(
+        this.state.selectedArea,
+        this.state.selectedWord
+      ),
+      this.props.searchTranslationsByAreaImg(
+        this.state.selectedArea,
+        this.state.selectedWord
+      ),
+      this.setState({
+        searchedArea: this.state.selectedArea,
+        searchedWord: this.state.selectedWord,
+        selectedArea: "Europe",
+        selectedWord: "",
+      }),
+    ]);
   };
 
   onHandleEdit = (e, translationId) => {
@@ -144,9 +146,9 @@ class CreateTranslationMap extends React.Component {
               onHandleEdit={this.onHandleEdit}
             />
           </div>
-        ) : (
-          <Spinner isLoading={this.state.isLoading} />
-        )}
+        ) : this.state.searchedWord ? (
+          <Spinner isLoading={this.props.isLoading} />
+        ) : null}
       </>
     );
   }
@@ -158,6 +160,7 @@ const mapStateToProps = (state) => ({
   wordDefinition: state.words.wordDefinition,
   searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
   translationMapByArea: state.translations.translationMapByArea,
+  isLoading: state.translations.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -168,6 +171,7 @@ const mapDispatchToProps = (dispatch) => {
       getWordDefinition,
       searchTranslationsByArea,
       searchTranslationsByAreaImg,
+      isLoading,
     },
     dispatch
   );
