@@ -1,6 +1,7 @@
 import React from "react";
 import SearchAllGendersResultsContainer from "./SearchAllGendersResultsContainer.js";
 import WordSearchSelect from "../components/WordSearchSelect.js";
+import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -77,14 +78,19 @@ class SearchAllGenders extends React.Component {
             disabled={!this.state.selectedWord}
           />
         </form>
-        <SearchAllGendersResultsContainer
-          searchedTranslationsByWordGender={
-            this.props.searchedTranslationsByWordGender
-          }
-          searchedWord={this.state.searchedWord}
-          onHandleDelete={this.onHandleDelete}
-          onHandleEdit={this.onHandleEdit}
-        />
+        {this.state.searchedWord &&
+        this.props.searchedTranslationsByWordGender ? (
+          <SearchAllGendersResultsContainer
+            searchedTranslationsByWordGender={
+              this.props.searchedTranslationsByWordGender
+            }
+            searchedWord={this.state.searchedWord}
+            onHandleDelete={this.onHandleDelete}
+            onHandleEdit={this.onHandleEdit}
+          />
+        ) : this.state.searchedWord ? (
+          <Spinner isLoading={this.props.isLoading} />
+        ) : null}
       </>
     );
   }
