@@ -19,7 +19,6 @@ export class LanguageNameAutofill extends Component {
 
   onSeachClick = (e) => {
     const userInput = this.state.userInput;
-    console.log(userInput);
     this.props.handleOnSubmit(e, userInput);
     this.setState({ userInput: "" });
   };
