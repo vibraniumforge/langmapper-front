@@ -1,5 +1,6 @@
 import React from "react";
 import CreateGenderMapResultsContainer from "./CreateGenderMapResultsContainer.js";
+import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -28,6 +29,7 @@ class CreateGenderMap extends React.Component {
 
   componentDidMount() {
     this.props.getWordNames();
+    this.props.getAllLanguageAreaNames();
   }
 
   handleOnChange = (e) => {
@@ -38,24 +40,24 @@ class CreateGenderMap extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    this.props.isLoading();
-    this.props.getWordDefinition(this.state.selectedWord);
-    this.props.searchTranslationsByArea(
-      this.state.selectedArea,
-      this.state.selectedWord
-    );
-
-    this.props.searchTranslationsByGenderImg(
-      this.state.selectedArea,
-      this.state.selectedWord
-    );
-
-    this.setState({
-      searchedAre: this.state.selectedArea,
-      searchedWord: this.state.selectedWord,
-      selectedArea: "Europe",
-      selectedWord: "",
-    });
+    Promise.all([
+      this.props.isLoading(),
+      this.props.getWordDefinition(this.state.selectedWord),
+      this.props.searchTranslationsByArea(
+        this.state.selectedArea,
+        this.state.selectedWord
+      ),
+      this.props.searchTranslationsByGenderImg(
+        this.state.selectedArea,
+        this.state.selectedWord
+      ),
+      this.setState({
+        searchedAre: this.state.selectedArea,
+        searchedWord: this.state.selectedWord,
+        selectedArea: "Europe",
+        selectedWord: "",
+      }),
+    ]);
   };
 
   onHandleEdit = (e, translationId) => {
@@ -136,6 +138,8 @@ class CreateGenderMap extends React.Component {
               onHandleEdit={this.onHandleEdit}
             />
           </div>
+        ) : this.state.searchedWord ? (
+          <Spinner isLoading={this.props.isLoading} />
         ) : null}
       </>
     );
