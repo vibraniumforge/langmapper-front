@@ -130,11 +130,17 @@ class CreateGenderMap extends React.Component {
             <h3>Word: {this.state.searchedWord}</h3>
             <h3>Definition: {this.props.wordDefinition}</h3>
 
-            <img
-              src={this.props.translationMapByGender}
-              alt="europe language map"
-              className="map"
-            />
+            <a
+              href={this.props.translationMapByGender}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={this.props.translationMapByGender}
+                className="map"
+                alt="Europe map"
+              />
+            </a>
 
             <CreateGenderMapResultsContainer
               searchedTranslationsByArea={this.props.searchedTranslationsByArea}
