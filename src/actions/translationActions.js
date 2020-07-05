@@ -75,6 +75,12 @@ export const searchTranslationsByLanguage = (language) => {
   };
 };
 
+export const clearSearchedTranslationsByLanguage = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_LANGUAGE" });
+  };
+};
+
 export const searchTranslationsByWord = (word) => {
   return (dispatch) => {
     fetch(`${url}/search/translations/word/${word}`)
@@ -83,6 +89,12 @@ export const searchTranslationsByWord = (word) => {
         dispatch({ type: "GET_TRANSLATIONS_BY_WORD", payload: res.data })
       )
       .catch((err) => console.log(err));
+  };
+};
+
+export const clearSearchTranslationsByWord = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_WORD" });
   };
 };
 
@@ -97,6 +109,18 @@ export const searchTranslationsByArea = (area, word) => {
   };
 };
 
+export const clearGetTranslationsByArea = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_AREA" });
+  };
+};
+
+export const clearGetLanguagesByArea = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_LANGUAGES_BY_AREA" });
+  };
+};
+
 export const getSearchArea = (area) => {
   return {
     type: "GET_SEARCH_AREA",
@@ -104,10 +128,22 @@ export const getSearchArea = (area) => {
   };
 };
 
+export const clearGetSearchArea = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_SEARCH_AREA" });
+  };
+};
+
 export const getSearchWord = (word) => {
   return {
     type: "GET_SEARCH_WORD",
     payload: word,
+  };
+};
+
+export const clearGetSearchWord = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_SEARCH_WORD" });
   };
 };
 
@@ -122,6 +158,12 @@ export const searchTranslationsByWordGender = (word) => {
   };
 };
 
+export const clearSearchTranslationsByWordGender = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_WORD_GENDER" });
+  };
+};
+
 export const searchTranslationsByEtymology = (etymology_string) => {
   return (dispatch) => {
     fetch(`${url}/search/translations/etymology/${etymology_string}`)
@@ -130,6 +172,12 @@ export const searchTranslationsByEtymology = (etymology_string) => {
         dispatch({ type: "GET_TRANSLATIONS_BY_ETYMOLOGY", payload: res.data })
       )
       .catch((err) => console.log(err));
+  };
+};
+
+export const clearSearchTranslationsByEtymology = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_ETYMOLOGY" });
   };
 };
 
