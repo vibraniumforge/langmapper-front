@@ -1,5 +1,6 @@
 import React from "react";
 import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
+import { genderHelper } from "../helpers/genderHelper.js";
 
 export const SearchTranslationsByAreaResultCard = (props) => {
   return (
@@ -30,7 +31,15 @@ export const SearchTranslationsByAreaResultCard = (props) => {
       </p>
       <p>
         <strong>Gender: </strong>
-        {props.translation.gender}
+        <strong>
+          <span className="">
+            {genderHelper(
+              props.translation.macrofamily,
+              props.translation.name,
+              props.translation.gender
+            )}
+          </span>
+        </strong>
       </p>
       <p>
         <strong>Etymology: </strong>
