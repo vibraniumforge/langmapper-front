@@ -114,12 +114,6 @@ export default function translationReducer(state = initialState, action) {
         searchedTranslationsByArea: [],
         isLoading: false,
       };
-    case "CLEAR_GET_LANGUAGES_BY_AREA":
-      return {
-        ...state,
-        searchedTranslationsByArea: [],
-        isLoading: false,
-      };
 
     case "GET_TRANSLATIONS_BY_WORD":
       return {
