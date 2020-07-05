@@ -53,6 +53,26 @@ export default function languageReducer(state = initialState, action) {
         ...state,
         languages: newLanguages,
       };
+    //   ===========================
+
+    case "GET_LANGUAGES_BY_AREA": {
+      return {
+        ...state,
+        languagesByArea: action.payload,
+      };
+    }
+    case "CLEAR_GET_LANGUAGES_BY_AREA":
+      return {
+        ...state,
+        languagesByArea: [],
+        isLoading: false,
+      };
+    case "GET_LANGUAGES_COUNT": {
+      return {
+        ...state,
+        languagesCount: action.payload,
+      };
+    }
     case "GET_ALL_LANGUAGE_ALPHABET_NAMES":
       return {
         ...state,
@@ -67,18 +87,6 @@ export default function languageReducer(state = initialState, action) {
       return {
         ...state,
         languageAreaNames: action.payload,
-      };
-    }
-    case "GET_LANGUAGES_BY_AREA": {
-      return {
-        ...state,
-        languagesByArea: action.payload,
-      };
-    }
-    case "GET_LANGUAGES_COUNT": {
-      return {
-        ...state,
-        languagesCount: action.payload,
       };
     }
     default:
