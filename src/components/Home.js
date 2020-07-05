@@ -10,10 +10,6 @@ import { getTranslationsCount } from "../actions/translationActions";
 
 import { getWordsCount } from "../actions/wordActions";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
-
 class Home extends React.Component {
   componentDidMount() {
     this.props.getWordsCount();
