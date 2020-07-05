@@ -56,6 +56,7 @@ export const deleteLanguage = (id) => {
       .catch((err) => console.log(err));
   };
 };
+// ===============================
 
 export const getAllAlphabets = () => {
   return (dispatch) => {
@@ -107,6 +108,12 @@ export const getLanguagesByArea = (area) => {
         })
       )
       .catch((err) => console.log(err));
+  };
+};
+
+export const clearGetLanguagesByArea = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_LANGUAGES_BY_AREA" });
   };
 };
 
