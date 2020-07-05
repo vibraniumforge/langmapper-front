@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 import {
   searchTranslationsByEtymology,
   isLoading,
+  clearSearchTranslationsByEtymology,
 } from "../actions/translationActions.js";
 
 class SearchEtymologiesContent extends React.Component {
@@ -17,6 +18,12 @@ class SearchEtymologiesContent extends React.Component {
       selectedWord: "",
       searchedWord: "",
     };
+  }
+
+  componentDidMount() {
+    if (this.props.searchedTranslationsByEtymology.length) {
+      this.props.clearSearchTranslationsByEtymology();
+    }
   }
 
   handleOnChange = (e) => {
@@ -79,6 +86,7 @@ const mapDispatchToProps = (dispatch) => {
     {
       searchTranslationsByEtymology,
       isLoading,
+      clearSearchTranslationsByEtymology,
     },
     dispatch
   );

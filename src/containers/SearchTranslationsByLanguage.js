@@ -9,6 +9,7 @@ import { getLanguages } from "../actions/languageActions.js";
 
 import {
   searchTranslationsByLanguage,
+  clearSearchedTranslationsByLanguage,
   getTranslationById,
   deleteTranslation,
 } from "../actions/translationActions.js";
@@ -22,6 +23,9 @@ class SearchTranslationsByLanguage extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.searchedTranslationsByLanguage.length) {
+      this.props.clearSearchedTranslationsByLanguage();
+    }
     this.props.getLanguages();
   }
 
@@ -95,6 +99,7 @@ const mapDispatchToProps = (dispatch) => {
     {
       getLanguages,
       searchTranslationsByLanguage,
+      clearSearchedTranslationsByLanguage,
       getTranslationById,
       deleteTranslation,
     },

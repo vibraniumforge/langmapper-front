@@ -11,6 +11,7 @@ import { getWords } from "../actions/wordActions.js";
 
 import {
   searchTranslationsByWordGender,
+  clearSearchTranslationsByWordGender,
   getTranslationById,
   deleteTranslation,
 } from "../actions/translationActions.js";
@@ -27,6 +28,9 @@ class SearchAllGenders extends React.Component {
   componentDidMount() {
     if (this.props.words.length === 0) {
       this.props.getWords();
+    }
+    if (this.props.searchedTranslationsByWordGender.length) {
+      this.props.clearSearchTranslationsByWordGender();
     }
   }
 
@@ -107,6 +111,7 @@ const mapDispatchToProps = (dispatch) => {
     {
       getWords,
       searchTranslationsByWordGender,
+      clearSearchTranslationsByWordGender,
       getTranslationById,
       deleteTranslation,
     },

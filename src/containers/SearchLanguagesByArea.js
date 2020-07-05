@@ -9,6 +9,7 @@ import { withRouter } from "react-router-dom";
 import {
   getAllLanguageAreaNames,
   getLanguagesByArea,
+  clearGetLanguagesByArea,
   getLanguageById,
   deleteLanguage,
 } from "../actions/languageActions.js";
@@ -28,6 +29,9 @@ class SearchLanguagesByArea extends React.Component {
       this.props.languageAreaNames.length === 0
     ) {
       this.props.getAllLanguageAreaNames();
+    }
+    if (this.props.languagesByArea.length) {
+      this.props.clearGetLanguagesByArea();
     }
   }
 
@@ -100,6 +104,7 @@ const mapDispatchToProps = (dispatch) => {
     {
       getAllLanguageAreaNames,
       getLanguagesByArea,
+      clearGetLanguagesByArea,
       getLanguageById,
       deleteLanguage,
     },
