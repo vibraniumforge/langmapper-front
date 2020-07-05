@@ -87,7 +87,7 @@ export default function translationReducer(state = initialState, action) {
         translations: newTranslations,
       };
 
-    //   ===========================
+    //   =======================================
 
     case "GET_TRANSLATIONS_BY_LANGUAGE":
       return {
@@ -95,10 +95,29 @@ export default function translationReducer(state = initialState, action) {
         searchedTranslationsByLanguage: action.payload,
         isLoading: false,
       };
+    case "CLEAR_GET_TRANSLATIONS_BY_LANGUAGE":
+      return {
+        ...state,
+        searchedTranslationsByLanguage: [],
+        isLoading: false,
+      };
+
     case "GET_TRANSLATIONS_BY_AREA":
       return {
         ...state,
         searchedTranslationsByArea: action.payload,
+        isLoading: false,
+      };
+    case "CLEAR_GET_TRANSLATIONS_BY_AREA":
+      return {
+        ...state,
+        searchedTranslationsByArea: [],
+        isLoading: false,
+      };
+    case "CLEAR_GET_LANGUAGES_BY_AREA":
+      return {
+        ...state,
+        searchedTranslationsByArea: [],
         isLoading: false,
       };
 
@@ -109,15 +128,31 @@ export default function translationReducer(state = initialState, action) {
         isLoading: false,
       };
 
+    case "CLEAR_GET_TRANSLATIONS_BY_WORD":
+      return {
+        ...state,
+        searchedTranslationsByWord: [],
+        isLoading: false,
+      };
     case "GET_SEARCH_AREA":
       return {
         ...state,
         searchArea: action.payload,
       };
+    case "CLEAR_GET_SEARCH_AREA":
+      return {
+        ...state,
+        searchArea: [],
+      };
     case "GET_SEARCH_WORD":
       return {
         ...state,
         searchWord: action.payload,
+      };
+    case "CLEAR_GET_SEARCH_WORD":
+      return {
+        ...state,
+        searchWord: [],
       };
     case "GET_TRANSLATIONS_BY_WORD_GENDER":
       return {
@@ -125,10 +160,22 @@ export default function translationReducer(state = initialState, action) {
         searchedTranslationsByWordGender: action.payload,
         isLoading: false,
       };
+    case "CLEAR_GET_TRANSLATIONS_BY_WORD_GENDER":
+      return {
+        ...state,
+        searchedTranslationsByWordGender: [],
+        isLoading: false,
+      };
     case "GET_TRANSLATIONS_BY_ETYMOLOGY":
       return {
         ...state,
         searchedTranslationsByEtymology: action.payload,
+        isLoading: false,
+      };
+    case "CLEAR_GET_TRANSLATIONS_BY_ETYMOLOGY":
+      return {
+        ...state,
+        searchedTranslationsByEtymology: [],
         isLoading: false,
       };
     case "GET_TRANSLATIONS_COUNT":
