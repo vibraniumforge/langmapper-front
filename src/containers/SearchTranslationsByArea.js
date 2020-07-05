@@ -16,8 +16,11 @@ import {
   getTranslationById,
   deleteTranslation,
   searchTranslationsByArea,
+  clearGetTranslationsByArea,
   getSearchArea,
+  clearGetSearchArea,
   getSearchWord,
+  clearGetSearchWord,
   isLoading,
 } from "../actions/translationActions.js";
 
@@ -39,6 +42,11 @@ class SearchTranslationsByArea extends React.Component {
       this.props.languageAreaNames.length === 0
     ) {
       this.props.getAllLanguageAreaNames();
+    }
+    if (this.props.searchedTranslationsByArea.length) {
+      this.props.clearGetTranslationsByArea();
+      this.props.clearGetSearchArea();
+      this.props.clearGetSearchWord();
     }
   }
 
@@ -142,8 +150,11 @@ const mapDispatchToProps = (dispatch) => {
       getTranslationById,
       deleteTranslation,
       searchTranslationsByArea,
+      clearGetTranslationsByArea,
       getSearchArea,
+      clearGetSearchArea,
       getSearchWord,
+      clearGetSearchWord,
       isLoading,
     },
     dispatch
