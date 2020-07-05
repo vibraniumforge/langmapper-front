@@ -9,6 +9,7 @@ import { withRouter } from "react-router-dom";
 
 import {
   getTranslationById,
+  clearSearchTranslationsByWord,
   deleteTranslation,
   searchTranslationsByWord,
   isLoading,
@@ -28,6 +29,9 @@ class SearchTranslationsByWord extends React.Component {
   componentDidMount() {
     if (this.props.words.length === 0) {
       this.props.getWords();
+    }
+    if (this.props.searchedTranslationsByWord.length) {
+      this.props.clearSearchTranslationsByWord();
     }
   }
 
@@ -103,6 +107,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       getWords,
+      clearSearchTranslationsByWord,
       isLoading,
       getTranslationById,
       deleteTranslation,
