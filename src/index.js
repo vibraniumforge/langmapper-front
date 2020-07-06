@@ -6,9 +6,17 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 // import { createStore, applyMiddleware, compose } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import rootReducer from "./reducers/index";
+
+const middleware = [thunk];
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
 // const store = createStore(
 //   rootReducer,
@@ -18,7 +26,7 @@ import rootReducer from "./reducers/index";
 //   )
 // );
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+// const store = createStore(rootReducer, applyMiddleware(thunk));
 
 // The Redux dev tools throw an error here.
 // If the program does not work comment OUT the above line and comment IN the below line.
