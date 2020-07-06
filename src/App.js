@@ -21,8 +21,6 @@ import CreateTranslationMap from "./containers/CreateTranslationMap.js";
 import CreateEtymologyMap from "./containers/CreateEtymologyMap.js";
 import CreateGenderMap from "./containers/CreateGenderMap.js";
 
-// require("dotenv").config();
-
 function App() {
   return (
     <div className="App">
