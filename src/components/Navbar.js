@@ -17,15 +17,20 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/search_etymologies">
           Search by content of Etymology
         </NavLink>
-        {/* <NavLink activeClassName="selected" to="/grouped_etymologies">
-          Search Etymology Grouped (Beta)
-        </NavLink> */}
-        {/* <NavLink
-          activeClassName="selected"
-          to="/all_translations_by_macrofamily"
-        >
-          Search all Translations by Macrofamily
-        </NavLink> */}
+
+        {process.env.REACT_APP_NODE_ENV === "development" ? (
+          <NavLink activeClassName="selected" to="/grouped_etymologies">
+            Search Etymology Grouped (Beta)
+          </NavLink>
+        ) : null}
+        {process.env.REACT_APP_NODE_ENV === "development" ? (
+          <NavLink
+            activeClassName="selected"
+            to="/all_translations_by_macrofamily"
+          >
+            Search all Translations by Macrofamily
+          </NavLink>
+        ) : null}
         <NavLink activeClassName="selected" to="/all_translations_by_language">
           Search all Translations by Language
         </NavLink>
@@ -47,12 +52,14 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/create_translation_map">
           Create Translation Map by Area
         </NavLink>
-        {/* <NavLink activeClassName="selected" to="/create_etymology_map">
-          Create Etymology Map by Area (Beta)
-        </NavLink> */}
         <NavLink activeClassName="selected" to="/create_gender_map">
           Create Gender Map by Area
         </NavLink>
+        {process.env.REACT_APP_NODE_ENV === "development" ? (
+          <NavLink activeClassName="selected" to="/create_etymology_map">
+            Create Etymology Map by Area (Beta)
+          </NavLink>
+        ) : null}
       </div>
     );
   }
