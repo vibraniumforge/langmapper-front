@@ -18,6 +18,8 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
+// WITH CHROME
+// import { createStore, applyMiddleware, compose } from "redux";
 // const store = createStore(
 //   rootReducer,
 //   compose(
@@ -26,8 +28,8 @@ const store = createStore(
 //   )
 // );
 
+// NOT CHROME
 // const store = createStore(rootReducer, applyMiddleware(thunk));
-
 // The Redux dev tools throw an error here.
 // If the program does not work comment OUT the above line and comment IN the below line.
 // and be sure to comment in the import statement above.
