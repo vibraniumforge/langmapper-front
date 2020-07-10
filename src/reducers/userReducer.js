@@ -33,10 +33,10 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: null,
-        failedLoging: false,
+        loggedIn: false,
         authenticatingUser: false,
-        error: null,
         failedLogin: false,
+        error: null,
       };
     }
     default:
