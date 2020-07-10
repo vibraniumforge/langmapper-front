@@ -4,7 +4,7 @@ import ViewAllWordsResultCard from "../components/ViewAllWordsResultCard.js";
 class ViewAllWordsResultsContainer extends Component {
   render() {
     const cards =
-      this.props.words.length > 0
+      this.props.words && this.props.words.length > 0
         ? this.props.words.map((word) => {
             return (
               <ViewAllWordsResultCard
