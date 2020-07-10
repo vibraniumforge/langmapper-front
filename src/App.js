@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+// import { withRouter } from "react-router-dom";
 
+import AdminNavbar from "./components/AdminNavbar.js";
 import Navbar from "./components/Navbar.js";
 import Home from "./components/Home.js";
 import Admin from "./components/Admin.js";
@@ -22,12 +25,14 @@ import CreateTranslationMap from "./containers/CreateTranslationMap.js";
 import CreateEtymologyMap from "./containers/CreateEtymologyMap.js";
 import CreateGenderMap from "./containers/CreateGenderMap.js";
 
-function App() {
+const App = (props) => {
   return (
     <div className="App">
       <Router>
         <div className="router">
-          <Navbar />
+          {props.loggedIn ? <AdminNavbar /> : <Navbar />}
+          {/* <Navbar /> */}
+
           <Switch id="routes">
             <Route exact path="/" component={Home} />
             <Route exact path="/admin" component={Admin} />
@@ -86,6 +91,21 @@ function App() {
       </Router>
     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+//   const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators(
+//       {
+//         loginUser,
+//       },
+//       dispatch
+//     );
+//   };
+
+export default connect(mapStateToProps, null)(App);
+
+// export default App;
