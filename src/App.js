@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
 
-import Home from "./components/Home";
+import Navbar from "./components/Navbar.js";
+import Home from "./components/Home.js";
+import Login from "./components/Login.js";
 import SearchTranslationsByWord from "./containers/SearchTranslationsByWord.js";
 import SearchAllGenders from "./containers/SearchAllGenders.js";
 import SearchEtymologiesContent from "./containers/SearchEtymologiesContent.js";
@@ -29,6 +30,7 @@ function App() {
           <Navbar />
           <Switch id="routes">
             <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
             <Route
               path="/search_translations"
               component={SearchTranslationsByWord}
