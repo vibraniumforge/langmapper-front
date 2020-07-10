@@ -8,7 +8,7 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" exact to="/">
           Home
         </NavLink>
-        <NavLink activeClassName="selected" exact to="/login">
+        <NavLink activeClassName="selected" exact to="/admin">
           Login
         </NavLink>
         <NavLink activeClassName="selected" to="/search_translations">
