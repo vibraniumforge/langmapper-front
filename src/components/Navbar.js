@@ -9,7 +9,7 @@ class Navbar extends Component {
           Home
         </NavLink>
         <NavLink activeClassName="selected" exact to="/admin">
-          Login
+          Admin
         </NavLink>
         <NavLink activeClassName="selected" to="/search_translations">
           Search All Translations of a Word
@@ -45,9 +45,6 @@ class Navbar extends Component {
         </NavLink>
         <NavLink activeClassName="selected" to="/all_words">
           View all Words
-        </NavLink>
-        <NavLink activeClassName="selected" to="/new_word">
-          Create a New Word
         </NavLink>
         <NavLink activeClassName="selected" to="/all_languages">
           View all Languages
