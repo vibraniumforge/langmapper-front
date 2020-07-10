@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar.js";
 import Home from "./components/Home.js";
-import Login from "./components/Login.js";
+import Admin from "./components/Admin.js";
 import SearchTranslationsByWord from "./containers/SearchTranslationsByWord.js";
 import SearchAllGenders from "./containers/SearchAllGenders.js";
 import SearchEtymologiesContent from "./containers/SearchEtymologiesContent.js";
@@ -30,7 +30,7 @@ function App() {
           <Navbar />
           <Switch id="routes">
             <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/admin" component={Admin} />
             <Route
               path="/search_translations"
               component={SearchTranslationsByWord}
