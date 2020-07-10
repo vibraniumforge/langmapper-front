@@ -15,6 +15,7 @@ class Login extends Component {
     return (
       <>
         <h3>Admin Logout</h3>
+        <p>{this.props.loggedIn ? "Logged in" : "Not logged in"}</p>
         <form onSubmit={this.handleOnSubmit}>
           <input type="submit" value="Logout" className="submit-btn" />
         </form>
@@ -23,9 +24,9 @@ class Login extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-
-// });
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
@@ -36,4 +37,4 @@ const mapDispatchToProps = (dispatch) => {
   );
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(Login));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
