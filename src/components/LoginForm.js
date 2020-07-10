@@ -28,7 +28,7 @@ class Login extends Component {
     return (
       <>
         <h3>Admin Login</h3>
-        <p>{this.props.isLoggedIn ? "Logged in" : "Not logged in"}</p>
+        <p>{this.props.loggedIn ? "Logged in" : "Not logged in"}</p>
         <form
           onSubmit={(e) =>
             this.handleOnSubmit(e, this.state.username, this.state.password)
@@ -66,7 +66,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isLoggedIn: state.users.loggedIn,
+  loggedIn: state.users.loggedIn,
 });
 
 const mapDispatchToProps = (dispatch) => {
