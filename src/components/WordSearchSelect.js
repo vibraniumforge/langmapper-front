@@ -9,7 +9,7 @@ const WordSearchSelect = (props) => {
         value={props.selectedWord}
         onChange={props.handleOnChange}
       >
-        <option value="">Select Word</option>
+        <option value="">Select Word </option>
         {props.allWords}
       </select>
     </>
