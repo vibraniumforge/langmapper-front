@@ -1,6 +1,6 @@
 import React from "react";
 import SearchEtymologiesGroupedResultsContainer from "./SearchEtymologiesGroupedResultsContainer.js";
-import AreaSearchSelect from "../components/AreaSearchSelect.js";
+import MacrofamilySearchSelect from "../components/MacrofamilySearchSelect.js";
 import WordSearchSelect from "../components/WordSearchSelect.js";
 import Spinner from "../components/Spinner.js";
 
@@ -64,7 +64,7 @@ class SearchEtymologiesGrouped extends React.Component {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
-    const macrofamilies =
+    const allMacrofamilies =
       this.props.macrofamilyNames && this.props.macrofamilyNames.length > 0
         ? this.props.macrofamilyNames.map((macrofamily, index) => {
             return macrofamily ? (
@@ -79,17 +79,12 @@ class SearchEtymologiesGrouped extends React.Component {
             allWords={allWords}
             selectedWord={this.state.selectedWord}
             handleOnChange={this.handleOnChange}
+          />{" "}
+          <MacrofamilySearchSelect
+            allMacrofamilies={allMacrofamilies}
+            selectedWord={this.state.selectedWord}
+            handleOnChange={this.handleOnChange}
           />
-
-          <select
-            id="select"
-            name="selectedFamily"
-            value={this.state.selectedFamily}
-            onChange={this.handleOnChange}
-          >
-            <option value="">Select One Macrofamily</option>
-            {macrofamilies}
-          </select>
           <input
             disabled={!this.state.selectedWord}
             type="submit"
