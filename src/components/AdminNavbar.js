@@ -20,20 +20,21 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/search_etymologies">
           Search Word by content of Etymology
         </NavLink>
+        <NavLink activeClassName="selected" to="/grouped_etymologies">
+          Search Word by Etymology Grouped (Beta)
+        </NavLink>
 
-        {process.env.REACT_APP_NODE_ENV === "development" ? (
+        {/* {process.env.REACT_APP_NODE_ENV === "development" ? (
           <NavLink activeClassName="selected" to="/grouped_etymologies">
             Search Word by Etymology Grouped (Beta)
           </NavLink>
-        ) : null}
-        {process.env.REACT_APP_NODE_ENV === "development" ? (
-          <NavLink
-            activeClassName="selected"
-            to="/all_translations_by_macrofamily"
-          >
-            Search All Translations by Macrofamily
-          </NavLink>
-        ) : null}
+        ) : null} */}
+        <NavLink
+          activeClassName="selected"
+          to="/all_translations_by_macrofamily"
+        >
+          Search All Translations by Macrofamily
+        </NavLink>
         <NavLink activeClassName="selected" to="/all_translations_by_language">
           Search All Translations by Language
         </NavLink>
