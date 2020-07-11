@@ -22,7 +22,7 @@ export const ViewAllWordsResultCard = (props) => {
           <EditAndDeleteButtons
             onHandleEdit={props.onHandleEdit}
             onHandleDelete={props.onHandleDelete}
-            translation={props.translation}
+            translation={props.word}
           />
         </>
       ) : null}
