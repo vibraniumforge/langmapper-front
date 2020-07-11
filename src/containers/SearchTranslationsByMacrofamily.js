@@ -1,8 +1,7 @@
 import React from "react";
 import SearchTranslationsByMacrofamilyResultsContainer from "./SearchTranslationsByMacrofamilyResultsContainer.js";
 
-import AreaSearchSelect from "../components/AreaSearchSelect.js";
-import WordSearchSelect from "../components/WordSearchSelect.js";
+import MacrofamilySearchSelect from "../components/MacrofamilySearchSelect.js";
 import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
@@ -25,8 +24,8 @@ class SearchTranslationsByMacrofamily extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedFamily: "",
-      searchedFamily: "",
+      selectedMacrofamily: "",
+      searchedMacrofamily: "",
     };
   }
 
@@ -57,15 +56,15 @@ class SearchTranslationsByMacrofamily extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    this.props.searchTranslationsByMacrofamily(this.state.selectedFamily);
+    this.props.searchTranslationsByMacrofamily(this.state.selectedMacrofamily);
     this.setState({
-      searchedFamily: this.state.selectedFamily,
-      selectedFamily: "",
+      searchedMacrofamily: this.state.selectedMacrofamily,
+      selectedMacrofamily: "",
     });
   };
 
   render() {
-    const macrofamilies =
+    const allMacrofamilies =
       this.props.macrofamilyNames && this.props.macrofamilyNames.length > 0
         ? this.props.macrofamilyNames.map((macrofamily, index) => {
             return macrofamily ? (
@@ -76,27 +75,34 @@ class SearchTranslationsByMacrofamily extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
-          <select
+          {/* <select
             id="select"
             name="selectedFamily"
-            value={this.state.selectedFamily}
+            value={this.state.selectedMacrofamily}
             onChange={this.handleOnChange}
           >
             <option value="">Select One Macrofamily</option>
             {macrofamilies}
-          </select>
+          </select> */}
+          <MacrofamilySearchSelect
+            allMacrofamilies={allMacrofamilies}
+            selectedWord={this.state.selectedWord}
+            handleOnChange={this.handleOnChange}
+          />
           <input
-            disabled={!this.state.selectedFamily}
+            disabled={!this.state.selectedMacrofamily}
             type="submit"
             value="Search"
-            className={this.state.selectedFamily ? "submit-btn" : "disabled"}
+            className={
+              this.state.selectedMacrofamily ? "submit-btn" : "disabled"
+            }
           />
         </form>
         <SearchTranslationsByMacrofamilyResultsContainer
           searchedTranslationsByMacrofamily={
             this.props.searchedTranslationsByMacrofamily
           }
-          searchedFamily={this.state.searchedFamily}
+          searchedMacrofamily={this.state.searchedMacrofamily}
           onHandleDelete={this.onHandleDelete}
           onHandleEdit={this.onHandleEdit}
         />
