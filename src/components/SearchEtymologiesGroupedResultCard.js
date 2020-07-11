@@ -1,22 +1,37 @@
-import React, { Component } from "react";
+import React from "react";
+import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
+import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import { connect } from "react-redux";
 
-class SearchEtymologiesGroupedResultCard extends Component {
-  render() {
-    return (
-      <div className="group-etymology-result-card">
-        <p>
-          <strong>Languages: </strong>
-          {this.props.result[1].join(", ")}
-        </p>
-        <p>
-          <strong>Etymology: </strong>
-          {this.props.result[0] !== "Null"
-            ? this.props.result[0]
-            : "None Found"}
-        </p>
-      </div>
-    );
-  }
-}
+export const SearchEtymologiesGroupedResultCard = (props) => {
+  return (
+    <div className="group-etymology-result-card">
+      <p>
+        <strong>Languages: </strong>
+        {this.props.result[1].join(", ")}
+      </p>
+      <p>
+        <strong>Etymology: </strong>
+        {etymologyFormatHelper(props.translation.etymology)}
+      </p>
+      {props.loggedIn ? (
+        <>
+          <EditAndDeleteButtons
+            onHandleEdit={props.onHandleEdit}
+            onHandleDelete={props.onHandleDelete}
+            translation={props.translation}
+          />
+        </>
+      ) : null}
+    </div>
+  );
+};
 
-export default SearchEtymologiesGroupedResultCard;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(SearchEtymologiesGroupedResultCard);

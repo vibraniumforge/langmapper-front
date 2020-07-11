@@ -1,54 +1,78 @@
-import React, { Component } from "react";
+import React from "react";
+import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
+import { genderHelper } from "../helpers/genderHelper.js";
+import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import { connect } from "react-redux";
 
-class TranslationsByMacrofamilyCard extends Component {
-  render() {
-    return (
-      <div className="etymology-result-card">
-        <p>
-          <strong>Language: </strong>
-          {this.props.result.name}
-        </p>
-        <p>
-          <strong>Word name: </strong>
-          {this.props.result.word_name}
-        </p>
-        <p>
-          <strong>Translation: </strong>
-          {this.props.result.translation}
-        </p>
-        <p>
-          <strong>Romanization: </strong>
-          {this.props.result.romanization}
-        </p>
-        <p>
-          <strong>Gender: </strong>
-          {this.props.result.gender ? this.props.result.gender : null}
-        </p>
-        <p>
-          <strong>Etymology: </strong>
-          {this.props.result.etymology
-            ? this.props.result.etymology.slice(0, 140)
-            : "None found"}
-        </p>
-        <p>
-          <img
-            src={require("../images/wiktionary.ico")}
-            alt="icon"
-            className="wiktionary-icon"
-          />
-          <strong>
-            <a
-              href={this.props.translation.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Wiktionary
-            </a>
-          </strong>
-        </p>
-      </div>
-    );
-  }
-}
+export const SearchTranslationsByMacrofamilyResultCard = (props) => {
+  return (
+    <div className="etymology-result-card">
+      <p>
+        <strong>Language: </strong>
+        {props.translation.name}
+      </p>
+      <p>
+        <strong>Word name: </strong>
+        {props.translation.word_name}
+      </p>
+      <p>
+        <strong>Translation: </strong>
+        {props.translation.translation}
+      </p>
+      <p>
+        <strong>Romanization: </strong>
+        {props.translation.romanization}
+      </p>
+      <p>
+        <strong>Gender: </strong>
+        <strong>
+          <span className="">
+            {genderHelper(
+              props.translation.macrofamily,
+              props.translation.name,
+              props.translation.gender
+            )}
+          </span>
+        </strong>
+      </p>
+      <p>
+        <strong>Etymology: </strong>
+        {etymologyFormatHelper(props.translation.etymology)}
+      </p>
+      <p>
+        <img
+          src={require("../images/wiktionary.ico")}
+          alt="icon"
+          className="wiktionary-icon"
+        />
+        <strong>
+          <a
+            href={props.translation.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Wiktionary
+          </a>
+        </strong>
+        {props.loggedIn ? (
+          <>
+            <EditAndDeleteButtons
+              onHandleEdit={props.onHandleEdit}
+              onHandleDelete={props.onHandleDelete}
+              translation={props.translation}
+            />
+          </>
+        ) : null}
+      </p>
+    </div>
+  );
+};
 
-export default TranslationsByMacrofamilyCard;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(SearchTranslationsByMacrofamilyResultCard);
