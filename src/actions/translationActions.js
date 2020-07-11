@@ -181,6 +181,23 @@ export const clearSearchTranslationsByEtymology = () => {
   };
 };
 
+export const searchTranslationsByMacrofamily = (macrofamily) => {
+  return (dispatch) => {
+    fetch(`${url}/search/translations/macrofamily/${macrofamily}`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({ type: "GET_TRANSLATIONS_BY_MACROFAMILY", payload: res.data })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const clearSearchTranslationsByMacrofamily = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_MACROFAMILY" });
+  };
+};
+
 export const getTranslationsCount = () => {
   return (dispatch) => {
     fetch(`${url}/get/translations/translations_count`)
