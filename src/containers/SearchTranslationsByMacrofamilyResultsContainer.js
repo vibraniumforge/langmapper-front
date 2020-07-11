@@ -12,6 +12,8 @@ class SearchTranslationsByMacrofamilyResultsContainer extends Component {
                 <SearchTranslationsByMacrofamilyResultCard
                   key={index}
                   translation={translation}
+                  onHandleDelete={this.props.onHandleDelete}
+                  onHandleEdit={this.props.onHandleEdit}
                 />
               );
             }
