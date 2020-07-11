@@ -122,13 +122,13 @@ export default function translationReducer(state = initialState, action) {
         searchedTranslationsByWord: action.payload,
         isLoading: false,
       };
-
     case "CLEAR_GET_TRANSLATIONS_BY_WORD":
       return {
         ...state,
         searchedTranslationsByWord: [],
         isLoading: false,
       };
+
     case "GET_SEARCH_AREA":
       return {
         ...state,
@@ -139,6 +139,7 @@ export default function translationReducer(state = initialState, action) {
         ...state,
         searchArea: [],
       };
+
     case "GET_SEARCH_WORD":
       return {
         ...state,
@@ -149,6 +150,7 @@ export default function translationReducer(state = initialState, action) {
         ...state,
         searchWord: [],
       };
+
     case "GET_TRANSLATIONS_BY_WORD_GENDER":
       return {
         ...state,
@@ -161,6 +163,7 @@ export default function translationReducer(state = initialState, action) {
         searchedTranslationsByWordGender: [],
         isLoading: false,
       };
+
     case "GET_TRANSLATIONS_BY_ETYMOLOGY":
       return {
         ...state,
@@ -173,6 +176,7 @@ export default function translationReducer(state = initialState, action) {
         searchedTranslationsByEtymology: [],
         isLoading: false,
       };
+
     case "GET_TRANSLATIONS_BY_MACROFAMILY":
       return {
         ...state,
@@ -185,30 +189,51 @@ export default function translationReducer(state = initialState, action) {
         searchedTranslationsByMacrofamily: [],
         isLoading: false,
       };
-    case "GET_TRANSLATIONS_COUNT":
-      return {
-        ...state,
-        translationsCount: action.payload,
-      };
+
     case "GET_TRANSLATIONS_BY_AREA_IMG":
       return {
         ...state,
         translationMapByArea: action.payload,
         isLoading: false,
       };
+    case "CLEAR_GET_TRANSLATIONS_BY_AREA_IMG":
+      return {
+        ...state,
+        translationMapByArea: [],
+        isLoading: false,
+      };
+
     case "GET_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG":
       return {
         ...state,
         translationMapByEtymology: action.payload,
         isLoading: false,
       };
+    case "CLEAR_GET_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG":
+      return {
+        ...state,
+        translationMapByEtymology: [],
+        isLoading: false,
+      };
+
     case "GET_TRANSLATIONS_BY_AREA_GENDER_IMG":
       return {
         ...state,
         translationMapByGender: action.payload,
         isLoading: false,
       };
+    case "CLEAR_GET_TRANSLATIONS_BY_AREA_GENDER_IMG":
+      return {
+        ...state,
+        translationMapByGender: [],
+        isLoading: false,
+      };
 
+    case "GET_TRANSLATIONS_COUNT":
+      return {
+        ...state,
+        translationsCount: action.payload,
+      };
     default:
       return state;
   }
