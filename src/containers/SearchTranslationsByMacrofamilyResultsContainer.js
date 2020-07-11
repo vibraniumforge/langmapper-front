@@ -4,15 +4,18 @@ import SearchTranslationsByMacrofamilyResultCard from "../components/SearchTrans
 class SearchTranslationsByMacrofamilyResultsContainer extends Component {
   render() {
     const cards =
-      this.props.results && this.props.results.length > 0
-        ? this.props.results.map((result, index) => {
-            return (
-              <SearchTranslationsByMacrofamilyResultCard
-                key={index}
-                result={result}
-              />
-            );
-          })
+      this.props.searchedTranslationsByMacrofamily &&
+      this.props.searchedTranslationsByMacrofamily.length > 0
+        ? this.props.searchedTranslationsByMacrofamily.map(
+            (translation, index) => {
+              return (
+                <SearchTranslationsByMacrofamilyResultCard
+                  key={index}
+                  translation={translation}
+                />
+              );
+            }
+          )
         : null;
 
     return (
