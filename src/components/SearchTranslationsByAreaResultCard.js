@@ -1,6 +1,8 @@
 import React from "react";
 import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
 import { genderHelper } from "../helpers/genderHelper.js";
+import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import { connect } from "react-redux";
 
 export const SearchTranslationsByAreaResultCard = (props) => {
   return (
@@ -61,20 +63,24 @@ export const SearchTranslationsByAreaResultCard = (props) => {
           </a>
         </strong>
       </p>
-      <button
-        onClick={(e) => props.onHandleEdit(e, props.translation.t_id)}
-        className="card-edit-btn"
-      >
-        Edit
-      </button>
-      <button
-        onClick={(e) => props.onHandleDelete(e, props.translation.t_id)}
-        className="card-delete-btn"
-      >
-        Delete
-      </button>
+      {props.loggedIn ? (
+        <>
+          <EditAndDeleteButtons
+            onHandleEdit={props.onHandleEdit}
+            onHandleDelete={props.onHandleDelete}
+            translation={props.translation}
+          />
+        </>
+      ) : null}
     </div>
   );
 };
 
-export default SearchTranslationsByAreaResultCard;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(SearchTranslationsByAreaResultCard);

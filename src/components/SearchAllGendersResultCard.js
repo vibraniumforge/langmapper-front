@@ -1,5 +1,7 @@
 import React from "react";
 import { genderHelper, genderColorHelper } from "../helpers/genderHelper.js";
+import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import { connect } from "react-redux";
 
 export const SearchAllGendersResultCard = (props) => {
   return (
@@ -50,20 +52,21 @@ export const SearchAllGendersResultCard = (props) => {
           </a>
         </strong>
       </p>
-      <button
-        onClick={(e) => props.onHandleEdit(e, props.translation.id)}
-        className="card-edit-btn"
-      >
-        Edit
-      </button>
-      <button
-        onClick={(e) => props.onHandleDelete(e, props.translation.id)}
-        className="card-delete-btn"
-      >
-        Delete
-      </button>
+      {props.loggedIn ? (
+        <>
+          <EditAndDeleteButtons
+            onHandleEdit={props.onHandleEdit}
+            onHandleDelete={props.onHandleDelete}
+            translation={props.translation}
+          />
+        </>
+      ) : null}
     </div>
   );
 };
 
-export default SearchAllGendersResultCard;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(mapStateToProps, null)(SearchAllGendersResultCard);

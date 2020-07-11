@@ -1,4 +1,6 @@
 import React from "react";
+import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import { connect } from "react-redux";
 
 export const ViewAllLanguagesResultCard = (props) => {
   return (
@@ -52,20 +54,21 @@ export const ViewAllLanguagesResultCard = (props) => {
         <strong>Notes: </strong>
         {props.language.notes}
       </p>
-      <button
-        onClick={(e) => props.onHandleEdit(e, props.language.id)}
-        className="card-edit-btn"
-      >
-        Edit
-      </button>
-      <button
-        onClick={(e) => props.onHandleDelete(e, props.language.id)}
-        className="card-delete-btn"
-      >
-        Delete
-      </button>
+      {props.loggedIn ? (
+        <>
+          <EditAndDeleteButtons
+            onHandleEdit={props.onHandleEdit}
+            onHandleDelete={props.onHandleDelete}
+            translation={props.language}
+          />
+        </>
+      ) : null}
     </div>
   );
 };
 
-export default ViewAllLanguagesResultCard;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(mapStateToProps, null)(ViewAllLanguagesResultCard);

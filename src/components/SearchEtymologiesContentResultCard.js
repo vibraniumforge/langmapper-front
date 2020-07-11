@@ -1,5 +1,7 @@
 import React from "react";
 import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
+import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import { connect } from "react-redux";
 
 export const SearchEtymologiesContentResultCard = (props) => {
   return (
@@ -36,20 +38,24 @@ export const SearchEtymologiesContentResultCard = (props) => {
           </a>
         </strong>
       </p>
-      <button
-        onClick={(e) => props.onHandleEdit(e, props.translation.id)}
-        className="card-edit-btn"
-      >
-        Edit
-      </button>
-      <button
-        onClick={(e) => props.onHandleDelete(e, props.translation.id)}
-        className="card-delete-btn"
-      >
-        Delete
-      </button>
+      {props.loggedIn ? (
+        <>
+          <EditAndDeleteButtons
+            onHandleEdit={props.onHandleEdit}
+            onHandleDelete={props.onHandleDelete}
+            translation={props.translation}
+          />
+        </>
+      ) : null}
     </div>
   );
 };
 
-export default SearchEtymologiesContentResultCard;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(SearchEtymologiesContentResultCard);
