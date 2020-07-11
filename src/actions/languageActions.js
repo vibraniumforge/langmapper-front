@@ -1,6 +1,3 @@
-// const url = "http://localhost:3001/api/v1";
-// const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
-
 const url =
   process.env.REACT_APP_NODE_ENV === "development"
     ? "http://localhost:3001/api/v1"
@@ -69,7 +66,7 @@ export const getAllAlphabets = () => {
   };
 };
 
-export const getAllMacrofamilies = () => {
+export const getAllMacrofamilyNames = () => {
   return (dispatch) => {
     fetch(`${url}/get/languages/macrofamily_names`)
       .then((res) => res.json())
