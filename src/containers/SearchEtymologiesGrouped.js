@@ -2,16 +2,13 @@ import React from "react";
 import SearchEtymologiesGroupedResultsContainer from "./SearchEtymologiesGroupedResultsContainer.js";
 import MacrofamilySearchSelect from "../components/MacrofamilySearchSelect.js";
 import WordSearchSelect from "../components/WordSearchSelect.js";
-import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { getWords } from "../actions/wordActions.js";
-
 import { getAllMacrofamilyNames } from "../actions/languageActions.js";
-
 import {
   getTranslationById,
   deleteTranslation,
