@@ -33,7 +33,7 @@ class LanguageForm extends Component {
   componentDidMount() {
     Promise.all([
       this.props.getAllAlphabets(),
-      this.props.getAllMacrofamilies(),
+      this.props.getAllMacrofamilyNames(),
     ]);
   }
 
