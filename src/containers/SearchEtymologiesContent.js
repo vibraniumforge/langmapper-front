@@ -9,6 +9,7 @@ import {
   searchTranslationsByEtymology,
   isLoading,
   clearSearchTranslationsByEtymology,
+  getTranslationById,
 } from "../actions/translationActions.js";
 
 class SearchEtymologiesContent extends React.Component {
@@ -28,6 +29,17 @@ class SearchEtymologiesContent extends React.Component {
 
   handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onHandleEdit = (e, translationId) => {
+    e.preventDefault();
+    this.props.getTranslationById(translationId);
+    this.props.history.push(`/edit_translation/${translationId}`);
+  };
+
+  onHandleDelete = (e, translationId) => {
+    e.preventDefault();
+    this.props.deleteTranslation(translationId);
   };
 
   handleOnSubmit = (e) => {
@@ -68,6 +80,8 @@ class SearchEtymologiesContent extends React.Component {
             }
             isLoadingNow={this.props.isLoadingNow}
             searchedWord={this.state.searchedWord}
+            onHandleDelete={this.onHandleDelete}
+            onHandleEdit={this.onHandleEdit}
           />
         ) : null}
       </>
@@ -87,6 +101,7 @@ const mapDispatchToProps = (dispatch) => {
       searchTranslationsByEtymology,
       isLoading,
       clearSearchTranslationsByEtymology,
+      getTranslationById,
     },
     dispatch
   );
