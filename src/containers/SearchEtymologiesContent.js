@@ -57,8 +57,8 @@ class SearchEtymologiesContent extends React.Component {
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <input
+            id="search-by-ety"
             type="text"
-            id="search"
             name="selectedWord"
             placeholder="Search here"
             className="input"
