@@ -97,15 +97,4 @@ const mapStateToProps = (state) => ({
   loggedIn: state.users.loggedIn,
 });
 
-//   const mapDispatchToProps = (dispatch) => {
-//     return bindActionCreators(
-//       {
-//         loginUser,
-//       },
-//       dispatch
-//     );
-//   };
-
 export default connect(mapStateToProps, null)(App);
-
-// export default App;
