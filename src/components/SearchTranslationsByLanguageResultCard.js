@@ -1,11 +1,18 @@
 import React from "react";
 import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
+import { genderHelper } from "../helpers/genderHelper.js";
 import EditAndDeleteButtons from "./EditAndDeleteButtons";
 import { connect } from "react-redux";
 
 export const SearchTranslationsByLanguageResultCard = (props) => {
   return (
     <div className="translation-result-card">
+      {props.loggedIn ? (
+        <p>
+          <strong>Translation Id: </strong>
+          {props.translation.id}
+        </p>
+      ) : null}
       <p>
         <strong>Word: </strong>
         {props.translation.word_name}
@@ -20,7 +27,15 @@ export const SearchTranslationsByLanguageResultCard = (props) => {
       </p>
       <p>
         <strong>Gender: </strong>
-        {props.translation.gender}
+        <strong>
+          <span className="">
+            {genderHelper(
+              props.translation.macrofamily,
+              props.translation.name,
+              props.translation.gender
+            )}
+          </span>
+        </strong>
       </p>
       <p>
         <strong>Etymology: </strong>
