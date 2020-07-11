@@ -228,6 +228,12 @@ export const searchTranslationsByAreaImg = (area, word) => {
   };
 };
 
+export const clearSearchTranslationsByAreaImg = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_AREA_IMG" });
+  };
+};
+
 export const searchTranslationsByEtymologyImg = (area, word) => {
   console.log("fires");
   return (dispatch) => {
@@ -248,6 +254,12 @@ export const searchTranslationsByEtymologyImg = (area, word) => {
   };
 };
 
+export const clearSearchTranslationsByEtymologyImg = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG" });
+  };
+};
+
 export const searchTranslationsByGenderImg = (area, word) => {
   return (dispatch) => {
     let outside;
@@ -264,6 +276,12 @@ export const searchTranslationsByGenderImg = (area, word) => {
         })
       )
       .catch((err) => console.log(err));
+  };
+};
+
+export const clearSearchTranslationsByGenderImg = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_AREA_GENDER_IMG" });
   };
 };
 
