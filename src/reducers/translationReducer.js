@@ -6,6 +6,7 @@ const initialState = {
   searchedTranslationsByWord: [],
   searchedTranslationsByWordGender: [],
   searchedTranslationsByEtymology: [],
+  searchedTranslationsByMacrofamily: [],
   searchWord: "",
   searchArea: "",
   translationMapByArea: "",
@@ -170,6 +171,18 @@ export default function translationReducer(state = initialState, action) {
       return {
         ...state,
         searchedTranslationsByEtymology: [],
+        isLoading: false,
+      };
+    case "GET_TRANSLATIONS_BY_MACROFAMILY":
+      return {
+        ...state,
+        searchedTranslationsByMacrofamily: action.payload,
+        isLoading: false,
+      };
+    case "CLEAR_GET_TRANSLATIONS_BY_MACROFAMILY":
+      return {
+        ...state,
+        searchedTranslationsByMacrofamily: [],
         isLoading: false,
       };
     case "GET_TRANSLATIONS_COUNT":
