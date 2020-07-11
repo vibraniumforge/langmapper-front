@@ -1,4 +1,6 @@
 import React from "react";
+import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import { connect } from "react-redux";
 
 export const ViewAllWordsResultCard = (props) => {
   return (
@@ -15,20 +17,21 @@ export const ViewAllWordsResultCard = (props) => {
         <strong>Definition: </strong>
         {props.word.definition}
       </p>
-      <button
-        onClick={(e) => props.onHandleEdit(e, props.word.id)}
-        className="card-edit-btn"
-      >
-        Edit
-      </button>
-      <button
-        onClick={(e) => props.onHandleDelete(e, props.word.id)}
-        className="card-delete-btn"
-      >
-        Delete
-      </button>
+      {props.loggedIn ? (
+        <>
+          <EditAndDeleteButtons
+            onHandleEdit={props.onHandleEdit}
+            onHandleDelete={props.onHandleDelete}
+            translation={props.translation}
+          />
+        </>
+      ) : null}
     </div>
   );
 };
 
-export default ViewAllWordsResultCard;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(mapStateToProps, null)(ViewAllWordsResultCard);
