@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import {
   editLanguage,
   getAllAlphabets,
-  getAllMacrofamilies,
+  getAllMacrofamilyNames,
 } from "../actions/languageActions.js";
 
 class LanguageForm extends Component {
@@ -277,7 +277,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
-    { editLanguage, getAllAlphabets, getAllMacrofamilies },
+    { editLanguage, getAllAlphabets, getAllMacrofamilyNames },
     dispatch
   );
 
