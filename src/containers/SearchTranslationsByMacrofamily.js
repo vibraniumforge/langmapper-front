@@ -16,12 +16,6 @@ import { getAllMacrofamilyNames } from "../actions/languageActions.js";
 import {
   getTranslationById,
   deleteTranslation,
-  searchTranslationsByArea,
-  clearGetTranslationsByArea,
-  getSearchArea,
-  clearGetSearchArea,
-  getSearchWord,
-  clearGetSearchWord,
   isLoading,
   searchTranslationsByMacrofamily,
   clearSearchTranslationsByMacrofamily,
@@ -48,6 +42,17 @@ class SearchTranslationsByMacrofamily extends React.Component {
 
   handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onHandleEdit = (e, translationId) => {
+    e.preventDefault();
+    this.props.getTranslationById(translationId);
+    this.props.history.push(`/edit_translation/${translationId}`);
+  };
+
+  onHandleDelete = (e, translationId) => {
+    e.preventDefault();
+    this.props.deleteTranslation(translationId);
   };
 
   handleOnSubmit = (e) => {
@@ -92,6 +97,8 @@ class SearchTranslationsByMacrofamily extends React.Component {
             this.props.searchedTranslationsByMacrofamily
           }
           searchedFamily={this.state.searchedFamily}
+          onHandleDelete={this.onHandleDelete}
+          onHandleEdit={this.onHandleEdit}
         />
       </>
     );
@@ -113,12 +120,6 @@ const mapDispatchToProps = (dispatch) => {
       getWords,
       getTranslationById,
       deleteTranslation,
-      searchTranslationsByArea,
-      clearGetTranslationsByArea,
-      getSearchArea,
-      clearGetSearchArea,
-      getSearchWord,
-      clearGetSearchWord,
       getAllMacrofamilyNames,
       isLoading,
       searchTranslationsByMacrofamily,
