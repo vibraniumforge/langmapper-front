@@ -54,16 +54,16 @@ export const SearchTranslationsByMacrofamilyResultCard = (props) => {
             Wiktionary
           </a>
         </strong>
-        {props.loggedIn ? (
-          <>
-            <EditAndDeleteButtons
-              onHandleEdit={props.onHandleEdit}
-              onHandleDelete={props.onHandleDelete}
-              translation={props.translation}
-            />
-          </>
-        ) : null}
       </p>
+      {props.loggedIn ? (
+        <>
+          <EditAndDeleteButtons
+            onHandleEdit={props.onHandleEdit}
+            onHandleDelete={props.onHandleDelete}
+            translation={props.translation}
+          />
+        </>
+      ) : null}
     </div>
   );
 };
