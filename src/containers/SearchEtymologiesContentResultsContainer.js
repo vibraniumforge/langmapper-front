@@ -11,6 +11,8 @@ class SearchEtymologiesContentResultsContainer extends Component {
               <SearchEtymologiesContentResultCard
                 translation={translation}
                 key={translation.id}
+                onHandleDelete={this.props.onHandleDelete}
+                onHandleEdit={this.props.onHandleEdit}
               />
             );
           })
