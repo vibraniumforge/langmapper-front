@@ -1,78 +1,72 @@
 import React from "react";
 import SearchEtymologiesGroupedResultsContainer from "./SearchEtymologiesGroupedResultsContainer.js";
+import AreaSearchSelect from "../components/AreaSearchSelect.js";
+import WordSearchSelect from "../components/WordSearchSelect.js";
+import Spinner from "../components/Spinner.js";
 
-// const REACT_APP_URL = process.env.REACT_APP_URL;
-// const url = 'http://localhost:3001/api/v1'
-const url = "https://secure-refuge-32252.herokuapp.com/api/v1";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import { getWords } from "../actions/wordActions.js";
+
+import { getAllMacrofamilyNames } from "../actions/languageActions.js";
+
+import {
+  getTranslationById,
+  deleteTranslation,
+  searchTranslationsByArea,
+  clearGetTranslationsByArea,
+  getSearchArea,
+  clearGetSearchArea,
+  getSearchWord,
+  clearGetSearchWord,
+  isLoading,
+} from "../actions/translationActions.js";
 
 class SearchEtymologiesGrouped extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedWord: "",
-      results: [],
       searchedWord: "",
-      macrofamilies: [],
       selectedFamily: "",
       searchedFamily: "",
-      allWords: []
     };
   }
 
   componentDidMount() {
-    fetch(`${url}/search/all_macrofamily_names`)
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          macrofamilies: res.data
-        })
-      )
-      .catch(err => console.log(err));
-    fetch(`${url}/search/all_word_names`)
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          allWords: res.data
-        })
-      )
-      .catch(err => console.log(err));
+    if (this.props.words && this.props.words.length === 0) {
+      this.props.getWords();
+    }
+    if (
+      this.props.macrofamilyNames &&
+      this.props.macrofamilyNames.length === 0
+    ) {
+      this.props.getAllMacrofamilyNames();
+    }
   }
 
-  handleOnChange = e => {
+  handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleOnSubmit = e => {
+  handleOnSubmit = (e) => {
     e.preventDefault();
-    const family =
-      this.state.selectedFamily === ""
-        ? "Indo-European"
-        : this.state.selectedFamily;
-    fetch(
-      `${url}/search/grouped_etymology/${this.state.selectedWord}/${family}`
-    )
-      .then(res => res.json())
-      .then(res =>
-        this.setState({
-          results: res.data,
-          searchedWord: this.state.selectedWord,
-          searchedFamily: this.state.selectedFamily,
-          formInput: ""
-        })
-      )
-      .catch(err => console.log(err));
+
+    // this.props.serachWordByMacro(this.state.selectedWord, this.state.selectedFamily)
   };
 
   render() {
     const allWords =
-      this.state.allWords.length > 0
-        ? this.state.allWords.map(word => {
+      this.props.words.length > 0
+        ? this.props.words.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
     const macrofamilies =
-      this.state.macrofamilies && this.state.macrofamilies.length > 0
-        ? this.state.macrofamilies.map((macrofamily, index) => {
+      this.props.macrofamilyNames && this.props.macrofamilyNames.length > 0
+        ? this.props.macrofamilyNames.map((macrofamily, index) => {
             return macrofamily ? (
               <option key={index}>{macrofamily}</option>
             ) : null;
@@ -80,16 +74,13 @@ class SearchEtymologiesGrouped extends React.Component {
         : null;
     return (
       <>
-        <form onSubmit={e => this.handleOnSubmit(e)}>
-          <select
-            id="select"
-            name="selectedWord"
-            value={this.state.selectedWord}
-            onChange={this.handleOnChange}
-          >
-            <option value="">Select One Word</option>
-            {allWords}
-          </select>
+        <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          <WordSearchSelect
+            allWords={allWords}
+            selectedWord={this.state.selectedWord}
+            handleOnChange={this.handleOnChange}
+          />
+
           <select
             id="select"
             name="selectedFamily"
@@ -116,4 +107,32 @@ class SearchEtymologiesGrouped extends React.Component {
   }
 }
 
-export default SearchEtymologiesGrouped;
+const mapStateToProps = (state) => ({
+  words: state.words.words,
+  macrofamilyNames: state.languages.macrofamilyNames,
+  searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
+  isLoadingNow: state.translations.isLoading,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      getWords,
+      getTranslationById,
+      deleteTranslation,
+      searchTranslationsByArea,
+      clearGetTranslationsByArea,
+      getSearchArea,
+      clearGetSearchArea,
+      getSearchWord,
+      clearGetSearchWord,
+      getAllMacrofamilyNames,
+      isLoading,
+    },
+    dispatch
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchEtymologiesGrouped)
+);
