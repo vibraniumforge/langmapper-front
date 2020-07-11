@@ -6,6 +6,12 @@ import { connect } from "react-redux";
 export const SearchEtymologiesContentResultCard = (props) => {
   return (
     <div className="translation-result-card">
+      {props.loggedIn ? (
+        <p>
+          <strong>Translation Id: </strong>
+          {props.translation.id}
+        </p>
+      ) : null}
       <p>
         <strong>Word: </strong> {props.translation.word_name}
       </p>

@@ -5,10 +5,12 @@ import { connect } from "react-redux";
 export const ViewAllLanguagesResultCard = (props) => {
   return (
     <div className="language-result-card">
-      <p>
-        <strong>ID: </strong>
-        {props.language.id}
-      </p>
+      {props.loggedIn ? (
+        <p>
+          <strong>ID: </strong>
+          {props.language.id}
+        </p>
+      ) : null}
       <p>
         <strong>Name: </strong>
         {props.language.name}

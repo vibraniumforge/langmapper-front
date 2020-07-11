@@ -12,6 +12,12 @@ export const SearchAllGendersResultCard = (props) => {
         props.translation.gender
       )}`}
     >
+      {props.loggedIn ? (
+        <p>
+          <strong>Translation Id: </strong>
+          {props.translation.id}
+        </p>
+      ) : null}
       <p>
         <strong>Family: </strong> {props.translation.family}
       </p>

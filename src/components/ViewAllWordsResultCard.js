@@ -5,10 +5,12 @@ import { connect } from "react-redux";
 export const ViewAllWordsResultCard = (props) => {
   return (
     <div className="word-result-card">
-      <p>
-        <strong>ID: </strong>
-        {props.word.id}
-      </p>
+      {props.loggedIn ? (
+        <p>
+          <strong>ID: </strong>
+          {props.word.id}
+        </p>
+      ) : null}
       <p>
         <strong>Name: </strong>
         {props.word.word_name}
