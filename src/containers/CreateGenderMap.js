@@ -16,6 +16,8 @@ import {
   searchTranslationsByArea,
   searchTranslationsByGenderImg,
   isLoading,
+  clearSearchTranslationsByGenderImg,
+  clearGetTranslationsByArea,
 } from "../actions/translationActions.js";
 
 class CreateGenderMap extends React.Component {
@@ -32,6 +34,8 @@ class CreateGenderMap extends React.Component {
   componentDidMount() {
     this.props.getWordNames();
     this.props.getAllLanguageAreaNames();
+    this.props.clearSearchTranslationsByGenderImg();
+    this.props.clearGetTranslationsByArea();
   }
 
   handleOnChange = (e) => {
@@ -172,6 +176,8 @@ const mapDispatchToProps = (dispatch) => {
       searchTranslationsByArea,
       searchTranslationsByGenderImg,
       isLoading,
+      clearSearchTranslationsByGenderImg,
+      clearGetTranslationsByArea,
     },
     dispatch
   );

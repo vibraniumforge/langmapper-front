@@ -16,6 +16,8 @@ import {
   searchTranslationsByArea,
   searchTranslationsByEtymologyImg,
   isLoading,
+  clearSearchTranslationsByEtymologyImg,
+  clearGetTranslationsByArea,
 } from "../actions/translationActions.js";
 
 class CreateEtymologyMap extends React.Component {
@@ -32,6 +34,8 @@ class CreateEtymologyMap extends React.Component {
   componentDidMount() {
     this.props.getWordNames();
     this.props.getAllLanguageAreaNames();
+    this.props.clearSearchTranslationsByEtymologyImg();
+    this.props.clearGetTranslationsByArea();
   }
 
   handleOnChange = (e) => {
@@ -171,6 +175,8 @@ const mapDispatchToProps = (dispatch) => {
       searchTranslationsByArea,
       searchTranslationsByEtymologyImg,
       isLoading,
+      clearSearchTranslationsByEtymologyImg,
+      clearGetTranslationsByArea,
     },
     dispatch
   );
