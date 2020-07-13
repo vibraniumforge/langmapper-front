@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 class Navbar extends Component {
   render() {
     return (
-      <div id="non-admin-navbar" className="non-admin-navbar">
+      <div id="navbar" className="non-admin-navbar">
         <NavLink activeClassName="selected" exact to="/">
           Home
         </NavLink>
