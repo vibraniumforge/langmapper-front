@@ -27,37 +27,6 @@ li {
   font-size: 20px;
 }
 
-#navbar {
-  padding: 10px;
-  font-size: 20px;
-  text-align: center;
-  font-weight: bold;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-#navbar a {
-  margin: 16px;
-  color: black;
-  text-decoration: none;
-}
-
-#navbar a.selected {
-  border-bottom: 3px solid red;
-}
-
-#navbar a:hover {
-  background-color: white;
-}
-
-.non-admin-navbar {
-  background-color: lightgray;
-}
-
-.admin-navbar {
-  background-color: lightgreen;
-}
-
 #new-lang-form {
   margin-left: 25%;
   max-width: 50%;
@@ -139,171 +108,8 @@ select {
   justify-content: center;
 }
 
-.male {
-  color: blue;
-  background-color: powderblue;
-  border: 10px solid blue;
-}
-
-.female {
-  color: red;
-  background-color: pink;
-  border: 10px solid red;
-}
-
-.neuter {
-  color: gray;
-  background-color: white;
-  border: 10px solid silver;
-}
-
-.missing {
-  color: black;
-  background-color: white;
-  border: none;
-}
-
-.none {
-  color: black;
-  background-color: white;
-  border: 10px solid black;
-}
-
-.male-result {
-  color: blue;
-}
-
-.female-result {
-  color: red;
-}
-
-.neuter-result {
-  color: gray;
-}
-
-.missing-result {
-  color: black;
-}
-
-.none-result {
-  color: black;
-}
-
-.gender-result-card {
-  height: 200px;
-  width: 20%;
-  margin: 10px;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.word-result-card {
-  height: 200px;
-  border: 10px solid blue;
-  width: 20%;
-  margin: 10px;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.translation-result-card {
-  height: 200px;
-  border: 10px solid blue;
-  width: 20%;
-  margin: 10px;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.group-etymology-result-card {
-  background-color: white;
-  color: black;
-  border: 10px solid blue;
-  height: 200px;
-  float: left;
-  width: 25%;
-  margin: 10px;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.etymology-result-card {
-  background-color: white;
-  color: black;
-  border: 10px solid blue;
-  height: 200px;
-  width: 24%;
-  margin: 5px;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.language-result-card {
-  background-color: white;
-  color: black;
-  border: 10px solid blue;
-  height: 200px;
-  width: 24%;
-  margin: 5px;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
 button {
   cursor: pointer;
-}
-
-.submit-btn {
-  margin: 10px;
-  font-size: 24px;
-  border: 2px solid black;
-  color: black;
-  background-color: lightgreen;
-}
-
-.clear-btn {
-  margin: 10px;
-  font-size: 20px;
-  border: 2px solid black;
-  color: black;
-  background-color: yellow;
-}
-
-.cancel-btn {
-  margin: 10px;
-  font-size: 20px;
-  border: 2px solid black;
-  color: black;
-  background-color: red;
-}
-
-.disabled {
-  margin: 10px;
-  font-size: 20px;
-  border: 2px solid black;
-  color: white;
-  background-color: gray;
-}
-
-.card-edit-btn {
-  font-size: 20px;
-  border: 2px solid black;
-  color: black;
-  background-color: yellow;
-  margin: 5px;
-}
-
-.card-delete-btn {
-  font-size: 20px;
-  border: 2px solid black;
-  color: black;
-  background-color: red;
 }
 
 input {
@@ -319,44 +125,6 @@ textarea {
   height: 200px;
   margin-left: 20px;
   font-size: 24px;
-}
-
-table {
-  width: 90%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-  color: black;
-  background-color: white;
-  font-size: 20px;
-  /* font-weight: bold; */
-  padding: 30px;
-}
-
-thead {
-  padding-bottom: 15px;
-  color: black;
-  background-color: lightgray;
-}
-
-td {
-  padding-bottom: 15px;
-  padding-left: 15px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
-
-/* .table-etymology {
-  padding-left: 20px;
-} */
-
-.table-edit-btn {
-  font-size: 20px;
-  border: 2px solid black;
-  color: yellow;
-  background-color: black;
-  margin: 5px;
 }
 
 #landing-page {
@@ -392,91 +160,7 @@ td {
 .wiktionary-icon {
   height: 1em;
   padding-right: 0.5em;
-}
-
-/* ++++++++++++++++++++++++ */
-
-.search {
-  width: 30rem;
-  margin: 2rem auto 2rem auto;
-  text-align: right;
-  position: relative;
-}
-
-.search-box {
-  border: 4px solid transparent;
-  border-radius: 2px;
-  font-size: 2rem;
-  width: 100%;
-  padding: 1rem;
-  transition: width 0.3s;
-  /* border: 1px solid #08a1b6; */
-  border: 1px solid blue;
-}
-.search-box:focus {
-  width: 100%;
-  outline: none;
-  border: 4px solid blue;
-}
-.search-btn {
-  height: 100%;
-  width: 4em;
-  margin-top: -2em;
-  position: absolute;
-  top: 50%;
-  right: 0.5rem;
-
-  opacity: 0.2;
-  background-color: transparent;
-  border: 0;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-image: url("./images/search.png");
-}
-
-.search-btn:hover {
-  outline: none;
-  opacity: 0.4;
-  cursor: pointer;
-}
-
-.search-btn:focus {
-  outline: none;
-  opacity: 0.6;
-}
-
-ul.options {
-  display: block;
-  list-style: none;
-  width: 30rem;
-  transition: width 0.3s;
-  margin: auto;
-  position: relative;
-}
-
-ul.options li {
-  display: block;
-  background: white;
-  margin: 10px auto;
-  padding: 10px;
-  font-size: 1.2rem;
-  width: 100%;
-  border-radius: 2px;
-}
-ul.options li:hover {
-  font-weight: bold;
-  color: blue;
-  cursor: pointer;
-  transition: 0.3s all;
-}
-
-ul.options li.option-active {
-  background: whitesmoke;
-  font-size: 1.5rem;
-  color: #00b4cc;
-}
-.no-options {
-  color: white;
+  padding-top: 2px;
 }
 
 .map {
@@ -486,8 +170,8 @@ ul.options li.option-active {
 
 .spinner {
   /* position: absolute;
-  left: 50%;
-  top: 50%; */
+      left: 50%;
+      top: 50%; */
   margin: auto;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
