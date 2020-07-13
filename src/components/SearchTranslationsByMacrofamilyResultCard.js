@@ -7,20 +7,22 @@ import { connect } from "react-redux";
 export const SearchTranslationsByMacrofamilyResultCard = (props) => {
   return (
     <div className="translation-result-card">
+      <h1>{props.translation.name}</h1>
+      <h3>{props.translation.word_name}</h3>
       {props.loggedIn ? (
         <p>
           <strong>Translation Id: </strong>
           {props.translation.id}
         </p>
       ) : null}
-      <p>
+      {/* <p>
         <strong>Language: </strong>
         {props.translation.name}
-      </p>
-      <p>
+      </p> */}
+      {/* <p>
         <strong>Word name: </strong>
         {props.translation.word_name}
-      </p>
+      </p> */}
       <p>
         <strong>Translation: </strong>
         {props.translation.translation}
