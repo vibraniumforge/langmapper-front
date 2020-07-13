@@ -1,0 +1,69 @@
+.gender-result-card {
+  /* height: 200px;
+    width: 20%;
+    margin: 10px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: scroll; */
+  height: auto;
+  border: 5px solid green;
+  width: 20%;
+  margin: 10px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 4px;
+  background-color: #f8f0e0;
+  border-radius: 25px;
+  color: black;
+}
+
+.male {
+  color: blue;
+  background-color: powderblue;
+  border: 10px solid blue;
+}
+
+.female {
+  color: red;
+  background-color: pink;
+  border: 10px solid red;
+}
+
+.neuter {
+  color: gray;
+  background-color: lightgray;
+  border: 10px solid gray;
+}
+
+.missing {
+  color: black;
+  background-color: white;
+  border: none;
+}
+
+.none {
+  color: black;
+  background-color: white;
+  border: 10px solid black;
+}
+
+.male-result {
+  color: blue;
+}
+
+.female-result {
+  color: red;
+}
+
+.neuter-result {
+  color: gray;
+}
+
+.missing-result {
+  color: black;
+}
+
+.none-result {
+  color: black;
+}

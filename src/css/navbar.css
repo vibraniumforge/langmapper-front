@@ -1,0 +1,30 @@
+#navbar {
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+#navbar a {
+  margin: 16px;
+  color: black;
+  text-decoration: none;
+}
+
+#navbar a.selected {
+  border-bottom: 3px solid red;
+}
+
+#navbar a:hover {
+  background-color: white;
+}
+
+.non-admin-navbar {
+  background-color: lightgray;
+}
+
+.admin-navbar {
+  background-color: lightgreen;
+}

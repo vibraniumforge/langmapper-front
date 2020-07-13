@@ -1,0 +1,33 @@
+table {
+  width: 90%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  color: black;
+  background-color: white;
+  font-size: 20px;
+  /* font-weight: bold; */
+  padding: 30px;
+}
+
+thead {
+  padding-bottom: 15px;
+  color: black;
+  background-color: lightgray;
+}
+
+td {
+  padding-bottom: 15px;
+  padding-left: 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.table-edit-btn {
+  font-size: 20px;
+  border: 2px solid black;
+  color: yellow;
+  background-color: black;
+  margin: 5px;
+}
