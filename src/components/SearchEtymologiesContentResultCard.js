@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 export const SearchEtymologiesContentResultCard = (props) => {
   return (
     <div className="translation-result-card">
+      {/* <h1>{props.translation.name}</h1> */}
       {props.loggedIn ? (
         <p>
           <strong>Translation Id: </strong>

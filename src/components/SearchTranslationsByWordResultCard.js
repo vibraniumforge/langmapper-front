@@ -7,6 +7,11 @@ import { connect } from "react-redux";
 export const SearchTranslationsByWordResultCard = (props) => {
   return (
     <div className="translation-result-card">
+      <h1>{props.translation.name}</h1>
+      {/* <p>
+        <strong>Language: </strong>
+        
+      </p> */}
       {props.loggedIn ? (
         <p>
           <strong>Translation Id: </strong>
@@ -14,12 +19,8 @@ export const SearchTranslationsByWordResultCard = (props) => {
         </p>
       ) : null}
       <p>
-        <strong>Language: </strong>
-        {props.translation.name}
-      </p>
-      <p>
-        <strong>Translation: </strong>
-        {props.translation.translation}
+        Translation:
+        <strong> {props.translation.translation} </strong>
       </p>
       <p>
         <strong>Romanization: </strong>

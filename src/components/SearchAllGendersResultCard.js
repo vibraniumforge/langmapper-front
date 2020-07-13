@@ -12,6 +12,7 @@ export const SearchAllGendersResultCard = (props) => {
         props.translation.gender
       )}`}
     >
+      <h1>{props.translation.name}</h1>
       {props.loggedIn ? (
         <p>
           <strong>Translation Id: </strong>
@@ -21,9 +22,9 @@ export const SearchAllGendersResultCard = (props) => {
       <p>
         <strong>Family: </strong> {props.translation.family}
       </p>
-      <p>
+      {/* <p>
         <strong>Language: </strong> {props.translation.name}
-      </p>
+      </p> */}
       <p>
         <strong>Translation: </strong> {props.translation.translation}
       </p>

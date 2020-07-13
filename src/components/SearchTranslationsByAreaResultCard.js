@@ -7,16 +7,17 @@ import { connect } from "react-redux";
 export const SearchTranslationsByAreaResultCard = (props) => {
   return (
     <div className="translation-result-card">
+      <h1>{props.translation.name}</h1>
       {props.loggedIn ? (
         <p>
           <strong>Translation Id: </strong>
           {props.translation.id}
         </p>
       ) : null}
-      <p>
+      {/* <p>
         <strong>Language: </strong>
         {props.translation.name}
-      </p>
+      </p> */}
       <p>
         <strong>Macrofamily: </strong>
         {props.translation.macrofamily}
