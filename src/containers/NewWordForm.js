@@ -48,7 +48,7 @@ class NewWordForm extends Component {
             type="submit"
             value="Submit"
             className={
-              this.state.wordName.length > 0 ? "submit-btn" : "disabled"
+              this.state.wordName.length > 0 ? "submit-btn" : "disabled-btn"
             }
             disabled={!this.state.wordName.length === 0}
           />

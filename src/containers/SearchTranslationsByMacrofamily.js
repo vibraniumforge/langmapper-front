@@ -90,7 +90,7 @@ class SearchTranslationsByMacrofamily extends React.Component {
             type="submit"
             value="Search"
             className={
-              this.state.selectedMacrofamily ? "submit-btn" : "disabled"
+              this.state.selectedMacrofamily ? "submit-btn" : "disabled-btn"
             }
           />
         </form>

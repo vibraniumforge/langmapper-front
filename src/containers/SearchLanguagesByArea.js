@@ -80,7 +80,7 @@ class SearchLanguagesByArea extends React.Component {
             disabled={!this.state.selectedArea}
             type="submit"
             value="Search"
-            className={this.state.selectedArea ? "submit-btn" : "disabled"}
+            className={this.state.selectedArea ? "submit-btn" : "disabled-btn"}
           />
         </form>
         <SearchLanguagesByAreaResultsContainer

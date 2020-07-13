@@ -69,7 +69,7 @@ class SearchEtymologiesContent extends React.Component {
             disabled={!this.state.selectedWord}
             type="submit"
             value="Search"
-            className={this.state.selectedWord ? "submit-btn" : "disabled"}
+            className={this.state.selectedWord ? "submit-btn" : "disabled-btn"}
           />
         </form>
         {this.state.searchedWord &&

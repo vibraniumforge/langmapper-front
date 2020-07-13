@@ -98,7 +98,9 @@ class EditWordForm extends Component {
           <input
             type="submit"
             value="Submit"
-            className={this.state.wordDefinition ? "submit-btn" : "disabled"}
+            className={
+              this.state.wordDefinition ? "submit-btn" : "disabled-btn"
+            }
             disabled={!this.state.wordDefinition}
           />
           <button type="button" className="clear-btn" onClick={this.clearForm}>

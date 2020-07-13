@@ -116,7 +116,7 @@ class SearchTranslationsByArea extends React.Component {
             className={
               this.state.selectedArea && this.state.selectedWord
                 ? "submit-btn"
-                : "disabled"
+                : "disabled-btn"
             }
             disabled={!this.state.selectedArea && this.state.selectedWord}
           />

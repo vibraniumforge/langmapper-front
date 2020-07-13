@@ -249,7 +249,7 @@ class LanguageForm extends Component {
           </div>
           <input
             type="submit"
-            className={this.state.name ? "submit-btn" : "disabled"}
+            className={this.state.name ? "submit-btn" : "disabled-btn"}
             value="Update"
             disabled={!this.state.name}
           />
