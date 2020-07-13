@@ -12,7 +12,7 @@ const genderlessLangs = [
 
 const genderHelper = (macrofamily, language, gender) => {
   if (
-    !genderedFamilies.includes(macrofamily) ||
+    (macrofamily && !genderedFamilies.includes(macrofamily)) ||
     genderlessLangs.includes(language)
   ) {
     return "N/A";
