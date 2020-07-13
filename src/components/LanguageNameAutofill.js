@@ -97,7 +97,7 @@ export class LanguageNameAutofill extends Component {
 
     return (
       <React.Fragment>
-        <div className="search">
+        <div className="search-autofill">
           <input
             type="text"
             className="search-box"
