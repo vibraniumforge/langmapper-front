@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 export const SearchEtymologiesGroupedResultCard = (props) => {
   return (
-    <div className="group-etymology-result-card">
+    <div className="translation-result-card">
       <p>
         <strong>Languages: </strong>
         {this.props.result[1].join(", ")}
