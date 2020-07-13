@@ -2,7 +2,7 @@ import React from "react";
 
 const EditAndDeleteButtons = (props) => {
   return (
-    <>
+    <div id="edit-delete-buttons">
       <button
         onClick={(e) => props.onHandleEdit(e, props.translation.id)}
         className="card-edit-btn"
@@ -15,7 +15,7 @@ const EditAndDeleteButtons = (props) => {
       >
         Delete
       </button>{" "}
-    </>
+    </div>
   );
 };
 
