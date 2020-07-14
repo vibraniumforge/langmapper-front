@@ -27,13 +27,6 @@ li {
   font-size: 20px;
 }
 
-#new-lang-form {
-  margin-left: 25%;
-  max-width: 50%;
-  background-color: lightgray;
-  padding: 10px;
-}
-
 label {
   font-size: 16px;
   font-weight: bold;
