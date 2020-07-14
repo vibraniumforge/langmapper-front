@@ -10,7 +10,7 @@ import "./css/cards.css";
 import "./css/gender.css";
 import "./css/navbar.css";
 import "./css/table.css";
-import "./css/translationForm.css";
+import "./css/forms.css";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
