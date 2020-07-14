@@ -5,13 +5,14 @@
   padding: 10px;
   border: 2px solid black;
   border-radius: 15px;
+  margin-top: 30px;
 }
 
 .form-row {
   display: flex;
-  flex-wrap: wrap;
-  /* margin-left: -5px;
-    margin-right: -5px; */
+  /* flex-wrap: wrap; */
+  margin-left: -5px;
+  margin-right: -5px;
 }
 
 .form-group {
@@ -26,7 +27,16 @@
   padding-right: 5px;
   padding-left: 5px;
   box-sizing: border-box;
-  margin-bottom: 1rem;
+}
+
+.one-third-col {
+  flex: 0 0 33%;
+  max-width: 33%;
+  position: relative;
+  padding-right: 5px;
+  padding-left: 5px;
+  box-sizing: border-box;
+  margin-right: 5px;
 }
 
 .quarter-col {
@@ -35,7 +45,6 @@
   padding-right: 5px;
   padding-left: 5px;
   box-sizing: border-box;
-  margin-bottom: 1rem;
 }
 
 .three-quarter-col {
@@ -44,17 +53,14 @@
   padding-right: 5px;
   padding-left: 5px;
   box-sizing: border-box;
-  margin-bottom: 1rem;
 }
 
 .full-col {
   flex: 0 0 100%;
-
   max-width: 100%;
   padding-right: 5px;
   padding-left: 5px;
   box-sizing: border-box;
-  margin-bottom: 1rem;
 }
 
 .form-control {
@@ -86,10 +92,26 @@
 }
 
 #edit-word-form {
+  margin-top: 30px;
   margin-left: 25%;
   max-width: 50%;
   background-color: lightgray;
   padding: 10px;
   border: 2px solid black;
   border-radius: 15px;
+  margin-top: 30px;
+}
+
+#edit-language-form {
+  margin-left: 25%;
+  max-width: 50%;
+  background-color: lightgray;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+
+.form-select {
+  margin: 0px;
 }
