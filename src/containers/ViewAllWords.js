@@ -14,7 +14,9 @@ import {
 
 class ViewAllWords extends Component {
   componentDidMount() {
-    this.props.getWords();
+    if (this.props.words.length === 0) {
+      this.props.getWords();
+    }
   }
 
   onHandleDelete = (e, wordId) => {
@@ -25,7 +27,6 @@ class ViewAllWords extends Component {
   onHandleEdit = (e, wordId) => {
     e.preventDefault();
     this.props.getWordById(wordId);
-
     this.props.history.push(`/edit_word/${wordId}`);
   };
 
