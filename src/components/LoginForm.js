@@ -17,7 +17,7 @@ class Login extends Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
     this.props.loginUser(this.state.username, this.state.password);
-    // this.props.history.push("/search_translations");
+    this.props.history.push("/search_translations");
     this.setState({
       username: "",
       password: "",
@@ -50,7 +50,7 @@ class Login extends Component {
             <label htmlFor="password">Password: </label>
             <input
               id="password"
-              type="text"
+              type="password"
               name="password"
               placeholder="password"
               value={this.state.password}
