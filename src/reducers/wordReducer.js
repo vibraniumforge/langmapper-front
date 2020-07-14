@@ -56,6 +56,12 @@ export default function wordReducer(state = initialState, action) {
         ...state,
         wordDefinition: action.payload,
       };
+
+    case "CLEAR_GET_WORD_BY_ID":
+      return {
+        ...state,
+        wordToUpdate: "",
+      };
     default:
       return state;
   }

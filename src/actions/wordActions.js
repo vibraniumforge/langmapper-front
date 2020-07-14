@@ -104,3 +104,9 @@ export const getWordDefinition = (word) => {
       .catch((err) => console.log(err));
   };
 };
+
+export const clearGetWordById = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_WORD_BY_ID" });
+  };
+};
