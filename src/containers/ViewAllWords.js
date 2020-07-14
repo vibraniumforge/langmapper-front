@@ -23,9 +23,9 @@ class ViewAllWords extends Component {
   };
 
   onHandleEdit = (e, wordId) => {
-    console.log("fires");
     e.preventDefault();
     this.props.getWordById(wordId);
+
     this.props.history.push(`/edit_word/${wordId}`);
   };
 
