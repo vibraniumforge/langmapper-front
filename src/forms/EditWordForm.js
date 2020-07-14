@@ -4,13 +4,14 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { editWord } from "../actions/wordActions.js";
+import { editWord, clearGetWordById } from "../actions/wordActions.js";
 
 class EditWordForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       wordDefinition: "",
+      isChanged: false,
     };
   }
 
@@ -23,15 +24,19 @@ class EditWordForm extends Component {
   //   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props.wordDefinition && this.props.wordDefinition.length > 0) {
-      this.setState({ wordDefinition: this.props.wordDefinition });
-    }
     if (this.props.wordDefinition !== nextProps.wordDefinition) {
       if (nextProps.wordDefinition === null) {
         this.setState({ wordDefinition: " " });
       } else {
         this.setState({ wordDefinition: nextProps.wordDefinition });
       }
+    }
+    if (
+      this.props.wordDefinition &&
+      this.props.wordDefinition.length > 0
+      //   && this.props.wordDefinition !== nextProps.wordDefinition
+    ) {
+      this.setState({ wordDefinition: this.props.wordDefinition });
     }
   }
 
@@ -52,6 +57,9 @@ class EditWordForm extends Component {
 
   handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+    if (!this.state.isChanged) {
+      this.setState({ isChanged: true });
+    }
   };
 
   handleOnSubmit = (e) => {
@@ -67,26 +75,42 @@ class EditWordForm extends Component {
 
   clearForm = () => {
     this.setState({ wordDefinition: "" });
+    this.props.clearGetWordById();
   };
 
   cancelFormAction = () => {
     this.props.history.push("/all_words");
     this.clearForm();
-    this.props.clearGetWordById();
   };
 
   render() {
-    return this.props.wordDefinition ||
-      (!this.props.wordDefinition && this.state.wordDefinition) ? (
+    console.log(this.props.wordToUpdate);
+    // return this.props.wordDefinition ||
+    //   (!this.props.wordDefinition && this.state.wordDefinition) ? (
+    return this.props.wordToUpdate &&
+      this.props.wordToUpdate.word_name.length > 0 ? (
       <div>
         <form id="edit-word-form" onSubmit={(e) => this.handleOnSubmit(e)}>
           <h2>
-            Edit:{" "}
+            {/* Edit:{" "}
             {this.props.wordToUpdate
               ? this.props.wordToUpdate.word_name.charAt(0).toUpperCase() +
                 this.props.wordToUpdate.word_name.slice(1)
-              : null}
+              : null} */}
+            Edit a Word
           </h2>
+          <div className="full-col">
+            <label className="same-line" htmlFor="word-name">
+              Word:
+            </label>
+            <input
+              id="word-name"
+              type="text"
+              value={this.props.wordToUpdate.word_name || ""}
+              onChange={this.handleOnChange}
+              disabled
+            />
+          </div>
           <div className="form-row">
             <div className="full-col">
               <label className="same-line" htmlFor="word-definition">
@@ -106,9 +130,11 @@ class EditWordForm extends Component {
             type="submit"
             value="Submit"
             className={
-              this.state.wordDefinition ? "submit-btn" : "disabled-btn"
+              this.state.wordDefinition && this.state.isChanged
+                ? "submit-btn"
+                : "disabled-btn"
             }
-            disabled={!this.state.wordDefinition}
+            disabled={!this.state.wordDefinition && !this.state.isChanged}
           />
           <button type="button" className="clear-btn" onClick={this.clearForm}>
             Clear Form
@@ -134,7 +160,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ editWord }, dispatch);
+  return bindActionCreators({ editWord, clearGetWordById }, dispatch);
 };
 
 export default withRouter(
