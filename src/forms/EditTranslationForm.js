@@ -39,7 +39,10 @@ class TranslationForm extends Component {
   }
 
   handleOnChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value, isChanged: true });
+    this.setState({ [e.target.name]: e.target.value });
+    if (!this.state.isChanged) {
+      this.setState({ isChanged: true });
+    }
   };
 
   handleOnSubmit = (e) => {
