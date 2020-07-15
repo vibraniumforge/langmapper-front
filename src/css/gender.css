@@ -21,19 +21,19 @@
 .male {
   color: blue;
   background-color: powderblue;
-  border: 10px solid blue;
+  border: 5px solid blue;
 }
 
 .female {
   color: red;
   background-color: pink;
-  border: 10px solid red;
+  border: 5px solid red;
 }
 
 .neuter {
   color: gray;
   background-color: lightgray;
-  border: 10px solid gray;
+  border: 5px solid gray;
 }
 
 .missing {
@@ -45,7 +45,7 @@
 .none {
   color: black;
   background-color: white;
-  border: 10px solid black;
+  border: 5px solid black;
 }
 
 .male-result {
