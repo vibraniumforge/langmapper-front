@@ -110,3 +110,9 @@ export const clearGetWordById = () => {
     dispatch({ type: "CLEAR_GET_WORD_BY_ID" });
   };
 };
+
+export const clearGetWordDefinition = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_WORD_DEFINITION" });
+  };
+};
