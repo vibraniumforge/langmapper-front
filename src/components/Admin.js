@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import LoginForm from "./LoginForm.js";
-import LogoutForm from "./LogoutForm.js";
+import LoginForm from "../forms/LoginForm.js";
+import LogoutForm from "../forms/LogoutForm.js";
 
 class Login extends Component {
   render() {
