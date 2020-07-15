@@ -21,6 +21,7 @@ class SearchTranslationsByWordResultsContainer extends Component {
     return (
       <>
         <h3>Word: {this.props.searchedWord}</h3>
+        <h3>Definition: {this.props.definition}</h3>
         <div id="card-container">{cards}</div>
       </>
     );
