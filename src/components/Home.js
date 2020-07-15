@@ -5,11 +5,9 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { getLanguagesCount } from "../actions/languageActions";
-
-import { getTranslationsCount } from "../actions/translationActions";
-
+import { getTranslationsCount, isLoading } from "../actions/translationActions";
 import { getWordsCount } from "../actions/wordActions";
-
+import Spinner from "./Spinner.js";
 class Home extends React.Component {
   componentDidMount() {
     this.props.getWordsCount();
@@ -98,7 +96,9 @@ class Home extends React.Component {
           </ol>
         </div>
       </>
-    ) : null;
+    ) : (
+      <Spinner isLoading={this.props.isLoading} />
+    );
   }
 }
 
@@ -114,6 +114,7 @@ const mapDispatchToProps = (dispatch) =>
       getWordsCount,
       getTranslationsCount,
       getLanguagesCount,
+      isLoading,
     },
     dispatch
   );

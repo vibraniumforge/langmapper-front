@@ -5,12 +5,16 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
+import { isLoading } from "../actions/translationActions.js";
+
 import {
   getLanguages,
   getLanguageById,
   editLanguage,
   deleteLanguage,
 } from "../actions/languageActions.js";
+
+import Spinner from "../components/Spinner.js";
 
 class ViewAllLanguages extends Component {
   componentDidMount() {
@@ -31,11 +35,15 @@ class ViewAllLanguages extends Component {
   render() {
     return (
       <>
-        <ViewAllLanguagesResultsContainer
-          onHandleDelete={this.onHandleDelete}
-          onHandleEdit={this.onHandleEdit}
-          languages={this.props.languages}
-        />
+        {this.props.languages.length > 0 ? (
+          <ViewAllLanguagesResultsContainer
+            onHandleDelete={this.onHandleDelete}
+            onHandleEdit={this.onHandleEdit}
+            languages={this.props.languages}
+          />
+        ) : (
+          <Spinner isLoading={this.props.isLoading} />
+        )}
       </>
     );
   }
@@ -52,6 +60,7 @@ const mapDispatchToProps = (dispatch) => {
       getLanguageById,
       editLanguage,
       deleteLanguage,
+      isLoading,
     },
     dispatch
   );
