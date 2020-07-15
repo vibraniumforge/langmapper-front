@@ -19,8 +19,8 @@ export const SearchTranslationsByWordResultCard = (props) => {
         </p>
       ) : null}
       <p>
-        Translation:
-        <strong> {props.translation.translation} </strong>
+        <strong> Translation:</strong>
+        {props.translation.translation}
       </p>
       <p>
         <strong>Romanization: </strong>
