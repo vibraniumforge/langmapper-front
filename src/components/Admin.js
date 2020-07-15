@@ -8,7 +8,12 @@ import LogoutForm from "../forms/LogoutForm.js";
 
 class Login extends Component {
   render() {
-    return <>{this.props.loggedIn ? <LogoutForm /> : <LoginForm />}</>;
+    return (
+      <div>
+        <p>{this.props.loggedIn ? "Logged in" : "Not logged in"}</p>
+        {this.props.loggedIn ? <LogoutForm /> : <LoginForm />}
+      </div>
+    );
   }
 }
 
