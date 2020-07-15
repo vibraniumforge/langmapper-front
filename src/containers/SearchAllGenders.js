@@ -1,6 +1,6 @@
 import React from "react";
 import SearchAllGendersResultsContainer from "./SearchAllGendersResultsContainer.js";
-import WordSearchSelect from "../components/WordSearchSelect.js";
+import WordSearchSelect from "../selects/WordSearchSelect.js";
 import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";

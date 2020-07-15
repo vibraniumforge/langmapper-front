@@ -1,6 +1,6 @@
 import React from "react";
 import SearchLanguagesByAreaResultsContainer from "./SearchLanguagesByAreaResultsContainer.js";
-import AreaSearchSelect from "../components/AreaSearchSelect.js";
+import AreaSearchSelect from "../selects/AreaSearchSelect.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";

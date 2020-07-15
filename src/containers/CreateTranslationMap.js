@@ -1,7 +1,7 @@
 import React from "react";
 import CreateTranslationMapResultsContainer from "./CreateTranslationMapResultsContainer.js";
 // import AreaSearchSelect from "../components/AreaSearchSelect.js";
-import WordSearchSelect from "../components/WordSearchSelect.js";
+import WordSearchSelect from "../selects/WordSearchSelect.js";
 import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";

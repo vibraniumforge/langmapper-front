@@ -1,7 +1,7 @@
 import React from "react";
 import SearchEtymologiesGroupedResultsContainer from "./SearchEtymologiesGroupedResultsContainer.js";
-import MacrofamilySearchSelect from "../components/MacrofamilySearchSelect.js";
-import WordSearchSelect from "../components/WordSearchSelect.js";
+import MacrofamilySearchSelect from "../selects/MacrofamilySearchSelect.js";
+import WordSearchSelect from "../selects/WordSearchSelect.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";

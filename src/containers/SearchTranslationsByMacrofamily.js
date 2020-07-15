@@ -1,6 +1,6 @@
 import React from "react";
 import SearchTranslationsByMacrofamilyResultsContainer from "./SearchTranslationsByMacrofamilyResultsContainer.js";
-import MacrofamilySearchSelect from "../components/MacrofamilySearchSelect.js";
+import MacrofamilySearchSelect from "../selects/MacrofamilySearchSelect.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
