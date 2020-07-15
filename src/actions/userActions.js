@@ -59,20 +59,31 @@ export const loginUser = (username, password) => {
       }),
     };
     fetch(`${url}/auth/login`, data)
+      .then((res) => res.json())
+      //   .then((res) => {
+      //     console.log(res);
+      //     return res;
+      //   })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
+        if (res.success) {
+          console.log("OK");
+          localStorage.setItem("jwt", res.jwt);
+          dispatch({
+            type: "SET_CURRENT_USER",
+            payload: res.data,
+          });
         } else {
+          console.log("NOT OK");
           throw res;
         }
       })
-      .then((res) => {
-        localStorage.setItem("jwt", res.jwt);
-        dispatch({
-          type: "SET_CURRENT_USER",
-          payload: res.data,
-        });
-      })
+      //   .then((res) => {
+      //     localStorage.setItem("jwt", res.jwt);
+      //     dispatch({
+      //       type: "SET_CURRENT_USER",
+      //       payload: res.data,
+      //     });
+      //   })
       .catch((err) => console.log(err));
   };
 };
