@@ -17,7 +17,7 @@ class Login extends Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
     this.props.loginUser(this.state.username, this.state.password);
-    this.props.history.push("/search_translations");
+    // this.props.history.push("/search_translations");
     this.setState({
       username: "",
       password: "",
@@ -28,7 +28,7 @@ class Login extends Component {
     return (
       <>
         <h3>Admin Login</h3>
-        <p>{this.props.loggedIn ? "Logged in" : "Not logged in"}</p>
+        {/* <p>{this.props.loggedIn ? "Logged in" : "Not logged in"}</p> */}
         <form
           onSubmit={(e) =>
             this.handleOnSubmit(e, this.state.username, this.state.password)

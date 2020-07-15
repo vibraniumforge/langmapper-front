@@ -15,7 +15,7 @@ class Login extends Component {
     return (
       <>
         <h3>Admin Logout</h3>
-        <p>{this.props.loggedIn ? "Logged in" : "Not logged in"}</p>
+        {/* <p>{this.props.loggedIn ? "Logged in" : "Not logged in"}</p> */}
         <form onSubmit={this.handleOnSubmit}>
           <input type="submit" value="Logout" className="submit-btn" />
         </form>
