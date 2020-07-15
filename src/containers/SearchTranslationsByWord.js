@@ -1,6 +1,6 @@
 import React from "react";
 import SearchTranslationsByWordResultsContainer from "./SearchTranslationsByWordResultsContainer.js";
-import WordSearchSelect from "../components/WordSearchSelect.js";
+import WordSearchSelect from "../selects/WordSearchSelect.js";
 import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
@@ -15,7 +15,11 @@ import {
   isLoading,
 } from "../actions/translationActions.js";
 
-import { getWords } from "../actions/wordActions.js";
+import {
+  getWords,
+  getWordDefinition,
+  clearGetWordDefinition,
+} from "../actions/wordActions.js";
 
 class SearchTranslationsByWord extends React.Component {
   constructor(props) {
@@ -27,6 +31,7 @@ class SearchTranslationsByWord extends React.Component {
   }
 
   componentDidMount() {
+    this.props.clearGetWordDefinition();
     if (this.props.words.length === 0) {
       this.props.getWords();
     }
@@ -56,6 +61,7 @@ class SearchTranslationsByWord extends React.Component {
     e.preventDefault();
     this.props.isLoading();
     this.props.searchTranslationsByWord(this.state.selectedWord);
+    this.props.getWordDefinition(this.state.selectedWord);
     this.setState({ searchedWord: this.state.selectedWord, selectedWord: "" });
   };
 
@@ -87,6 +93,7 @@ class SearchTranslationsByWord extends React.Component {
             searchedWord={this.state.searchedWord}
             onHandleDelete={this.onHandleDelete}
             onHandleEdit={this.onHandleEdit}
+            definition={this.props.definition}
           />
         ) : this.state.searchedWord ? (
           <Spinner isLoading={this.props.isLoading} />
@@ -101,6 +108,7 @@ const mapStateToProps = (state) => ({
   words: state.words.words,
   isLoadingNow: state.translations.isLoading,
   translationToUpdate: state.translations.translationToUpdate,
+  definition: state.words.wordDefinition,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -112,6 +120,8 @@ const mapDispatchToProps = (dispatch) => {
       getTranslationById,
       deleteTranslation,
       searchTranslationsByWord,
+      getWordDefinition,
+      clearGetWordDefinition,
     },
     dispatch
   );
