@@ -26,15 +26,15 @@ class Login extends Component {
 
   render() {
     return (
-      <>
-        <h3>Admin Login</h3>
-        {/* <p>{this.props.loggedIn ? "Logged in" : "Not logged in"}</p> */}
+      <div>
         <form
+          id="login-form"
           onSubmit={(e) =>
             this.handleOnSubmit(e, this.state.username, this.state.password)
           }
         >
-          <div>
+          <h2>Admin Login</h2>
+          <div className="full-col">
             <label className="same-line" htmlFor="username">
               Username:{" "}
             </label>
@@ -45,10 +45,9 @@ class Login extends Component {
               placeholder="Username"
               value={this.state.username}
               onChange={this.handleOnChange}
-              className=""
             />
           </div>
-          <div>
+          <div className="full-col">
             <label className="same-line" htmlFor="password">
               Password:{" "}
             </label>
@@ -64,7 +63,7 @@ class Login extends Component {
           </div>
           <input type="submit" value="Submit" className="submit-btn" />
         </form>
-      </>
+      </div>
     );
   }
 }

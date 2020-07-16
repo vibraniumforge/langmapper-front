@@ -14,10 +14,11 @@ class Login extends Component {
   render() {
     return (
       <>
-        <h3>Admin Logout</h3>
-        {/* <p>{this.props.loggedIn ? "Logged in" : "Not logged in"}</p> */}
-        <form onSubmit={this.handleOnSubmit}>
-          <input type="submit" value="Logout" className="submit-btn" />
+        <form id="logout-form" onSubmit={this.handleOnSubmit}>
+          <h2>Admin Logout</h2>
+          <div className="full-col">
+            <input type="submit" value="Logout" className="logout-btn" />
+          </div>
         </form>
       </>
     );
