@@ -33,7 +33,7 @@ class Login extends Component {
             this.handleOnSubmit(e, this.state.username, this.state.password)
           }
         >
-          <h2>Admin Login</h2>
+          <h3>Admin Login</h3>
           <div className="full-col">
             <label className="same-line" htmlFor="username">
               Username:{" "}
