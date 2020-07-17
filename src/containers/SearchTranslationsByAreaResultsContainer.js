@@ -23,8 +23,14 @@ class SearchTranslationsByAreaResultsContainer extends Component {
 
     return (
       <>
-        <h3>Area: {this.props.searchArea}</h3>
-        <h3>Word: {this.props.searchWord}</h3>
+        {this.props.definition.length > 0 ? (
+          <div>
+            <h3>Area: {this.props.searchArea}</h3>
+            <h3>Word: {this.props.searchWord}</h3>
+            <h3>Definition: {this.props.definition}</h3>
+          </div>
+        ) : null}
+
         <div id="card-container">{cards}</div>
       </>
     );
