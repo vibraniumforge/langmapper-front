@@ -60,10 +60,13 @@ class SearchTranslationsByLanguage extends React.Component {
         : null;
     return (
       <>
-        <LanguageNameAutofill
-          langNames={langNames}
-          handleOnSubmit={this.handleOnSubmit}
-        />
+        <form>
+          <h3>Search all the Translations of a Language</h3>
+          <LanguageNameAutofill
+            langNames={langNames}
+            handleOnSubmit={this.handleOnSubmit}
+          />
+        </form>
         {/* <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <input
             type="text"

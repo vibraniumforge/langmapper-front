@@ -71,6 +71,7 @@ class SearchLanguagesByArea extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          <h3>Search all Languages in an Area</h3>
           <AreaSearchSelect
             allAreas={allAreas}
             selectedArea={this.state.selectedArea}

@@ -95,6 +95,7 @@ class CreateEtymologyMap extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          <h3>Create a Comparitive Etymology Map</h3>
           {/* <AreaSearchSelect
             allAreas="Europe"
             selectedArea={this.state.selectedArea}
@@ -129,7 +130,7 @@ class CreateEtymologyMap extends React.Component {
         </form>
         {render ? (
           <div>
-            {/* <h3>Area: {this.state.searchedArea}</h3> */}
+            <h3>Area: {this.state.searchedArea}</h3>
             <h3>Word: {this.state.searchedWord}</h3>
             <h3>Definition: {this.props.wordDefinition}</h3>
 

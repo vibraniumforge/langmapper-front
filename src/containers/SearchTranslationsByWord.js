@@ -75,6 +75,7 @@ class SearchTranslationsByWord extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          <h3>Search a Word's Translations in all Languages</h3>
           <WordSearchSelect
             allWords={allWords}
             selectedWord={this.state.selectedWord}
@@ -106,7 +107,7 @@ class SearchTranslationsByWord extends React.Component {
 const mapStateToProps = (state) => ({
   searchedTranslationsByWord: state.translations.searchedTranslationsByWord,
   words: state.words.words,
-  isLoadingNow: state.translations.isLoading,
+  //   isLoadingNow: state.translations.isLoading,
   translationToUpdate: state.translations.translationToUpdate,
   definition: state.words.wordDefinition,
 });

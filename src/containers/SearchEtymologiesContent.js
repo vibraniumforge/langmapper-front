@@ -56,6 +56,7 @@ class SearchEtymologiesContent extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          <h3>Search the etymologies of every word</h3>
           <input
             id="search-by-ety"
             type="text"

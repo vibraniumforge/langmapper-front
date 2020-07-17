@@ -108,6 +108,7 @@ class CreateTranslationMap extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          <h3>Show a map of all Translations in an Area</h3>
           {/* <AreaSearchSelect
             allAreas={allAreas}
             selectedArea={this.state.selectedArea}
@@ -141,7 +142,7 @@ class CreateTranslationMap extends React.Component {
         </form>
         {render ? (
           <div>
-            {/* <h3>Area: {this.state.searchedArea}</h3> */}
+            <h3>Area: {this.state.searchedArea}</h3>
             <h3>Word: {this.state.searchedWord}</h3>
             <h3>Definition: {this.props.wordDefinition}</h3>
 
