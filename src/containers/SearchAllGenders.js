@@ -7,7 +7,11 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { getWords } from "../actions/wordActions.js";
+import {
+  getWords,
+  getWordDefinition,
+  clearGetWordDefinition,
+} from "../actions/wordActions.js";
 
 import {
   searchTranslationsByWordGender,
@@ -53,7 +57,10 @@ class SearchAllGenders extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
+    this.props.clearSearchTranslationsByWordGender();
+    // this.props.clearGetWordDefinition();
     this.props.searchTranslationsByWordGender(this.state.selectedWord);
+    this.props.getWordDefinition(this.state.selectedWord);
     this.setState({
       searchedWord: this.state.selectedWord,
       selectedWord: "",
@@ -70,6 +77,7 @@ class SearchAllGenders extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          <h3>Search a Word's Grammatical Gender in all Languages</h3>
           <WordSearchSelect
             allWords={allWords}
             selectedWord={this.state.selectedWord}
@@ -91,6 +99,7 @@ class SearchAllGenders extends React.Component {
             searchedWord={this.state.searchedWord}
             onHandleDelete={this.onHandleDelete}
             onHandleEdit={this.onHandleEdit}
+            definition={this.props.definition}
           />
         ) : this.state.searchedWord ? (
           <Spinner isLoading={this.props.isLoading} />
@@ -104,6 +113,7 @@ const mapStateToProps = (state) => ({
   words: state.words.words,
   searchedTranslationsByWordGender:
     state.translations.searchedTranslationsByWordGender,
+  definition: state.words.wordDefinition,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -114,6 +124,8 @@ const mapDispatchToProps = (dispatch) => {
       clearSearchTranslationsByWordGender,
       getTranslationById,
       deleteTranslation,
+      getWordDefinition,
+      clearGetWordDefinition,
     },
     dispatch
   );

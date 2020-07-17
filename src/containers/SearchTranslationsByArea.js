@@ -8,7 +8,11 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { getWords } from "../actions/wordActions.js";
+import {
+  getWords,
+  getWordDefinition,
+  clearGetWordDefinition,
+} from "../actions/wordActions.js";
 
 import { getAllLanguageAreaNames } from "../actions/languageActions.js";
 
@@ -63,7 +67,7 @@ class SearchTranslationsByArea extends React.Component {
       this.state.selectedArea,
       this.state.selectedWord
     );
-
+    this.props.getWordDefinition(this.state.selectedWord);
     this.props.getSearchArea(this.state.selectedArea);
     this.props.getSearchWord(this.state.selectedWord);
     this.setState({
@@ -100,6 +104,7 @@ class SearchTranslationsByArea extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          <h3>Search all Translations in an Area</h3>
           <AreaSearchSelect
             allAreas={allAreas}
             selectedArea={this.state.selectedArea}
@@ -126,6 +131,7 @@ class SearchTranslationsByArea extends React.Component {
             searchedTranslationsByArea={this.props.searchedTranslationsByArea}
             onHandleDelete={this.onHandleDelete}
             onHandleEdit={this.onHandleEdit}
+            definition={this.props.definition}
           />
         ) : (
           <Spinner isLoading={this.props.isLoading} />
@@ -140,6 +146,7 @@ const mapStateToProps = (state) => ({
   languageAreaNames: state.languages.languageAreaNames,
   searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
   isLoadingNow: state.translations.isLoading,
+  definition: state.words.wordDefinition,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -156,6 +163,8 @@ const mapDispatchToProps = (dispatch) => {
       getSearchWord,
       clearGetSearchWord,
       isLoading,
+      getWordDefinition,
+      clearGetWordDefinition,
     },
     dispatch
   );
