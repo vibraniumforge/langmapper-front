@@ -6,6 +6,7 @@ export class LanguageNameAutofill extends Component {
     filteredLangNames: [],
     showLangNames: false,
     userInput: "",
+    showError: false,
   };
 
   onClick = (e) => {
@@ -14,6 +15,7 @@ export class LanguageNameAutofill extends Component {
       filteredLangNames: [],
       showOptions: false,
       userInput: e.currentTarget.innerText,
+      showError: false,
     });
   };
 
@@ -34,6 +36,7 @@ export class LanguageNameAutofill extends Component {
       filteredLangNames,
       showLangNames: true,
       userInput,
+      showError: true,
     });
   };
 
@@ -87,11 +90,13 @@ export class LanguageNameAutofill extends Component {
           </ul>
         );
       } else {
-        langNameList = (
-          <div className="no-options">
-            <em>No Option!</em>
-          </div>
-        );
+        if (this.state.showError) {
+          langNameList = (
+            <div className="no-options">
+              <em>No Option!</em>
+            </div>
+          );
+        }
       }
     }
 
@@ -108,7 +113,7 @@ export class LanguageNameAutofill extends Component {
           <input
             type="submit"
             value=""
-            className="search-btn"
+            className="search-btn search-img"
             onClick={onSeachClick}
             disabled={!this.state.userInput}
           />
