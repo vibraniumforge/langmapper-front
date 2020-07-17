@@ -34,10 +34,12 @@ export const SearchTranslationsByAreaResultCard = (props) => {
         <strong>Translation: </strong>
         {props.translation.translation}
       </p>
-      <p>
-        <strong>Romanization: </strong>
-        {props.translation.romanization}
-      </p>
+      {props.translation.translation !== props.translation.romanization ? (
+        <p>
+          <strong>Romanization: </strong>
+          {props.translation.romanization}
+        </p>
+      ) : null}
       <p>
         <strong>Gender: </strong>
         <strong>

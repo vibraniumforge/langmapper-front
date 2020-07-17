@@ -22,9 +22,12 @@ export const SearchEtymologiesContentResultCard = (props) => {
       <p>
         <strong>Translation: </strong> {props.translation.translation}
       </p>
-      <p>
-        <strong>Romanization: </strong> {props.translation.romanization}
-      </p>
+      {props.translation.translation !== props.translation.romanization ? (
+        <p>
+          <strong>Romanization: </strong>
+          {props.translation.romanization}
+        </p>
+      ) : null}
       <p>
         <strong>Etymology: </strong>
         {etymologyFormatHelper(props.translation.etymology)}

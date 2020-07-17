@@ -19,13 +19,15 @@ export const SearchTranslationsByWordResultCard = (props) => {
         </p>
       ) : null}
       <p>
-        <strong> Translation:</strong>
+        <strong> Translation: </strong>
         {props.translation.translation}
       </p>
-      <p>
-        <strong>Romanization: </strong>
-        {props.translation.romanization}
-      </p>
+      {props.translation.translation !== props.translation.romanization ? (
+        <p>
+          <strong>Romanization: </strong>
+          {props.translation.romanization}
+        </p>
+      ) : null}
       <p>
         <strong>Gender: </strong>
         <strong>
