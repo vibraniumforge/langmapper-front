@@ -20,8 +20,16 @@ class SearchTranslationsByWordResultsContainer extends Component {
 
     return (
       <>
-        <h3>Word: {this.props.searchedWord}</h3>
-        <h3>Definition: {this.props.definition}</h3>
+        {this.props.searchedTranslationsByWord.length > 0 &&
+        this.props.definition.length > 0 ? (
+          <div>
+            <h3>Word: {this.props.searchedWord}</h3>
+            <h3>Definition: {this.props.definition}</h3>
+          </div>
+        ) : null}
+        {/* <h3>
+          {this.props.searchedWord}, {this.props.definition}
+        </h3> */}
         <div id="card-container">{cards}</div>
       </>
     );
