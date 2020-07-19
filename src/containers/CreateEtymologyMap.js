@@ -18,6 +18,8 @@ import {
   isLoading,
   clearSearchTranslationsByEtymologyImg,
   clearGetTranslationsByArea,
+  getTranslationById,
+  deleteTranslation,
 } from "../actions/translationActions.js";
 
 class CreateEtymologyMap extends React.Component {
@@ -35,9 +37,9 @@ class CreateEtymologyMap extends React.Component {
     if (this.props.wordNames.length === 0) {
       this.props.getWordNames();
     }
-    if (this.props.languageAreaNames.length === 0) {
-      this.props.getAllLanguageAreaNames();
-    }
+    // if (this.props.languageAreaNames.length === 0) {
+    //   this.props.getAllLanguageAreaNames();
+    // }
     this.props.clearSearchTranslationsByEtymologyImg();
     this.props.clearGetTranslationsByArea();
   }
@@ -72,6 +74,7 @@ class CreateEtymologyMap extends React.Component {
 
   onHandleEdit = (e, translationId) => {
     e.preventDefault();
+    this.props.getTranslationById(translationId);
     this.props.history.push(`/edit_translation/${translationId}`);
   };
 
@@ -182,6 +185,8 @@ const mapDispatchToProps = (dispatch) => {
       isLoading,
       clearSearchTranslationsByEtymologyImg,
       clearGetTranslationsByArea,
+      getTranslationById,
+      deleteTranslation,
     },
     dispatch
   );
