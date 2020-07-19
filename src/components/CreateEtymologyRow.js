@@ -1,5 +1,7 @@
 import React from "react";
 import { genderHelper, genderColorHelper } from "../helpers/genderHelper.js";
+import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import { connect } from "react-redux";
 
 const CreateEtymologyRow = (props) => {
   const { translation } = props;
@@ -36,15 +38,23 @@ const CreateEtymologyRow = (props) => {
       <td className="table-etymology">
         {translation.etymology ? translation.etymology : "None Found"}
       </td>
-      {/* <td>
-          <button
-            onClick={e => this.props.onHandleEdit(e, translation.t_id)}
-            className="table-edit-btn"
-          >
-            Edit
-          </button>
-        </td> */}
+      <td>
+        {props.loggedIn ? (
+          <>
+            <EditAndDeleteButtons
+              onHandleEdit={props.onHandleEdit}
+              onHandleDelete={props.onHandleDelete}
+              translation={props.translation}
+            />
+          </>
+        ) : null}
+      </td>
     </tr>
   );
 };
-export default CreateEtymologyRow;
+
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(mapStateToProps, null)(CreateEtymologyRow);
