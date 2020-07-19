@@ -59,11 +59,9 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/create_gender_map">
           Create Gender Map by Area
         </NavLink>
-        {process.env.REACT_APP_NODE_ENV === "development" ? (
-          <NavLink activeClassName="selected" to="/create_etymology_map">
-            Create Etymology Map by Area (Beta)
-          </NavLink>
-        ) : null}
+        <NavLink activeClassName="selected" to="/create_etymology_map">
+          Create Etymology Map by Area
+        </NavLink>
       </div>
     );
   }
