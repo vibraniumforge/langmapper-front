@@ -1,6 +1,6 @@
 import React from "react";
 import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
-import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
 import { connect } from "react-redux";
 
 export const SearchEtymologiesGroupedResultCard = (props) => {
