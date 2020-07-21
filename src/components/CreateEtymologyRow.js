@@ -1,6 +1,11 @@
 import React from "react";
-import { genderHelper, genderColorHelper } from "../helpers/genderHelper.js";
-import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import {
+  genderFormatHelper,
+  genderColorHelper,
+} from "../helpers/genderHelper.js";
+import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
+import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
+import WiktionaryLink from "./WiktionaryLink.js";
 import { connect } from "react-redux";
 
 const CreateEtymologyRow = (props) => {
@@ -29,14 +34,21 @@ const CreateEtymologyRow = (props) => {
           ) + "-result"
         }
       >
-        {genderHelper(
-          translation.macrofamily,
-          translation.name,
-          translation.gender
-        )}
+        <strong>
+          {genderFormatHelper(
+            translation.macrofamily,
+            translation.name,
+            translation.gender
+          )}
+        </strong>
       </td>
       <td className="table-etymology">
-        {translation.etymology ? translation.etymology : "None Found"}
+        {translation.etymology
+          ? etymologyFormatHelper(translation.etymology)
+          : "None Found"}
+        {translation.etymology ? (
+          <WiktionaryLink link={translation.link} />
+        ) : null}
       </td>
       <td>
         {props.loggedIn ? (
