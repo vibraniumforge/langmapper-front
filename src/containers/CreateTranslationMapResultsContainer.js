@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CreateTranslationRow from "../components/CreateTranslationRow.js";
+import { connect } from "react-redux";
 
 class CreateTranslationMapResultsContainer extends Component {
   render() {
@@ -31,6 +32,8 @@ class CreateTranslationMapResultsContainer extends Component {
               <th>Romanization</th>
               <th>Gender</th>
               <th>Etymology</th>
+              <th>Link</th>
+              {this.props.loggedIn ? <th>Buttons</th> : null}
             </tr>
           </thead>
           <tbody>{translations}</tbody>
@@ -40,4 +43,11 @@ class CreateTranslationMapResultsContainer extends Component {
   }
 }
 
-export default CreateTranslationMapResultsContainer;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(CreateTranslationMapResultsContainer);
