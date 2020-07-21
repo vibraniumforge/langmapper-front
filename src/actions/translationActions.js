@@ -3,6 +3,11 @@ const url =
     ? "http://localhost:3001/api/v1"
     : "https://secure-refuge-32252.herokuapp.com/api/v1";
 
+if (process.env.REACT_APP_NODE_ENV === "development") {
+  console.log(process.env);
+  console.log(url);
+}
+
 // export const getTranslations = () => {
 //   return (dispatch) => {
 //     fetch(`${url}/translations`)
@@ -11,11 +16,6 @@ const url =
 //       .catch((err) => console.log(err));
 //   };
 // };
-
-if (process.env.REACT_APP_NODE_ENV === "development") {
-  console.log(process.env);
-  console.log(url);
-}
 
 export const getTranslationById = (id) => {
   return (dispatch) => {
