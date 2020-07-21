@@ -1,7 +1,11 @@
 import React from "react";
 import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
-import { genderHelper } from "../helpers/genderHelper.js";
-import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import {
+  genderFormatHelper,
+  genderPresenceHelper,
+} from "../helpers/genderHelper.js";
+import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
+import WiktionaryLink from "./WiktionaryLink.js";
 import { connect } from "react-redux";
 
 export const SearchTranslationsByLanguageResultCard = (props) => {
@@ -27,37 +31,30 @@ export const SearchTranslationsByLanguageResultCard = (props) => {
           {props.translation.romanization}
         </p>
       ) : null}
-      <p>
-        <strong>Gender: </strong>
-        <strong>
-          <span className="">
-            {genderHelper(
-              props.translation.macrofamily,
-              props.translation.name,
-              props.translation.gender
-            )}
-          </span>
-        </strong>
-      </p>
+      {genderPresenceHelper(
+        props.translation.name,
+        props.translation.macrofamily
+      ) ? (
+        <p>
+          <strong>Gender: </strong>
+          <strong>
+            <span className="">
+              {genderFormatHelper(
+                props.translation.macrofamily,
+                props.translation.name,
+                props.translation.gender
+              )}
+            </span>
+          </strong>
+        </p>
+      ) : null}
       <p>
         <strong>Etymology: </strong>
         {etymologyFormatHelper(props.translation.etymology)}
       </p>
       <p>
-        <img
-          src={require("../images/wiktionary.ico")}
-          alt="icon"
-          className="wiktionary-icon"
-        />
-        <strong>
-          <a
-            href={props.translation.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Wiktionary
-          </a>
-        </strong>
+        <strong>Link: </strong>
+        <WiktionaryLink link={props.translation.link} />
       </p>
       {props.loggedIn ? (
         <>

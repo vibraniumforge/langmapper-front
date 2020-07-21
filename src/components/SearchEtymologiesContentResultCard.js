@@ -1,6 +1,11 @@
 import React from "react";
+import {
+  genderFormatHelper,
+  genderPresenceHelper,
+} from "../helpers/genderHelper.js";
 import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
-import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
+import WiktionaryLink from "./WiktionaryLink.js";
 import { connect } from "react-redux";
 
 export const SearchEtymologiesContentResultCard = (props) => {
@@ -16,6 +21,23 @@ export const SearchEtymologiesContentResultCard = (props) => {
       <p>
         <strong>Word: </strong> {props.translation.word_name}
       </p>
+      {genderPresenceHelper(
+        props.translation.name,
+        props.translation.macrofamily
+      ) ? (
+        <p>
+          <strong>Gender: </strong>
+          <strong>
+            <span className="">
+              {genderFormatHelper(
+                props.translation.macrofamily,
+                props.translation.name,
+                props.translation.gender
+              )}
+            </span>
+          </strong>
+        </p>
+      ) : null}
       <p>
         <strong>Language: </strong> {props.translation.name}
       </p>
@@ -33,20 +55,8 @@ export const SearchEtymologiesContentResultCard = (props) => {
         {etymologyFormatHelper(props.translation.etymology)}
       </p>
       <p>
-        <img
-          src={require("../images/wiktionary.ico")}
-          alt="icon"
-          className="wiktionary-icon"
-        />
-        <strong>
-          <a
-            href={props.translation.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Wiktionary
-          </a>
-        </strong>
+        <strong>Link: </strong>
+        <WiktionaryLink link={props.translation.link} />
       </p>
       {props.loggedIn ? (
         <>
