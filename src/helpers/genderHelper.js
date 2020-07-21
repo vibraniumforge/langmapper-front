@@ -10,7 +10,7 @@ const genderlessLangs = [
   "Scots",
 ];
 
-const genderHelper = (macrofamily, language, gender) => {
+const genderFormatHelper = (macrofamily, language, gender) => {
   if (
     (macrofamily && !genderedFamilies.includes(macrofamily)) ||
     genderlessLangs.includes(language)
@@ -19,7 +19,7 @@ const genderHelper = (macrofamily, language, gender) => {
   } else if (!gender) {
     return "not found";
   } else {
-    return gender.toUpperCase();
+    return gender.toUpperCase().charAt(0);
   }
 };
 
@@ -32,6 +32,8 @@ const genderColorHelper = (macrofamily, language, gender) => {
   } else {
     switch (gender) {
       case "m":
+        return "male";
+      case "m anim":
         return "male";
       case "f":
         return "female";
@@ -47,4 +49,15 @@ const genderColorHelper = (macrofamily, language, gender) => {
   }
 };
 
-export { genderHelper, genderColorHelper };
+const genderPresenceHelper = (language, macrofamily) => {
+  if (
+    (macrofamily && !genderedFamilies.includes(macrofamily)) ||
+    genderlessLangs.includes(language)
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+export { genderFormatHelper, genderColorHelper, genderPresenceHelper };
