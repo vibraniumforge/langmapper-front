@@ -21,7 +21,7 @@ class Navbar extends Component {
           Search Word by content of Etymology
         </NavLink>
         <NavLink activeClassName="selected" to="/grouped_etymologies">
-          Search Word by Etymology Grouped (Beta)
+          Search Translation by Etymology Grouped (Beta)
         </NavLink>
 
         {/* {process.env.REACT_APP_NODE_ENV === "development" ? (
