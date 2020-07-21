@@ -1,5 +1,7 @@
 import React from "react";
 
+import Spinner from "./Spinner.js";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -7,7 +9,7 @@ import { withRouter } from "react-router-dom";
 import { getLanguagesCount } from "../actions/languageActions";
 import { getTranslationsCount, isLoading } from "../actions/translationActions";
 import { getWordsCount } from "../actions/wordActions";
-import Spinner from "./Spinner.js";
+
 class Home extends React.Component {
   componentDidMount() {
     this.props.getWordsCount();
