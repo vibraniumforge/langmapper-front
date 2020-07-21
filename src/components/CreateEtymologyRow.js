@@ -42,7 +42,7 @@ const CreateEtymologyRow = (props) => {
           )}
         </strong>
       </td>
-      <td className="table-etymology">
+      <td className="">
         {translation.etymology
           ? etymologyFormatHelper(translation.etymology)
           : "None Found"}
