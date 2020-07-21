@@ -134,7 +134,7 @@ class CreateGenderMap extends React.Component {
         </form>
         {render ? (
           <div>
-            <h3>Area: {this.state.searchedArea}</h3>
+            <h3>Area: {this.state.selectedArea}</h3>
             <h3>Word: {this.state.searchedWord}</h3>
             <h3>Definition: {this.props.wordDefinition}</h3>
 
