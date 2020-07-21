@@ -35,11 +35,15 @@ const genderColorHelper = (macrofamily, language, gender) => {
         return "male";
       case "m anim":
         return "male";
+      case "m or f":
+        return "male";
       case "f":
         return "female";
       case "n inan":
         return "neuter";
       case "n":
+        return "neuter";
+      case "c":
         return "neuter";
       case null:
         return "missing";
@@ -60,4 +64,17 @@ const genderPresenceHelper = (language, macrofamily) => {
   }
 };
 
-export { genderFormatHelper, genderColorHelper, genderPresenceHelper };
+const genderBoldHelper = (gender) => {
+  if (["m", "f", "n"].includes(gender.charAt(0))) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export {
+  genderFormatHelper,
+  genderColorHelper,
+  genderPresenceHelper,
+  genderBoldHelper,
+};
