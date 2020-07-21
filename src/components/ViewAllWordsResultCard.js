@@ -1,5 +1,5 @@
 import React from "react";
-import EditAndDeleteButtons from "./EditAndDeleteButtons";
+import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
 import { connect } from "react-redux";
 
 export const ViewAllWordsResultCard = (props) => {
