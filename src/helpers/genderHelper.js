@@ -15,7 +15,7 @@ const genderFormatHelper = (macrofamily, language, gender) => {
     (macrofamily && !genderedFamilies.includes(macrofamily)) ||
     genderlessLangs.includes(language)
   ) {
-    return "N/A";
+    return "-";
   } else if (!gender) {
     return "not found";
   } else {
@@ -42,6 +42,8 @@ const genderColorHelper = (macrofamily, language, gender) => {
         return "male";
       case "m or f":
         return "male";
+      case "m or n":
+        return "male";
       case "f":
         return "female";
       case "f pl":
@@ -60,10 +62,11 @@ const genderColorHelper = (macrofamily, language, gender) => {
   }
 };
 
-const genderPresenceHelper = (language, macrofamily) => {
+const genderPresenceHelper = (language, macrofamily, gender) => {
   if (
     (macrofamily && !genderedFamilies.includes(macrofamily)) ||
-    genderlessLangs.includes(language)
+    genderlessLangs.includes(language) ||
+    !gender
   ) {
     return false;
   } else {
@@ -73,7 +76,7 @@ const genderPresenceHelper = (language, macrofamily) => {
 
 const genderBoldHelper = (gender) => {
   console.log(gender);
-  if (["m", "f", "n"].includes(gender.charAt(0))) {
+  if (gender && ["m", "f", "n"].includes(gender.charAt(0).toLowerCase())) {
     return true;
   } else {
     return false;
