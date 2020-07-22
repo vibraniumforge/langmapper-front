@@ -2,6 +2,7 @@ import React from "react";
 import {
   genderFormatHelper,
   genderColorHelper,
+  genderBoldHelper,
 } from "../helpers/genderHelper.js";
 import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
 import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
@@ -34,18 +35,30 @@ const CreateTranslationRow = (props) => {
           ) + "-result"
         }
       >
-        <strong>
-          {genderFormatHelper(
-            translation.macrofamily,
-            translation.name,
-            translation.gender
-          )}
-        </strong>
+        {genderBoldHelper(translation.gender) ? (
+          <strong>
+            {genderFormatHelper(
+              translation.macrofamily,
+              translation.name,
+              translation.gender
+            )}
+          </strong>
+        ) : (
+          <p>
+            {genderFormatHelper(
+              translation.macrofamily,
+              translation.name,
+              translation.gender
+            )}
+          </p>
+        )}
       </td>
-      <td className="table-etymology">
+      <td className="">
         {translation.etymology
           ? etymologyFormatHelper(translation.etymology)
           : "None Found"}
+      </td>
+      <td>
         {translation.etymology ? (
           <WiktionaryLink link={translation.link} />
         ) : null}
