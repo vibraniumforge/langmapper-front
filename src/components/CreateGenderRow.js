@@ -46,6 +46,8 @@ const CreateGenderRow = (props) => {
         {translation.etymology
           ? etymologyFormatHelper(translation.etymology)
           : "None Found"}
+      </td>
+      <td>
         {translation.etymology ? (
           <WiktionaryLink link={translation.link} />
         ) : null}
