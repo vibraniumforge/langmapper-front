@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CreateEtymologyRow from "../components/CreateEtymologyRow.js";
+import { connect } from "react-redux";
 
 class CreateEtymologyMapResultsContainer extends Component {
   render() {
@@ -29,6 +30,8 @@ class CreateEtymologyMapResultsContainer extends Component {
               <th>Romanization</th>
               <th>Gender</th>
               <th>Etymology</th>
+              <th>Link</th>
+              {this.props.loggedIn ? <th>Buttons</th> : null}
             </tr>
           </thead>
           <tbody>{translations}</tbody>
@@ -38,4 +41,11 @@ class CreateEtymologyMapResultsContainer extends Component {
   }
 }
 
-export default CreateEtymologyMapResultsContainer;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(CreateEtymologyMapResultsContainer);

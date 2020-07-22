@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CreateGenderRow from "../components/CreateGenderRow.js";
+import { connect } from "react-redux";
 
 class CreateGenderMapResultsContainer extends Component {
   render() {
@@ -31,6 +32,8 @@ class CreateGenderMapResultsContainer extends Component {
               <th>Romanization</th>
               <th>Gender</th>
               <th>Etymology</th>
+              <th>Link</th>
+              {this.props.loggedIn ? <th>Buttons</th> : null}
             </tr>
           </thead>
           <tbody>{translations}</tbody>
@@ -40,4 +43,8 @@ class CreateGenderMapResultsContainer extends Component {
   }
 }
 
-export default CreateGenderMapResultsContainer;
+const mapStateToProps = (state) => ({
+  loggedIn: state.users.loggedIn,
+});
+
+export default connect(mapStateToProps, null)(CreateGenderMapResultsContainer);
