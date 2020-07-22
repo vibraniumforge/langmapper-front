@@ -41,7 +41,8 @@ export const SearchAllGendersResultCard = (props) => {
       ) : null}
       {genderPresenceHelper(
         props.translation.name,
-        props.translation.macrofamily
+        props.translation.macrofamily,
+        props.translation.gender
       ) ? (
         <p>
           <strong>Gender: </strong>
