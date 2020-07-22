@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import {
-  getWords,
+  getWordNames,
   getWordDefinition,
   clearGetWordDefinition,
 } from "../actions/wordActions.js";
@@ -30,8 +30,8 @@ class SearchAllGenders extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.words.length === 0) {
-      this.props.getWords();
+    if (this.props.wordNames.length === 0) {
+      this.props.getWordNames();
     }
     if (this.props.searchedTranslationsByWordGender.length) {
       this.props.clearSearchTranslationsByWordGender();
@@ -69,8 +69,8 @@ class SearchAllGenders extends React.Component {
 
   render() {
     const allWords =
-      this.props.words && this.props.words.length > 0
-        ? this.props.words.map((word) => {
+      this.props.wordNames && this.props.wordNames.length > 0
+        ? this.props.wordNames.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
@@ -110,7 +110,7 @@ class SearchAllGenders extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  words: state.words.words,
+  wordNames: state.words.wordNames,
   searchedTranslationsByWordGender:
     state.translations.searchedTranslationsByWordGender,
   definition: state.words.wordDefinition,
@@ -119,7 +119,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      getWords,
+      getWordNames,
       searchTranslationsByWordGender,
       clearSearchTranslationsByWordGender,
       getTranslationById,
