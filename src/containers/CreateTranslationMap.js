@@ -18,6 +18,7 @@ import {
   isLoading,
   clearSearchTranslationsByAreaImg,
   clearGetTranslationsByArea,
+  getTranslationById,
 } from "../actions/translationActions.js";
 
 class CreateTranslationMap extends React.Component {
@@ -83,6 +84,7 @@ class CreateTranslationMap extends React.Component {
 
   onHandleEdit = (e, translationId) => {
     e.preventDefault();
+    this.props.getTranslationById(translationId);
     this.props.history.push(`/edit_translation/${translationId}`);
   };
 
@@ -195,6 +197,7 @@ const mapDispatchToProps = (dispatch) => {
       isLoading,
       clearSearchTranslationsByAreaImg,
       clearGetTranslationsByArea,
+      getTranslationById,
     },
     dispatch
   );

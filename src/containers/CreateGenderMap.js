@@ -18,6 +18,7 @@ import {
   isLoading,
   clearSearchTranslationsByGenderImg,
   clearGetTranslationsByArea,
+  getTranslationById,
 } from "../actions/translationActions.js";
 
 class CreateGenderMap extends React.Component {
@@ -35,9 +36,9 @@ class CreateGenderMap extends React.Component {
     if (this.props.wordNames.length === 0) {
       this.props.getWordNames();
     }
-    if (this.props.languageAreaNames.length === 0) {
-      this.props.getAllLanguageAreaNames();
-    }
+    // if (this.props.languageAreaNames.length === 0) {
+    //   this.props.getAllLanguageAreaNames();
+    // }
     this.props.clearSearchTranslationsByGenderImg();
     this.props.clearGetTranslationsByArea();
   }
@@ -72,6 +73,7 @@ class CreateGenderMap extends React.Component {
 
   onHandleEdit = (e, translationId) => {
     e.preventDefault();
+    this.props.getTranslationById(translationId);
     this.props.history.push(`/edit_translation/${translationId}`);
   };
 
@@ -182,6 +184,7 @@ const mapDispatchToProps = (dispatch) => {
       isLoading,
       clearSearchTranslationsByGenderImg,
       clearGetTranslationsByArea,
+      getTranslationById,
     },
     dispatch
   );
