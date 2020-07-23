@@ -16,6 +16,8 @@ class CreateGenderMapResultsContainer extends Component {
                   onHandleEdit={this.props.onHandleEdit}
                 />
               );
+            } else {
+              return null;
             }
           })
         : null;
