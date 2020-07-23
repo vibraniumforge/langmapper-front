@@ -8,13 +8,15 @@ class CreateEtymologyMapResultsContainer extends Component {
       this.props.searchedTranslationsByArea &&
       this.props.searchedTranslationsByArea.length > 0
         ? this.props.searchedTranslationsByArea.map((translation) => {
-            return (
-              <CreateEtymologyRow
-                key={translation.id}
-                translation={translation}
-                onHandleEdit={this.props.onHandleEdit}
-              />
-            );
+            if (translation.etymology) {
+              return (
+                <CreateEtymologyRow
+                  key={translation.id}
+                  translation={translation}
+                  onHandleEdit={this.props.onHandleEdit}
+                />
+              );
+            }
           })
         : null;
 
