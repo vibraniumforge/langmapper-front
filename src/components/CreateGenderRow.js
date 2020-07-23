@@ -69,7 +69,7 @@ const CreateGenderRow = (props) => {
             <EditAndDeleteButtons
               onHandleEdit={props.onHandleEdit}
               onHandleDelete={props.onHandleDelete}
-              translation={props.language}
+              translation={props.translation}
             />
           </>
         ) : null}
