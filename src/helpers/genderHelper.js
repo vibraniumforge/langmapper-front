@@ -75,7 +75,6 @@ const genderPresenceHelper = (macrofamily, language, gender) => {
 };
 
 const genderBoldHelper = (gender) => {
-  console.log(gender);
   if (gender && ["m", "f", "n"].includes(gender.charAt(0).toLowerCase())) {
     return true;
   } else {
