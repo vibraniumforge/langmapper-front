@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 export const SearchEtymologiesContentResultCard = (props) => {
   return (
     <div className="translation-result-card">
-      {/* <h1>{props.translation.name}</h1> */}
+      <h1>{props.translation.name}</h1>
       {props.loggedIn ? (
         <p>
           <strong>Translation Id: </strong>
@@ -22,8 +22,9 @@ export const SearchEtymologiesContentResultCard = (props) => {
         <strong>Word: </strong> {props.translation.word_name}
       </p>
       {genderPresenceHelper(
+        props.translation.macrofamily,
         props.translation.name,
-        props.translation.macrofamily
+        props.translation.gender
       ) ? (
         <p>
           <strong>Gender: </strong>
@@ -38,9 +39,9 @@ export const SearchEtymologiesContentResultCard = (props) => {
           </strong>
         </p>
       ) : null}
-      <p>
+      {/* <p>
         <strong>Language: </strong> {props.translation.name}
-      </p>
+      </p> */}
       <p>
         <strong>Translation: </strong> {props.translation.translation}
       </p>
