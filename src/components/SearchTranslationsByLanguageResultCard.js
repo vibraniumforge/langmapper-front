@@ -11,16 +11,17 @@ import { connect } from "react-redux";
 export const SearchTranslationsByLanguageResultCard = (props) => {
   return (
     <div className="translation-result-card">
+      <h1>{props.translation.word_name}</h1>
       {props.loggedIn ? (
         <p>
           <strong>Translation Id: </strong>
           {props.translation.id}
         </p>
       ) : null}
-      <p>
+      {/* <p>
         <strong>Word: </strong>
         {props.translation.word_name}
-      </p>
+      </p> */}
       <p>
         <strong>Translation: </strong>
         {props.translation.translation}
