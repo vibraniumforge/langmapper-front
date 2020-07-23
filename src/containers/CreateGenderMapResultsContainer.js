@@ -8,13 +8,15 @@ class CreateGenderMapResultsContainer extends Component {
       this.props.searchedTranslationsByArea &&
       this.props.searchedTranslationsByArea.length > 0
         ? this.props.searchedTranslationsByArea.map((translation) => {
-            return (
-              <CreateGenderRow
-                key={translation.id}
-                translation={translation}
-                onHandleEdit={this.props.onHandleEdit}
-              />
-            );
+            if (translation.gender) {
+              return (
+                <CreateGenderRow
+                  key={translation.id}
+                  translation={translation}
+                  onHandleEdit={this.props.onHandleEdit}
+                />
+              );
+            }
           })
         : null;
 
