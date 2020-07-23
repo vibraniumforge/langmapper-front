@@ -22,7 +22,9 @@ class SearchTranslationsByMacrofamilyResultsContainer extends Component {
 
     return (
       <>
-        <h3>Family: {this.props.searchedFamily}</h3>
+        {this.props.searchedMacrofamily.length > 0 ? (
+          <h3>Family: {this.props.searchedMacrofamily}</h3>
+        ) : null}
         <div id="card-container">{cards}</div>
       </>
     );
