@@ -14,6 +14,8 @@ import {
   deleteLanguage,
 } from "../actions/languageActions.js";
 
+import { clearGetWordDefinition } from "../actions/wordActions.js";
+
 class SearchLanguagesByArea extends React.Component {
   constructor(props) {
     super(props);
@@ -33,6 +35,7 @@ class SearchLanguagesByArea extends React.Component {
     if (this.props.languagesByArea.length) {
       this.props.clearGetLanguagesByArea();
     }
+    this.props.clearGetWordDefinition();
   }
 
   handleOnChange = (e) => {
@@ -108,6 +111,7 @@ const mapDispatchToProps = (dispatch) => {
       clearGetLanguagesByArea,
       getLanguageById,
       deleteLanguage,
+      clearGetWordDefinition,
     },
     dispatch
   );
