@@ -66,14 +66,12 @@ export const loginUser = (username, password) => {
       //   })
       .then((res) => {
         if (res.success) {
-          console.log("OK");
           localStorage.setItem("jwt", res.jwt);
           dispatch({
             type: "SET_CURRENT_USER",
             payload: res.data,
           });
         } else {
-          console.log("NOT OK");
           throw res;
         }
       })
