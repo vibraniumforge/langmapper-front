@@ -50,7 +50,7 @@ class TranslationForm extends Component {
     const translationId = this.props.location.pathname.split("/").pop();
     const editedTranslation = {
       etymology: this.state.etymology,
-      gender: this.state.gender,
+      gender: this.state.gender === "null" ? null : this.state.gender,
       link: this.state.link,
       romanization: this.state.romanization,
       translation: this.state.translation,
@@ -126,7 +126,7 @@ class TranslationForm extends Component {
                   placeholder="Gender"
                   value={this.state.gender || ""}
                   onChange={this.handleOnChange}
-                  disabled
+                  //   disabled
                 />
               </div>
               <div className="form-group three-quarter-col">
