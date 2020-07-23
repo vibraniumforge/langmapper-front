@@ -23,7 +23,8 @@ class SearchTranslationsByAreaResultsContainer extends Component {
 
     return (
       <>
-        {this.props.definition.length > 0 ? (
+        {this.props.definition.length > 0 &&
+        this.props.searchedTranslationsByArea.length > 0 ? (
           <div>
             <h3>Area: {this.props.searchArea}</h3>
             <h3>Word: {this.props.searchWord}</h3>
