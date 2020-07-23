@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { getWords } from "../actions/wordActions.js";
+import { getWordNames } from "../actions/wordActions.js";
 import { getAllMacrofamilyNames } from "../actions/languageActions.js";
 import {
   getTranslationById,
@@ -27,14 +27,14 @@ class SearchEtymologiesGrouped extends React.Component {
     this.state = {
       selectedWord: "",
       searchedWord: "",
-      selectedFamily: "",
-      searchedFamily: "",
+      selectedMacrofamily: "",
+      searchedMacrofamily: "",
     };
   }
 
   componentDidMount() {
-    if (this.props.words && this.props.words.length === 0) {
-      this.props.getWords();
+    if (this.props.wordNames && this.props.wordNames.length === 0) {
+      this.props.getWordNames();
     }
     if (
       this.props.macrofamilyNames &&
@@ -50,14 +50,20 @@ class SearchEtymologiesGrouped extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-
+    console.log("FIRES");
     // this.props.serachWordByMacro(this.state.selectedWord, this.state.selectedFamily)
+    this.setState({
+      selectedWord: this.state.searchedWord,
+      searchedMacrofamily: this.state.selectedMacrofamily,
+      searchedWord: "",
+      selectedMacrofamily: "",
+    });
   };
 
   render() {
     const allWords =
-      this.props.words.length > 0
-        ? this.props.words.map((word) => {
+      this.props.wordNames && this.props.wordNames.length > 0
+        ? this.props.wordNames.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
@@ -79,14 +85,20 @@ class SearchEtymologiesGrouped extends React.Component {
           />{" "}
           <MacrofamilySearchSelect
             allMacrofamilies={allMacrofamilies}
-            selectedWord={this.state.selectedWord}
+            selectedMacrofamily={this.state.selectedMacrofamily}
             handleOnChange={this.handleOnChange}
           />
           <input
-            disabled={!this.state.selectedWord}
+            disabled={
+              !this.state.selectedWord && !this.state.selectedMacrofamily
+            }
             type="submit"
             value="Search"
-            className={this.state.selectedWord ? "submit-btn" : "disabled-btn"}
+            className={
+              this.state.selectedWord && this.state.selectedMacrofamily
+                ? "submit-btn"
+                : "disabled-btn"
+            }
           />
         </form>
         <SearchEtymologiesGroupedResultsContainer
@@ -100,7 +112,7 @@ class SearchEtymologiesGrouped extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  words: state.words.words,
+  wordNames: state.words.wordNames,
   macrofamilyNames: state.languages.macrofamilyNames,
   searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
   isLoadingNow: state.translations.isLoading,
@@ -109,7 +121,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      getWords,
+      getWordNames,
       getTranslationById,
       deleteTranslation,
       searchTranslationsByArea,

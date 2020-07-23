@@ -16,7 +16,7 @@ import {
 } from "../actions/translationActions.js";
 
 import {
-  getWords,
+  getWordNames,
   getWordDefinition,
   clearGetWordDefinition,
 } from "../actions/wordActions.js";
@@ -32,8 +32,8 @@ class SearchTranslationsByWord extends React.Component {
 
   componentDidMount() {
     this.props.clearGetWordDefinition();
-    if (this.props.words.length === 0) {
-      this.props.getWords();
+    if (this.props.wordNames.length === 0) {
+      this.props.getWordNames();
     }
     if (this.props.searchedTranslationsByWord.length) {
       this.props.clearSearchTranslationsByWord();
@@ -67,8 +67,8 @@ class SearchTranslationsByWord extends React.Component {
 
   render() {
     const allWords =
-      this.props.words && this.props.words.length
-        ? this.props.words.map((word) => {
+      this.props.wordNames && this.props.wordNames.length
+        ? this.props.wordNames.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
@@ -106,8 +106,7 @@ class SearchTranslationsByWord extends React.Component {
 
 const mapStateToProps = (state) => ({
   searchedTranslationsByWord: state.translations.searchedTranslationsByWord,
-  words: state.words.words,
-  //   isLoadingNow: state.translations.isLoading,
+  wordNames: state.words.wordNames,
   translationToUpdate: state.translations.translationToUpdate,
   definition: state.words.wordDefinition,
 });
@@ -115,7 +114,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      getWords,
+      getWordNames,
       clearSearchTranslationsByWord,
       isLoading,
       getTranslationById,

@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import {
-  getWords,
+  getWordNames,
   getWordDefinition,
   clearGetWordDefinition,
 } from "../actions/wordActions.js";
@@ -38,8 +38,8 @@ class SearchTranslationsByArea extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.words && this.props.words.length === 0) {
-      this.props.getWords();
+    if (this.props.wordNames && this.props.wordNames.length === 0) {
+      this.props.getWordNames();
     }
     if (
       this.props.languageAreaNames &&
@@ -95,8 +95,8 @@ class SearchTranslationsByArea extends React.Component {
           })
         : null;
     const allWords =
-      this.props.words && this.props.words.length > 0
-        ? this.props.words.map((word) => {
+      this.props.wordNames && this.props.wordNames.length > 0
+        ? this.props.wordNames.map((word) => {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
@@ -142,7 +142,7 @@ class SearchTranslationsByArea extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  words: state.words.words,
+  wordNames: state.words.wordNames,
   languageAreaNames: state.languages.languageAreaNames,
   searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
   isLoadingNow: state.translations.isLoading,
@@ -152,7 +152,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      getWords,
+      getWordNames,
       getAllLanguageAreaNames,
       getTranslationById,
       deleteTranslation,
