@@ -62,7 +62,7 @@ const genderColorHelper = (macrofamily, language, gender) => {
   }
 };
 
-const genderPresenceHelper = (language, macrofamily, gender) => {
+const genderPresenceHelper = (macrofamily, language, gender) => {
   if (
     (macrofamily && !genderedFamilies.includes(macrofamily)) ||
     genderlessLangs.includes(language) ||
