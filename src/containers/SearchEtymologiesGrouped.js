@@ -13,7 +13,7 @@ import {
   getTranslationById,
   deleteTranslation,
   searchTranslationsByArea,
-  clearGetTranslationsByArea,
+  clearSearchTranslationsByArea,
   getSearchArea,
   clearGetSearchArea,
   getSearchWord,
@@ -41,6 +41,7 @@ class SearchEtymologiesGrouped extends React.Component {
       this.props.macrofamilyNames.length === 0
     ) {
       this.props.getAllMacrofamilyNames();
+      this.props.clearSearchTranslationsByArea();
     }
   }
 
@@ -125,7 +126,7 @@ const mapDispatchToProps = (dispatch) => {
       getTranslationById,
       deleteTranslation,
       searchTranslationsByArea,
-      clearGetTranslationsByArea,
+      clearSearchTranslationsByArea,
       getSearchArea,
       clearGetSearchArea,
       getSearchWord,

@@ -17,7 +17,7 @@ import {
   searchTranslationsByAreaImg,
   isLoading,
   clearSearchTranslationsByAreaImg,
-  clearGetTranslationsByArea,
+  clearSearchTranslationsByArea,
   getTranslationById,
 } from "../actions/translationActions.js";
 
@@ -40,7 +40,7 @@ class CreateTranslationMap extends React.Component {
       this.props.getAllLanguageAreaNames();
     }
     this.props.clearSearchTranslationsByAreaImg();
-    this.props.clearGetTranslationsByArea();
+    this.props.clearSearchTranslationsByArea();
   }
 
   //   shouldComponentUpdate() {
@@ -64,8 +64,8 @@ class CreateTranslationMap extends React.Component {
     e.preventDefault();
     Promise.all([
       this.props.isLoading(),
-      this.props.clearSearchTranslationsByEtymologyImg(),
-      this.props.clearGetTranslationsByArea(),
+      this.props.clearSearchTranslationsByAreaImg(),
+      this.props.clearSearchTranslationsByArea(),
       this.props.getWordDefinition(this.state.selectedWord),
       this.props.searchTranslationsByArea(
         this.state.selectedArea,
@@ -198,7 +198,7 @@ const mapDispatchToProps = (dispatch) => {
       searchTranslationsByAreaImg,
       isLoading,
       clearSearchTranslationsByAreaImg,
-      clearGetTranslationsByArea,
+      clearSearchTranslationsByArea,
       getTranslationById,
     },
     dispatch
