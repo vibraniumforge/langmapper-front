@@ -116,9 +116,3 @@ export const clearGetWordDefinition = () => {
     dispatch({ type: "CLEAR_GET_WORD_DEFINITION" });
   };
 };
-
-export const isLoading = () => {
-  return {
-    type: "IS_LOADING",
-  };
-};

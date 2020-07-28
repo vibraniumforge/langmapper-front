@@ -4,7 +4,6 @@ const initialState = {
   wordNames: [],
   wordsCount: 0,
   wordDefinition: "",
-  isLoading: false,
 };
 
 export default function wordReducer(state = initialState, action) {
@@ -13,7 +12,6 @@ export default function wordReducer(state = initialState, action) {
       return {
         ...state,
         words: action.payload,
-        isLoading: false,
       };
     case "GET_WORD_BY_ID":
       return {
@@ -69,11 +67,6 @@ export default function wordReducer(state = initialState, action) {
       return {
         ...state,
         wordDefinition: "",
-      };
-    case "IS_LOADING":
-      return {
-        ...state,
-        isLoading: true,
       };
     default:
       return state;
