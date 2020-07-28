@@ -269,7 +269,6 @@ export const clearSearchTranslationsByGenderImg = () => {
 };
 
 export const searchTranslationsByEtymologyImg = (area, word) => {
-  console.log("fires");
   return (dispatch) => {
     let outside;
     fetch(`${url}/search/all_etymologies_by_area_img/${area}/${word}`)
