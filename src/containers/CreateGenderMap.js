@@ -53,6 +53,8 @@ class CreateGenderMap extends React.Component {
     e.preventDefault();
     Promise.all([
       this.props.isLoading(),
+      this.props.clearSearchTranslationsByEtymologyImg(),
+      this.props.clearGetTranslationsByArea(),
       this.props.getWordDefinition(this.state.selectedWord),
       this.props.searchTranslationsByArea(
         this.state.selectedArea,

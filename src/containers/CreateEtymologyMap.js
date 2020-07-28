@@ -53,6 +53,8 @@ class CreateEtymologyMap extends React.Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
     Promise.all([
+      this.props.clearSearchTranslationsByEtymologyImg(),
+      this.props.clearGetTranslationsByArea(),
       this.props.isLoading(),
       this.props.getWordDefinition(this.state.selectedWord),
       this.props.searchTranslationsByArea(
