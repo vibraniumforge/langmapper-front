@@ -27,7 +27,7 @@ class CreateEtymologyMap extends React.Component {
     super(props);
     this.state = {
       selectedArea: "Europe",
-      selectedWord: "cat",
+      selectedWord: "",
       searchedArea: "",
       searchedWord: "",
     };
@@ -69,7 +69,7 @@ class CreateEtymologyMap extends React.Component {
         searchedArea: this.state.selectedArea,
         searchedWord: this.state.selectedWord,
         selectedArea: "Europe",
-        selectedWord: "cat",
+        selectedWord: "",
       }),
     ]);
   };
