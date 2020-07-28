@@ -26,6 +26,11 @@ export default function translationReducer(state = initialState, action) {
         ...state,
         isLoading: true,
       };
+    case "IS_NOT_LOADING":
+      return {
+        ...state,
+        isLoading: false,
+      };
     case "GET_TRANSLATIONS":
       return {
         ...state,
@@ -90,39 +95,39 @@ export default function translationReducer(state = initialState, action) {
 
     //   =======================================
 
-    case "GET_TRANSLATIONS_BY_LANGUAGE":
+    case "SEARCH_TRANSLATIONS_BY_LANGUAGE":
       return {
         ...state,
         searchedTranslationsByLanguage: action.payload,
         isLoading: false,
       };
-    case "CLEAR_GET_TRANSLATIONS_BY_LANGUAGE":
+    case "CLEAR_SEARCH_TRANSLATIONS_BY_LANGUAGE":
       return {
         ...state,
         searchedTranslationsByLanguage: [],
         isLoading: false,
       };
 
-    case "GET_TRANSLATIONS_BY_AREA":
+    case "SEARCH_TRANSLATIONS_BY_AREA":
       return {
         ...state,
         searchedTranslationsByArea: action.payload,
         isLoading: false,
       };
-    case "CLEAR_GET_TRANSLATIONS_BY_AREA":
+    case "CLEAR_SEARCH_TRANSLATIONS_BY_AREA":
       return {
         ...state,
         searchedTranslationsByArea: [],
         isLoading: false,
       };
 
-    case "GET_TRANSLATIONS_BY_WORD":
+    case "SEARCH_TRANSLATIONS_BY_WORD":
       return {
         ...state,
         searchedTranslationsByWord: action.payload,
         isLoading: false,
       };
-    case "CLEAR_GET_TRANSLATIONS_BY_WORD":
+    case "CLEAR_SEARCH_TRANSLATIONS_BY_WORD":
       return {
         ...state,
         searchedTranslationsByWord: [],
@@ -151,81 +156,81 @@ export default function translationReducer(state = initialState, action) {
         searchWord: [],
       };
 
-    case "GET_TRANSLATIONS_BY_WORD_GENDER":
+    case "SEARCH_TRANSLATIONS_BY_WORD_GENDER":
       return {
         ...state,
         searchedTranslationsByWordGender: action.payload,
         isLoading: false,
       };
-    case "CLEAR_GET_TRANSLATIONS_BY_WORD_GENDER":
+    case "CLEAR_SEARCH_TRANSLATIONS_BY_WORD_GENDER":
       return {
         ...state,
         searchedTranslationsByWordGender: [],
         isLoading: false,
       };
 
-    case "GET_TRANSLATIONS_BY_ETYMOLOGY":
+    case "SEARCH_TRANSLATIONS_BY_ETYMOLOGY":
       return {
         ...state,
         searchedTranslationsByEtymology: action.payload,
         isLoading: false,
       };
-    case "CLEAR_GET_TRANSLATIONS_BY_ETYMOLOGY":
+    case "CLEAR_SEARCH_TRANSLATIONS_BY_ETYMOLOGY":
       return {
         ...state,
         searchedTranslationsByEtymology: [],
         isLoading: false,
       };
 
-    case "GET_TRANSLATIONS_BY_MACROFAMILY":
+    case "SEARCH_TRANSLATIONS_BY_MACROFAMILY":
       return {
         ...state,
         searchedTranslationsByMacrofamily: action.payload,
         isLoading: false,
       };
-    case "CLEAR_GET_TRANSLATIONS_BY_MACROFAMILY":
+    case "CLEAR_SEARCH_TRANSLATIONS_BY_MACROFAMILY":
       return {
         ...state,
         searchedTranslationsByMacrofamily: [],
         isLoading: false,
       };
 
-    case "GET_TRANSLATIONS_BY_AREA_IMG":
+    case "SEARCH_TRANSLATIONS_BY_AREA_IMG":
       return {
         ...state,
         translationMapByArea: action.payload,
         isLoading: false,
       };
-    case "CLEAR_GET_TRANSLATIONS_BY_AREA_IMG":
+    case "CLEAR_SEARCH_TRANSLATIONS_BY_AREA_IMG":
       return {
         ...state,
         translationMapByArea: [],
         isLoading: false,
       };
 
-    case "GET_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG":
-      return {
-        ...state,
-        translationMapByEtymology: action.payload,
-        isLoading: false,
-      };
-    case "CLEAR_GET_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG":
-      return {
-        ...state,
-        translationMapByEtymology: [],
-        isLoading: false,
-      };
-
-    case "GET_TRANSLATIONS_BY_AREA_GENDER_IMG":
+    case "SEARCH_TRANSLATIONS_BY_AREA_GENDER_IMG":
       return {
         ...state,
         translationMapByGender: action.payload,
         isLoading: false,
       };
-    case "CLEAR_GET_TRANSLATIONS_BY_AREA_GENDER_IMG":
+    case "CLEAR_SEARCH_TRANSLATIONS_BY_AREA_GENDER_IMG":
       return {
         ...state,
         translationMapByGender: [],
+        isLoading: false,
+      };
+
+    case "SEARCH_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG":
+      return {
+        ...state,
+        translationMapByEtymology: action.payload,
+        isLoading: false,
+      };
+    case "CLEAR_SEARCH_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG":
+      return {
+        ...state,
+        translationMapByEtymology: [],
         isLoading: false,
       };
 

@@ -53,15 +53,15 @@ export default function languageReducer(state = initialState, action) {
         ...state,
         languages: newLanguages,
       };
-    //   ===========================
+    //   ======================================================
 
-    case "GET_LANGUAGES_BY_AREA": {
+    case "SEARCH_LANGUAGES_BY_AREA": {
       return {
         ...state,
         languagesByArea: action.payload,
       };
     }
-    case "CLEAR_GET_LANGUAGES_BY_AREA":
+    case "CLEAR_SEARCH_LANGUAGES_BY_AREA":
       return {
         ...state,
         languagesByArea: [],
