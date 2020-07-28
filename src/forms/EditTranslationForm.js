@@ -13,6 +13,7 @@ class TranslationForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       language: "",
       word: "",
       etymology: "",
@@ -27,6 +28,7 @@ class TranslationForm extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.translationToUpdate !== nextProps.translationToUpdate) {
       this.setState({
+        id: nextProps.translationToUpdate.id,
         language: nextProps.translationToUpdate.language.name,
         word: nextProps.translationToUpdate.word.word_name,
         etymology: nextProps.translationToUpdate.etymology,
@@ -61,7 +63,8 @@ class TranslationForm extends Component {
     //   this.props.searchArea,
     //   this.props.searchWord
     // );
-    this.props.history.push("/search_translations_by_area");
+    // this.props.history.push("/search_translations_by_area");
+    this.props.history.goBack();
   };
 
   cancelFormAction = () => {
@@ -88,7 +91,7 @@ class TranslationForm extends Component {
           >
             <h2>Edit a Translation</h2>
             <div className="form-row">
-              <div className="form-group half-col">
+              <div className="form-group one-third-col">
                 <label htmlFor="language">Language: </label>
                 <input
                   id="language"
@@ -101,7 +104,7 @@ class TranslationForm extends Component {
                   disabled
                 />
               </div>
-              <div className="form-group half-col">
+              <div className="form-group one-third-col">
                 <label htmlFor="word">Word: </label>
                 <input
                   type="text"
@@ -110,6 +113,19 @@ class TranslationForm extends Component {
                   className="form-control"
                   placeholder="Word"
                   value={this.state.word || ""}
+                  onChange={this.handleOnChange}
+                  disabled
+                />
+              </div>
+              <div className="form-group one-third-col">
+                <label htmlFor="word">ID: </label>
+                <input
+                  type="text"
+                  id="id"
+                  name="id"
+                  className="form-control"
+                  placeholder="Id"
+                  value={this.state.id || ""}
                   onChange={this.handleOnChange}
                   disabled
                 />
