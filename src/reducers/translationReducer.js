@@ -239,6 +239,20 @@ export default function translationReducer(state = initialState, action) {
         ...state,
         translationsCount: action.payload,
       };
+
+    case "SEARCH_TRANSLATIONS_BY_AREA_EUROPE_MAP":
+      return {
+        ...state,
+        searchedTranslationsByArea: action.payload,
+        isLoading: false,
+      };
+    case "CLEAR_SEARCH_TRANSLATIONS_BY_AREA_EUROPE_MAP":
+      return {
+        ...state,
+        searchedTranslationsByArea: [],
+        isLoading: false,
+      };
+
     default:
       return state;
   }

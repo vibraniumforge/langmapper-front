@@ -305,3 +305,23 @@ export const isNotLoading = () => {
     type: "IS_NOT_LOADING",
   };
 };
+
+export const searchTranslationsByAreaEuropeMap = (area, word) => {
+  return (dispatch) => {
+    fetch(`${url}/search/translations/area_europe_map/${area}/${word}`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({
+          type: "SEARCH_TRANSLATIONS_BY_AREA_EUROPE_MAP",
+          payload: res.data,
+        })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const clearSearchTranslationsByAreaEuropeMap = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_AREA_EUROPE_MAP" });
+  };
+};

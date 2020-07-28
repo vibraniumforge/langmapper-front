@@ -13,7 +13,8 @@ import { getWordNames, getWordDefinition } from "../actions/wordActions.js";
 import { getAllLanguageAreaNames } from "../actions/languageActions.js";
 
 import {
-  searchTranslationsByArea,
+  //   searchTranslationsByArea,
+  searchTranslationsByAreaEuropeMap,
   searchTranslationsByAreaImg,
   isLoading,
   clearSearchTranslationsByAreaImg,
@@ -67,7 +68,11 @@ class CreateTranslationMap extends React.Component {
       this.props.clearSearchTranslationsByAreaImg(),
       this.props.clearSearchTranslationsByArea(),
       this.props.getWordDefinition(this.state.selectedWord),
-      this.props.searchTranslationsByArea(
+      //   this.props.searchTranslationsByArea(
+      //     this.state.selectedArea,
+      //     this.state.selectedWord
+      //   ),
+      this.props.searchTranslationsByAreaEuropeMap(
         this.state.selectedArea,
         this.state.selectedWord
       ),
@@ -194,7 +199,8 @@ const mapDispatchToProps = (dispatch) => {
       getWordNames,
       getAllLanguageAreaNames,
       getWordDefinition,
-      searchTranslationsByArea,
+      //   searchTranslationsByArea,
+      searchTranslationsByAreaEuropeMap,
       searchTranslationsByAreaImg,
       isLoading,
       clearSearchTranslationsByAreaImg,
