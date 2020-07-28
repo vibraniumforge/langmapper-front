@@ -16,8 +16,9 @@ import {
   searchTranslationsByArea,
   searchTranslationsByGenderImg,
   isLoading,
+  isNotLoading,
   clearSearchTranslationsByGenderImg,
-  clearGetTranslationsByArea,
+  clearSearchTranslationsByArea,
   getTranslationById,
 } from "../actions/translationActions.js";
 
@@ -40,7 +41,7 @@ class CreateGenderMap extends React.Component {
     //   this.props.getAllLanguageAreaNames();
     // }
     this.props.clearSearchTranslationsByGenderImg();
-    this.props.clearGetTranslationsByArea();
+    this.props.clearSearchTranslationsByArea();
   }
 
   handleOnChange = (e) => {
@@ -53,8 +54,8 @@ class CreateGenderMap extends React.Component {
     e.preventDefault();
     Promise.all([
       this.props.isLoading(),
-      this.props.clearSearchTranslationsByEtymologyImg(),
-      this.props.clearGetTranslationsByArea(),
+      this.props.clearSearchTranslationsByGenderImg(),
+      this.props.clearSearchTranslationsByArea(),
       this.props.getWordDefinition(this.state.selectedWord),
       this.props.searchTranslationsByArea(
         this.state.selectedArea,
@@ -70,6 +71,7 @@ class CreateGenderMap extends React.Component {
         selectedArea: "Europe",
         selectedWord: "",
       }),
+      this.props.isNotLoading(),
     ]);
   };
 
@@ -184,8 +186,9 @@ const mapDispatchToProps = (dispatch) => {
       searchTranslationsByArea,
       searchTranslationsByGenderImg,
       isLoading,
+      isNotLoading,
       clearSearchTranslationsByGenderImg,
-      clearGetTranslationsByArea,
+      clearSearchTranslationsByArea,
       getTranslationById,
     },
     dispatch

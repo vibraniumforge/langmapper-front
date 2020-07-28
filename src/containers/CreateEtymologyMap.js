@@ -17,7 +17,7 @@ import {
   searchTranslationsByEtymologyImg,
   isLoading,
   clearSearchTranslationsByEtymologyImg,
-  clearGetTranslationsByArea,
+  clearSearchTranslationsByArea,
   getTranslationById,
   deleteTranslation,
 } from "../actions/translationActions.js";
@@ -27,7 +27,7 @@ class CreateEtymologyMap extends React.Component {
     super(props);
     this.state = {
       selectedArea: "Europe",
-      selectedWord: "",
+      selectedWord: "cat",
       searchedArea: "",
       searchedWord: "",
     };
@@ -41,7 +41,7 @@ class CreateEtymologyMap extends React.Component {
     //   this.props.getAllLanguageAreaNames();
     // }
     this.props.clearSearchTranslationsByEtymologyImg();
-    this.props.clearGetTranslationsByArea();
+    this.props.clearSearchTranslationsByArea();
   }
 
   handleOnChange = (e) => {
@@ -54,7 +54,7 @@ class CreateEtymologyMap extends React.Component {
     e.preventDefault();
     Promise.all([
       this.props.clearSearchTranslationsByEtymologyImg(),
-      this.props.clearGetTranslationsByArea(),
+      this.props.clearSearchTranslationsByArea(),
       this.props.isLoading(),
       this.props.getWordDefinition(this.state.selectedWord),
       this.props.searchTranslationsByArea(
@@ -69,7 +69,7 @@ class CreateEtymologyMap extends React.Component {
         searchedArea: this.state.selectedArea,
         searchedWord: this.state.selectedWord,
         selectedArea: "Europe",
-        selectedWord: "",
+        selectedWord: "cat",
       }),
     ]);
   };
@@ -186,7 +186,7 @@ const mapDispatchToProps = (dispatch) => {
       searchTranslationsByEtymologyImg,
       isLoading,
       clearSearchTranslationsByEtymologyImg,
-      clearGetTranslationsByArea,
+      clearSearchTranslationsByArea,
       getTranslationById,
       deleteTranslation,
     },
