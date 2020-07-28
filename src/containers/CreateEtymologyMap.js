@@ -13,7 +13,8 @@ import { getWordNames, getWordDefinition } from "../actions/wordActions.js";
 import { getAllLanguageAreaNames } from "../actions/languageActions.js";
 
 import {
-  searchTranslationsByArea,
+  //   searchTranslationsByArea,
+  searchTranslationsByAreaEuropeMap,
   searchTranslationsByEtymologyImg,
   isLoading,
   clearSearchTranslationsByEtymologyImg,
@@ -57,10 +58,15 @@ class CreateEtymologyMap extends React.Component {
       this.props.clearSearchTranslationsByArea(),
       this.props.isLoading(),
       this.props.getWordDefinition(this.state.selectedWord),
-      this.props.searchTranslationsByArea(
+      //   this.props.searchTranslationsByArea(
+      //     this.state.selectedArea,
+      //     this.state.selectedWord
+      //   ),
+      this.props.searchTranslationsByAreaEuropeMap(
         this.state.selectedArea,
         this.state.selectedWord
       ),
+
       this.props.searchTranslationsByEtymologyImg(
         this.state.selectedArea,
         this.state.selectedWord
@@ -139,9 +145,24 @@ class CreateEtymologyMap extends React.Component {
         </form>
         {render ? (
           <div>
-            <h3>Area: {this.state.searchedArea}</h3>
+            {/* <h3>Area: {this.state.searchedArea}</h3>
             <h3>Word: {this.state.searchedWord}</h3>
-            <h3>Definition: {this.props.wordDefinition}</h3>
+            <h3>Definition: {this.props.wordDefinition}</h3> */}
+            <table>
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>Language</th>
+                  <th>Definition</th>
+                </tr>
+              </thead>
+              <tbody>
+                {" "}
+                <th>{this.state.searchedArea}</th>
+                <th>{this.state.searchedWord}</th>
+                <th>{this.props.wordDefinition}</th>
+              </tbody>
+            </table>
 
             <a
               href={this.props.translationMapByEtymology}
@@ -182,7 +203,8 @@ const mapDispatchToProps = (dispatch) => {
       getWordNames,
       getAllLanguageAreaNames,
       getWordDefinition,
-      searchTranslationsByArea,
+      //   searchTranslationsByArea,
+      searchTranslationsByAreaEuropeMap,
       searchTranslationsByEtymologyImg,
       isLoading,
       clearSearchTranslationsByEtymologyImg,
