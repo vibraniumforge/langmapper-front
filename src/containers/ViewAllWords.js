@@ -11,16 +11,17 @@ import {
   getWordById,
   createWord,
   deleteWord,
-  isLoading,
 } from "../actions/wordActions.js";
+
+import { isLoading } from "../actions/translationActions.js";
 
 class ViewAllWords extends Component {
   componentDidMount() {
-    // if (this.props.words && this.props.words.length === 0) {
-    //   this.props.getWords();
-    // }
-    this.props.getWords();
-    this.props.isLoading();
+    if (this.props.words && this.props.words.length === 0) {
+      this.props.getWords();
+    }
+    // this.props.getWords();
+    // this.props.isLoading();
   }
 
   onHandleDelete = (e, wordId) => {
@@ -35,25 +36,24 @@ class ViewAllWords extends Component {
   };
 
   render() {
-    console.log(this.props.isLoadingState);
-    return !this.props.isLoadingState ? (
+    return (
       <>
-        <h3>All Words</h3>
-        <ViewAllWordsResultsContainer
-          onHandleDelete={this.onHandleDelete}
-          onHandleEdit={this.onHandleEdit}
-          words={this.props.words}
-        />
+        {this.props.words.length > 0 ? (
+          <ViewAllWordsResultsContainer
+            onHandleDelete={this.onHandleDelete}
+            onHandleEdit={this.onHandleEdit}
+            words={this.props.words}
+          />
+        ) : (
+          <Spinner isLoading={this.props.isLoading} />
+        )}
       </>
-    ) : (
-      <Spinner isLoading={this.props.isLoading} />
     );
   }
 }
 
 const mapStateToProps = (state) => ({
   words: state.words.words,
-  isLoadingState: state.words.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => {
