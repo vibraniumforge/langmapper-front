@@ -19,6 +19,7 @@ class ViewAllWordsResultsContainer extends Component {
 
     return (
       <>
+        <h3>All Words</h3>
         <div id="card-container">{cards}</div>
       </>
     );
