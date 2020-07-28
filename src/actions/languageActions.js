@@ -94,13 +94,13 @@ export const getAllLanguageAreaNames = () => {
   };
 };
 
-export const getLanguagesByArea = (area) => {
+export const searchLanguagesByArea = (area) => {
   return (dispatch) => {
     fetch(`${url}/search/languages/area/${area}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
-          type: "GET_LANGUAGES_BY_AREA",
+          type: "SEARCH_LANGUAGES_BY_AREA",
           payload: res.data,
         })
       )
@@ -108,9 +108,9 @@ export const getLanguagesByArea = (area) => {
   };
 };
 
-export const clearGetLanguagesByArea = () => {
+export const clearSeachLanguagesByArea = () => {
   return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_LANGUAGES_BY_AREA" });
+    dispatch({ type: "CLEAR_SEARCH_LANGUAGES_BY_AREA" });
   };
 };
 

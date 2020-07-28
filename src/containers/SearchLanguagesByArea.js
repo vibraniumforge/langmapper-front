@@ -8,8 +8,8 @@ import { withRouter } from "react-router-dom";
 
 import {
   getAllLanguageAreaNames,
-  getLanguagesByArea,
-  clearGetLanguagesByArea,
+  searchLanguagesByArea,
+  clearSeachLanguagesByArea,
   getLanguageById,
   deleteLanguage,
 } from "../actions/languageActions.js";
@@ -107,8 +107,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       getAllLanguageAreaNames,
-      getLanguagesByArea,
-      clearGetLanguagesByArea,
+      searchLanguagesByArea,
+      clearSeachLanguagesByArea,
       getLanguageById,
       deleteLanguage,
       clearGetWordDefinition,

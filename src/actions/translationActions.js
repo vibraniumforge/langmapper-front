@@ -62,22 +62,22 @@ export const deleteTranslation = (id) => {
   };
 };
 
-// ++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 export const searchTranslationsByLanguage = (language) => {
   return (dispatch) => {
     fetch(`${url}/search/translations/language/${language}`)
       .then((res) => res.json())
       .then((res) =>
-        dispatch({ type: "GET_TRANSLATIONS_BY_LANGUAGE", payload: res.data })
+        dispatch({ type: "SEARCH_TRANSLATIONS_BY_LANGUAGE", payload: res.data })
       )
       .catch((err) => console.log(err));
   };
 };
 
-export const clearSearchedTranslationsByLanguage = () => {
+export const clearSearchTranslationsByLanguage = () => {
   return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_LANGUAGE" });
+    dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_LANGUAGE" });
   };
 };
 
@@ -86,7 +86,7 @@ export const searchTranslationsByWord = (word) => {
     fetch(`${url}/search/translations/word/${word}`)
       .then((res) => res.json())
       .then((res) =>
-        dispatch({ type: "GET_TRANSLATIONS_BY_WORD", payload: res.data })
+        dispatch({ type: "SEARCH_TRANSLATIONS_BY_WORD", payload: res.data })
       )
       .catch((err) => console.log(err));
   };
@@ -94,7 +94,7 @@ export const searchTranslationsByWord = (word) => {
 
 export const clearSearchTranslationsByWord = () => {
   return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_WORD" });
+    dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_WORD" });
   };
 };
 
@@ -103,21 +103,21 @@ export const searchTranslationsByArea = (area, word) => {
     fetch(`${url}/search/translations/area/${area}/${word}`)
       .then((res) => res.json())
       .then((res) =>
-        dispatch({ type: "GET_TRANSLATIONS_BY_AREA", payload: res.data })
+        dispatch({ type: "SEARCH_TRANSLATIONS_BY_AREA", payload: res.data })
       )
       .catch((err) => console.log(err));
   };
 };
 
-export const clearGetTranslationsByArea = () => {
+export const clearSearchTranslationsByArea = () => {
   return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_AREA" });
+    dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_AREA" });
   };
 };
 
-export const clearGetLanguagesByArea = () => {
+export const clearSearchLanguagesByArea = () => {
   return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_LANGUAGES_BY_AREA" });
+    dispatch({ type: "CLEAR_SEARCH_LANGUAGES_BY_AREA" });
   };
 };
 
@@ -152,7 +152,10 @@ export const searchTranslationsByWordGender = (word) => {
     fetch(`${url}/search/translations/gender/${word}`)
       .then((res) => res.json())
       .then((res) =>
-        dispatch({ type: "GET_TRANSLATIONS_BY_WORD_GENDER", payload: res.data })
+        dispatch({
+          type: "SEARCH_TRANSLATIONS_BY_WORD_GENDER",
+          payload: res.data,
+        })
       )
       .catch((err) => console.log(err));
   };
@@ -160,7 +163,7 @@ export const searchTranslationsByWordGender = (word) => {
 
 export const clearSearchTranslationsByWordGender = () => {
   return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_WORD_GENDER" });
+    dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_WORD_GENDER" });
   };
 };
 
@@ -169,7 +172,10 @@ export const searchTranslationsByEtymology = (etymology_string) => {
     fetch(`${url}/search/translations/etymology/${etymology_string}`)
       .then((res) => res.json())
       .then((res) =>
-        dispatch({ type: "GET_TRANSLATIONS_BY_ETYMOLOGY", payload: res.data })
+        dispatch({
+          type: "SEARCH_TRANSLATIONS_BY_ETYMOLOGY",
+          payload: res.data,
+        })
       )
       .catch((err) => console.log(err));
   };
@@ -177,7 +183,7 @@ export const searchTranslationsByEtymology = (etymology_string) => {
 
 export const clearSearchTranslationsByEtymology = () => {
   return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_ETYMOLOGY" });
+    dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_ETYMOLOGY" });
   };
 };
 
@@ -186,7 +192,10 @@ export const searchTranslationsByMacrofamily = (macrofamily) => {
     fetch(`${url}/search/translations/macrofamily/${macrofamily}`)
       .then((res) => res.json())
       .then((res) =>
-        dispatch({ type: "GET_TRANSLATIONS_BY_MACROFAMILY", payload: res.data })
+        dispatch({
+          type: "SEARCH_TRANSLATIONS_BY_MACROFAMILY",
+          payload: res.data,
+        })
       )
       .catch((err) => console.log(err));
   };
@@ -194,7 +203,7 @@ export const searchTranslationsByMacrofamily = (macrofamily) => {
 
 export const clearSearchTranslationsByMacrofamily = () => {
   return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_MACROFAMILY" });
+    dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_MACROFAMILY" });
   };
 };
 
@@ -222,7 +231,7 @@ export const searchTranslationsByAreaImg = (area, word) => {
         return outside;
       })
       .then((outside) =>
-        dispatch({ type: "GET_TRANSLATIONS_BY_AREA_IMG", payload: outside })
+        dispatch({ type: "SEARCH_TRANSLATIONS_BY_AREA_IMG", payload: outside })
       )
       .catch((err) => console.log(err));
   };
@@ -230,7 +239,32 @@ export const searchTranslationsByAreaImg = (area, word) => {
 
 export const clearSearchTranslationsByAreaImg = () => {
   return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_AREA_IMG" });
+    dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_AREA_IMG" });
+  };
+};
+
+export const searchTranslationsByGenderImg = (area, word) => {
+  return (dispatch) => {
+    let outside;
+    fetch(`${url}/search/all_genders_by_area_img/${area}/${word}`)
+      .then((res) => res.blob())
+      .then((images) => {
+        outside = URL.createObjectURL(images);
+        return outside;
+      })
+      .then((outside) =>
+        dispatch({
+          type: "SEARCH_TRANSLATIONS_BY_AREA_GENDER_IMG",
+          payload: outside,
+        })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
+export const clearSearchTranslationsByGenderImg = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_AREA_GENDER_IMG" });
   };
 };
 
@@ -246,7 +280,7 @@ export const searchTranslationsByEtymologyImg = (area, word) => {
       })
       .then((outside) =>
         dispatch({
-          type: "GET_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG",
+          type: "SEARCH_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG",
           payload: outside,
         })
       )
@@ -256,32 +290,7 @@ export const searchTranslationsByEtymologyImg = (area, word) => {
 
 export const clearSearchTranslationsByEtymologyImg = () => {
   return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG" });
-  };
-};
-
-export const searchTranslationsByGenderImg = (area, word) => {
-  return (dispatch) => {
-    let outside;
-    fetch(`${url}/search/all_genders_by_area_img/${area}/${word}`)
-      .then((res) => res.blob())
-      .then((images) => {
-        outside = URL.createObjectURL(images);
-        return outside;
-      })
-      .then((outside) =>
-        dispatch({
-          type: "GET_TRANSLATIONS_BY_AREA_GENDER_IMG",
-          payload: outside,
-        })
-      )
-      .catch((err) => console.log(err));
-  };
-};
-
-export const clearSearchTranslationsByGenderImg = () => {
-  return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_TRANSLATIONS_BY_AREA_GENDER_IMG" });
+    dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_AREA_ETYMOLOGY_IMG" });
   };
 };
 
