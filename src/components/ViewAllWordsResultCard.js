@@ -5,16 +5,17 @@ import { connect } from "react-redux";
 export const ViewAllWordsResultCard = (props) => {
   return (
     <div className="word-result-card">
+      <h1>{props.word.word_name}</h1>
       {props.loggedIn ? (
         <p>
           <strong>ID: </strong>
           {props.word.id}
         </p>
       ) : null}
-      <p>
+      {/* <p>
         <strong>Name: </strong>
         {props.word.word_name}
-      </p>
+      </p> */}
       <p>
         <strong>Definition: </strong>
         {props.word.definition}
