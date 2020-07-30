@@ -152,15 +152,16 @@ class CreateEtymologyMap extends React.Component {
               <thead>
                 <tr>
                   <th>Area</th>
-                  <th>Language</th>
+                  <th>Word</th>
                   <th>Definition</th>
                 </tr>
               </thead>
               <tbody>
-                {" "}
-                <th>{this.state.searchedArea}</th>
-                <th>{this.state.searchedWord}</th>
-                <th>{this.props.wordDefinition}</th>
+                <tr>
+                  <td>{this.state.searchedArea}</td>
+                  <td>{this.state.searchedWord}</td>
+                  <td>{this.props.wordDefinition}</td>
+                </tr>
               </tbody>
             </table>
 

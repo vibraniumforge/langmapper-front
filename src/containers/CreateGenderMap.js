@@ -145,9 +145,25 @@ class CreateGenderMap extends React.Component {
         </form>
         {render ? (
           <div>
-            <h3>Area: {this.state.selectedArea}</h3>
+            {/* <h3>Area: {this.state.selectedArea}</h3>
             <h3>Word: {this.state.searchedWord}</h3>
-            <h3>Definition: {this.props.wordDefinition}</h3>
+            <h3>Definition: {this.props.wordDefinition}</h3> */}
+            <table>
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>Word</th>
+                  <th>Definition</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{this.state.searchedArea}</td>
+                  <td>{this.state.searchedWord}</td>
+                  <td>{this.props.wordDefinition}</td>
+                </tr>
+              </tbody>
+            </table>
 
             <a
               href={this.props.translationMapByGender}
