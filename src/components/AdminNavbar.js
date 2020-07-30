@@ -18,10 +18,7 @@ class Navbar extends Component {
           Search All Genders of a Word
         </NavLink>
         <NavLink activeClassName="selected" to="/search_etymologies">
-          Search Word by content of Etymology
-        </NavLink>
-        <NavLink activeClassName="selected" to="/grouped_etymologies">
-          Search Translation by Etymology Grouped (Beta)
+          Search Translation by content of Etymology
         </NavLink>
 
         {/* {process.env.REACT_APP_NODE_ENV === "development" ? (
