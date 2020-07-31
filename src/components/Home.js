@@ -12,15 +12,15 @@ import { getWordsCount } from "../actions/wordActions";
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props.getWordsCount();
-    this.props.getTranslationsCount();
-    this.props.getLanguagesCount();
+    Promise.all([
+      this.props.getWordsCount(),
+      this.props.getTranslationsCount(),
+      this.props.getLanguagesCount(),
+    ]);
   }
 
   render() {
-    return this.props.wordsCount > 0 &&
-      this.props.wordsCount > 0 &&
-      this.props.wordsCount > 0 ? (
+    return this.props.languagesCount > 0 ? (
       <>
         <div id="landing-page">
           <h1>Welcome to LangMapper! The language research tool!</h1>
