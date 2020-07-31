@@ -71,7 +71,7 @@ class CreateGenderMap extends React.Component {
         this.state.selectedWord
       ),
       this.setState({
-        searchedAre: this.state.selectedArea,
+        searchedArea: this.state.selectedArea,
         searchedWord: this.state.selectedWord,
         selectedArea: "Europe",
         selectedWord: "",
@@ -148,7 +148,7 @@ class CreateGenderMap extends React.Component {
             {/* <h3>Area: {this.state.selectedArea}</h3>
             <h3>Word: {this.state.searchedWord}</h3>
             <h3>Definition: {this.props.wordDefinition}</h3> */}
-            <table>
+            <table id="table-title">
               <thead>
                 <tr>
                   <th>Area</th>
