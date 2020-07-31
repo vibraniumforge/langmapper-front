@@ -45,14 +45,16 @@ class ViewAllWords extends Component {
   render() {
     return (
       <>
-        <form onSubmit={(e) => this.onHandleClick(e)}>
-          <input
-            className="submit-btn"
-            type="submit"
-            id="submit"
-            value="Refresh"
-          />
-        </form>
+        {this.props.loggedIn ? (
+          <form onSubmit={(e) => this.onHandleClick(e)}>
+            <input
+              className="submit-btn"
+              type="submit"
+              id="submit"
+              value="Refresh"
+            />
+          </form>
+        ) : null}
         {this.props.words.length > 0 ? (
           <ViewAllWordsResultsContainer
             onHandleDelete={this.onHandleDelete}
@@ -69,6 +71,7 @@ class ViewAllWords extends Component {
 
 const mapStateToProps = (state) => ({
   words: state.words.words,
+  loggedIn: state.users.loggedIn,
 });
 
 const mapDispatchToProps = (dispatch) => {
