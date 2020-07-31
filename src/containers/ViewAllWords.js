@@ -11,18 +11,25 @@ import {
   getWordById,
   createWord,
   deleteWord,
+  clearGetWords,
 } from "../actions/wordActions.js";
 
 import { isLoading } from "../actions/translationActions.js";
 
 class ViewAllWords extends Component {
   componentDidMount() {
-    if (this.props.words && this.props.words.length === 0) {
-      this.props.getWords();
-    }
-    // this.props.getWords();
+    // if (this.props.words && this.props.words.length === 0) {
+    //   this.props.getWords();
+    // }
+    this.props.getWords();
     // this.props.isLoading();
   }
+
+  onHandleClick = (e) => {
+    e.preventDefault();
+    this.props.clearGetWords();
+    this.props.getWords();
+  };
 
   onHandleDelete = (e, wordId) => {
     e.preventDefault();
@@ -38,6 +45,14 @@ class ViewAllWords extends Component {
   render() {
     return (
       <>
+        <form onSubmit={(e) => this.onHandleClick(e)}>
+          <input
+            className="submit-btn"
+            type="submit"
+            id="submit"
+            value="Refresh"
+          />
+        </form>
         {this.props.words.length > 0 ? (
           <ViewAllWordsResultsContainer
             onHandleDelete={this.onHandleDelete}
@@ -64,6 +79,7 @@ const mapDispatchToProps = (dispatch) => {
       createWord,
       deleteWord,
       isLoading,
+      clearGetWords,
     },
     dispatch
   );
