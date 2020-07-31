@@ -52,6 +52,8 @@ const genderColorHelper = (macrofamily, language, gender) => {
         return "female";
       case "f inan":
         return "female";
+      case "f or m":
+        return "female";
       case "n":
         return "neuter";
       case "n inan":
