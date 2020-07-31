@@ -1,10 +1,4 @@
 .gender-result-card {
-  /* height: 200px;
-    width: 20%;
-    margin: 10px;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: scroll; */
   height: auto;
   border: 5px solid green;
   width: 20%;
@@ -16,6 +10,7 @@
   background-color: #f8f0e0;
   border-radius: 25px;
   color: black;
+  box-shadow: 5px 10px 8px #888888;
 }
 
 .male {
