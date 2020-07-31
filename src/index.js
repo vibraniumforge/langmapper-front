@@ -11,6 +11,7 @@ import "./css/gender.css";
 import "./css/navbar.css";
 import "./css/table.css";
 import "./css/forms.css";
+import "./css/spinner.css";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
