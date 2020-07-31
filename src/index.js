@@ -7,11 +7,12 @@ import "./index.css";
 import "./css/autofill.css";
 import "./css/buttons.css";
 import "./css/cards.css";
-import "./css/gender.css";
-import "./css/navbar.css";
-import "./css/table.css";
 import "./css/forms.css";
+import "./css/gender.css";
+import "./css/home-page.css";
+import "./css/navbar.css";
 import "./css/spinner.css";
+import "./css/table.css";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
