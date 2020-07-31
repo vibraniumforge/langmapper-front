@@ -1,11 +1,4 @@
 .translation-result-card {
-  /* height: 200px;
-    border: 10px solid blue;
-    width: 20%;
-    margin: 10px;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: scroll; */
   height: auto;
   border: 5px solid green;
   width: 20%;
@@ -16,18 +9,10 @@
   padding: 4px;
   background-color: #f8f0e0;
   border-radius: 25px;
+  box-shadow: 5px 10px 8px #888888;
 }
 
 .language-result-card {
-  /* background-color: white;
-  color: black;
-  border: 10px solid blue;
-  height: 200px;
-  width: 24%;
-  margin: 5px;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: scroll; */
   height: auto;
   border: 5px solid green;
   width: 20%;
@@ -38,16 +23,10 @@
   padding: 4px;
   background-color: #f8f0e0;
   border-radius: 25px;
+  box-shadow: 5px 10px 8px #888888;
 }
 
 .word-result-card {
-  /* height: 200px;
-    border: 10px solid blue;
-    width: 20%;
-    margin: 10px;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: scroll; */
   height: auto;
   border: 5px solid green;
   width: 20%;
@@ -58,4 +37,5 @@
   padding: 4px;
   background-color: #f8f0e0;
   border-radius: 25px;
+  box-shadow: 5px 10px 8px #888888;
 }
