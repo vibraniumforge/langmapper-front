@@ -12,14 +12,20 @@ export default function wordReducer(state = initialState, action) {
       return {
         ...state,
         words: action.payload,
+        isLoading: false,
       };
     case "GET_WORD_BY_ID":
       return {
         ...state,
         wordToUpdate: action.payload,
+        isLoading: false,
       };
     case "CREATE_WORD":
-      return { ...state, words: action.payload };
+      return {
+        ...state,
+        // words: [...state.words, action.payload],
+        isLoading: false,
+      };
     //   return { ...state, words: action.payload, isLoading: true };
     case "EDIT_WORD":
       const editedWord = {
@@ -33,6 +39,7 @@ export default function wordReducer(state = initialState, action) {
           return word.id === action.payload.id ? (word = editedWord) : word;
         }),
         wordToUpdate: "",
+        isLoading: false,
       };
     case "DELETE_WORD":
       const newWords = state.words.filter((word) => {
@@ -41,6 +48,7 @@ export default function wordReducer(state = initialState, action) {
       return {
         ...state,
         words: newWords,
+        isLoading: false,
       };
     case "GET_WORD_NAMES":
       return {
@@ -67,6 +75,11 @@ export default function wordReducer(state = initialState, action) {
       return {
         ...state,
         wordDefinition: "",
+      };
+    case "CLEAR_GET_WORDS":
+      return {
+        ...state,
+        words: [],
       };
     default:
       return state;
