@@ -57,7 +57,7 @@ class SearchLanguagesByArea extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    this.props.getLanguagesByArea(this.state.selectedArea);
+    this.props.searchLanguagesByArea(this.state.selectedArea);
     this.setState({
       selectedArea: "",
       searchedArea: this.state.selectedArea,
