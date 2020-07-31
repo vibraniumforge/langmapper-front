@@ -35,12 +35,13 @@ class CreateEtymologyMap extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.wordNames.length === 0) {
-      this.props.getWordNames();
-    }
+    // if (this.props.wordNames.length === 0) {
+    //   this.props.getWordNames();
+    // }
     // if (this.props.languageAreaNames.length === 0) {
     //   this.props.getAllLanguageAreaNames();
     // }
+    this.props.getWordNames();
     this.props.clearSearchTranslationsByEtymologyImg();
     this.props.clearSearchTranslationsByArea();
   }
@@ -148,7 +149,7 @@ class CreateEtymologyMap extends React.Component {
             {/* <h3>Area: {this.state.searchedArea}</h3>
             <h3>Word: {this.state.searchedWord}</h3>
             <h3>Definition: {this.props.wordDefinition}</h3> */}
-            <table>
+            <table id="table-title">
               <thead>
                 <tr>
                   <th>Area</th>
