@@ -1,3 +1,17 @@
+#table-title {
+  padding: 5px;
+  text-align: center;
+}
+
+#table-title > thead tr {
+  padding: 15px;
+}
+
+#table-title > td {
+  /* padding-bottom: 15px; */
+  text-align: center;
+}
+
 table {
   width: auto;
   text-align: center;
@@ -15,11 +29,13 @@ thead {
   padding-bottom: 15px;
   color: black;
   background-color: lightgray;
+  margin: 5px;
 }
 
 td {
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
   padding-left: 15px;
+  padding-right: 15px;
   border-bottom: 1px solid #ddd;
   text-align: left;
 }
