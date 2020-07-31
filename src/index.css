@@ -65,17 +65,6 @@ textarea {
   font-size: 24px;
 }
 
-#landing-page {
-  color: white;
-  background-image: url("./images/875px-Rosetta_Stone.JPG");
-  background-color: #cccccc;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 50px 0px;
-}
-
 .input-error {
   border: 2px solid red;
 }
