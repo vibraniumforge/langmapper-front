@@ -23,10 +23,13 @@ class Home extends React.Component {
     return this.props.languagesCount > 0 ? (
       <>
         <div id="landing-page">
-          <h1>Welcome to LangMapper! The language research tool!</h1>
-          <h3>Currently {this.props.wordsCount} words</h3>
-          <h3>in {this.props.languagesCount} languages</h3>
-          <h3>with {this.props.translationsCount} translations!</h3>
+          <div id="intro-text-div">
+            <h1>Welcome to LangMapper! </h1>
+            <h1>The language research tool!</h1>
+            <h3>Currently {this.props.wordsCount} words</h3>
+            <h3>in {this.props.languagesCount} languages</h3>
+            <h3>with {this.props.translationsCount} translations!</h3>
+          </div>
         </div>
         <div>
           <h2>How to Use</h2>
