@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -7,6 +8,7 @@ import { withRouter } from "react-router-dom";
 import {
   editTranslation,
   searchTranslationsByArea,
+  isLoading,
 } from "../actions/translationActions.js";
 
 class TranslationForm extends Component {
@@ -222,7 +224,9 @@ class TranslationForm extends Component {
           </form>
         </div>
       </>
-    ) : null;
+    ) : (
+      <Spinner isLoading={this.props.isLoading} />
+    );
   }
 }
 
@@ -236,7 +240,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { editTranslation, searchTranslationsByArea },
+    { editTranslation, searchTranslationsByArea, isLoading },
     dispatch
   );
 };

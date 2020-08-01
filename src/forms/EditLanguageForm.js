@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -9,6 +10,8 @@ import {
   getAllAlphabets,
   getAllMacrofamilyNames,
 } from "../actions/languageActions.js";
+
+import { isLoading } from "../actions/translationActions.js";
 
 class LanguageForm extends Component {
   constructor(props) {
@@ -311,7 +314,9 @@ class LanguageForm extends Component {
           </div>
         </form>
       </div>
-    ) : null;
+    ) : (
+      <Spinner isLoading={this.props.isLoading} />
+    );
   }
 }
 
@@ -323,7 +328,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
-    { editLanguage, getAllAlphabets, getAllMacrofamilyNames },
+    { editLanguage, getAllAlphabets, getAllMacrofamilyNames, isLoading },
     dispatch
   );
 
