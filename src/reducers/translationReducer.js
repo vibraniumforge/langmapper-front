@@ -62,6 +62,7 @@ export default function translationReducer(state = initialState, action) {
             ? (translation = updatedTranslation)
             : translation;
         }),
+        isLoading: false,
         // searchedTranslationsByArea: state.searchedTranslationsByArea.map(
         //   (translation) => {
         //     return translation.t_id === action.payload.id
@@ -69,20 +70,20 @@ export default function translationReducer(state = initialState, action) {
         //       : translation;
         //   }
         // ),
-        searchedTranslationsByLanguage: state.searchedTranslationsByLanguage.map(
-          (translation) => {
-            return translation.t_id === action.payload.id
-              ? (translation = updatedTranslation)
-              : translation;
-          }
-        ),
-        searchedTranslationsByWord: state.searchedTranslationsByWord.map(
-          (translation) => {
-            return translation.t_id === action.payload.id
-              ? (translation = updatedTranslation)
-              : translation;
-          }
-        ),
+        // searchedTranslationsByLanguage: state.searchedTranslationsByLanguage.map(
+        //   (translation) => {
+        //     return translation.t_id === action.payload.id
+        //       ? (translation = updatedTranslation)
+        //       : translation;
+        //   }
+        // ),
+        // searchedTranslationsByWord: state.searchedTranslationsByWord.map(
+        //   (translation) => {
+        //     return translation.t_id === action.payload.id
+        //       ? (translation = updatedTranslation)
+        //       : translation;
+        //   }
+        // ),
       };
     case "DELETE_TRANSLATION":
       const newTranslations = state.translations.filter(
