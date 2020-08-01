@@ -39,9 +39,9 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/search_translations_by_area">
           Search All Translations by Area
         </NavLink>
-        <NavLink activeClassName="selected" to="/search_languages_by_area">
+        {/* <NavLink activeClassName="selected" to="/search_languages_by_area">
           Search All Languages by Area
-        </NavLink>
+        </NavLink> */}
         <NavLink activeClassName="selected" to="/all_words">
           View All Words
         </NavLink>
