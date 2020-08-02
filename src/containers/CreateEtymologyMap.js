@@ -31,6 +31,7 @@ class CreateEtymologyMap extends React.Component {
       selectedWord: "",
       searchedArea: "",
       searchedWord: "",
+      isSafari: false,
     };
   }
 
@@ -44,6 +45,7 @@ class CreateEtymologyMap extends React.Component {
     this.props.getWordNames();
     this.props.clearSearchTranslationsByEtymologyImg();
     this.props.clearSearchTranslationsByArea();
+    this.isSafari();
   }
 
   handleOnChange = (e) => {
@@ -87,6 +89,14 @@ class CreateEtymologyMap extends React.Component {
     this.props.history.push(`/edit_translation/${translationId}`);
   };
 
+  isSafari = () => {
+    const isSafari = navigator.userAgent.indexOf("Safari") > -1;
+
+    this.setState({ isSafari: isSafari }, () =>
+      console.log("isSafari?=", isSafari)
+    );
+  };
+
   render() {
     //   const allAreas =
     //     this.props.languageAreaNames && this.props.languageAreaNames.length > 0
@@ -100,13 +110,13 @@ class CreateEtymologyMap extends React.Component {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
-    let render;
+    let shouldRender;
     if (
       this.props.wordDefinition.length &&
       this.props.translationMapByEtymology &&
       this.props.searchedTranslationsByArea.length
     ) {
-      render = true;
+      shouldRender = true;
     }
     return (
       <>
@@ -144,7 +154,7 @@ class CreateEtymologyMap extends React.Component {
             disabled={!this.state.selectedArea || !this.state.selectedWord}
           />
         </form>
-        {render ? (
+        {shouldRender ? (
           <div>
             {/* <h3>Area: {this.state.searchedArea}</h3>
             <h3>Word: {this.state.searchedWord}</h3>
@@ -165,18 +175,34 @@ class CreateEtymologyMap extends React.Component {
                 </tr>
               </tbody>
             </table>
-
-            <a
-              href={this.props.translationMapByEtymology}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={this.props.translationMapByEtymology}
-                className="map"
-                alt="Europe map"
-              />
-            </a>
+            {this.state.isSafari ? (
+              <a
+                href={this.props.translationMapByEtymology}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <object
+                  data={this.props.translationMapByEtymology}
+                  type="image/svg+xml"
+                  className="map"
+                  alt="Europe map"
+                  aria-label="Europe map"
+                ></object>
+              </a>
+            ) : (
+              <a
+                href={this.props.translationMapByEtymology}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={this.props.translationMapByEtymology}
+                  className="map"
+                  alt="Europe map"
+                  mimeType="image/svg+xml"
+                />
+              </a>
+            )}
 
             <CreateEtymologyMapResultsContainer
               searchedTranslationsByArea={this.props.searchedTranslationsByArea}
