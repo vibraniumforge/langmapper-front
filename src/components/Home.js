@@ -29,6 +29,7 @@ class Home extends React.Component {
             <h3>Currently {this.props.wordsCount} words</h3>
             <h3>in {this.props.languagesCount} languages</h3>
             <h3>with {this.props.translationsCount} translations!</h3>
+            <h1>𓅃𓃦𓋹AßΠЖ金ოनाស𓅃𓃦𓋹</h1>
           </div>
         </div>
         <div>
@@ -95,6 +96,21 @@ class Home extends React.Component {
               origin will be colored the same color.
             </li>
           </ol>
+          <li>
+            {/* <div>
+              Icons made by{" "}
+              <a
+                href="https://www.flaticon.com/authors/freepik"
+                title="Freepik"
+              >
+                Freepik
+              </a>{" "}
+              from{" "}
+              <a href="https://www.flaticon.com/" title="Flaticon">
+                www.flaticon.com
+              </a>
+            </div> */}
+          </li>
         </div>
       </>
     ) : (
