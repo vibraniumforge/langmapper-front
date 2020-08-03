@@ -91,10 +91,7 @@ class CreateEtymologyMap extends React.Component {
 
   isSafari = () => {
     const isSafari = navigator.userAgent.indexOf("Safari") > -1;
-
-    this.setState({ isSafari: isSafari }, () =>
-      console.log("isSafari?=", isSafari)
-    );
+    this.setState({ isSafari: isSafari });
   };
 
   render() {
@@ -199,7 +196,7 @@ class CreateEtymologyMap extends React.Component {
                   src={this.props.translationMapByEtymology}
                   className="map"
                   alt="Europe map"
-                  mimeType="image/svg+xml"
+                  mimetype="image/svg+xml"
                 />
               </a>
             )}
