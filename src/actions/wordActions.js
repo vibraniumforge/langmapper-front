@@ -96,7 +96,7 @@ export const getWordsCount = () => {
 
 export const getWordDefinition = (word) => {
   return (dispatch) => {
-    fetch(`${url}/search/words/definition/${word}`)
+    fetch(`${url}/words/search/definition/${word}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "GET_WORD_DEFINITION", payload: res.data })
