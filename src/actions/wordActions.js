@@ -73,7 +73,7 @@ export const deleteWord = (id) => {
 
 export const getWordNames = () => {
   return (dispatch) => {
-    fetch(`${url}/get/words/word_names`)
+    fetch(`${url}/words/get/word_names`)
       .then((res) => res.json())
       .then((res) => dispatch({ type: "GET_WORD_NAMES", payload: res.data }))
       .catch((err) => console.log(err));
@@ -82,7 +82,7 @@ export const getWordNames = () => {
 
 export const getWordsCount = () => {
   return (dispatch) => {
-    fetch(`${url}/get/words/words_count`)
+    fetch(`${url}/words/get/words_count`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
