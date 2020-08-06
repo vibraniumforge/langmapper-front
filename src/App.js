@@ -46,10 +46,6 @@ const App = (props) => {
               component={SearchEtymologiesContent}
             />
             <Route
-              path="/grouped_etymologies"
-              component={SearchEtymologiesGrouped}
-            />
-            <Route
               path="/all_translations_by_macrofamily"
               component={SearchTranslationsByMacrofamily}
             />
