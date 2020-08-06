@@ -100,7 +100,7 @@ export const clearSearchTranslationsByWord = () => {
 
 export const searchTranslationsByArea = (area, word) => {
   return (dispatch) => {
-    fetch(`${url}/search/translations/area/${area}/${word}`)
+    fetch(`${url}/translations/search/area/${area}/${word}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "SEARCH_TRANSLATIONS_BY_AREA", payload: res.data })
@@ -169,7 +169,7 @@ export const clearSearchTranslationsByWordGender = () => {
 
 export const searchTranslationsByEtymology = (etymology_string) => {
   return (dispatch) => {
-    fetch(`${url}/translations/searcg/etymology/${etymology_string}`)
+    fetch(`${url}/translations/search/etymology/${etymology_string}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
@@ -307,7 +307,7 @@ export const isNotLoading = () => {
 
 export const searchTranslationsByAreaEuropeMap = (area, word) => {
   return (dispatch) => {
-    fetch(`${url}/search/translations/area_europe_map/${area}/${word}`)
+    fetch(`${url}/translations/search/area_europe_map/${area}/${word}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
