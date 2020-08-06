@@ -10,7 +10,7 @@ import Admin from "./components/Admin.js";
 import SearchTranslationsByWord from "./containers/SearchTranslationsByWord.js";
 import SearchAllGenders from "./containers/SearchAllGenders.js";
 import SearchEtymologiesContent from "./containers/SearchEtymologiesContent.js";
-import SearchEtymologiesGrouped from "./containers/SearchEtymologiesGrouped.js";
+// import SearchEtymologiesGrouped from "./containers/SearchEtymologiesGrouped.js";
 import SearchTranslationsByMacrofamily from "./containers/SearchTranslationsByMacrofamily.js";
 import SearchTranslationsByLanguage from "./containers/SearchTranslationsByLanguage.js";
 import NewWordForm from "./forms/NewWordForm.js";
