@@ -224,7 +224,9 @@ export const getTranslationsCount = () => {
 export const searchTranslationsByAreaImg = (area, word) => {
   return (dispatch) => {
     let outside;
-    fetch(`${url}/search/all_translations_by_area_img/${area}/${word}`)
+    fetch(
+      `${url}/translations/search/all_translations_by_area_img/${area}/${word}`
+    )
       .then((res) => res.blob())
       .then((images) => {
         outside = URL.createObjectURL(images);
@@ -246,7 +248,7 @@ export const clearSearchTranslationsByAreaImg = () => {
 export const searchTranslationsByGenderImg = (area, word) => {
   return (dispatch) => {
     let outside;
-    fetch(`${url}/search/all_genders_by_area_img/${area}/${word}`)
+    fetch(`${url}/translations/search/all_genders_by_area_img/${area}/${word}`)
       .then((res) => res.blob())
       .then((images) => {
         outside = URL.createObjectURL(images);
@@ -271,7 +273,9 @@ export const clearSearchTranslationsByGenderImg = () => {
 export const searchTranslationsByEtymologyImg = (area, word) => {
   return (dispatch) => {
     let outside;
-    fetch(`${url}/search/all_etymologies_by_area_img/${area}/${word}`)
+    fetch(
+      `${url}/translations/search/all_etymologies_by_area_img/${area}/${word}`
+    )
       .then((res) => res.blob())
       .then((images) => {
         outside = URL.createObjectURL(images);
