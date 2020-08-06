@@ -53,22 +53,11 @@ export const deleteLanguage = (id) => {
       .catch((err) => console.log(err));
   };
 };
-// ===============================
-
-export const getAllAlphabets = () => {
-  return (dispatch) => {
-    fetch(`${url}/get/languages/alphabet_names`)
-      .then((res) => res.json())
-      .then((res) =>
-        dispatch({ type: "GET_ALL_LANGUAGE_ALPHABET_NAMES", payload: res.data })
-      )
-      .catch((err) => console.log(err));
-  };
-};
+// =================================================
 
 export const getAllMacrofamilyNames = () => {
   return (dispatch) => {
-    fetch(`${url}/get/languages/macrofamily_names`)
+    fetch(`${url}/languages/get/macrofamily_names`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
@@ -80,9 +69,20 @@ export const getAllMacrofamilyNames = () => {
   };
 };
 
+export const getAllAlphabets = () => {
+  return (dispatch) => {
+    fetch(`${url}/languages/get/alphabet_names`)
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({ type: "GET_ALL_LANGUAGE_ALPHABET_NAMES", payload: res.data })
+      )
+      .catch((err) => console.log(err));
+  };
+};
+
 export const getAllLanguageAreaNames = () => {
   return (dispatch) => {
-    fetch(`${url}/get/languages/area_names`)
+    fetch(`${url}/languages/get/area_names`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
@@ -96,7 +96,7 @@ export const getAllLanguageAreaNames = () => {
 
 export const searchLanguagesByArea = (area) => {
   return (dispatch) => {
-    fetch(`${url}/search/languages/area/${area}`)
+    fetch(`${url}/languages/search/area/${area}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
@@ -116,7 +116,7 @@ export const clearSeachLanguagesByArea = () => {
 
 export const getLanguagesCount = () => {
   return (dispatch) => {
-    fetch(`${url}/get/languages/languages_count`)
+    fetch(`${url}/languages/get/languages_count`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({

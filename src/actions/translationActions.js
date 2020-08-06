@@ -66,7 +66,7 @@ export const deleteTranslation = (id) => {
 
 export const searchTranslationsByLanguage = (language) => {
   return (dispatch) => {
-    fetch(`${url}/search/translations/language/${language}`)
+    fetch(`${url}/translations/search/language/${language}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "SEARCH_TRANSLATIONS_BY_LANGUAGE", payload: res.data })
@@ -83,7 +83,7 @@ export const clearSearchTranslationsByLanguage = () => {
 
 export const searchTranslationsByWord = (word) => {
   return (dispatch) => {
-    fetch(`${url}/search/translations/word/${word}`)
+    fetch(`${url}/translations/search/word/${word}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({ type: "SEARCH_TRANSLATIONS_BY_WORD", payload: res.data })
@@ -149,7 +149,7 @@ export const clearGetSearchWord = () => {
 
 export const searchTranslationsByWordGender = (word) => {
   return (dispatch) => {
-    fetch(`${url}/search/translations/gender/${word}`)
+    fetch(`${url}/translations/search/gender/${word}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
@@ -169,7 +169,7 @@ export const clearSearchTranslationsByWordGender = () => {
 
 export const searchTranslationsByEtymology = (etymology_string) => {
   return (dispatch) => {
-    fetch(`${url}/search/translations/etymology/${etymology_string}`)
+    fetch(`${url}/translations/searcg/etymology/${etymology_string}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
@@ -189,7 +189,7 @@ export const clearSearchTranslationsByEtymology = () => {
 
 export const searchTranslationsByMacrofamily = (macrofamily) => {
   return (dispatch) => {
-    fetch(`${url}/search/translations/macrofamily/${macrofamily}`)
+    fetch(`${url}/translations/search/macrofamily/${macrofamily}`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
@@ -209,7 +209,7 @@ export const clearSearchTranslationsByMacrofamily = () => {
 
 export const getTranslationsCount = () => {
   return (dispatch) => {
-    fetch(`${url}/get/translations/translations_count`)
+    fetch(`${url}/translations/get/translations_count`)
       .then((res) => res.json())
       .then((res) =>
         dispatch({
