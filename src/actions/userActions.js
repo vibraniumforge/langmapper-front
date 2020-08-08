@@ -1,7 +1,7 @@
 const url =
   process.env.REACT_APP_NODE_ENV === "development"
-    ? process.env.DEVELOPMENT_URI
-    : process.env.PRODUCTION_URI;
+    ? "http://localhost:3001/api/v1"
+    : "https://secure-refuge-32252.herokuapp.com/api/v1";
 
 export const getUsers = () => {
   return (dispatch) => {
