@@ -3,7 +3,7 @@ import React from "react";
 const WiktionaryLink = (props) => {
   return (
     <>
-      <strong>
+      {/* <strong>
         <a href={props.link} target="_blank" rel="noopener noreferrer">
           Wiktionary
         </a>
@@ -12,7 +12,14 @@ const WiktionaryLink = (props) => {
         src={require("../images/wiktionary.ico")}
         alt="icon"
         className="wiktionary-icon"
-      />
+      /> */}
+      <a href={props.link} target="_blank" rel="noopener noreferrer">
+        <img
+          src={require("../images/wiktionary.ico")}
+          alt="icon"
+          className="wiktionary-icon"
+        />
+      </a>
     </>
   );
 };
