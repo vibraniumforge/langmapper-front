@@ -5,6 +5,7 @@ import {
   genderBoldHelper,
 } from "../helpers/genderHelper.js";
 import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
+import { languageFormatHelper } from "../helpers/languageFormatHelper.js";
 import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
 import WiktionaryLink from "./WiktionaryLink.js";
 import { connect } from "react-redux";
@@ -14,12 +15,15 @@ const CreateEtymologyRow = (props) => {
   return (
     <tr key={translation.id}>
       <td>{translation.name}</td>
-      <td>
+      {/* <td>
         {translation.macrofamily === "Indo-European"
           ? "I.E."
           : translation.macrofamily}
       </td>
-      <td>{translation.family}</td>
+      <td>{translation.family}</td> */}
+      <td>
+        {languageFormatHelper(translation.macrofamily, translation.family)}
+      </td>
       <td>{translation.translation}</td>
       <td>
         {translation.translation === translation.romanization
