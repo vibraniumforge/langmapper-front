@@ -10,6 +10,8 @@ const genderlessLangs = [
   "Scots",
 ];
 
+// returns - in CHART if language does not feature gender, "not found" if missing
+// returns - in CARD if language does not feature gender, "not found" if missing
 const genderFormatHelper = (macrofamily, language, gender) => {
   if (
     (macrofamily && !genderedFamilies.includes(macrofamily)) ||
@@ -23,6 +25,8 @@ const genderFormatHelper = (macrofamily, language, gender) => {
   }
 };
 
+// gives the gender CARD its color
+// gives the text in the CHART gender column its color, it adds "-result" to the className
 const genderColorHelper = (macrofamily, language, gender) => {
   if (
     !genderedFamilies.includes(macrofamily) ||
@@ -59,7 +63,7 @@ const genderColorHelper = (macrofamily, language, gender) => {
       case "n inan":
         return "neuter";
       case "c":
-        return "neuter";
+        return "common";
       case null:
         return "missing";
       default:
@@ -68,6 +72,7 @@ const genderColorHelper = (macrofamily, language, gender) => {
   }
 };
 
+// returns a boolean if the language has gender in the result CARD. For Bolding
 const genderPresenceHelper = (macrofamily, language, gender) => {
   if (
     (macrofamily && !genderedFamilies.includes(macrofamily)) ||
@@ -80,6 +85,8 @@ const genderPresenceHelper = (macrofamily, language, gender) => {
   }
 };
 
+// changes the text in the CHART columns to bold for langs that have gender
+// missing or null is not bold text.
 const genderBoldHelper = (gender) => {
   if (gender && ["m", "f", "n", "c"].includes(gender.charAt(0).toLowerCase())) {
     return true;
