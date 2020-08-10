@@ -26,7 +26,7 @@ class CreateTranslationMapResultsContainer extends Component {
           <thead>
             <tr>
               <th>Language</th>
-              <th>Macrofamily</th>
+              {/* <th>Macrofamily</th> */}
               <th>Family</th>
               <th>Translation</th>
               <th>Romanization</th>
