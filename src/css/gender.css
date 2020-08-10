@@ -31,6 +31,12 @@
   border: 5px solid gray;
 }
 
+.common {
+  color: purple;
+  background-color: plum;
+  border: 5px solid purple;
+}
+
 .missing {
   color: black;
   background-color: white;
@@ -53,6 +59,10 @@
 
 .neuter-result {
   color: gray;
+}
+
+.common-result {
+  color: purple;
 }
 
 .missing-result {
