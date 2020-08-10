@@ -63,10 +63,13 @@ const CreateGenderRow = (props) => {
           : "None Found"}
       </td>
       <td>
+        <WiktionaryLink link={translation.link} />
+      </td>
+      {/* <td>
         {translation.etymology ? (
           <WiktionaryLink link={translation.link} />
         ) : null}
-      </td>
+      </td> */}
       <td>
         {props.loggedIn ? (
           <>
