@@ -10,9 +10,9 @@
 }
 
 #intro-text-div {
-  background-color: slategray;
+  background-color: lightgray;
   /* opacity: 80%; */
-  color: snow;
+  color: black;
   display: inline-block;
   padding: 0px 20px 00px 20px;
   border-radius: 25px;
