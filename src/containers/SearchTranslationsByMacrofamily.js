@@ -82,7 +82,7 @@ class SearchTranslationsByMacrofamily extends React.Component {
           </select> */}
           <MacrofamilySearchSelect
             allMacrofamilies={allMacrofamilies}
-            selectedWord={this.state.selectedWord}
+            selectedMacrofamily={this.state.selectedMacrofamily}
             handleOnChange={this.handleOnChange}
           />
           <input
