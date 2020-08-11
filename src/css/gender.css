@@ -15,25 +15,29 @@
 
 .male {
   color: blue;
-  background-color: powderblue;
+  /* background-color: powderblue; */
+  background-color: #87cefa;
   border: 5px solid blue;
 }
 
 .female {
   color: red;
-  background-color: pink;
+  /* background-color: pink; */
+  background-color: #ffc0cb;
   border: 5px solid red;
 }
 
 .neuter {
   color: gray;
-  background-color: lightgray;
+  /* background-color: lightgray; */
+  background-color: #d3d3d3;
   border: 5px solid gray;
 }
 
 .common {
   color: purple;
-  background-color: plum;
+  /* background-color: plum; */
+  background-color: #ee82ee;
   border: 5px solid purple;
 }
 
