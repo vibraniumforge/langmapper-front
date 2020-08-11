@@ -70,17 +70,16 @@ const CreateGenderRow = (props) => {
           <WiktionaryLink link={translation.link} />
         ) : null}
       </td> */}
-      <td>
-        {props.loggedIn ? (
-          <>
-            <EditAndDeleteButtons
-              onHandleEdit={props.onHandleEdit}
-              onHandleDelete={props.onHandleDelete}
-              translation={props.translation}
-            />
-          </>
-        ) : null}
-      </td>
+
+      {props.loggedIn ? (
+        <td>
+          <EditAndDeleteButtons
+            onHandleEdit={props.onHandleEdit}
+            onHandleDelete={props.onHandleDelete}
+            translation={props.translation}
+          />
+        </td>
+      ) : null}
     </tr>
   );
 };
