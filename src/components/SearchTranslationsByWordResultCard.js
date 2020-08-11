@@ -51,6 +51,12 @@ export const SearchTranslationsByWordResultCard = (props) => {
         </p>
       ) : null}
       <p>
+        <strong>Macrofamily: </strong> {props.translation.macrofamily}
+      </p>
+      <p>
+        <strong>Family: </strong> {props.translation.family}
+      </p>
+      <p>
         <strong>Etymology: </strong>
         {etymologyFormatHelper(props.translation.etymology)}
       </p>
