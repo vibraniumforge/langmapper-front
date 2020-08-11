@@ -71,6 +71,7 @@ class SearchTranslationsByMacrofamily extends React.Component {
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
+          <h3>Search all the translations of a word by Macrofamily</h3>
           {/* <select
             id="select"
             name="selectedFamily"
