@@ -49,9 +49,7 @@ export const ViewAllLanguagesResultCard = (props) => {
       </p>
       <p>
         <strong>Alive: </strong>
-        {props.language.alive === "f" || props.language.alive === false
-          ? "false"
-          : "true"}
+        {["f", false].includes(props.language.alive) ? "false" : "true"}
       </p>
       <p>
         <strong>Notes: </strong>
