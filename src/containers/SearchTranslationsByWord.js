@@ -9,9 +9,9 @@ import { withRouter } from "react-router-dom";
 
 import {
   getTranslationById,
+  searchTranslationsByWord,
   clearSearchTranslationsByWord,
   deleteTranslation,
-  searchTranslationsByWord,
   isLoading,
 } from "../actions/translationActions.js";
 
