@@ -33,7 +33,7 @@ class SearchLanguagesByArea extends React.Component {
       this.props.getAllLanguageAreaNames();
     }
     if (this.props.languagesByArea.length) {
-      this.props.clearGetLanguagesByArea();
+      this.props.clearSeachLanguagesByArea();
     }
     this.props.clearGetWordDefinition();
   }
