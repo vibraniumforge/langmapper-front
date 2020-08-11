@@ -25,6 +25,9 @@ export const SearchAllGendersResultCard = (props) => {
         </p>
       ) : null}
       <p>
+        <strong>Macrofamily: </strong> {props.translation.macrofamily}
+      </p>
+      <p>
         <strong>Family: </strong> {props.translation.family}
       </p>
       {/* <p>
