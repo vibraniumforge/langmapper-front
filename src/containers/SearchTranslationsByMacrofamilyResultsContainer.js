@@ -6,18 +6,16 @@ class SearchTranslationsByMacrofamilyResultsContainer extends Component {
     const cards =
       this.props.searchedTranslationsByMacrofamily &&
       this.props.searchedTranslationsByMacrofamily.length > 0
-        ? this.props.searchedTranslationsByMacrofamily.map(
-            (translation, index) => {
-              return (
-                <SearchTranslationsByMacrofamilyResultCard
-                  key={index}
-                  translation={translation}
-                  onHandleDelete={this.props.onHandleDelete}
-                  onHandleEdit={this.props.onHandleEdit}
-                />
-              );
-            }
-          )
+        ? this.props.searchedTranslationsByMacrofamily.map((translation) => {
+            return (
+              <SearchTranslationsByMacrofamilyResultCard
+                key={translation.id}
+                translation={translation}
+                onHandleDelete={this.props.onHandleDelete}
+                onHandleEdit={this.props.onHandleEdit}
+              />
+            );
+          })
         : null;
 
     return (
