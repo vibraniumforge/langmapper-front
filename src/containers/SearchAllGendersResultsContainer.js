@@ -22,10 +22,24 @@ class SearchAllGendersResultsContainer extends Component {
       <>
         {this.props.searchedTranslationsByWordGender.length > 0 &&
         this.props.definition.length > 0 ? (
-          <div>
-            <h3>Word: {this.props.searchedWord}</h3>
-            <h3>Definition: {this.props.definition}</h3>
-          </div>
+          //   <div>
+          //     <h3>Word: {this.props.searchedWord}</h3>
+          //     <h3>Definition: {this.props.definition}</h3>
+          //   </div>
+          <table id="table-title">
+            <thead>
+              <tr>
+                <th>Word</th>
+                <th>Definition</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{this.props.searchedWord}</td>
+                <td>{this.props.definition}</td>
+              </tr>
+            </tbody>
+          </table>
         ) : null}
 
         <div id="card-container">{cards}</div>

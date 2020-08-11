@@ -25,11 +25,27 @@ class SearchTranslationsByAreaResultsContainer extends Component {
       <>
         {this.props.definition.length > 0 &&
         this.props.searchedTranslationsByArea.length > 0 ? (
-          <div>
-            <h3>Area: {this.props.searchArea}</h3>
-            <h3>Word: {this.props.searchWord}</h3>
-            <h3>Definition: {this.props.definition}</h3>
-          </div>
+          //   <div>
+          //     <h3>Area: {this.props.searchArea}</h3>
+          //     <h3>Word: {this.props.searchWord}</h3>
+          //     <h3>Definition: {this.props.definition}</h3>
+          //   </div>
+          <table id="table-title">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Word</th>
+                <th>Definition</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{this.props.searchArea}</td>
+                <td>{this.props.searchWord}</td>
+                <td>{this.props.wordDefinition}</td>
+              </tr>
+            </tbody>
+          </table>
         ) : null}
 
         <div id="card-container">{cards}</div>
@@ -41,6 +57,7 @@ class SearchTranslationsByAreaResultsContainer extends Component {
 const mapStateToProps = (state) => ({
   searchArea: state.translations.searchArea,
   searchWord: state.translations.searchWord,
+  wordDefinition: state.words.wordDefinition,
 });
 
 export default withRouter(
