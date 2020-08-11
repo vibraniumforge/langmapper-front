@@ -40,3 +40,13 @@ td {
   border-bottom: 1px solid #ddd;
   text-align: left;
 }
+
+tbody tr:nth-child(odd) {
+  background-color: whitesmoke;
+  color: black;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
