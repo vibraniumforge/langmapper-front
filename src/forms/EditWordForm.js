@@ -65,7 +65,8 @@ class EditWordForm extends Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
     const word = {
-      definition: this.state.wordToUpdate.definition,
+      //   definition: this.state.wordToUpdate.definition,
+      definition: this.state.wordDefinition,
     };
     const wordId = this.props.location.pathname.split("/").pop();
     this.props.editWord(wordId, word);
@@ -84,10 +85,10 @@ class EditWordForm extends Component {
   };
 
   render() {
-    console.log(this.props.wordToUpdate);
     // return this.props.wordDefinition ||
     //   (!this.props.wordDefinition && this.state.wordDefinition) ? (
     return this.props.wordToUpdate &&
+      this.props.wordToUpdate.word_name &&
       this.props.wordToUpdate.word_name.length > 0 ? (
       <div>
         <form id="edit-word-form" onSubmit={(e) => this.handleOnSubmit(e)}>
