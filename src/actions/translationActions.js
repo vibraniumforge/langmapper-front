@@ -279,8 +279,8 @@ export const searchTranslationsByEtymologyImg = (area, word) => {
       `${url}/translations/search/all_etymologies_by_area_img/${area}/${word}`
     )
       .then((res) => res.blob())
-      .then((images) => {
-        outside = URL.createObjectURL(images);
+      .then((image) => {
+        outside = URL.createObjectURL(image);
         return outside;
       })
       .then((outside) =>
