@@ -61,7 +61,12 @@ class Login extends Component {
               className=""
             />
           </div>
-          <input type="submit" value="Submit" className="submit-btn" />
+          <input
+            type="submit"
+            value="Submit"
+            className="submit-btn"
+            disabled={!this.state.username || !this.state.password}
+          />
         </form>
       </div>
     );
