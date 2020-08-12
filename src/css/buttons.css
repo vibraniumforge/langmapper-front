@@ -4,6 +4,7 @@
   border: 2px solid black;
   color: black;
   background-color: lightgreen;
+  cursor: pointer;
 }
 
 .clear-btn {
