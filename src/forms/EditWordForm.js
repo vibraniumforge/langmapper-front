@@ -10,6 +10,7 @@ class EditWordForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       wordDefinition: "",
       isChanged: false,
     };
@@ -100,6 +101,11 @@ class EditWordForm extends Component {
               : null} */}
             Edit a Word
           </h2>
+          <div className="form-row">
+            <div className="full-col">
+              <h3>Word ID: {this.props.wordToUpdate.id || ""} </h3>
+            </div>
+          </div>
           <div className="full-col">
             <label className="same-line" htmlFor="word-name">
               Word:
