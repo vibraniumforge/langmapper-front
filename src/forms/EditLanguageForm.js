@@ -17,6 +17,7 @@ class LanguageForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       name: "",
       abbreviation: "",
       alphabet: "",
@@ -44,6 +45,7 @@ class LanguageForm extends Component {
     if (this.props.languageToUpdate !== nextProps.languageToUpdate) {
       this.setState(
         {
+          id: nextProps.languageToUpdate.id,
           name: nextProps.languageToUpdate.name,
           abbreviation: nextProps.languageToUpdate.abbreviation,
           alphabet: nextProps.languageToUpdate.alphabet,
@@ -129,6 +131,11 @@ class LanguageForm extends Component {
       <div className="">
         <form id="edit-language-form" onSubmit={(e) => this.handleOnSubmit(e)}>
           <h2>Edit a Language</h2>
+          <div className="form-row">
+            <div className="full-col">
+              <h3>Language ID: {this.state.id || ""} </h3>
+            </div>
+          </div>
           <div className="form-row">
             <div className="form-group one-third-col">
               <label htmlFor="name">Name: </label>
@@ -247,18 +254,6 @@ class LanguageForm extends Component {
           </div>
           <div className="form-row">
             <div className="form-group full-col">
-              <label htmlFor="notes">Notes: </label>
-              <textarea
-                id="notes"
-                name="notes"
-                placeholder="Notes"
-                value={this.state.notes || ""}
-                onChange={this.handleOnChange}
-              />
-            </div>
-          </div>
-          <div className="form-row">
-            <div className="form-group full-col">
               <label htmlFor="alive">Alive?: </label>
               <label htmlFor="radio1">
                 <input
@@ -290,6 +285,19 @@ class LanguageForm extends Component {
               </label>
             </div>
           </div>
+          <div className="form-row">
+            <div className="form-group full-col">
+              <label htmlFor="notes">Notes: </label>
+              <textarea
+                id="notes"
+                name="notes"
+                placeholder="Notes"
+                value={this.state.notes || ""}
+                onChange={this.handleOnChange}
+              />
+            </div>
+          </div>
+
           <div>
             <input
               type="submit"
