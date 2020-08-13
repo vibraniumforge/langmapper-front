@@ -16,6 +16,8 @@ class TranslationForm extends Component {
     super(props);
     this.state = {
       id: "",
+      language_id: "",
+      word_id: "",
       language: "",
       word: "",
       etymology: "",
@@ -31,6 +33,8 @@ class TranslationForm extends Component {
     if (this.props.translationToUpdate !== nextProps.translationToUpdate) {
       this.setState({
         id: nextProps.translationToUpdate.id,
+        language_id: nextProps.translationToUpdate.language.id,
+        word_id: nextProps.translationToUpdate.word.id,
         language: nextProps.translationToUpdate.language.name,
         word: nextProps.translationToUpdate.word.word_name,
         etymology: nextProps.translationToUpdate.etymology,
@@ -94,6 +98,18 @@ class TranslationForm extends Component {
             <h2>Edit a Translation</h2>
             <div className="form-row">
               <div className="form-group one-third-col">
+                <h3>ID: {this.state.id}</h3>
+              </div>
+              <div className="form-group one-third-col">
+                <h3>Word ID: {this.state.language_id}</h3>
+              </div>
+              <div className="form-group one-third-col">
+                <h3>Language ID: {this.state.word_id}</h3>
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group half-col">
                 <label htmlFor="language">Language: </label>
                 <input
                   id="language"
@@ -106,7 +122,7 @@ class TranslationForm extends Component {
                   disabled
                 />
               </div>
-              <div className="form-group one-third-col">
+              <div className="form-group half-col">
                 <label htmlFor="word">Word: </label>
                 <input
                   type="text"
@@ -115,19 +131,6 @@ class TranslationForm extends Component {
                   className="form-control"
                   placeholder="Word"
                   value={this.state.word || ""}
-                  onChange={this.handleOnChange}
-                  disabled
-                />
-              </div>
-              <div className="form-group one-third-col">
-                <label htmlFor="word">ID: </label>
-                <input
-                  type="text"
-                  id="id"
-                  name="id"
-                  className="form-control"
-                  placeholder="Id"
-                  value={this.state.id || ""}
                   onChange={this.handleOnChange}
                   disabled
                 />
