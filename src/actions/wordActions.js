@@ -16,7 +16,7 @@ export const getWordById = (id) => {
   return (dispatch) => {
     fetch(`${url}/words/${id}`)
       .then((res) => res.json())
-      .then((res) => dispatch({ type: "GET_WORD_BY_ID", payload: res }))
+      .then((res) => dispatch({ type: "GET_WORD_BY_ID", payload: res.data }))
       .catch((err) => console.log(err));
   };
 };
