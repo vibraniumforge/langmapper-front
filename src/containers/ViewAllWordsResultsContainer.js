@@ -19,7 +19,8 @@ class ViewAllWordsResultsContainer extends Component {
 
     return (
       <>
-        <h3>All Words</h3>
+        <h3>All Words ({this.props.words.length})</h3>
+
         <div id="card-container">{cards}</div>
       </>
     );
