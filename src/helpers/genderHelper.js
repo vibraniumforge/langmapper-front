@@ -17,9 +17,9 @@ const genderFormatHelper = (macrofamily, language, gender) => {
     (macrofamily && !genderedFamilies.includes(macrofamily)) ||
     genderlessLangs.includes(language)
   ) {
-    return "-";
+    return "∅";
   } else if (!gender) {
-    return "not found";
+    return "?";
   } else {
     return gender.toUpperCase().charAt(0);
   }
