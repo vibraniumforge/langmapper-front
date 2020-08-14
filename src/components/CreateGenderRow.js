@@ -24,9 +24,7 @@ const CreateGenderRow = (props) => {
       <td>
         {languageFormatHelper(translation.macrofamily, translation.family)}
       </td>
-      <td>
-        <i>{translation.translation}</i>
-      </td>
+      <td>{translation.translation}</td>
       <td>
         {translation.translation === translation.romanization
           ? null
