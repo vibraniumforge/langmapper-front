@@ -3,7 +3,8 @@ import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
 import {
   genderFormatHelper,
   genderPresenceHelper,
-} from "../helpers/genderHelper.js";
+} from "../helpers/genderFormatHelper.js";
+import { languageFormatHelperCard } from "../helpers/languageFormatHelper.js";
 import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
 import WiktionaryLink from "./WiktionaryLink.js";
 import { connect } from "react-redux";
@@ -11,18 +12,34 @@ import { connect } from "react-redux";
 export const SearchTranslationsByWordResultCard = (props) => {
   return (
     <div className="translation-result-card">
+      {props.loggedIn ? (
+        <div>
+          <p>
+            <strong>Translation Id: </strong>
+            {props.translation.id}
+          </p>
+          <p>
+            <strong>Language Id: </strong>
+            {props.translation.language_id}
+          </p>
+          <p>
+            <strong>Word Id: </strong>
+            {props.translation.word_id}
+          </p>
+        </div>
+      ) : null}
       <h1>{props.translation.name}</h1>
+      <h2>
+        <i>{props.translation.translation}</i>
+      </h2>
+      {props.translation.translation !== props.translation.romanization ? (
+        <h3>({props.translation.romanization})</h3>
+      ) : null}
       {/* <p>
         <strong>Language: </strong>
         
       </p> */}
-      {props.loggedIn ? (
-        <p>
-          <strong>Translation Id: </strong>
-          {props.translation.id}
-        </p>
-      ) : null}
-      <p>
+      {/* <p>
         <strong> Translation: </strong>
         {props.translation.translation}
       </p>
@@ -31,7 +48,7 @@ export const SearchTranslationsByWordResultCard = (props) => {
           <strong>Romanization: </strong>
           {props.translation.romanization}
         </p>
-      ) : null}
+      ) : null} */}
       {genderPresenceHelper(
         props.translation.macrofamily,
         props.translation.name,
@@ -51,7 +68,8 @@ export const SearchTranslationsByWordResultCard = (props) => {
         </p>
       ) : null}
       <p>
-        <strong>Macrofamily: </strong> {props.translation.macrofamily}
+        <strong>Macrofamily: </strong>
+        {languageFormatHelperCard(props.translation.macrofamily)}
       </p>
       <p>
         <strong>Family: </strong> {props.translation.family}

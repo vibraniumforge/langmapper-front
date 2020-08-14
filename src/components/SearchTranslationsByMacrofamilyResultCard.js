@@ -3,7 +3,7 @@ import { etymologyFormatHelper } from "../helpers/etymologyFormatHelpler.js";
 import {
   genderFormatHelper,
   genderPresenceHelper,
-} from "../helpers/genderHelper.js";
+} from "../helpers/genderFormatHelper.js";
 import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
 import WiktionaryLink from "./WiktionaryLink.js";
 import { connect } from "react-redux";
@@ -11,14 +11,33 @@ import { connect } from "react-redux";
 export const SearchTranslationsByMacrofamilyResultCard = (props) => {
   return (
     <div className="translation-result-card">
-      <h1>{props.translation.name}</h1>
-      <h3>{props.translation.word_name}</h3>
       {props.loggedIn ? (
-        <p>
-          <strong>Translation Id: </strong>
-          {props.translation.id}
-        </p>
+        <div>
+          <p>
+            <strong>Translation Id: </strong>
+            {props.translation.id}
+          </p>
+          <p>
+            <strong>Language Id: </strong>
+            {props.translation.language_id}
+          </p>
+          <p>
+            <strong>Word Id: </strong>
+            {props.translation.word_id}
+          </p>
+        </div>
       ) : null}
+      <h1>{props.translation.name}</h1>
+      <h2>
+        <i>{props.translation.translation}</i>
+      </h2>
+      {props.translation.translation !== props.translation.romanization ? (
+        <h3>({props.translation.romanization})</h3>
+      ) : null}
+      <p>
+        <strong>Word: </strong>
+        {props.translation.word_name}
+      </p>
       {/* <p>
         <strong>Language: </strong>
         {props.translation.name}
@@ -27,7 +46,8 @@ export const SearchTranslationsByMacrofamilyResultCard = (props) => {
         <strong>Word name: </strong>
         {props.translation.word_name}
       </p> */}
-      <p>
+
+      {/* <p>
         <strong>Translation: </strong>
         {props.translation.translation}
       </p>
@@ -36,7 +56,7 @@ export const SearchTranslationsByMacrofamilyResultCard = (props) => {
           <strong>Romanization: </strong>
           {props.translation.romanization}
         </p>
-      ) : null}
+      ) : null} */}
       {genderPresenceHelper(
         props.translation.name,
         props.translation.macrofamily
@@ -54,6 +74,9 @@ export const SearchTranslationsByMacrofamilyResultCard = (props) => {
           </strong>
         </p>
       ) : null}
+      <p>
+        <strong>Family: </strong> {props.translation.family}
+      </p>
       <p>
         <strong>Etymology: </strong>
         {etymologyFormatHelper(props.translation.etymology)}
