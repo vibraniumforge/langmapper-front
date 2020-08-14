@@ -36,6 +36,7 @@ class SearchTranslationsByAreaResultsContainer extends Component {
                 <th>Area</th>
                 <th>Word</th>
                 <th>Definition</th>
+                <th>Count</th>
               </tr>
             </thead>
             <tbody>
@@ -43,6 +44,7 @@ class SearchTranslationsByAreaResultsContainer extends Component {
                 <td>{this.props.searchArea}</td>
                 <td>{this.props.searchWord}</td>
                 <td>{this.props.wordDefinition}</td>
+                <td>{this.props.searchedTranslationsByArea.length}</td>
               </tr>
             </tbody>
           </table>

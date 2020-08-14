@@ -21,7 +21,10 @@ class SearchTranslationsByMacrofamilyResultsContainer extends Component {
     return (
       <>
         {this.props.searchedMacrofamily.length > 0 ? (
-          <h3>Family: {this.props.searchedMacrofamily}</h3>
+          <h3>
+            Family: {this.props.searchedMacrofamily} (
+            {this.props.searchedTranslationsByMacrofamily.length})
+          </h3>
         ) : null}
         <div id="card-container">{cards}</div>
       </>

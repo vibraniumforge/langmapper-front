@@ -164,6 +164,7 @@ class CreateTranslationMap extends React.Component {
                   <th>Area</th>
                   <th>Word</th>
                   <th>Definition</th>
+                  <th>Count</th>
                 </tr>
               </thead>
               <tbody>
@@ -171,6 +172,7 @@ class CreateTranslationMap extends React.Component {
                   <td>{this.state.searchedArea}</td>
                   <td>{this.state.searchedWord}</td>
                   <td>{this.props.wordDefinition}</td>
+                  <td>{this.props.searchedTranslationsByArea.length}</td>
                 </tr>
               </tbody>
             </table>

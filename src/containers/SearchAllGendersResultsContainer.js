@@ -31,12 +31,14 @@ class SearchAllGendersResultsContainer extends Component {
               <tr>
                 <th>Word</th>
                 <th>Definition</th>
+                <th>Count</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>{this.props.searchedWord}</td>
                 <td>{this.props.definition}</td>
+                <td>{this.props.searchedTranslationsByWordGender.length}</td>
               </tr>
             </tbody>
           </table>

@@ -19,7 +19,10 @@ class SearchEtymologiesContentResultsContainer extends Component {
         : null;
     return (
       <>
-        <h3>Search Term: "{this.props.searchedWord}"</h3>
+        <h3>
+          Search Term: "{this.props.searchedWord}" (
+          {this.props.searchedTranslationsByEtymology.length})
+        </h3>
         {this.props.searchedWord &&
         !this.props.isLoadingNow &&
         this.props.searchedTranslationsByEtymology &&

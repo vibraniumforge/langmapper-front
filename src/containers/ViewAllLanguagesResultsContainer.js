@@ -19,7 +19,7 @@ class ViewAllLanguagessResultsContainer extends Component {
 
     return (
       <>
-        <h3>All Languages({this.props.languages.length})</h3>
+        <h3>All Languages ({this.props.languages.length})</h3>
         <div id="card-container">{cards}</div>
       </>
     );
