@@ -26,23 +26,29 @@ class TranslationForm extends Component {
       romanization: "",
       translation: "",
       isChanged: false,
+      isMongo_id: false,
     };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.translationToUpdate !== nextProps.translationToUpdate) {
-      this.setState({
-        id: nextProps.translationToUpdate.id,
-        language_id: nextProps.translationToUpdate.language.id,
-        word_id: nextProps.translationToUpdate.word.id,
-        language: nextProps.translationToUpdate.language.name,
-        word: nextProps.translationToUpdate.word.word_name,
-        etymology: nextProps.translationToUpdate.etymology,
-        gender: nextProps.translationToUpdate.gender,
-        link: nextProps.translationToUpdate.link,
-        romanization: nextProps.translationToUpdate.romanization,
-        translation: nextProps.translationToUpdate.translation,
-      });
+      this.setState(
+        {
+          id: nextProps.translationToUpdate.id,
+          language_id: nextProps.translationToUpdate.language.id,
+          word_id: nextProps.translationToUpdate.word.id,
+          language: nextProps.translationToUpdate.language.name,
+          word: nextProps.translationToUpdate.word.word_name,
+          etymology: nextProps.translationToUpdate.etymology,
+          gender: nextProps.translationToUpdate.gender,
+          link: nextProps.translationToUpdate.link,
+          romanization: nextProps.translationToUpdate.romanization,
+          translation: nextProps.translationToUpdate.translation,
+          isMongo_id:
+            nextProps.translationToUpdate.id.length > 5 ? true : false,
+        },
+        () => console.log(this.state)
+      );
     }
   }
 
@@ -90,6 +96,7 @@ class TranslationForm extends Component {
       romanization: "",
       translation: "",
       isChanged: false,
+      isMongo_id: false,
     });
   };
 
@@ -101,23 +108,38 @@ class TranslationForm extends Component {
             id="edit-translation-form"
             onSubmit={(e) => this.handleOnSubmit(e)}
           >
-            <h2>Edit a Translation</h2>
-            <div className="form-row">
-              <div className="form-group full-col">
-                <h3>ID: {this.state.id}</h3>
+            <h1>Edit a Translation</h1>
+            {this.state.isMongo_id ? (
+              <>
+                <div className="form-row">
+                  <div className="form-group full-col">
+                    <h3>ID: {this.state.id}</h3>
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group half-col">
+                    <h3>Word ID: {this.state.language_id}</h3>
+                  </div>
+                  <div className="form-group half-col">
+                    <h3>Language ID: {this.state.word_id}</h3>
+                  </div>{" "}
+                </div>
+              </>
+            ) : (
+              <div className="form-row">
+                <div className="form-group one-third-col">
+                  <h3>ID: {this.state.id}</h3>
+                </div>
+                <div className="form-group one-third-col">
+                  <h3>Word ID: {this.state.language_id}</h3>
+                </div>
+                <div className="form-group one-third-col">
+                  <h3>Language ID: {this.state.word_id}</h3>
+                </div>
               </div>
-            </div>
+            )}
             <div className="form-row">
-              <div className="form-group half-col">
-                <h3>Word ID: {this.state.language_id}</h3>
-              </div>
-              <div className="form-group half-col">
-                <h3>Language ID: {this.state.word_id}</h3>
-              </div>{" "}
-            </div>
-
-            <div className="form-row">
-              <div className="form-group half-col">
+              <div className="form-group quarter-col">
                 {/* <label htmlFor="word">Word: </label>
                 <input
                   type="text"
@@ -131,7 +153,7 @@ class TranslationForm extends Component {
                 /> */}
                 <h3>Word: {this.state.word}</h3>
               </div>
-              <div className="form-group half-col">
+              <div className="form-group quarter-col">
                 {/* <label htmlFor="language">Language: </label>
                 <input
                   id="language"
@@ -145,21 +167,11 @@ class TranslationForm extends Component {
                 /> */}
                 <h3>Language: {this.state.language}</h3>
               </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group quarter-col">
-                <label htmlFor="gender">Gender: </label>
-                <input
-                  type="text"
-                  id="gender"
-                  name="gender"
-                  className="form-control"
-                  placeholder="Gender"
-                  value={this.state.gender || ""}
-                  onChange={this.handleOnChange}
-                  //   disabled
-                />
+              <div className="form-group half-col">
+                <h3>Link: {this.state.link}</h3>
               </div>
+            </div>
+            {/* <div className="form-row">
               <div className="form-group three-quarter-col">
                 <label htmlFor="link">Link: </label>
                 <input
@@ -173,9 +185,22 @@ class TranslationForm extends Component {
                   disabled
                 />
               </div>
-            </div>
+            </div> */}
             <div className="form-row">
-              <div className="form-group half-col">
+              <div className="form-group one-third-col">
+                <label htmlFor="gender">Gender: </label>
+                <input
+                  type="text"
+                  id="gender"
+                  name="gender"
+                  className="form-control"
+                  placeholder="Gender"
+                  value={this.state.gender || ""}
+                  onChange={this.handleOnChange}
+                  //   disabled
+                />
+              </div>
+              <div className="form-group one-third-col">
                 <label htmlFor="translation">Translation: </label>
                 <input
                   type="text"
@@ -187,7 +212,7 @@ class TranslationForm extends Component {
                   onChange={this.handleOnChange}
                 />
               </div>
-              <div className="form-group half-col">
+              <div className="form-group one-third-col">
                 <label htmlFor="romanization">Romanization: </label>
                 <input
                   type="text"
