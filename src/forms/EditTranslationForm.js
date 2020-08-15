@@ -79,11 +79,17 @@ class TranslationForm extends Component {
 
   clearForm = () => {
     this.setState({
+      id: "",
+      language_id: "",
+      word_id: "",
+      language: "",
+      word: "",
       etymology: "",
       gender: "",
       link: "",
       romanization: "",
       translation: "",
+      isChanged: false,
     });
   };
 
@@ -97,33 +103,22 @@ class TranslationForm extends Component {
           >
             <h2>Edit a Translation</h2>
             <div className="form-row">
-              <div className="form-group one-third-col">
+              <div className="form-group full-col">
                 <h3>ID: {this.state.id}</h3>
               </div>
-              <div className="form-group one-third-col">
+            </div>
+            <div className="form-row">
+              <div className="form-group half-col">
                 <h3>Word ID: {this.state.language_id}</h3>
               </div>
-              <div className="form-group one-third-col">
+              <div className="form-group half-col">
                 <h3>Language ID: {this.state.word_id}</h3>
-              </div>
+              </div>{" "}
             </div>
 
             <div className="form-row">
               <div className="form-group half-col">
-                <label htmlFor="language">Language: </label>
-                <input
-                  id="language"
-                  type="text"
-                  className="form-control"
-                  name="language"
-                  placeholder="Language Name"
-                  value={this.state.language || ""}
-                  onChange={this.handleOnChange}
-                  disabled
-                />
-              </div>
-              <div className="form-group half-col">
-                <label htmlFor="word">Word: </label>
+                {/* <label htmlFor="word">Word: </label>
                 <input
                   type="text"
                   id="word"
@@ -133,7 +128,22 @@ class TranslationForm extends Component {
                   value={this.state.word || ""}
                   onChange={this.handleOnChange}
                   disabled
-                />
+                /> */}
+                <h3>Word: {this.state.word}</h3>
+              </div>
+              <div className="form-group half-col">
+                {/* <label htmlFor="language">Language: </label>
+                <input
+                  id="language"
+                  type="text"
+                  className="form-control"
+                  name="language"
+                  placeholder="Language Name"
+                  value={this.state.language || ""}
+                  onChange={this.handleOnChange}
+                  disabled
+                /> */}
+                <h3>Language: {this.state.language}</h3>
               </div>
             </div>
             <div className="form-row">
