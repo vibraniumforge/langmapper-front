@@ -21,8 +21,9 @@ class ViewAllWords extends Component {
     // if (this.props.words && this.props.words.length === 0) {
     //   this.props.getWords();
     // }
+    this.props.clearGetWords();
     this.props.getWords();
-    // this.props.isLoading();
+    this.props.isLoading();
   }
 
   onHandleClick = (e) => {
@@ -55,7 +56,7 @@ class ViewAllWords extends Component {
             />
           </form>
         ) : null}
-        {this.props.words.length > 0 ? (
+        {this.props.words.length > 0 && this.props.isLoading ? (
           <ViewAllWordsResultsContainer
             onHandleDelete={this.onHandleDelete}
             onHandleEdit={this.onHandleEdit}
