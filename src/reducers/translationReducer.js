@@ -37,7 +37,7 @@ export default function translationReducer(state = initialState, action) {
         translations: action.payload,
         isLoading: false,
       };
-    case "GET_TRANSLATIONS_BY_ID":
+    case "GET_TRANSLATION_BY_ID":
       return {
         ...state,
         translationToUpdate: action.payload,
