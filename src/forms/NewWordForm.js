@@ -20,9 +20,11 @@ class NewWordForm extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    const { wordName } = this.state;
-    this.props.createWord(wordName);
     this.props.history.push("/all_words");
+    const newWord = {
+      word_name: this.state.wordName,
+    };
+    this.props.createWord(newWord);
   };
 
   cancelFormAction = () => {
