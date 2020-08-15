@@ -19,3 +19,12 @@
   border: 5px solid black;
   box-shadow: 5px 10px 8px black;
 }
+
+.text-holder {
+  text-align: left;
+}
+
+.text-desc {
+  font-size: large;
+  font-weight: bold;
+}
