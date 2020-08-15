@@ -43,25 +43,22 @@ class LanguageForm extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.languageToUpdate !== nextProps.languageToUpdate) {
-      this.setState(
-        {
-          id: nextProps.languageToUpdate.id,
-          name: nextProps.languageToUpdate.name,
-          abbreviation: nextProps.languageToUpdate.abbreviation,
-          alphabet: nextProps.languageToUpdate.alphabet,
-          macrofamily: nextProps.languageToUpdate.macrofamily,
-          family: nextProps.languageToUpdate.family,
-          subfamily: nextProps.languageToUpdate.subfamily,
-          area1: nextProps.languageToUpdate.area1,
-          area2: nextProps.languageToUpdate.area2,
-          area3: nextProps.languageToUpdate.area3,
-          notes: nextProps.languageToUpdate.notes,
-          alive: nextProps.languageToUpdate.alive,
-          alphabetNames: nextProps.alphabetNames,
-          macrofamilyNames: nextProps.macrofamilyNames,
-        },
-        () => console.log(this.state)
-      );
+      this.setState({
+        id: nextProps.languageToUpdate.id,
+        name: nextProps.languageToUpdate.name,
+        abbreviation: nextProps.languageToUpdate.abbreviation,
+        alphabet: nextProps.languageToUpdate.alphabet,
+        macrofamily: nextProps.languageToUpdate.macrofamily,
+        family: nextProps.languageToUpdate.family,
+        subfamily: nextProps.languageToUpdate.subfamily,
+        area1: nextProps.languageToUpdate.area1,
+        area2: nextProps.languageToUpdate.area2,
+        area3: nextProps.languageToUpdate.area3,
+        notes: nextProps.languageToUpdate.notes,
+        alive: nextProps.languageToUpdate.alive,
+        alphabetNames: nextProps.alphabetNames,
+        macrofamilyNames: nextProps.macrofamilyNames,
+      });
     }
   }
 
