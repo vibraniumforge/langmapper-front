@@ -1,6 +1,7 @@
 import React from "react";
 import SearchTranslationsByWordResultsContainer from "./SearchTranslationsByWordResultsContainer.js";
-import WordSearchSelect from "../selects/WordSearchSelect.js";
+// import WordSearchSelect from "../selects/WordSearchSelect.js";
+import WordNameAutofill from "../selects/WordNameAutofill.js";
 import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
@@ -57,36 +58,48 @@ class SearchTranslationsByWord extends React.Component {
     this.props.deleteTranslation(languageId);
   };
 
-  handleOnSubmit = (e) => {
+  handleOnSubmit = (e, userInput) => {
     e.preventDefault();
     this.props.isLoading();
-    this.props.searchTranslationsByWord(this.state.selectedWord);
-    this.props.getWordDefinition(this.state.selectedWord);
-    this.setState({ searchedWord: this.state.selectedWord, selectedWord: "" });
+    this.props.searchTranslationsByWord(userInput);
+    this.props.getWordDefinition(userInput);
+    this.setState({ searchedWord: userInput, selectedWord: "" });
   };
 
   render() {
-    const allWords =
+    const wordNames =
       this.props.wordNames && this.props.wordNames.length
         ? this.props.wordNames.map((word) => {
-            return <option key={word.id}>{word.word_name}</option>;
+            return word.word_name;
           })
         : null;
+    // const allWords =
+    //   this.props.wordNames && this.props.wordNames.length > 0
+    //     ? this.props.wordNames.map((word) => {
+    //         return <option key={word.id}>{word.word_name}</option>;
+    //       })
+    //     : null;
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <h3>Search a Word's Translations in all Languages</h3>
-          <WordSearchSelect
+          {/* <WordSearchSelect
             allWords={allWords}
             selectedWord={this.state.selectedWord}
             handleOnChange={this.handleOnChange}
+          /> */}
+          <WordNameAutofill
+            wordNames={wordNames}
+            selectedWord={this.state.selectedWord}
+            // handleOnChange={this.handleOnChange}
+            handleOnSubmit={this.handleOnSubmit}
           />
-          <input
+          {/* <input
             type="submit"
             value="Search"
             className={this.state.selectedWord ? "submit-btn" : "disabled-btn"}
             disabled={!this.state.selectedWord}
-          />
+          /> */}
         </form>
         {this.state.searchedWord && this.props.searchedTranslationsByWord ? (
           <SearchTranslationsByWordResultsContainer

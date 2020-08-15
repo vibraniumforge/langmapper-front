@@ -1,6 +1,7 @@
 import React from "react";
 import SearchAllGendersResultsContainer from "./SearchAllGendersResultsContainer.js";
-import WordSearchSelect from "../selects/WordSearchSelect.js";
+// import WordSearchSelect from "../selects/WordSearchSelect.js";
+import WordNameAutofill from "../selects/WordNameAutofill.js";
 import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
@@ -24,7 +25,7 @@ class SearchAllGenders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedWord: "",
+      //   selectedWord: "",
       searchedWord: "",
     };
   }
@@ -55,40 +56,62 @@ class SearchAllGenders extends React.Component {
     this.props.deleteTranslation(translationId);
   };
 
-  handleOnSubmit = (e) => {
+  //   handleOnSubmit = (e) => {
+  //     e.preventDefault();
+  //     this.props.clearSearchTranslationsByWordGender();
+  //     // this.props.clearGetWordDefinition();
+  //     this.props.searchTranslationsByWordGender(this.state.selectedWord);
+  //     this.props.getWordDefinition(this.state.selectedWord);
+  //     this.setState({
+  //       searchedWord: this.state.selectedWord,
+  //       selectedWord: "",
+  //     });
+  //   };
+
+  handleOnSubmit = (e, userInput) => {
     e.preventDefault();
-    this.props.clearSearchTranslationsByWordGender();
-    // this.props.clearGetWordDefinition();
-    this.props.searchTranslationsByWordGender(this.state.selectedWord);
-    this.props.getWordDefinition(this.state.selectedWord);
+    this.props.searchTranslationsByWordGender(userInput);
     this.setState({
-      searchedWord: this.state.selectedWord,
-      selectedWord: "",
+      searchedWord: userInput,
+      //   searchedLanguage:
+      //     languageName.charAt(0).toUpperCase() + languageName.slice(1),
     });
   };
 
   render() {
-    const allWords =
+    const wordNames =
       this.props.wordNames && this.props.wordNames.length > 0
         ? this.props.wordNames.map((word) => {
-            return <option key={word.id}>{word.word_name}</option>;
+            return word.word_name;
           })
         : null;
+    // const allWords =
+    //   this.props.wordNames && this.props.wordNames.length > 0
+    //     ? this.props.wordNames.map((word) => {
+    //         return <option key={word.id}>{word.word_name}</option>;
+    //       })
+    //     : null;
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
           <h3>Search a Word's Grammatical Gender in all Languages</h3>
-          <WordSearchSelect
+          {/* <WordSearchSelect
             allWords={allWords}
             selectedWord={this.state.selectedWord}
             handleOnChange={this.handleOnChange}
+          /> */}
+          <WordNameAutofill
+            wordNames={wordNames}
+            handleOnSubmit={this.handleOnSubmit}
+            selectedWord={this.state.selectedWord}
+            // handleOnChange={this.handleOnChange}
           />
-          <input
+          {/* <input
             type="submit"
             value="Search"
             className={this.state.selectedWord ? "submit-btn" : "disabled-btn"}
             disabled={!this.state.selectedWord}
-          />
+          /> */}
         </form>
         {this.state.searchedWord &&
         this.props.searchedTranslationsByWordGender ? (
