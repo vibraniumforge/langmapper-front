@@ -93,31 +93,37 @@ class EditWordForm extends Component {
       this.props.wordToUpdate.word_name.length > 0 ? (
       <div>
         <form id="edit-word-form" onSubmit={(e) => this.handleOnSubmit(e)}>
-          <h2>
+          <h1>
             {/* Edit:{" "}
             {this.props.wordToUpdate
               ? this.props.wordToUpdate.word_name.charAt(0).toUpperCase() +
                 this.props.wordToUpdate.word_name.slice(1)
               : null} */}
-            Edit a Word
-          </h2>
+            Edit a Word:{"  "}
+            {this.props.wordToUpdate
+              ? this.props.wordToUpdate.word_name.charAt(0).toUpperCase() +
+                this.props.wordToUpdate.word_name.slice(1)
+              : null}{" "}
+          </h1>
           <div className="form-row">
             <div className="full-col">
               <h3>Word ID: {this.props.wordToUpdate.id || ""} </h3>
             </div>
           </div>
-          <div className="full-col">
-            <label className="same-line" htmlFor="word-name">
-              Word:
-            </label>
-            <input
-              id="word-name"
-              type="text"
-              value={this.props.wordToUpdate.word_name || ""}
-              onChange={this.handleOnChange}
-              disabled
-            />
-          </div>
+          {/* <div className="form-row">
+            <div className="full-col">
+              <label className="same-line" htmlFor="word-name">
+                Word:
+              </label>
+              <input
+                id="word-name"
+                type="text"
+                value={this.props.wordToUpdate.word_name || ""}
+                onChange={this.handleOnChange}
+                disabled
+              />
+            </div>
+          </div> */}
           <div className="form-row">
             <div className="full-col">
               <label className="same-line" htmlFor="word-definition">
@@ -127,6 +133,7 @@ class EditWordForm extends Component {
                 id="word-definition"
                 type="text"
                 name="wordDefinition"
+                className="form-control"
                 placeholder="Enter definition here"
                 value={this.state.wordDefinition || ""}
                 onChange={this.handleOnChange}

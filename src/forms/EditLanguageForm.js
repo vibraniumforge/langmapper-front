@@ -127,7 +127,13 @@ class LanguageForm extends Component {
     return this.props.languageToUpdate && alphabets && macrofamilies ? (
       <div className="">
         <form id="edit-language-form" onSubmit={(e) => this.handleOnSubmit(e)}>
-          <h2>Edit a Language</h2>
+          <h1>
+            Edit a Language: {"  "}
+            {this.props.languageToUpdate && this.props.languageToUpdate.name
+              ? this.props.languageToUpdate.name.charAt(0).toUpperCase() +
+                this.props.languageToUpdate.name.slice(1)
+              : null}{" "}
+          </h1>
           <div className="form-row">
             <div className="full-col">
               <h3>Language ID: {this.state.id || ""} </h3>
