@@ -20,12 +20,6 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" to="/search_etymologies">
           Search Translation by content of Etymology
         </NavLink>
-
-        {/* {process.env.REACT_APP_NODE_ENV === "development" ? (
-          <NavLink activeClassName="selected" to="/grouped_etymologies">
-            Search Word by Etymology Grouped (Beta)
-          </NavLink>
-        ) : null} */}
         <NavLink
           activeClassName="selected"
           to="/all_translations_by_macrofamily"
