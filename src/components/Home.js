@@ -4,7 +4,7 @@ import Spinner from "./Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, NavLink } from "react-router-dom";
 
 import { getLanguagesCount } from "../actions/languageActions";
 import { getTranslationsCount, isLoading } from "../actions/translationActions";
@@ -33,84 +33,117 @@ class Home extends React.Component {
           </div>
         </div>
         <div>
-          <h2>How to Use</h2>
-          <ol>
-            <li>
-              <strong>Search All Translations of a Word</strong> - This shows
-              the all the translations of a word in the various included
-              languages.
-            </li>
-            <li>
-              <strong>Search All Genders of a Word</strong> - This shows the all
-              the genders of a word in the various included languages. Blue is
-              masculine, red is feminine. Gray is either neuter or common. White
-              is not present, like in English.
-            </li>
-            <li>
-              <strong>Search Translation by content of Etymology</strong> -
-              Every translation has an etymology section. This feature allows
+          <h2>Let's go on a tour!</h2>
+          <div className="text-holder">
+            <p className="text-desc">
+              {" "}
+              <NavLink activeClassName="selected" to="/search_translations">
+                Search All Translations of a Word
+              </NavLink>{" "}
+              - shows the all the translations of a word in various languages.
+            </p>
+            <p className="text-desc">
+              {" "}
+              <NavLink activeClassName="selected" to="/search_genders">
+                Search All Genders of a Word
+              </NavLink>{" "}
+              - shows all the genders of a word in various languages. Blue is
+              masculine, red is feminine. Gray is neuter. Purple is common.
+              White is not present, like in English.
+            </p>
+            <p className="text-desc">
+              {" "}
+              <NavLink activeClassName="selected" to="/search_etymologies">
+                Search Translation by content of Etymology
+              </NavLink>{" "}
+              - Every translation has an etymology section. This feature allows
               you to search by the content of a word's etymology. For example,
               you could search "Ancient Greek" to see words with etymologies
               that come from Ancient Greek.
-            </li>
-            <li>
-              <strong>Search all Translations by Language</strong> - This shows
-              the all the translations in a certain langauge. For example,
-              entering "French" will show all the translations in French.
-            </li>
-            <li>
-              <strong>Search Translations by Area</strong> - This shows the all
-              the translations of a word in a specified geographic area. For
-              example, entering "Italy" and "apple" will return all the various
-              translations of "apple" in Italy.
-            </li>
-            <li>
-              <strong>Search Languages by Area</strong> - This shows the all of
-              the languages in a certain geographic area.
-            </li>
-            <li>
-              <strong>View All Words</strong> - Displays all the words and their
-              definitions.
-            </li>
-            <li>
-              <strong>View all Languages</strong> - Displays all the languages
-              and relevant info about them.
-            </li>
-            <li>
-              <strong>Create Translation Map by Area</strong> - Show a map of an
-              area with all of the translations of a chosen word. For example,
-              "Europe" and "bear" makes a map of all the translations of bear in
-              Europe!
-            </li>
-            <li>
-              <strong>Create Gender Map by Area</strong> - This creates a map
-              highlighting the grammatical gender of a word. The map colors
-              correspond to the gender of that word. Note that some languages do
-              not have grammatical gender!
-            </li>
-            <li>
-              <strong>Create Etymology Map by Area </strong> - Show a map of an
-              area with all of the translations of a chosen word, grouped by
-              common etymology. For example, "Europe" and "apple" makes a map of
-              all the translations by etymology in Europe! Words with the same
-              origin will be colored the same color.
-            </li>
-          </ol>
-          <li>
-            {/* <div>
-              Icons made by{" "}
-              <a
-                href="https://www.flaticon.com/authors/freepik"
-                title="Freepik"
+            </p>
+            <p className="text-desc">
+              {" "}
+              <NavLink
+                activeClassName="selected"
+                to="/all_translations_by_language"
               >
-                Freepik
-              </a>{" "}
-              from{" "}
-              <a href="https://www.flaticon.com/" title="Flaticon">
-                www.flaticon.com
-              </a>
-            </div> */}
-          </li>
+                Search All Translations by Language
+              </NavLink>{" "}
+              - This shows the all the translations in a selected langauge. For
+              example, entering "French" will show all the translations in
+              French.
+            </p>
+            <p className="text-desc">
+              {" "}
+              <NavLink
+                activeClassName="selected"
+                to="/search_translations_by_area"
+              >
+                Search All Translations by Area
+              </NavLink>{" "}
+              - This shows the all the translations of a selected word in a
+              specified geographic area. For example, entering "Italy" and
+              "apple" will return all the various translations of "apple" in
+              Italy.
+            </p>
+            <p className="text-desc">
+              {" "}
+              <NavLink
+                activeClassName="selected"
+                to="/search_languages_by_area"
+              >
+                Search All Languages by Area
+              </NavLink>{" "}
+              - This shows the all of the languages in a certain geographic
+              area.
+            </p>
+            <p className="text-desc">
+              {" "}
+              <NavLink activeClassName="selected" to="/all_words">
+                View All Words
+              </NavLink>{" "}
+              - Displays all the words and their definitions.
+            </p>
+            <p className="text-desc">
+              {" "}
+              <NavLink activeClassName="selected" to="/all_languages">
+                View All Languages
+              </NavLink>{" "}
+              - Displays all the languages and relevant info about them.
+            </p>
+            <p className="text-desc">
+              {" "}
+              <NavLink activeClassName="selected" to="/create_translation_map">
+                Create Translation Map by Area
+              </NavLink>{" "}
+              - Show a map of an area with all of the translations of a chosen
+              word. For example, "Europe" and "bear" makes a map of all the
+              translations of bear in Europe!
+            </p>
+            <p className="text-desc">
+              {" "}
+              <NavLink activeClassName="selected" to="/create_gender_map">
+                Create Gender Map by Area
+              </NavLink>{" "}
+              - This creates a map highlighting the grammatical gender of a
+              word. The map colors correspond to the gender of that word. Note
+              that some languages do not have grammatical gender!
+            </p>
+
+            <p className="text-desc">
+              {" "}
+              <NavLink activeClassName="selected" to="/create_etymology_map">
+                Create Etymology Map by Area
+              </NavLink>{" "}
+              - Show a map of an area with all of the translations of a chosen
+              word, grouped by common etymology. For example, "Europe" and
+              "apple" makes a map of all the translations by etymology in
+              Europe! Words with the same origin will be colored the same color.
+            </p>
+          </div>
+        </div>
+        <div>
+          <h2>Have Fun!!!</h2>
         </div>
       </>
     ) : (
