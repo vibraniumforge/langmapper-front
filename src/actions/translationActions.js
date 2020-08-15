@@ -7,6 +7,7 @@ if (process.env.REACT_APP_NODE_ENV === "development") {
   console.log(process.env);
   console.log(process.env.DEVELOPMENT_URI);
   console.log(process.env.PRODUCTION_URI);
+  console.log(process.env.REACT_APP_NODE_ENV);
   console.log(url);
 }
 
