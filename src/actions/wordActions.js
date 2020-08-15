@@ -28,7 +28,7 @@ export const createWord = (word) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ word_name: word }),
+    body: JSON.stringify({ word }),
   };
   return (dispatch) => {
     fetch(`${url}/words`, data)
