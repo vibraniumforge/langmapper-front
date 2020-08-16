@@ -2,7 +2,10 @@ import React from "react";
 import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
 import { connect } from "react-redux";
 
+import { withRouter, NavLink } from "react-router-dom";
+
 export const ViewAllWordsResultCard = (props) => {
+  console.log(props);
   return (
     <div className="word-result-card">
       <h1>{props.word.word_name}</h1>
@@ -20,6 +23,16 @@ export const ViewAllWordsResultCard = (props) => {
         <strong>Definition: </strong>
         {props.word.definition}
       </p>
+      <p>
+        {" "}
+        <NavLink
+          activeClassName="selected"
+          to="/search_all_translations_by_word"
+          onClick={(e) => props.onHandleSubmit(e, props.word.word_name)}
+        >
+          View all Translations
+        </NavLink>{" "}
+      </p>
       {props.loggedIn ? (
         <>
           <EditAndDeleteButtons
@@ -36,5 +49,14 @@ export const ViewAllWordsResultCard = (props) => {
 const mapStateToProps = (state) => ({
   loggedIn: state.users.loggedIn,
 });
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators(
+//     {
+//       searchTranslationsByWord,
+//     },
+//     dispatch
+//   );
 
-export default connect(mapStateToProps, null)(ViewAllWordsResultCard);
+export default withRouter(
+  connect(mapStateToProps, null)(ViewAllWordsResultCard)
+);
