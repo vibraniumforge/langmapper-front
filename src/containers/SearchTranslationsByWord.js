@@ -101,10 +101,11 @@ class SearchTranslationsByWord extends React.Component {
             disabled={!this.state.selectedWord}
           /> */}
         </form>
-        {this.state.searchedWord && this.props.searchedTranslationsByWord ? (
+        {(this.state.searchedWord && this.props.searchedTranslationsByWord) ||
+        (this.props.searchWord && this.props.searchedTranslationsByWord) ? (
           <SearchTranslationsByWordResultsContainer
             searchedTranslationsByWord={this.props.searchedTranslationsByWord}
-            searchedWord={this.state.searchedWord}
+            searchedWord={this.state.searchedWord || this.props.searchWord}
             onHandleDelete={this.onHandleDelete}
             onHandleEdit={this.onHandleEdit}
             definition={this.props.definition}
@@ -122,6 +123,7 @@ const mapStateToProps = (state) => ({
   wordNames: state.words.wordNames,
   translationToUpdate: state.translations.translationToUpdate,
   definition: state.words.wordDefinition,
+  searchWord: state.translations.searchWord,
 });
 
 const mapDispatchToProps = (dispatch) => {
