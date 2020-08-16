@@ -17,7 +17,7 @@ class Navbar extends Component {
             </NavLink>
           </li>
           <li className="dropdown functions">
-            <a href="#" className="dropbtn">
+            <a href="/#" className="dropbtn">
               Map
             </a>
             <div className="dropdown-content">
@@ -33,49 +33,52 @@ class Navbar extends Component {
             </div>
           </li>
           <li className="dropdown functions">
-            <a href="#" className="dropbtn">
+            <a href="/#" className="dropbtn">
               View
             </a>
             <div className="dropdown-content">
               <NavLink activeClassName="selected" to="/all_words">
-                View All Words
+                All Words
               </NavLink>
               <NavLink activeClassName="selected" to="/all_languages">
-                View All Languages
+                All Languages
               </NavLink>
             </div>
           </li>
           <li className="dropdown functions">
-            <a href="#" className="dropbtn">
+            <a href="/#" className="dropbtn">
               Search
             </a>
             <div className="dropdown-content">
-              <NavLink activeClassName="selected" to="/search_translations">
-                Search All Translations of a Word
+              <NavLink
+                activeClassName="selected"
+                to="/search_all_translations_by_word"
+              >
+                All Translations of a Word
               </NavLink>
               <NavLink activeClassName="selected" to="/search_genders">
-                Search All Genders of a Word
+                All Translations of a Word by Gender
               </NavLink>
               <NavLink activeClassName="selected" to="/search_etymologies">
-                Search Translation by content of Etymology
+                All Translations by content of Etymology
               </NavLink>
               <NavLink
                 activeClassName="selected"
-                to="/all_translations_by_language"
+                to="/search_all_translations_by_language"
               >
-                Search All Translations by Language
+                All Translations by Language
               </NavLink>
               <NavLink
                 activeClassName="selected"
                 to="/search_translations_by_area"
               >
-                Search All Translations by Area
+                All Translations by Area
               </NavLink>
               <NavLink
                 activeClassName="selected"
                 to="/search_languages_by_area"
               >
-                Search All Languages by Area
+                All Languages by Area
               </NavLink>
             </div>
           </li>
