@@ -8,30 +8,29 @@ import { createWord } from "../actions/wordActions.js";
 //prettier-ignore
 // const rejected = ["Concrete", "Vine", "Wind", ]
 //prettier-ignore
-// const chemicals = ["Gold", "Silver", "Copper", "Iron", "Tin", "Lead", "Salt", "Water"]
-// const materials = ["Amber", "Silk", "Tar", "Wood", "Clay"];
-
-// //prettier-ignore
-// const domesticAnimals = ["Horse", "Cow", "Sheep", "Pig", "Dog", "Cat", "Chicken"]
-// //prettier-ignore
-// const birds = ["Swan", "Goose", "Owl", "Falcon", "Crow", "Dove", "Eagle", "Gull", "Robin"]
-// //prettier-ignore
-// const animals = ["Wolf", "Fox", "Bear", "Mouse", "Fish", "Otter", "Weasel", "Lion", "Deer"]
-// const insects = ["Butterfly", "Spider", "Ant", "Bee", "Wasp"];
-// const reptiles = ["Frog", "Turtle", "Lizard", "Snake"];
-// const fish = ["Fish", "Trout", "Shark"];
-// const plants = ["Tree", "Flower", "Grass", "Forest"];
-// //prettier-ignore
-// const food = ["Apple", "Blueberry", "Strawberry", "Raspberry", "Carrot"];
-// //prettier-ignore
-// const agriculturalProducts = ["Honey", "Milk", "Egg", "Beer", "Wine", "Wheat", "Bread"];
-// //prettier-ignore
-// const bodyParts = ["Blood", "Tongue", "Tooth", "Ear", "Eye", "Nose", "Hand", "Finger", "Leg"];
-// const seasons = ["Winter", "Summer", "Autumn"];
-// const heavens = ["Sun", "Moon", "Sky", "Star"];
-// const time = ["Day", "Dawn", "Night"];
-// //prettier-ignore
-// const weather = ["Snow", "Rain", "Hail", "Ice", "Frost", "Cloud", "Fog", "Rainbow"];
+const chemicals = ["Gold", "Silver", "Copper", "Iron", "Tin", "Lead", "Salt", "Water"]
+const materials = ["Amber", "Silk", "Tar", "Wood", "Clay"];
+//prettier-ignore
+const domesticAnimals = ["Horse", "Cow", "Sheep", "Pig", "Dog", "Cat", "Chicken"]
+//prettier-ignore
+const birds = ["Swan", "Goose", "Owl", "Falcon", "Crow", "Dove", "Eagle", "Gull", "Robin"]
+//prettier-ignore
+const animals = ["Wolf", "Fox", "Bear", "Mouse", "Fish", "Otter", "Weasel", "Lion", "Deer"]
+const insects = ["Butterfly", "Spider", "Ant", "Bee", "Wasp"];
+const reptiles = ["Frog", "Turtle", "Lizard", "Snake"];
+const fish = ["Fish", "Trout", "Shark"];
+const plants = ["Tree", "Flower", "Grass", "Forest"];
+//prettier-ignore
+const food = ["Apple", "Blueberry", "Strawberry", "Raspberry", "Carrot"];
+//prettier-ignore
+const agriculturalProducts = ["Honey", "Milk", "Egg", "Beer", "Wine", "Wheat", "Bread"];
+//prettier-ignore
+const bodyParts = ["Blood", "Tongue", "Tooth", "Ear", "Eye", "Nose", "Hand", "Finger", "Leg"];
+const seasons = ["Winter", "Summer", "Autumn"];
+const heavens = ["Sun", "Moon", "Sky", "Star"];
+const time = ["Day", "Dawn", "Night"];
+//prettier-ignore
+const weather = ["Snow", "Rain", "Hail", "Ice", "Frost", "Cloud", "Fog", "Rainbow"];
 const geography = ["Sea", "Mountain", "Lake", "River", "Island"];
 const military = ["Shield", "Sword", "Bow", "Arrow", "Spear"];
 //prettier-ignore
@@ -39,22 +38,22 @@ const technology = ["Wheel", "Chariot", "Sail", "Boat", "Oven", "Fire", "Anvil",
 const textiles = ["Thread", "Needle", "Thimble", "Loom", "Rope", "Cloth"];
 
 const sum = [
-  //   chemicals,
-  //   materials,
-  //   domesticAnimals,
-  //   birds,
-  //   animals,
-  //   insects,
-  //   reptiles,
-  //   fish,
-  //   plants,
-  //   food,
-  //   agriculturalProducts,
-  //   bodyParts,
-  //   seasons,
-  //   heavens,
-  //   time,
-  //   weather,
+  chemicals,
+  materials,
+  domesticAnimals,
+  birds,
+  animals,
+  insects,
+  reptiles,
+  fish,
+  plants,
+  food,
+  agriculturalProducts,
+  bodyParts,
+  seasons,
+  heavens,
+  time,
+  weather,
   geography,
   military,
   technology,
