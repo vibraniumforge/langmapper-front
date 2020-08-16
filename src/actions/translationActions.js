@@ -5,12 +5,13 @@ const url =
 
 if (process.env.REACT_APP_NODE_ENV === "development") {
   console.log(process.env);
-  console.log(process.env.DEVELOPMENT_URI);
-  console.log(process.env.PRODUCTION_URI);
+  //   console.log(process.env.DEVELOPMENT_URI);
+  //   console.log(process.env.PRODUCTION_URI);
   console.log(process.env.REACT_APP_NODE_ENV);
   console.log(url);
 }
 
+// too many translations to list
 // export const getTranslations = () => {
 //   return (dispatch) => {
 //     fetch(`${url}/translations`)
@@ -24,13 +25,12 @@ export const getTranslationById = (id) => {
   return (dispatch) => {
     fetch(`${url}/translations/${id}`)
       .then((res) => res.json())
-      .then((res) => dispatch({ type: "GET_TRANSLATIONS_BY_ID", payload: res }))
+      .then((res) => dispatch({ type: "GET_TRANSLATION_BY_ID", payload: res }))
       .catch((err) => console.log(err));
   };
 };
 
 export const editTranslation = (id, editedTranslation) => {
-  console.log("fires", editedTranslation);
   const params = {
     method: "PATCH",
     headers: {
@@ -115,12 +115,6 @@ export const searchTranslationsByArea = (area, word) => {
 export const clearSearchTranslationsByArea = () => {
   return (dispatch) => {
     dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_AREA" });
-  };
-};
-
-export const clearSearchLanguagesByArea = () => {
-  return (dispatch) => {
-    dispatch({ type: "CLEAR_SEARCH_LANGUAGES_BY_AREA" });
   };
 };
 
