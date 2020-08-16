@@ -12,9 +12,14 @@ import {
   createWord,
   deleteWord,
   clearGetWords,
+  getWordDefinition,
 } from "../actions/wordActions.js";
 
-import { isLoading } from "../actions/translationActions.js";
+import {
+  isLoading,
+  searchTranslationsByWord,
+  getSearchWord,
+} from "../actions/translationActions.js";
 
 class ViewAllWords extends Component {
   componentDidMount() {
@@ -23,7 +28,7 @@ class ViewAllWords extends Component {
     // }
     this.props.clearGetWords();
     this.props.getWords();
-    this.props.isLoading();
+    // this.props.isLoading();
   }
 
   onHandleClick = (e) => {
@@ -43,7 +48,16 @@ class ViewAllWords extends Component {
     this.props.history.push(`/edit_word/${wordId}`);
   };
 
+  onHandleSubmit = (e, wordName) => {
+    e.preventDefault();
+    this.props.history.push(`/search_all_translations_by_word`);
+    this.props.searchTranslationsByWord(wordName);
+    this.props.getSearchWord(wordName);
+    this.props.getWordDefinition(wordName);
+  };
+
   render() {
+    console.log(this.props);
     return (
       <>
         {this.props.loggedIn ? (
@@ -56,10 +70,11 @@ class ViewAllWords extends Component {
             />
           </form>
         ) : null}
-        {this.props.words.length > 0 && this.props.isLoading ? (
+        {this.props.words.length > 0 ? (
           <ViewAllWordsResultsContainer
             onHandleDelete={this.onHandleDelete}
             onHandleEdit={this.onHandleEdit}
+            onHandleSubmit={this.onHandleSubmit}
             words={this.props.words}
           />
         ) : (
@@ -84,6 +99,9 @@ const mapDispatchToProps = (dispatch) => {
       deleteWord,
       isLoading,
       clearGetWords,
+      searchTranslationsByWord,
+      getSearchWord,
+      getWordDefinition,
     },
     dispatch
   );
