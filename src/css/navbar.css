@@ -18,7 +18,7 @@
 }
 
 #navbar a:hover {
-  border-bottom: 3px solid red;
+  background-color: white;
 }
 
 .non-admin-navbar {
@@ -31,8 +31,8 @@
 
 ul {
   list-style-type: none;
-  /* margin: 0;
-  padding: 0; */
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 }
 
