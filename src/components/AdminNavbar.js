@@ -11,7 +11,10 @@ class Navbar extends Component {
         <NavLink activeClassName="selected" exact to="/admin">
           Admin
         </NavLink>
-        <NavLink activeClassName="selected" to="/search_translations">
+        <NavLink
+          activeClassName="selected"
+          to="/search_trsearch_all_translations_by_wordanslations"
+        >
           Search All Translations of a Word
         </NavLink>
         <NavLink activeClassName="selected" to="/search_genders">
@@ -26,7 +29,10 @@ class Navbar extends Component {
         >
           Search All Translations by Macrofamily
         </NavLink>
-        <NavLink activeClassName="selected" to="/all_translations_by_language">
+        <NavLink
+          activeClassName="selected"
+          to="/search_all_translations_by_language"
+        >
           Search All Translations by Language
         </NavLink>
         <NavLink activeClassName="selected" to="/search_translations_by_area">
