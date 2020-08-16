@@ -11,6 +11,7 @@ import "./css/forms.css";
 import "./css/gender.css";
 import "./css/home-page.css";
 import "./css/navbar.css";
+import "./css/navbar-admin.css";
 import "./css/spinner.css";
 import "./css/table.css";
 
