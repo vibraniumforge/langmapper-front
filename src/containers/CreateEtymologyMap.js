@@ -1,7 +1,11 @@
 import React from "react";
+import Bowser from "bowser";
+
 import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsContainer.js";
 // import AreaSearchSelect from "../components/AreaSearchSelect.js";
-import WordSearchSelect from "../selects/WordSearchSelect.js";
+// import WordSearchSelect from "../selects/WordSearchSelect.js";
+import WordNameAutofill from "../selects/WordNameAutofill.js";
+
 import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
@@ -9,7 +13,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { getWordNames, getWordDefinition } from "../actions/wordActions.js";
-
 import { getAllLanguageAreaNames } from "../actions/languageActions.js";
 
 import {
@@ -54,31 +57,42 @@ class CreateEtymologyMap extends React.Component {
     });
   };
 
-  handleOnSubmit = (e) => {
+  handleOnSubmit = (e, userInput) => {
     e.preventDefault();
     Promise.all([
       this.props.clearSearchTranslationsByEtymologyImg(),
       this.props.clearSearchTranslationsByArea(),
       this.props.isLoading(),
-      this.props.getWordDefinition(this.state.selectedWord),
+      //   this.props.getWordDefinition(this.state.selectedWord),
+      this.props.getWordDefinition(userInput),
       //   this.props.searchTranslationsByArea(
+      //     this.state.selectedArea,
+      //     this.state.selectedWord
+      //   ),
+      //   newer map only method below
+      //   this.props.searchTranslationsByAreaEuropeMap(
       //     this.state.selectedArea,
       //     this.state.selectedWord
       //   ),
       this.props.searchTranslationsByAreaEuropeMap(
         this.state.selectedArea,
-        this.state.selectedWord
+        userInput
       ),
 
+      //   this.props.searchTranslationsByEtymologyImg(
+      //     this.state.selectedArea,
+      //     this.state.selectedWord
+      //   ),
       this.props.searchTranslationsByEtymologyImg(
         this.state.selectedArea,
-        this.state.selectedWord
+        userInput
       ),
       this.setState({
-        searchedArea: this.state.selectedArea,
-        searchedWord: this.state.selectedWord,
         selectedArea: "Europe",
         selectedWord: "",
+        searchedArea: this.state.selectedArea,
+        // searchedWord: this.state.selectedWord,
+        searchedWord: userInput,
       }),
     ]);
   };
@@ -90,8 +104,15 @@ class CreateEtymologyMap extends React.Component {
   };
 
   isSafari = () => {
-    const isSafari = navigator.userAgent.indexOf("Safari") > -1;
-    this.setState({ isSafari: isSafari });
+    // const isSafari = navigator.userAgent.indexOf("Safari") > -1;
+    // this.setState({ isSafari: isSafari }, () =>
+    //   console.log(this.state.isSafari)
+    // );
+    const browser = Bowser.getParser(window.navigator.userAgent);
+    console.log(browser.getBrowser()["name"]);
+    if (browser.getBrowser()["name"] === "Safari") {
+      this.setState({ isSafari: true }, () => console.log(this.state.isSafari));
+    }
   };
 
   render() {
@@ -101,10 +122,16 @@ class CreateEtymologyMap extends React.Component {
     //           return area ? <option key={index}>{area}</option> : null;
     //         })
     //       : null;
-    const allWords =
-      this.props.wordNames && this.props.wordNames.length > 0
+    // const allWords =
+    //   this.props.wordNames && this.props.wordNames.length > 0
+    //     ? this.props.wordNames.map((word) => {
+    //         return <option key={word.id}>{word.word_name}</option>;
+    //       })
+    //     : null;
+    const wordNames =
+      this.props.wordNames && this.props.wordNames.length
         ? this.props.wordNames.map((word) => {
-            return <option key={word.id}>{word.word_name}</option>;
+            return word.word_name;
           })
         : null;
     let shouldRender;
@@ -135,12 +162,18 @@ class CreateEtymologyMap extends React.Component {
             <option value="Europe">Europe</option>
           </select>
 
-          <WordSearchSelect
+          {/* <WordSearchSelect
             allWords={allWords}
             selectedWord={this.state.selectedWord}
             handleOnChange={this.handleOnChange}
+          /> */}
+          <WordNameAutofill
+            wordNames={wordNames}
+            selectedWord={this.state.selectedWord}
+            // handleOnChange={this.handleOnChange}
+            handleOnSubmit={this.handleOnSubmit}
           />
-          <input
+          {/* <input
             type="submit"
             value="Search"
             className={
@@ -149,7 +182,7 @@ class CreateEtymologyMap extends React.Component {
                 : "disabled-btn"
             }
             disabled={!this.state.selectedArea || !this.state.selectedWord}
-          />
+          /> */}
         </form>
         {shouldRender ? (
           <div>
@@ -175,19 +208,46 @@ class CreateEtymologyMap extends React.Component {
               </tbody>
             </table>
             {this.state.isSafari ? (
-              <a
-                href={this.props.translationMapByEtymology}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <object
-                  data={this.props.translationMapByEtymology}
-                  type="image/svg+xml"
-                  className="map"
-                  alt="Europe map"
-                  aria-label="Europe map"
-                ></object>
-              </a>
+              <>
+                {/* <div> */}
+                <a
+                  href={this.props.translationMapByEtymology}
+                  xlinkHref={this.props.translationMapByEtymology}
+                  target="_self"
+                  //   target="_rel"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={this.props.translationMapByEtymology}
+                    type="image/svg+xml"
+                    className="map"
+                    alt="Europe map"
+                    aria-label="Europe map"
+                    xlinkHref={this.props.translationMapByEtymology}
+                  ></img>
+                  {/* Link */}
+                  {/* <object
+                      xlinkHref={this.props.translationMapByEtymology}
+                      data={this.props.translationMapByEtymology}
+                      type="image/svg+xml"
+                      className="map"
+                      alt="Europe map"
+                      aria-label="Europe map"
+                    ></object> */}
+                </a>
+                {/* <img
+                    type="image/svg+xml"
+                    className="map"
+                    alt="Europe map"
+                    aria-label="Europe map"
+                    xlinkHref={this.props.translationMapByEtymology}
+                  ></img> */}
+                {/* below gives clickable link, but blank 300x150 image */}
+                {/* <svg
+                    className="map"
+                    xlinkHref={this.props.translationMapByEtymology}
+                  ></svg> */}
+              </>
             ) : (
               <a
                 href={this.props.translationMapByEtymology}
@@ -195,6 +255,7 @@ class CreateEtymologyMap extends React.Component {
                 rel="noopener noreferrer"
               >
                 <img
+                  type="image/svg+xml"
                   src={this.props.translationMapByEtymology}
                   className="map"
                   alt="Europe map"
