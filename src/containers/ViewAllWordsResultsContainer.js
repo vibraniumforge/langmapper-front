@@ -11,6 +11,7 @@ class ViewAllWordsResultsContainer extends Component {
                 word={word}
                 onHandleEdit={this.props.onHandleEdit}
                 onHandleDelete={this.props.onHandleDelete}
+                onHandleSubmit={this.props.onHandleSubmit}
                 key={word.id}
               />
             );
