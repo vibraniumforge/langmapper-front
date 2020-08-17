@@ -20,31 +20,9 @@ class SearchAllGendersResultsContainer extends Component {
 
     return (
       <>
-        {this.props.searchedTranslationsByWordGender.length > 0 &&
-        this.props.definition.length > 0 ? (
-          //   <div>
-          //     <h3>Word: {this.props.searchedWord}</h3>
-          //     <h3>Definition: {this.props.definition}</h3>
-          //   </div>
-          <table id="table-title">
-            <thead>
-              <tr>
-                <th>Word</th>
-                <th>Definition</th>
-                <th>Count</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{this.props.searchedWord}</td>
-                <td>{this.props.definition}</td>
-                <td>{this.props.searchedTranslationsByWordGender.length}</td>
-              </tr>
-            </tbody>
-          </table>
+        {this.props.searchedTranslationsByWordGender.length > 0 ? (
+          <div id="card-container">{cards}</div>
         ) : null}
-
-        <div id="card-container">{cards}</div>
       </>
     );
   }
