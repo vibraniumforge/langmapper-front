@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 class Navbar extends Component {
   render() {
     return (
-      <div id="navbar" className="admin-navbar">
+      <div id="navbar-admin">
         <NavLink activeClassName="selected" exact to="/">
           Home
         </NavLink>
@@ -13,7 +13,7 @@ class Navbar extends Component {
         </NavLink>
         <NavLink
           activeClassName="selected"
-          to="/search_trsearch_all_translations_by_wordanslations"
+          to="/search_all_translations_by_word"
         >
           Search All Translations of a Word
         </NavLink>
