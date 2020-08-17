@@ -3,6 +3,7 @@ import CreateGenderMapResultsContainer from "./CreateGenderMapResultsContainer.j
 // import AreaSearchSelect from "../components/AreaSearchSelect.js";
 import WordSearchSelect from "../selects/WordSearchSelect.js";
 import Spinner from "../components/Spinner.js";
+import MiniTable from "../components/MiniTable.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -145,28 +146,12 @@ class CreateGenderMap extends React.Component {
         </form>
         {render ? (
           <div>
-            {/* <h3>Area: {this.state.selectedArea}</h3>
-            <h3>Word: {this.state.searchedWord}</h3>
-            <h3>Definition: {this.props.wordDefinition}</h3> */}
-            <table id="table-title">
-              <thead>
-                <tr>
-                  <th>Area</th>
-                  <th>Word</th>
-                  <th>Definition</th>
-                  <th>Count</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{this.state.searchedArea}</td>
-                  <td>{this.state.searchedWord}</td>
-                  <td>{this.props.wordDefinition}</td>
-                  <td>{this.props.searchedTranslationsByArea.length}</td>
-                </tr>
-              </tbody>
-            </table>
-
+            <MiniTable
+              searchedArea={this.state.searchedArea}
+              searchedWord={this.state.searchedWord}
+              wordDefinition={this.props.wordDefinition}
+              count={this.props.searchedTranslationsByArea.length}
+            />
             <a
               href={this.props.translationMapByGender}
               target="_blank"

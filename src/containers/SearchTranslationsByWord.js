@@ -2,6 +2,7 @@ import React from "react";
 import SearchTranslationsByWordResultsContainer from "./SearchTranslationsByWordResultsContainer.js";
 // import WordSearchSelect from "../selects/WordSearchSelect.js";
 import WordNameAutofill from "../selects/WordNameAutofill.js";
+import MiniTable from "../components/MiniTable.js";
 import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
@@ -88,28 +89,37 @@ class SearchTranslationsByWord extends React.Component {
             selectedWord={this.state.selectedWord}
             handleOnChange={this.handleOnChange}
           /> */}
+          {/* <input
+              type="submit"
+              value="Search"
+              className={this.state.selectedWord ? "submit-btn" : "disabled-btn"}
+              disabled={!this.state.selectedWord}
+            /> */}
           <WordNameAutofill
             wordNames={wordNames}
             selectedWord={this.state.selectedWord}
             // handleOnChange={this.handleOnChange}
             handleOnSubmit={this.handleOnSubmit}
           />
-          {/* <input
-            type="submit"
-            value="Search"
-            className={this.state.selectedWord ? "submit-btn" : "disabled-btn"}
-            disabled={!this.state.selectedWord}
-          /> */}
         </form>
-        {(this.state.searchedWord && this.props.searchedTranslationsByWord) ||
-        (this.props.searchWord && this.props.searchedTranslationsByWord) ? (
-          <SearchTranslationsByWordResultsContainer
-            searchedTranslationsByWord={this.props.searchedTranslationsByWord}
-            searchedWord={this.state.searchedWord || this.props.searchWord}
-            onHandleDelete={this.onHandleDelete}
-            onHandleEdit={this.onHandleEdit}
-            definition={this.props.definition}
-          />
+        {(this.state.searchedWord &&
+          this.props.searchedTranslationsByWord.length > 0) ||
+        (this.props.searchWord &&
+          this.props.searchedTranslationsByWord.length > 0) ? (
+          <>
+            <MiniTable
+              searchedWord={this.state.searchedWord || this.props.searchWord}
+              wordDefinition={this.props.wordDefinition}
+              count={this.props.searchedTranslationsByWord.length}
+            />
+            <SearchTranslationsByWordResultsContainer
+              searchedTranslationsByWord={this.props.searchedTranslationsByWord}
+              searchedWord={this.state.searchedWord || this.props.searchWord}
+              wordDefinition={this.props.wordDefinition}
+              onHandleDelete={this.onHandleDelete}
+              onHandleEdit={this.onHandleEdit}
+            />
+          </>
         ) : this.state.searchedWord ? (
           <Spinner isLoading={this.props.isLoading} />
         ) : null}
@@ -122,7 +132,7 @@ const mapStateToProps = (state) => ({
   searchedTranslationsByWord: state.translations.searchedTranslationsByWord,
   wordNames: state.words.wordNames,
   translationToUpdate: state.translations.translationToUpdate,
-  definition: state.words.wordDefinition,
+  wordDefinition: state.words.wordDefinition,
   searchWord: state.translations.searchWord,
 });
 

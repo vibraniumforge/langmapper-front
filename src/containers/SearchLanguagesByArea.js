@@ -1,6 +1,7 @@
 import React from "react";
 import SearchLanguagesByAreaResultsContainer from "./SearchLanguagesByAreaResultsContainer.js";
 import AreaSearchSelect from "../selects/AreaSearchSelect.js";
+import MiniTable from "../components/MiniTable.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -87,12 +88,21 @@ class SearchLanguagesByArea extends React.Component {
             className={this.state.selectedArea ? "submit-btn" : "disabled-btn"}
           />
         </form>
-        <SearchLanguagesByAreaResultsContainer
-          languagesByArea={this.props.languagesByArea}
-          searchedArea={this.state.searchedArea}
-          onHandleDelete={this.onHandleDelete}
-          onHandleEdit={this.onHandleEdit}
-        />
+        {this.props.languagesByArea.length > 0 ? (
+          <>
+            {" "}
+            <MiniTable
+              searchedArea={this.state.searchedArea}
+              count={this.props.languagesByArea.length}
+            />
+            <SearchLanguagesByAreaResultsContainer
+              languagesByArea={this.props.languagesByArea}
+              searchedArea={this.state.searchedArea}
+              onHandleDelete={this.onHandleDelete}
+              onHandleEdit={this.onHandleEdit}
+            />
+          </>
+        ) : null}
       </>
     );
   }

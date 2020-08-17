@@ -5,7 +5,7 @@ import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsConta
 // import AreaSearchSelect from "../components/AreaSearchSelect.js";
 // import WordSearchSelect from "../selects/WordSearchSelect.js";
 import WordNameAutofill from "../selects/WordNameAutofill.js";
-
+import MiniTable from "../components/MiniTable.js";
 import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
@@ -136,7 +136,7 @@ class CreateEtymologyMap extends React.Component {
         : null;
     let shouldRender;
     if (
-      this.props.wordDefinition.length &&
+      this.props.wordDefinition.length > 0 &&
       this.props.translationMapByEtymology &&
       this.props.searchedTranslationsByArea.length
     ) {
@@ -151,62 +151,54 @@ class CreateEtymologyMap extends React.Component {
             selectedArea={this.state.selectedArea}
             handleOnChange={this.handleOnChange}
           /> */}
-          <select
-            id="select"
-            name="selectedArea"
-            value={this.state.selectedArea}
-            onChange={this.handleOnChange}
-          >
-            <option value="">Select Area</option>
-            {/* {allAreas} */}
-            <option value="Europe">Europe</option>
-          </select>
+          <div className="form-row">
+            <div className="form-group half-col">
+              <select
+                id="select"
+                name="selectedArea"
+                value={this.state.selectedArea}
+                onChange={this.handleOnChange}
+              >
+                <option value="">Select Area</option>
+                {/* {allAreas} */}
+                <option value="Europe">Europe</option>
+              </select>
+            </div>
 
-          {/* <WordSearchSelect
+            {/* <WordSearchSelect
             allWords={allWords}
             selectedWord={this.state.selectedWord}
             handleOnChange={this.handleOnChange}
           /> */}
-          <WordNameAutofill
-            wordNames={wordNames}
-            selectedWord={this.state.selectedWord}
-            // handleOnChange={this.handleOnChange}
-            handleOnSubmit={this.handleOnSubmit}
-          />
-          {/* <input
-            type="submit"
-            value="Search"
-            className={
-              this.state.selectedArea && this.state.selectedWord
-                ? "submit-btn"
-                : "disabled-btn"
-            }
-            disabled={!this.state.selectedArea || !this.state.selectedWord}
-          /> */}
+            {/* <input
+              type="submit"
+              value="Search"
+              className={
+                this.state.selectedArea && this.state.selectedWord
+                  ? "submit-btn"
+                  : "disabled-btn"
+              }
+              disabled={!this.state.selectedArea || !this.state.selectedWord}
+            /> */}
+            <div className="form-group half-col">
+              <WordNameAutofill
+                wordNames={wordNames}
+                selectedWord={this.state.selectedWord}
+                // handleOnChange={this.handleOnChange}
+                handleOnSubmit={this.handleOnSubmit}
+              />
+            </div>
+          </div>
         </form>
         {shouldRender ? (
           <div>
-            {/* <h3>Area: {this.state.searchedArea}</h3>
-            <h3>Word: {this.state.searchedWord}</h3>
-            <h3>Definition: {this.props.wordDefinition}</h3> */}
-            <table id="table-title">
-              <thead>
-                <tr>
-                  <th>Area</th>
-                  <th>Word</th>
-                  <th>Definition</th>
-                  <th>Count</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{this.state.searchedArea}</td>
-                  <td>{this.state.searchedWord}</td>
-                  <td>{this.props.wordDefinition}</td>
-                  <td>{this.props.searchedTranslationsByArea.length}</td>
-                </tr>
-              </tbody>
-            </table>
+            <MiniTable
+              searchedArea={this.state.searchedArea}
+              searchedWord={this.state.searchedWord}
+              wordDefinition={this.props.wordDefinition}
+              count={this.props.searchedTranslationsByArea.length}
+            />
+
             {this.state.isSafari ? (
               <>
                 {/* <div> */}

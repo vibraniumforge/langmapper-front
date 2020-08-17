@@ -1,5 +1,6 @@
 import React from "react";
 import SearchEtymologiesContentResultsContainer from "./SearchEtymologiesContentResultsContainer.js";
+import MiniTable from "../components/MiniTable.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -74,16 +75,22 @@ class SearchEtymologiesContent extends React.Component {
           />
         </form>
         {this.state.searchedWord &&
-        this.props.searchedTranslationsByEtymology ? (
-          <SearchEtymologiesContentResultsContainer
-            searchedTranslationsByEtymology={
-              this.props.searchedTranslationsByEtymology
-            }
-            isLoadingNow={this.props.isLoadingNow}
-            searchedWord={this.state.searchedWord}
-            onHandleDelete={this.onHandleDelete}
-            onHandleEdit={this.onHandleEdit}
-          />
+        this.props.searchedTranslationsByEtymology.length > 0 ? (
+          <>
+            <MiniTable
+              searchedWord={this.state.searchedWord}
+              count={this.props.searchedTranslationsByEtymology.length}
+            />
+            <SearchEtymologiesContentResultsContainer
+              searchedTranslationsByEtymology={
+                this.props.searchedTranslationsByEtymology
+              }
+              isLoadingNow={this.props.isLoadingNow}
+              searchedWord={this.state.searchedWord}
+              onHandleDelete={this.onHandleDelete}
+              onHandleEdit={this.onHandleEdit}
+            />
+          </>
         ) : null}
       </>
     );

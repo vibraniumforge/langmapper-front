@@ -1,6 +1,8 @@
 import React from "react";
 import SearchTranslationsByLanguageResultsContainer from "./SearchTranslationsByLanguageResultsContainer.js";
 import LanguageNameAutofill from "../selects/LanguageNameAutofill.js";
+import MiniTable from "../components/MiniTable.js";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -78,14 +80,24 @@ class SearchTranslationsByLanguage extends React.Component {
             value={this.state.selectedLanguage}
           />
         </form> */}
-        <SearchTranslationsByLanguageResultsContainer
-          searchedTranslationsByLanguage={
-            this.props.searchedTranslationsByLanguage
-          }
-          searchedLanguage={this.state.searchedLanguage}
-          onHandleDelete={this.onHandleDelete}
-          onHandleEdit={this.onHandleEdit}
-        />
+
+        {this.props.searchedTranslationsByLanguage.length > 0 ? (
+          <>
+            {" "}
+            <MiniTable
+              searchedLanguage={this.state.searchedLanguage}
+              count={this.props.searchedTranslationsByLanguage.length}
+            />
+            <SearchTranslationsByLanguageResultsContainer
+              searchedTranslationsByLanguage={
+                this.props.searchedTranslationsByLanguage
+              }
+              searchedLanguage={this.state.searchedLanguage}
+              onHandleDelete={this.onHandleDelete}
+              onHandleEdit={this.onHandleEdit}
+            />
+          </>
+        ) : null}
       </>
     );
   }

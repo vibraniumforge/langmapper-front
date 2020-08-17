@@ -1,12 +1,12 @@
 import React from "react";
 import SearchTranslationsByMacrofamilyResultsContainer from "./SearchTranslationsByMacrofamilyResultsContainer.js";
 import MacrofamilySearchSelect from "../selects/MacrofamilySearchSelect.js";
-
+import MiniTable from "../components/MiniTable.js";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { getWords } from "../actions/wordActions.js";
+import { getWords, getWordDefinition } from "../actions/wordActions.js";
 import { getAllMacrofamilyNames } from "../actions/languageActions.js";
 import {
   getTranslationById,
@@ -68,10 +68,14 @@ class SearchTranslationsByMacrofamily extends React.Component {
             ) : null;
           })
         : null;
+    let shouldRender;
+    if (this.props.searchedTranslationsByMacrofamily.length > 0) {
+      shouldRender = true;
+    }
     return (
       <>
         <form onSubmit={(e) => this.handleOnSubmit(e)}>
-          <h3>Search all the translations of a word by Macrofamily</h3>
+          <h3>Search all the translations of a Macrofamily</h3>
           {/* <select
             id="select"
             name="selectedFamily"
@@ -81,6 +85,7 @@ class SearchTranslationsByMacrofamily extends React.Component {
             <option value="">Select One Macrofamily</option>
             {macrofamilies}
           </select> */}
+
           <MacrofamilySearchSelect
             allMacrofamilies={allMacrofamilies}
             selectedMacrofamily={this.state.selectedMacrofamily}
@@ -95,14 +100,24 @@ class SearchTranslationsByMacrofamily extends React.Component {
             }
           />
         </form>
-        <SearchTranslationsByMacrofamilyResultsContainer
-          searchedTranslationsByMacrofamily={
-            this.props.searchedTranslationsByMacrofamily
-          }
-          searchedMacrofamily={this.state.searchedMacrofamily}
-          onHandleDelete={this.onHandleDelete}
-          onHandleEdit={this.onHandleEdit}
-        />
+        {shouldRender ? (
+          <>
+            {" "}
+            <MiniTable
+              searchedMacrofamily={this.state.searchedMacrofamily}
+              wordDefinition={this.props.wordDefinition}
+              count={this.props.searchedTranslationsByMacrofamily.length}
+            />
+            <SearchTranslationsByMacrofamilyResultsContainer
+              searchedTranslationsByMacrofamily={
+                this.props.searchedTranslationsByMacrofamily
+              }
+              searchedMacrofamily={this.state.searchedMacrofamily}
+              onHandleDelete={this.onHandleDelete}
+              onHandleEdit={this.onHandleEdit}
+            />{" "}
+          </>
+        ) : null}
       </>
     );
   }
@@ -113,14 +128,16 @@ const mapStateToProps = (state) => ({
   macrofamilyNames: state.languages.macrofamilyNames,
   searchedTranslationsByMacrofamily:
     state.translations.searchedTranslationsByMacrofamily,
-  searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
+  //   searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
   isLoadingNow: state.translations.isLoading,
+  wordDefinition: state.words.wordDefinition,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       getWords,
+      getWordDefinition,
       getTranslationById,
       deleteTranslation,
       getAllMacrofamilyNames,

@@ -2,7 +2,8 @@ import React from "react";
 import SearchTranslationsByAreaResultsContainer from "./SearchTranslationsByAreaResultsContainer.js";
 import AreaSearchSelect from "../selects/AreaSearchSelect.js";
 import WordSearchSelect from "../selects/WordSearchSelect.js";
-import Spinner from "../components/Spinner.js";
+// import Spinner from "../components/Spinner.js";
+import MiniTable from "../components/MiniTable.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -21,10 +22,6 @@ import {
   deleteTranslation,
   searchTranslationsByArea,
   clearSearchTranslationsByArea,
-  getSearchArea,
-  clearGetSearchArea,
-  getSearchWord,
-  clearGetSearchWord,
   isLoading,
 } from "../actions/translationActions.js";
 
@@ -34,6 +31,8 @@ class SearchTranslationsByArea extends React.Component {
     this.state = {
       selectedArea: "",
       selectedWord: "",
+      searchedArea: "",
+      searchedWord: "",
     };
   }
 
@@ -62,18 +61,18 @@ class SearchTranslationsByArea extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
+    this.setState({
+      searchedArea: this.state.selectedArea,
+      searchedWord: this.state.selectedWord,
+      selectedArea: "",
+      selectedWord: "",
+    });
     this.props.isLoading();
+    this.props.getWordDefinition(this.state.selectedWord);
     this.props.searchTranslationsByArea(
       this.state.selectedArea,
       this.state.selectedWord
     );
-    this.props.getWordDefinition(this.state.selectedWord);
-    this.props.getSearchArea(this.state.selectedArea);
-    this.props.getSearchWord(this.state.selectedWord);
-    this.setState({
-      selectedArea: "",
-      selectedWord: "",
-    });
   };
 
   onHandleEdit = (e, translationId) => {
@@ -126,16 +125,29 @@ class SearchTranslationsByArea extends React.Component {
             disabled={!this.state.selectedArea && this.state.selectedWord}
           />
         </form>
-        {this.props.searchedTranslationsByArea ? (
-          <SearchTranslationsByAreaResultsContainer
-            searchedTranslationsByArea={this.props.searchedTranslationsByArea}
-            onHandleDelete={this.onHandleDelete}
-            onHandleEdit={this.onHandleEdit}
-            definition={this.props.definition}
-          />
-        ) : (
-          <Spinner isLoading={this.props.isLoading} />
-        )}
+        {
+          this.props.searchedTranslationsByArea &&
+          this.props.searchedTranslationsByArea.length > 0 ? (
+            <>
+              {" "}
+              <MiniTable
+                searchedArea={this.state.searchedArea}
+                searchedWord={this.state.searchedWord}
+                wordDefinition={this.props.wordDefinition}
+                count={this.props.searchedTranslationsByArea.length}
+              />
+              <SearchTranslationsByAreaResultsContainer
+                searchedTranslationsByArea={
+                  this.props.searchedTranslationsByArea
+                }
+                wordDefinition={this.props.wordDefinition}
+                onHandleDelete={this.onHandleDelete}
+                onHandleEdit={this.onHandleEdit}
+              />
+            </>
+          ) : null
+          //   <Spinner isLoading={this.props.isLoading} />
+        }
       </>
     );
   }
@@ -146,7 +158,7 @@ const mapStateToProps = (state) => ({
   languageAreaNames: state.languages.languageAreaNames,
   searchedTranslationsByArea: state.translations.searchedTranslationsByArea,
   isLoadingNow: state.translations.isLoading,
-  definition: state.words.wordDefinition,
+  wordDefinition: state.words.wordDefinition,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -158,10 +170,6 @@ const mapDispatchToProps = (dispatch) => {
       deleteTranslation,
       searchTranslationsByArea,
       clearSearchTranslationsByArea,
-      getSearchArea,
-      clearGetSearchArea,
-      getSearchWord,
-      clearGetSearchWord,
       isLoading,
       getWordDefinition,
       clearGetWordDefinition,
