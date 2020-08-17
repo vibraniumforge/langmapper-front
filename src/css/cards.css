@@ -30,7 +30,8 @@
 
 .word-result-card {
   height: auto;
-  border: 5px solid green;
+  /* border: 5px solid green; */
+  border: 5px solid #1a535c;
   width: 20%;
   margin: 10px;
   box-sizing: border-box;
