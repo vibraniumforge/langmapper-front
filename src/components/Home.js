@@ -37,14 +37,20 @@ class Home extends React.Component {
           <div className="text-holder">
             <p className="text-desc">
               {" "}
-              <NavLink activeClassName="selected" to="/search_translations">
+              <NavLink
+                activeClassName="selected"
+                to="/search_all_translations_by_word"
+              >
                 Search All Translations of a Word
               </NavLink>{" "}
               - shows the all the translations of a word in various languages.
             </p>
             <p className="text-desc">
               {" "}
-              <NavLink activeClassName="selected" to="/search_genders">
+              <NavLink
+                activeClassName="selected"
+                to="/search_all_translations_by_gender"
+              >
                 Search All Genders of a Word
               </NavLink>{" "}
               - shows all the genders of a word in various languages. Blue is
@@ -53,7 +59,10 @@ class Home extends React.Component {
             </p>
             <p className="text-desc">
               {" "}
-              <NavLink activeClassName="selected" to="/search_etymologies">
+              <NavLink
+                activeClassName="selected"
+                to="/search_all_translations_by_etymology"
+              >
                 Search Translation by content of Etymology
               </NavLink>{" "}
               - Every translation has an etymology section. This feature allows
@@ -65,7 +74,7 @@ class Home extends React.Component {
               {" "}
               <NavLink
                 activeClassName="selected"
-                to="/all_translations_by_language"
+                to="/search_all_translations_by_language"
               >
                 Search All Translations by Language
               </NavLink>{" "}
@@ -77,7 +86,7 @@ class Home extends React.Component {
               {" "}
               <NavLink
                 activeClassName="selected"
-                to="/search_translations_by_area"
+                to="/search_all_translations_by_area"
               >
                 Search All Translations by Area
               </NavLink>{" "}
@@ -90,7 +99,7 @@ class Home extends React.Component {
               {" "}
               <NavLink
                 activeClassName="selected"
-                to="/search_languages_by_area"
+                to="/search_all_languages_by_area"
               >
                 Search All Languages by Area
               </NavLink>{" "}
@@ -99,14 +108,14 @@ class Home extends React.Component {
             </p>
             <p className="text-desc">
               {" "}
-              <NavLink activeClassName="selected" to="/all_words">
+              <NavLink activeClassName="selected" to="/view_all_words">
                 View All Words
               </NavLink>{" "}
               - Displays all the words and their definitions.
             </p>
             <p className="text-desc">
               {" "}
-              <NavLink activeClassName="selected" to="/all_languages">
+              <NavLink activeClassName="selected" to="/view_all_languages">
                 View All Languages
               </NavLink>{" "}
               - Displays all the languages and relevant info about them.
