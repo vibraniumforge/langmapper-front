@@ -30,8 +30,6 @@ const App = (props) => {
       <Router>
         <div className="router">
           {props.loggedIn ? <AdminNavbar /> : <Navbar />}
-          {/* <Navbar /> */}
-
           <Switch id="routes">
             <Route exact path="/" component={Home} />
             <Route exact path="/admin" component={Admin} />
