@@ -33,7 +33,7 @@ class Home extends React.Component {
           </div>
         </div>
         <div>
-          <h2>Let's go on a tour!</h2>
+          <h1>Let's go on a tour!</h1>{" "}
           <div className="text-holder">
             <p className="text-desc">
               {" "}
@@ -143,7 +143,7 @@ class Home extends React.Component {
           </div>
         </div>
         <div>
-          <h2>Have Fun!!!</h2>
+          <h1>Have Fun!!!</h1>
         </div>
       </>
     ) : (
