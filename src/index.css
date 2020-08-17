@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0px, 20px, 0px, 20px;
+  /* margin: 0px 20px 0px 20px; */
 }
 
 code {
@@ -21,7 +21,7 @@ ol {
   list-style-type: none;
 }
 
-li {
+ol li {
   text-align: left;
   margin: 15px;
   font-size: 20px;
