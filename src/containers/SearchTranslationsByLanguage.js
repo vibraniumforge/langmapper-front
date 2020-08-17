@@ -1,6 +1,6 @@
 import React from "react";
 import SearchTranslationsByLanguageResultsContainer from "./SearchTranslationsByLanguageResultsContainer.js";
-import LanguageNameAutofill from "../components/LanguageNameAutofill.js";
+import LanguageNameAutofill from "../selects/LanguageNameAutofill.js";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
