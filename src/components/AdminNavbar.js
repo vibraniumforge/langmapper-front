@@ -17,15 +17,21 @@ class Navbar extends Component {
         >
           Search All Translations of a Word
         </NavLink>
-        <NavLink activeClassName="selected" to="/search_genders">
+        <NavLink
+          activeClassName="selected"
+          to="/search_all_translations_by_gender"
+        >
           Search All Genders of a Word
         </NavLink>
-        <NavLink activeClassName="selected" to="/search_etymologies">
+        <NavLink
+          activeClassName="selected"
+          to="/search_all_translations_by_etymology"
+        >
           Search Translation by content of Etymology
         </NavLink>
         <NavLink
           activeClassName="selected"
-          to="/all_translations_by_macrofamily"
+          to="/search_all_translations_by_macrofamily"
         >
           Search All Translations by Macrofamily
         </NavLink>
@@ -35,19 +41,22 @@ class Navbar extends Component {
         >
           Search All Translations by Language
         </NavLink>
-        <NavLink activeClassName="selected" to="/search_translations_by_area">
+        <NavLink
+          activeClassName="selected"
+          to="/search_all_translations_by_area"
+        >
           Search All Translations by Area
         </NavLink>
-        <NavLink activeClassName="selected" to="/search_languages_by_area">
+        <NavLink activeClassName="selected" to="/search_all_languages_by_area">
           Search All Languages by Area
         </NavLink>
-        <NavLink activeClassName="selected" to="/all_words">
+        <NavLink activeClassName="selected" to="/view_all_words">
           View All Words
         </NavLink>
         <NavLink activeClassName="selected" to="/new_word">
           Create a New Word
         </NavLink>
-        <NavLink activeClassName="selected" to="/all_languages">
+        <NavLink activeClassName="selected" to="/view_all_languages">
           View All Languages
         </NavLink>
         <NavLink activeClassName="selected" to="/create_translation_map">

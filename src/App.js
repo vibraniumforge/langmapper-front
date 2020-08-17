@@ -39,13 +39,16 @@ const App = (props) => {
               path="/search_all_translations_by_word"
               component={SearchTranslationsByWord}
             />
-            <Route path="/search_genders" component={SearchAllGenders} />
             <Route
-              path="/search_etymologies"
+              path="/search_all_translations_by_gender"
+              component={SearchAllGenders}
+            />
+            <Route
+              path="/search_all_translations_by_etymology"
               component={SearchEtymologiesContent}
             />
             <Route
-              path="/all_translations_by_macrofamily"
+              path="/search_all_translations_by_macrofamily"
               component={SearchTranslationsByMacrofamily}
             />
             <Route
@@ -53,24 +56,25 @@ const App = (props) => {
               component={SearchTranslationsByLanguage}
             />
             <Route
-              path="/search_languages_by_area"
-              component={SearchLanguagesByArea}
+              path="/search_all_translations_by_area"
+              component={SearchTranslationsByArea}
             />
             <Route
-              path="/search_translations_by_area"
-              component={SearchTranslationsByArea}
+              path="/search_all_languages_by_area"
+              component={SearchLanguagesByArea}
             />
             <Route path="/new_word" component={NewWordForm} />
             <Route path="/edit_word" component={EditWordForm} />
-            <Route path="/all_words" component={ViewAllWords} />
             <Route path="/edit_language" component={EditLanguageForm} />
+            <Route path="/edit_translation" component={EditTranslationForm} />
             {/* <Route
               path="/edit_translation"
               render={(props = <EditLanguageForm {...props} />)}
             /> */}
             {/* change the above */}
-            <Route path="/all_languages" component={ViewAllLanguages} />
-            <Route path="/edit_translation" component={EditTranslationForm} />
+            <Route path="/view_all_words" component={ViewAllWords} />
+            <Route path="/view_all_languages" component={ViewAllLanguages} />
+
             <Route
               path="/create_translation_map"
               component={CreateTranslationMap}

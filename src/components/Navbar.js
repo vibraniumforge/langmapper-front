@@ -75,10 +75,16 @@ class Navbar extends Component {
               >
                 All Translations of a Word
               </NavLink>
-              <NavLink activeClassName="selected" to="/search_genders">
+              <NavLink
+                activeClassName="selected"
+                to="/search_all_translations_by_gender"
+              >
                 All Translations of a Word by Gender
               </NavLink>
-              <NavLink activeClassName="selected" to="/search_etymologies">
+              <NavLink
+                activeClassName="selected"
+                to="/search_all_translations_by_macrofamily"
+              >
                 All Translations by content of Etymology
               </NavLink>
               <NavLink
@@ -89,13 +95,13 @@ class Navbar extends Component {
               </NavLink>
               <NavLink
                 activeClassName="selected"
-                to="/search_translations_by_area"
+                to="/search_all_translations_by_area"
               >
                 All Translations by Area
               </NavLink>
               <NavLink
                 activeClassName="selected"
-                to="/search_languages_by_area"
+                to="/search_all_languages_by_area"
               >
                 All Languages by Area
               </NavLink>
@@ -119,10 +125,10 @@ class Navbar extends Component {
               View
             </a>
             <ul className="dropdown-content">
-              <NavLink activeClassName="selected" to="/all_words">
+              <NavLink activeClassName="selected" to="/view_all_words">
                 All Words
               </NavLink>
-              <NavLink activeClassName="selected" to="/all_languages">
+              <NavLink activeClassName="selected" to="/view_all_languages">
                 All Languages
               </NavLink>
             </ul>
