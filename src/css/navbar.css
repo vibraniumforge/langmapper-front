@@ -5,6 +5,7 @@
   font-weight: bold;
   height: auto;
   margin-bottom: 10px;
+  background-color: lightgray;
 }
 
 #navbar a {
@@ -40,7 +41,7 @@ li {
   float: left;
 }
 
-li.only {
+li.no-dropdown {
   background-color: lightgray;
 }
 
@@ -90,4 +91,8 @@ li.dropdown {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.bicon {
+  vertical-align: baseline;
 }
