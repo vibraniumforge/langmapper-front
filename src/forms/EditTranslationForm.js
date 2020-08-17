@@ -139,7 +139,7 @@ class TranslationForm extends Component {
               </div>
             )}
             <div className="form-row">
-              <div className="form-group quarter-col">
+              <div className="form-group one-quarter-col">
                 {/* <label htmlFor="word">Word: </label>
                 <input
                   type="text"
@@ -153,7 +153,7 @@ class TranslationForm extends Component {
                 /> */}
                 <h3>Word: {this.state.word}</h3>
               </div>
-              <div className="form-group quarter-col">
+              <div className="form-group one-quarter-col">
                 {/* <label htmlFor="language">Language: </label>
                 <input
                   id="language"
