@@ -3,8 +3,8 @@ import Bowser from "bowser";
 
 import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsContainer.js";
 // import AreaSearchSelect from "../components/AreaSearchSelect.js";
-// import WordSearchSelect from "../selects/WordSearchSelect.js";
-import WordNameAutofill from "../selects/WordNameAutofill.js";
+import WordSearchSelect from "../selects/WordSearchSelect.js";
+// import WordNameAutofill from "../selects/WordNameAutofill.js";
 import MiniTable from "../components/MiniTable.js";
 import Spinner from "../components/Spinner.js";
 
@@ -57,42 +57,70 @@ class CreateEtymologyMap extends React.Component {
     });
   };
 
-  handleOnSubmit = (e, userInput) => {
+  //   handleOnSubmit = (e, userInput) => {
+  //     e.preventDefault();
+  //     Promise.all([
+  //       this.props.clearSearchTranslationsByEtymologyImg(),
+  //       this.props.clearSearchTranslationsByArea(),
+  //       this.props.isLoading(),
+  //       //   this.props.getWordDefinition(this.state.selectedWord),
+  //       this.props.getWordDefinition(userInput),
+  //       //   this.props.searchTranslationsByArea(
+  //       //     this.state.selectedArea,
+  //       //     this.state.selectedWord
+  //       //   ),
+  //       //   newer map only method below
+  //       //   this.props.searchTranslationsByAreaEuropeMap(
+  //       //     this.state.selectedArea,
+  //       //     this.state.selectedWord
+  //       //   ),
+  //       this.props.searchTranslationsByAreaEuropeMap(
+  //         this.state.selectedArea,
+  //         userInput
+  //       ),
+
+  //       //   this.props.searchTranslationsByEtymologyImg(
+  //       //     this.state.selectedArea,
+  //       //     this.state.selectedWord
+  //       //   ),
+  //       this.props.searchTranslationsByEtymologyImg(
+  //         this.state.selectedArea,
+  //         userInput
+  //       ),
+  //       this.setState({
+  //         selectedArea: "Europe",
+  //         selectedWord: "",
+  //         searchedArea: this.state.selectedArea,
+  //         // searchedWord: this.state.selectedWord,
+  //         searchedWord: userInput,
+  //       }),
+  //     ]);
+  //   };
+
+  handleOnSubmit = (e) => {
     e.preventDefault();
     Promise.all([
       this.props.clearSearchTranslationsByEtymologyImg(),
       this.props.clearSearchTranslationsByArea(),
       this.props.isLoading(),
-      //   this.props.getWordDefinition(this.state.selectedWord),
-      this.props.getWordDefinition(userInput),
+      this.props.getWordDefinition(this.state.selectedWord),
       //   this.props.searchTranslationsByArea(
-      //     this.state.selectedArea,
-      //     this.state.selectedWord
-      //   ),
-      //   newer map only method below
-      //   this.props.searchTranslationsByAreaEuropeMap(
       //     this.state.selectedArea,
       //     this.state.selectedWord
       //   ),
       this.props.searchTranslationsByAreaEuropeMap(
         this.state.selectedArea,
-        userInput
+        this.state.selectedWord
       ),
-
-      //   this.props.searchTranslationsByEtymologyImg(
-      //     this.state.selectedArea,
-      //     this.state.selectedWord
-      //   ),
       this.props.searchTranslationsByEtymologyImg(
         this.state.selectedArea,
-        userInput
+        this.state.selectedWord
       ),
       this.setState({
+        searchedArea: this.state.selectedArea,
+        searchedWord: this.state.selectedWord,
         selectedArea: "Europe",
         selectedWord: "",
-        searchedArea: this.state.selectedArea,
-        // searchedWord: this.state.selectedWord,
-        searchedWord: userInput,
       }),
     ]);
   };
@@ -122,18 +150,18 @@ class CreateEtymologyMap extends React.Component {
     //           return area ? <option key={index}>{area}</option> : null;
     //         })
     //       : null;
-    // const allWords =
-    //   this.props.wordNames && this.props.wordNames.length > 0
-    //     ? this.props.wordNames.map((word) => {
-    //         return <option key={word.id}>{word.word_name}</option>;
-    //       })
-    //     : null;
-    const wordNames =
-      this.props.wordNames && this.props.wordNames.length
+    const allWords =
+      this.props.wordNames && this.props.wordNames.length > 0
         ? this.props.wordNames.map((word) => {
-            return word.word_name;
+            return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
+    // const allWords =
+    //   this.props.wordNames && this.props.wordNames.length
+    //     ? this.props.wordNames.map((word) => {
+    //         return word.word_name;
+    //       })
+    //     : null;
     let shouldRender;
     if (
       this.props.wordDefinition.length > 0 &&
@@ -151,45 +179,33 @@ class CreateEtymologyMap extends React.Component {
             selectedArea={this.state.selectedArea}
             handleOnChange={this.handleOnChange}
           /> */}
-          <div className="form-row">
-            <div className="form-group half-col">
-              <select
-                id="select"
-                name="selectedArea"
-                value={this.state.selectedArea}
-                onChange={this.handleOnChange}
-              >
-                <option value="">Select Area</option>
-                {/* {allAreas} */}
-                <option value="Europe">Europe</option>
-              </select>
-            </div>
-
-            {/* <WordSearchSelect
+          <select
+            id="select"
+            name="selectedArea"
+            value={this.state.selectedArea}
+            onChange={this.handleOnChange}
+          >
+            <option value="">Select Area</option>
+            {/* {allAreas} */}
+            <option value="Europe">Europe</option>
+          </select>
+          <WordSearchSelect
             allWords={allWords}
             selectedWord={this.state.selectedWord}
             handleOnChange={this.handleOnChange}
-          /> */}
-            {/* <input
-              type="submit"
-              value="Search"
-              className={
-                this.state.selectedArea && this.state.selectedWord
-                  ? "submit-btn"
-                  : "disabled-btn"
-              }
-              disabled={!this.state.selectedArea || !this.state.selectedWord}
-            /> */}
-            <div className="form-group half-col">
-              <WordNameAutofill
-                wordNames={wordNames}
-                selectedWord={this.state.selectedWord}
-                // handleOnChange={this.handleOnChange}
-                handleOnSubmit={this.handleOnSubmit}
-              />
-            </div>
-          </div>
+          />
+          <input
+            type="submit"
+            value="Search"
+            className={
+              this.state.selectedArea && this.state.selectedWord
+                ? "submit-btn"
+                : "disabled-btn"
+            }
+            disabled={!this.state.selectedArea || !this.state.selectedWord}
+          />
         </form>
+
         {shouldRender ? (
           <div>
             <MiniTable
