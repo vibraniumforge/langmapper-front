@@ -15,7 +15,7 @@ const domesticAnimals = ["Horse", "Cow", "Sheep", "Pig", "Dog", "Cat", "Chicken"
 //prettier-ignore
 const birds = ["Swan", "Goose", "Owl", "Falcon", "Crow", "Dove", "Eagle", "Gull", "Robin"]
 //prettier-ignore
-const animals = ["Wolf", "Fox", "Bear", "Mouse", "Fish", "Otter", "Weasel", "Lion", "Deer"]
+const animals = ["Wolf", "Fox", "Bear", "Mouse", "Otter", "Weasel", "Lion", "Deer"]
 const insects = ["Butterfly", "Spider", "Ant", "Bee", "Wasp"];
 const reptiles = ["Frog", "Turtle", "Lizard", "Snake"];
 const fish = ["Fish", "Trout", "Shark"];
@@ -28,9 +28,9 @@ const agriculturalProducts = ["Honey", "Milk", "Egg", "Beer", "Wine", "Wheat", "
 const bodyParts = ["Blood", "Tongue", "Tooth", "Ear", "Eye", "Nose", "Hand", "Finger", "Leg"];
 const seasons = ["Winter", "Summer", "Autumn"];
 const heavens = ["Sun", "Moon", "Sky", "Star"];
-const time = ["Day", "Dawn", "Night"];
+const time = ["Day", "Dawn", "Night", "Noon"];
 //prettier-ignore
-const weather = ["Snow", "Rain", "Hail", "Ice", "Frost", "Cloud", "Fog", "Rainbow"];
+const weather = ["Snow", "Rain", "Hail", "Ice", "Frost", "Cloud", "Fog", "Rainbow", "Thunder", "Lightning"];
 const geography = ["Sea", "Mountain", "Lake", "River", "Island"];
 const military = ["Shield", "Sword", "Bow", "Arrow", "Spear"];
 //prettier-ignore
