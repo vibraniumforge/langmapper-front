@@ -11,7 +11,7 @@ import { createWord } from "../actions/wordActions.js";
 const chemicals = ["Gold", "Silver", "Copper", "Iron", "Tin", "Lead", "Salt", "Water"]
 const materials = ["Amber", "Silk", "Tar", "Wood", "Clay"];
 //prettier-ignore
-const domesticAnimals = ["Horse", "Cow", "Sheep", "Pig", "Dog", "Cat", "Chicken"]
+const domesticAnimals = ["Horse", "Cow", "Sheep", "Pig", "Dog", "Cat", "Chicken", "Goat"]
 //prettier-ignore
 const birds = ["Swan", "Goose", "Owl", "Falcon", "Crow", "Dove", "Eagle", "Gull", "Robin"]
 //prettier-ignore
@@ -23,7 +23,7 @@ const plants = ["Tree", "Flower", "Grass", "Forest"];
 //prettier-ignore
 const food = ["Apple", "Blueberry", "Strawberry", "Raspberry", "Carrot"];
 //prettier-ignore
-const agriculturalProducts = ["Honey", "Milk", "Egg", "Beer", "Wine", "Wheat", "Bread"];
+const agriculturalProducts = ["Honey", "Milk", "Egg", "Beer", "Wine", "Wheat", "Bread", "Wool"];
 //prettier-ignore
 const bodyParts = ["Blood", "Tongue", "Tooth", "Ear", "Eye", "Nose", "Hand", "Finger", "Leg"];
 const seasons = ["Winter", "Summer", "Autumn"];
