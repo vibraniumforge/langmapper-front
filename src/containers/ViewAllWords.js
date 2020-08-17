@@ -18,7 +18,6 @@ import {
 import {
   isLoading,
   searchTranslationsByWord,
-  getSearchWord,
 } from "../actions/translationActions.js";
 
 class ViewAllWords extends Component {
@@ -52,7 +51,6 @@ class ViewAllWords extends Component {
     e.preventDefault();
     this.props.history.push(`/search_all_translations_by_word`);
     this.props.searchTranslationsByWord(wordName);
-    this.props.getSearchWord(wordName);
     this.props.getWordDefinition(wordName);
   };
 
@@ -100,7 +98,6 @@ const mapDispatchToProps = (dispatch) => {
       isLoading,
       clearGetWords,
       searchTranslationsByWord,
-      getSearchWord,
       getWordDefinition,
     },
     dispatch
