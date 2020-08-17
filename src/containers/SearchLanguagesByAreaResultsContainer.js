@@ -19,13 +19,6 @@ class SearchLanguagesByAreaResultsContainer extends Component {
 
     return (
       <>
-        {this.props.languagesByArea && this.props.languagesByArea.length ? (
-          <h3>
-            Area: {this.props.searchedArea} ({this.props.languagesByArea.length}
-            )
-          </h3>
-        ) : null}
-
         {this.props.searchedWord && this.props.results.length === 0 ? (
           <h6>No results found</h6>
         ) : null}

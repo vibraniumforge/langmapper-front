@@ -21,13 +21,8 @@ class SearchTranslationsByLanguageResultsContainer extends Component {
     return (
       <>
         {this.props.searchedLanguage.length > 0 ? (
-          <h3>
-            Language: {this.props.searchedLanguage} (
-            {this.props.searchedTranslationsByLanguage.length})
-          </h3>
+          <div id="card-container">{cards}</div>
         ) : null}
-
-        <div id="card-container">{cards}</div>
       </>
     );
   }

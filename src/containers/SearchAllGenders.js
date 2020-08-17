@@ -3,7 +3,7 @@ import SearchAllGendersResultsContainer from "./SearchAllGendersResultsContainer
 // import WordSearchSelect from "../selects/WordSearchSelect.js";
 import WordNameAutofill from "../selects/WordNameAutofill.js";
 import Spinner from "../components/Spinner.js";
-
+import MiniTable from "../components/MiniTable.js";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -100,30 +100,40 @@ class SearchAllGenders extends React.Component {
             selectedWord={this.state.selectedWord}
             handleOnChange={this.handleOnChange}
           /> */}
+          {/* <input
+              type="submit"
+              value="Search"
+              className={this.state.selectedWord ? "submit-btn" : "disabled-btn"}
+              disabled={!this.state.selectedWord}
+            /> */}
           <WordNameAutofill
             wordNames={wordNames}
             handleOnSubmit={this.handleOnSubmit}
             selectedWord={this.state.selectedWord}
             // handleOnChange={this.handleOnChange}
           />
-          {/* <input
-            type="submit"
-            value="Search"
-            className={this.state.selectedWord ? "submit-btn" : "disabled-btn"}
-            disabled={!this.state.selectedWord}
-          /> */}
         </form>
+
         {this.state.searchedWord &&
-        this.props.searchedTranslationsByWordGender ? (
-          <SearchAllGendersResultsContainer
-            searchedTranslationsByWordGender={
-              this.props.searchedTranslationsByWordGender
-            }
-            searchedWord={this.state.searchedWord}
-            onHandleDelete={this.onHandleDelete}
-            onHandleEdit={this.onHandleEdit}
-            definition={this.props.definition}
-          />
+        this.props.searchedTranslationsByWordGender.length > 0 ? (
+          <>
+            <MiniTable
+              searchedArea={this.state.searchedArea}
+              searchedWord={this.state.searchedWord}
+              wordDefinition={this.props.wordDefinition}
+              count={this.props.searchedTranslationsByWordGender.length}
+            />
+
+            <SearchAllGendersResultsContainer
+              searchedTranslationsByWordGender={
+                this.props.searchedTranslationsByWordGender
+              }
+              searchedWord={this.state.searchedWord}
+              onHandleDelete={this.onHandleDelete}
+              onHandleEdit={this.onHandleEdit}
+              definition={this.props.definition}
+            />
+          </>
         ) : this.state.searchedWord ? (
           <Spinner isLoading={this.props.isLoading} />
         ) : null}
