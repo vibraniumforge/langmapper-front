@@ -83,7 +83,7 @@ class Navbar extends Component {
               </NavLink>
               <NavLink
                 activeClassName="selected"
-                to="/search_all_translations_by_macrofamily"
+                to="/search_all_translations_by_etymology"
               >
                 All Translations by content of Etymology
               </NavLink>
