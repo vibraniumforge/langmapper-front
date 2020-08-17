@@ -7,19 +7,19 @@ import AdminNavbar from "./components/AdminNavbar.js";
 import Navbar from "./components/Navbar.js";
 import Home from "./components/Home.js";
 import Admin from "./components/Admin.js";
+import NewWordForm from "./forms/NewWordForm.js";
+import EditWordForm from "./forms/EditWordForm.js";
+import EditLanguageForm from "./forms/EditLanguageForm.js";
+import EditTranslationForm from "./forms/EditTranslationForm.js";
 import SearchTranslationsByWord from "./containers/SearchTranslationsByWord.js";
 import SearchAllGenders from "./containers/SearchAllGenders.js";
 import SearchEtymologiesContent from "./containers/SearchEtymologiesContent.js";
 import SearchTranslationsByMacrofamily from "./containers/SearchTranslationsByMacrofamily.js";
 import SearchTranslationsByLanguage from "./containers/SearchTranslationsByLanguage.js";
-import NewWordForm from "./forms/NewWordForm.js";
-import EditWordForm from "./forms/EditWordForm.js";
-import ViewAllWords from "./containers/ViewAllWords.js";
-import EditLanguageForm from "./forms/EditLanguageForm.js";
-import ViewAllLanguages from "./containers/ViewAllLanguages.js";
-import SearchLanguagesByArea from "./containers/SearchLanguagesByArea.js";
 import SearchTranslationsByArea from "./containers/SearchTranslationsByArea.js";
-import EditTranslationForm from "./forms/EditTranslationForm.js";
+import SearchLanguagesByArea from "./containers/SearchLanguagesByArea.js";
+import ViewAllWords from "./containers/ViewAllWords.js";
+import ViewAllLanguages from "./containers/ViewAllLanguages.js";
 import CreateTranslationMap from "./containers/CreateTranslationMap.js";
 import CreateEtymologyMap from "./containers/CreateEtymologyMap.js";
 import CreateGenderMap from "./containers/CreateGenderMap.js";
@@ -49,7 +49,7 @@ const App = (props) => {
               component={SearchTranslationsByMacrofamily}
             />
             <Route
-              path="/all_translations_by_language"
+              path="/search_all_translations_by_language"
               component={SearchTranslationsByLanguage}
             />
             <Route
@@ -63,7 +63,6 @@ const App = (props) => {
             <Route path="/new_word" component={NewWordForm} />
             <Route path="/edit_word" component={EditWordForm} />
             <Route path="/all_words" component={ViewAllWords} />
-            {/* <Route path="/new_language" component={LanguageForm} /> */}
             <Route path="/edit_language" component={EditLanguageForm} />
             {/* <Route
               path="/edit_translation"
