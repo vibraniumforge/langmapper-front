@@ -20,7 +20,7 @@ class NewWordForm extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    this.props.history.push("/all_words");
+    this.props.history.push("/view_all_words");
     const newWord = {
       word_name: this.state.wordName,
     };
@@ -28,7 +28,7 @@ class NewWordForm extends Component {
   };
 
   cancelFormAction = () => {
-    this.props.history.push("/all_words");
+    this.props.history.push("/view_all_words");
     this.setState({ wordName: "" });
   };
 

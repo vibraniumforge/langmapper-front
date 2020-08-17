@@ -17,7 +17,7 @@ class Login extends Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
     this.props.loginUser(this.state.username, this.state.password);
-    // this.props.history.push("/search_translations");
+    this.props.history.push("/");
     this.setState({
       username: "",
       password: "",

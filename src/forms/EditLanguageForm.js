@@ -85,11 +85,11 @@ class LanguageForm extends Component {
     };
     this.props.editLanguage(languageId, editedLanguage);
     this.clearForm();
-    this.props.history.push("/all_languages");
+    this.props.history.push("/view_all_languages");
   };
 
   cancelFormAction = () => {
-    this.props.history.push("/all_languages");
+    this.props.history.push("/view_all_languages");
   };
 
   clearForm = () => {

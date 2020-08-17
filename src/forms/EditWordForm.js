@@ -72,7 +72,7 @@ class EditWordForm extends Component {
     const wordId = this.props.location.pathname.split("/").pop();
     this.props.editWord(wordId, word);
     this.clearForm();
-    this.props.history.push("/all_words");
+    this.props.history.push("/view_all_words");
   };
 
   clearForm = () => {
@@ -81,7 +81,7 @@ class EditWordForm extends Component {
   };
 
   cancelFormAction = () => {
-    this.props.history.push("/all_words");
+    this.props.history.push("/view_all_words");
     this.clearForm();
   };
 
