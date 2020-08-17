@@ -71,6 +71,7 @@ class SearchAllGenders extends React.Component {
   handleOnSubmit = (e, userInput) => {
     e.preventDefault();
     this.props.searchTranslationsByWordGender(userInput);
+    this.props.getWordDefinition(userInput);
     this.setState({
       searchedWord: userInput,
       //   searchedLanguage:
@@ -131,7 +132,6 @@ class SearchAllGenders extends React.Component {
               searchedWord={this.state.searchedWord}
               onHandleDelete={this.onHandleDelete}
               onHandleEdit={this.onHandleEdit}
-              definition={this.props.definition}
             />
           </>
         ) : this.state.searchedWord ? (
@@ -146,7 +146,7 @@ const mapStateToProps = (state) => ({
   wordNames: state.words.wordNames,
   searchedTranslationsByWordGender:
     state.translations.searchedTranslationsByWordGender,
-  definition: state.words.wordDefinition,
+  wordDefinition: state.words.wordDefinition,
 });
 
 const mapDispatchToProps = (dispatch) => {
