@@ -118,31 +118,31 @@ export const clearSearchTranslationsByArea = () => {
   };
 };
 
-export const getSearchArea = (area) => {
-  return {
-    type: "GET_SEARCH_AREA",
-    payload: area,
-  };
-};
+// export const getSearchArea = (area) => {
+//   return {
+//     type: "GET_SEARCH_AREA",
+//     payload: area,
+//   };
+// };
 
-export const clearGetSearchArea = () => {
-  return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_SEARCH_AREA" });
-  };
-};
+// export const clearGetSearchArea = () => {
+//   return (dispatch) => {
+//     dispatch({ type: "CLEAR_GET_SEARCH_AREA" });
+//   };
+// };
 
-export const getSearchWord = (word) => {
-  return {
-    type: "GET_SEARCH_WORD",
-    payload: word,
-  };
-};
+// export const getSearchWord = (word) => {
+//   return {
+//     type: "GET_SEARCH_WORD",
+//     payload: word,
+//   };
+// };
 
-export const clearGetSearchWord = () => {
-  return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_SEARCH_WORD" });
-  };
-};
+// export const clearGetSearchWord = () => {
+//   return (dispatch) => {
+//     dispatch({ type: "CLEAR_GET_SEARCH_WORD" });
+//   };
+// };
 
 export const searchTranslationsByWordGender = (word) => {
   return (dispatch) => {
