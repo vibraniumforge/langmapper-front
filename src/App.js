@@ -23,6 +23,7 @@ import ViewAllLanguages from "./containers/ViewAllLanguages.js";
 import CreateTranslationMap from "./containers/CreateTranslationMap.js";
 import CreateEtymologyMap from "./containers/CreateEtymologyMap.js";
 import CreateGenderMap from "./containers/CreateGenderMap.js";
+import ViewMap from "./components/ViewMap.js";
 
 const App = (props) => {
   return (
@@ -69,19 +70,22 @@ const App = (props) => {
               path="/edit_translation"
               render={(props = <EditLanguageForm {...props} />)}
             /> */}
-            {/* change the above */}
+            {/* change the above */}{" "}
             <Route path="/view_all_words" component={ViewAllWords} />
             <Route path="/view_all_languages" component={ViewAllLanguages} />
-
             <Route
               path="/create_translation_map"
               component={CreateTranslationMap}
             />
+            <Route path="/create_gender_map" component={CreateGenderMap} />
             <Route
               path="/create_etymology_map"
               component={CreateEtymologyMap}
             />
-            <Route path="/create_gender_map" component={CreateGenderMap} />
+            <Route
+              path="/view_map"
+              render={(props) => <ViewMap {...props} />}
+            />
           </Switch>
         </div>
       </Router>
