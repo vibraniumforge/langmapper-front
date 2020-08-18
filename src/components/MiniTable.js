@@ -1,7 +1,6 @@
 import React from "react";
 
 const MiniTable = (props) => {
-  console.log(props);
   return (
     <>
       <table id="table-title">
