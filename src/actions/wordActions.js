@@ -22,13 +22,16 @@ export const getWordById = (id) => {
 };
 
 export const createWord = (word) => {
+  const newWord = {
+    word_name: word,
+  };
   const data = {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ word }),
+    body: JSON.stringify({ word: newWord }),
   };
   return (dispatch) => {
     fetch(`${url}/words`, data)
