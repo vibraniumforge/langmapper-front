@@ -68,7 +68,7 @@ sum.forEach((array) => {
   });
 });
 
-const delay = process.env.REACT_APP_NODE_ENV === "development" ? 90000 : 10000;
+const delay = process.env.REACT_APP_NODE_ENV === "development" ? 90000 : 20000;
 const twoGW = ["iron", "copper"];
 class LogOut extends Component {
   handleOnSubmit = (e) => {
