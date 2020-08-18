@@ -89,9 +89,13 @@ class LogOut extends Component {
 
   handleOnSeed = (e) => {
     e.preventDefault();
-    twoGW.forEach((word, index) => {
+    Good_words.forEach((word, index) => {
       setTimeout(() => {
-        console.log(`Word: ${word}, Index: ${index} of ${Good_words.length}`);
+        console.log("\n");
+        console.log(
+          `This Word: ${word}, Index: ${index} of ${Good_words.length}`
+        );
+        console.log("\n");
         // const newWord = {
         //   word_name: word.toLowerCase(),
         // };
