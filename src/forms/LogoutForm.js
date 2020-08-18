@@ -69,7 +69,7 @@ sum.forEach((array) => {
 });
 
 const delay = process.env.REACT_APP_NODE_ENV === "development" ? 90000 : 10000;
-
+const twoGW = ["iron", "copper"];
 class LogOut extends Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
@@ -89,13 +89,31 @@ class LogOut extends Component {
 
   handleOnSeed = (e) => {
     e.preventDefault();
-    Good_words.forEach((word, index) => {
+    twoGW.forEach((word, index) => {
       setTimeout(() => {
-        console.log("word=", word);
+        console.log(`Word: ${word}, Index: ${index} of ${Good_words.length}`);
+        // const newWord = {
+        //   word_name: word.toLowerCase(),
+        // };
         this.props.createWord(word.toLowerCase());
       }, index * delay);
     });
+    console.log("DONE");
   };
+
+  //   handleOnSeed = (e) => {
+  //     e.preventDefault();
+  //     Good_words.forEach((word, index) => {
+  //       setTimeout(() => {
+  //         console.log(`Word: ${word}, Index: ${index} of ${Good_words.length}`);
+  //         const newWord = {
+  //           word_name: word.toLowerCase(),
+  //         };
+  //         this.props.createWord(newWord);
+  //       }, index * delay);
+  //     });
+  //     console.log("DONE");
+  //   };
 
   render() {
     return (
