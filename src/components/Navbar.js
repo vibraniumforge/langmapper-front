@@ -5,7 +5,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav id="navbar" className="navbar">
-        <ul>
+        <ul className="first-ul">
           <li className="no-dropdown">
             <NavLink activeClassName="selected" exact to="/">
               Langmapper
@@ -16,7 +16,8 @@ class Navbar extends Component {
               Admin
             </NavLink>
           </li>
-
+        </ul>
+        <ul className="second-ul">
           <li className="dropdown functions">
             <svg
               width="1em"
