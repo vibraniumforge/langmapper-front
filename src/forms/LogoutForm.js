@@ -6,36 +6,36 @@ import { logout } from "../actions/userActions.js";
 import { createWord } from "../actions/wordActions.js";
 
 //prettier-ignore
-// const rejected = ["Concrete", "Vine", "Wind", ]
+// const rejected = ["Concrete", "Vine", "Wind", "Blueberry", "Chariot", "Chicken", "Cloth", "Dawn", "Gull", "Lightning", "Lizard", "Noon", "Robin", "Trout", "Weasel" ]
 //prettier-ignore
-const chemicals = ["Gold", "Silver", "Copper", "Iron", "Tin", "Lead", "Salt", "Water"]
+const chemicals = ["Gold", "Silver", "Copper", "Iron", "Tin", "Lead", "Salt", "Water", ]
 const materials = ["Amber", "Silk", "Tar", "Wood", "Clay"];
 //prettier-ignore
-const domesticAnimals = ["Horse", "Cow", "Sheep", "Pig", "Dog", "Cat", "Chicken", "Goat"]
+const domesticAnimals = ["Horse", "Cow", "Sheep", "Pig", "Dog", "Cat", "Goat"]
 //prettier-ignore
-const birds = ["Swan", "Goose", "Owl", "Falcon", "Crow", "Dove", "Eagle", "Gull", "Robin"]
+const birds = ["Swan", "Goose", "Owl", "Falcon", "Crow", "Dove", "Eagle" ]
 //prettier-ignore
-const animals = ["Wolf", "Fox", "Bear", "Mouse", "Otter", "Weasel", "Lion", "Deer"]
+const animals = ["Wolf", "Fox", "Bear", "Mouse", "Otter", "Lion", "Deer"]
 const insects = ["Butterfly", "Spider", "Ant", "Bee", "Wasp"];
-const reptiles = ["Frog", "Turtle", "Lizard", "Snake"];
-const fish = ["Fish", "Trout", "Shark"];
+const reptiles = ["Frog", "Turtle", "Snake"];
+const fish = ["Fish", "Shark"];
 const plants = ["Tree", "Flower", "Grass", "Forest"];
 //prettier-ignore
-const food = ["Apple", "Blueberry", "Strawberry", "Raspberry", "Carrot"];
+const food = ["Apple",  "Strawberry", "Raspberry", "Carrot"];
 //prettier-ignore
 const agriculturalProducts = ["Honey", "Milk", "Egg", "Beer", "Wine", "Wheat", "Bread", "Wool"];
 //prettier-ignore
 const bodyParts = ["Blood", "Tongue", "Tooth", "Ear", "Eye", "Nose", "Hand", "Finger", "Leg"];
 const seasons = ["Winter", "Summer", "Autumn"];
 const heavens = ["Sun", "Moon", "Sky", "Star"];
-const time = ["Day", "Dawn", "Night", "Noon"];
+const time = ["Day", "Night"];
 //prettier-ignore
-const weather = ["Snow", "Rain", "Hail", "Ice", "Frost", "Cloud", "Fog", "Rainbow", "Thunder", "Lightning"];
+const weather = ["Snow", "Rain", "Hail", "Ice", "Frost", "Cloud", "Fog", "Rainbow", "Thunder", ];
 const geography = ["Sea", "Mountain", "Lake", "River", "Island"];
 const military = ["Shield", "Sword", "Bow", "Arrow", "Spear"];
 //prettier-ignore
-const technology = ["Wheel", "Chariot", "Sail", "Boat", "Oven", "Fire", "Anvil", "Hammer", "Yoke"];
-const textiles = ["Thread", "Needle", "Thimble", "Loom", "Rope", "Cloth"];
+const technology = ["Wheel", "Sail", "Boat", "Oven", "Fire", "Anvil", "Hammer", "Yoke"];
+const textiles = ["Thread", "Needle", "Thimble", "Loom", "Rope"];
 
 const sum = [
   chemicals,
