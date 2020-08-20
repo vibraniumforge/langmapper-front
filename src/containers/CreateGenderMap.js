@@ -5,6 +5,8 @@ import WordSearchSelect from "../selects/WordSearchSelect.js";
 import Spinner from "../components/Spinner.js";
 import MiniTable from "../components/MiniTable.js";
 
+import { isSafari } from "../helpers/browserHelper.js";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -152,17 +154,61 @@ class CreateGenderMap extends React.Component {
               wordDefinition={this.props.wordDefinition}
               count={this.props.searchedTranslationsByArea.length}
             />
-            <a
-              href={this.props.translationMapByGender}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={this.props.translationMapByGender}
-                className="map"
-                alt="Europe map"
-              />
-            </a>
+
+            {isSafari() ? (
+              <>
+                <a
+                  href={this.props.translationMapByGender}
+                  xlinkHref={this.props.translationMapByGender}
+                  target="_self"
+                  //   target="_rel"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={this.props.translationMapByGender}
+                    type="image/svg+xml"
+                    className="map"
+                    alt="Europe map"
+                    aria-label="Europe map"
+                    xlinkHref={this.props.translationMapByGender}
+                  ></img>
+                  {/* Link */}
+                  {/* <object
+                      xlinkHref={this.props.translationMapByGender}
+                      data={this.props.translationMapByGender}
+                      type="image/svg+xml"
+                      className="map"
+                      alt="Europe map"
+                      aria-label="Europe map"
+                    ></object> */}
+                </a>
+                {/* <img
+                    type="image/svg+xml"
+                    className="map"
+                    alt="Europe map"
+                    aria-label="Europe map"
+                    xlinkHref={this.props.translationMapByGender}
+                  ></img> */}
+                {/* below gives clickable link, but blank 300x150 image */}
+                {/* <svg
+                    className="map"
+                    xlinkHref={this.props.translationMapByGender}
+                  ></svg> */}
+              </>
+            ) : (
+              <a
+                href={this.props.translationMapByGender}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={this.props.translationMapByGender}
+                  className="map"
+                  alt="Europe map"
+                  mimetype="image/svg+xml"
+                />
+              </a>
+            )}
 
             <CreateGenderMapResultsContainer
               searchedTranslationsByArea={this.props.searchedTranslationsByArea}

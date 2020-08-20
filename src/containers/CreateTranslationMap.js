@@ -4,6 +4,7 @@ import CreateTranslationMapResultsContainer from "./CreateTranslationMapResultsC
 import WordSearchSelect from "../selects/WordSearchSelect.js";
 import Spinner from "../components/Spinner.js";
 import MiniTable from "../components/MiniTable.js";
+import { isSafari } from "../helpers/browserHelper.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -162,17 +163,61 @@ class CreateTranslationMap extends React.Component {
               wordDefinition={this.props.wordDefinition}
               count={this.props.searchedTranslationsByArea.length}
             />
-            <a
-              href={this.props.translationMapByArea}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={this.props.translationMapByArea}
-                className="map"
-                alt="Europe map"
-              />
-            </a>
+
+            {isSafari() ? (
+              <>
+                <a
+                  href={this.props.translationMapByArea}
+                  xlinkHref={this.props.translationMapByArea}
+                  target="_self"
+                  //   target="_rel"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={this.props.translationMapByArea}
+                    type="image/svg+xml"
+                    className="map"
+                    alt="Europe map"
+                    aria-label="Europe map"
+                    xlinkHref={this.props.translationMapByArea}
+                  ></img>
+                  {/* Link */}
+                  {/* <object
+                      xlinkHref={this.props.translationMapByArea}
+                      data={this.props.translationMapByArea}
+                      type="image/svg+xml"
+                      className="map"
+                      alt="Europe map"
+                      aria-label="Europe map"
+                    ></object> */}
+                </a>
+                {/* <img
+                    type="image/svg+xml"
+                    className="map"
+                    alt="Europe map"
+                    aria-label="Europe map"
+                    xlinkHref={this.props.translationMapByArea}
+                  ></img> */}
+                {/* below gives clickable link, but blank 300x150 image */}
+                {/* <svg
+                    className="map"
+                    xlinkHref={this.props.translationMapByArea}
+                  ></svg> */}
+              </>
+            ) : (
+              <a
+                href={this.props.translationMapByArea}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={this.props.translationMapByArea}
+                  className="map"
+                  alt="Europe map"
+                  mimetype="image/svg+xml"
+                />
+              </a>
+            )}
 
             <CreateTranslationMapResultsContainer
               searchedTranslationsByArea={this.props.searchedTranslationsByArea}
