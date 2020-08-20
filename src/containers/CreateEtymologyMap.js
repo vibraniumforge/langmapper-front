@@ -1,5 +1,4 @@
 import React from "react";
-import Bowser from "bowser";
 
 import CreateEtymologyMapResultsContainer from "./CreateEtymologyMapResultsContainer.js";
 // import AreaSearchSelect from "../components/AreaSearchSelect.js";
@@ -8,6 +7,7 @@ import WordSearchSelect from "../selects/WordSearchSelect.js";
 import MiniTable from "../components/MiniTable.js";
 import Spinner from "../components/Spinner.js";
 
+import { isSafari } from "../helpers/browserHelper.js";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -34,7 +34,6 @@ class CreateEtymologyMap extends React.Component {
       selectedWord: "",
       searchedArea: "",
       searchedWord: "",
-      isSafari: false,
     };
   }
 
@@ -48,7 +47,6 @@ class CreateEtymologyMap extends React.Component {
     this.props.getWordNames();
     this.props.clearSearchTranslationsByEtymologyImg();
     this.props.clearSearchTranslationsByArea();
-    this.isSafari();
   }
 
   handleOnChange = (e) => {
@@ -131,17 +129,17 @@ class CreateEtymologyMap extends React.Component {
     this.props.history.push(`/edit_translation/${translationId}`);
   };
 
-  isSafari = () => {
-    // const isSafari = navigator.userAgent.indexOf("Safari") > -1;
-    // this.setState({ isSafari: isSafari }, () =>
-    //   console.log(this.state.isSafari)
-    // );
-    const browser = Bowser.getParser(window.navigator.userAgent);
-    console.log(browser.getBrowser()["name"]);
-    if (browser.getBrowser()["name"] === "Safari") {
-      this.setState({ isSafari: true }, () => console.log(this.state.isSafari));
-    }
-  };
+  //   isSafari = () => {
+  //     // const isSafari = navigator.userAgent.indexOf("Safari") > -1;
+  //     // this.setState({ isSafari: isSafari }, () =>
+  //     //   console.log(this.state.isSafari)
+  //     // );
+  //     const browser = Bowser.getParser(window.navigator.userAgent);
+  //     console.log(browser.getBrowser()["name"]);
+  //     if (browser.getBrowser()["name"] === "Safari") {
+  //       this.setState({ isSafari: true }, () => console.log(this.state.isSafari));
+  //     }
+  //   };
 
   render() {
     //   const allAreas =
@@ -215,9 +213,8 @@ class CreateEtymologyMap extends React.Component {
               count={this.props.searchedTranslationsByArea.length}
             />
 
-            {this.state.isSafari ? (
+            {isSafari() ? (
               <>
-                {/* <div> */}
                 <a
                   href={this.props.translationMapByEtymology}
                   xlinkHref={this.props.translationMapByEtymology}
@@ -263,7 +260,6 @@ class CreateEtymologyMap extends React.Component {
                 rel="noopener noreferrer"
               >
                 <img
-                  type="image/svg+xml"
                   src={this.props.translationMapByEtymology}
                   className="map"
                   alt="Europe map"
