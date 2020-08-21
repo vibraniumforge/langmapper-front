@@ -7,8 +7,8 @@ const initialState = {
   searchedTranslationsByWordGender: [],
   searchedTranslationsByEtymology: [],
   searchedTranslationsByMacrofamily: [],
-  searchWord: "",
-  searchArea: "",
+  //   searchWord: "",
+  //   searchArea: "",
   translationMapByArea: "",
   translationMapByEtymology: "",
   translationMapByGender: "",
@@ -135,27 +135,27 @@ export default function translationReducer(state = initialState, action) {
         isLoading: false,
       };
 
-    case "GET_SEARCH_AREA":
-      return {
-        ...state,
-        searchArea: action.payload,
-      };
-    case "CLEAR_GET_SEARCH_AREA":
-      return {
-        ...state,
-        searchArea: [],
-      };
+    // case "GET_SEARCH_AREA":
+    //   return {
+    //     ...state,
+    //     searchArea: action.payload,
+    //   };
+    // case "CLEAR_GET_SEARCH_AREA":
+    //   return {
+    //     ...state,
+    //     searchArea: [],
+    //   };
 
-    case "GET_SEARCH_WORD":
-      return {
-        ...state,
-        searchWord: action.payload,
-      };
-    case "CLEAR_GET_SEARCH_WORD":
-      return {
-        ...state,
-        searchWord: [],
-      };
+    // case "GET_SEARCH_WORD":
+    //   return {
+    //     ...state,
+    //     searchWord: action.payload,
+    //   };
+    // case "CLEAR_GET_SEARCH_WORD":
+    //   return {
+    //     ...state,
+    //     searchWord: [],
+    //   };
 
     case "SEARCH_TRANSLATIONS_BY_WORD_GENDER":
       return {
