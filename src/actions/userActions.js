@@ -40,7 +40,7 @@ export const createUser = (user) => {
 
 // ========================================
 
-export const loginUser = (username, password) => {
+export const loginUser = (name, password) => {
   return (dispatch) => {
     dispatch({
       type: "AUTHENTICATING_USER",
@@ -53,7 +53,7 @@ export const loginUser = (username, password) => {
       },
       body: JSON.stringify({
         user: {
-          name: username,
+          name: name,
           password: password,
         },
       }),
@@ -86,20 +86,20 @@ export const loginUser = (username, password) => {
   };
 };
 
-export const fetchCurrentUser = () => {
-  return (dispatch) => {
-    dispatch(authenticatingUser());
-    fetch(`${url}/profile`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => dispatch(setCurrentUser(res.data)))
-      .catch((err) => console.log(err));
-  };
-};
+// export const fetchCurrentUser = () => {
+//   return (dispatch) => {
+//     dispatch(authenticatingUser());
+//     fetch(`${url}/profile`, {
+//       method: "GET",
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+//       },
+//     })
+//       .then((res) => res.json())
+//       .then((res) => dispatch(setCurrentUser(res.data)))
+//       .catch((err) => console.log(err));
+//   };
+// };
 
 export const setCurrentUser = (userData) => {
   return {
