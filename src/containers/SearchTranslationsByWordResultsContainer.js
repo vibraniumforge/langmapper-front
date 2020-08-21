@@ -22,7 +22,7 @@ class SearchTranslationsByWordResultsContainer extends Component {
       <>
         {(this.props.searchedTranslationsByWord.length > 0 &&
           this.props.wordDefinition.length > 0) ||
-        (this.props.searchedWord.length > 0 &&
+        (this.props.searchedTranslationsByWord.length > 0 &&
           this.props.wordDefinition.length > 0) ? (
           <div id="card-container">{cards}</div>
         ) : null}
