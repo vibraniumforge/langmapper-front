@@ -11,6 +11,16 @@ if (process.env.REACT_APP_NODE_ENV === "development") {
   console.log(url);
 }
 
+const token = () => localStorage.getItem("jwt");
+
+const headers = () => {
+  return {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${token()}`,
+  };
+};
+
 // too many translations to list
 // export const getTranslations = () => {
 //   return (dispatch) => {
@@ -22,21 +32,24 @@ if (process.env.REACT_APP_NODE_ENV === "development") {
 // };
 
 export const getTranslationById = (id) => {
+  const params = {
+    method: "GET",
+    headers: headers(),
+  };
   return (dispatch) => {
-    fetch(`${url}/translations/${id}`)
+    fetch(`${url}/translations/${id}`, params)
       .then((res) => res.json())
       .then((res) => dispatch({ type: "GET_TRANSLATION_BY_ID", payload: res }))
       .catch((err) => console.log(err));
   };
 };
 
+// No POST
+
 export const editTranslation = (id, editedTranslation) => {
   const params = {
     method: "PATCH",
-    headers: {
-      Accept: "application/json",
-      "content-type": "application/json",
-    },
+    headers: headers(),
     body: JSON.stringify({ translation: editedTranslation }),
   };
   return (dispatch) => {
@@ -50,10 +63,7 @@ export const editTranslation = (id, editedTranslation) => {
 export const deleteTranslation = (id) => {
   const params = {
     method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "content-type": "application/json",
-    },
+    headers: headers(),
   };
   return (dispatch) => {
     fetch(`${url}/translations/${id}`, params)

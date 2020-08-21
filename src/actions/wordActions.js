@@ -3,6 +3,16 @@ const url =
     ? "http://localhost:3001/api/v1"
     : "https://secure-refuge-32252.herokuapp.com/api/v1";
 
+const token = () => localStorage.getItem("jwt");
+
+const headers = () => {
+  return {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${token()}`,
+  };
+};
+
 export const getWords = () => {
   return (dispatch) => {
     fetch(`${url}/words`)
@@ -13,8 +23,12 @@ export const getWords = () => {
 };
 
 export const getWordById = (id) => {
+  const params = {
+    method: "GET",
+    headers: headers(),
+  };
   return (dispatch) => {
-    fetch(`${url}/words/${id}`)
+    fetch(`${url}/words/${id}`, params)
       .then((res) => res.json())
       .then((res) => dispatch({ type: "GET_WORD_BY_ID", payload: res.data }))
       .catch((err) => console.log(err));
@@ -27,10 +41,7 @@ export const createWord = (word) => {
   };
   const data = {
     method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    headers: headers(),
     body: JSON.stringify({ word: newWord }),
   };
   return (dispatch) => {
@@ -44,10 +55,7 @@ export const createWord = (word) => {
 export const editWord = (id, editedWord) => {
   const data = {
     method: "PATCH",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    headers: headers(),
     body: JSON.stringify({ word: editedWord }),
   };
   return (dispatch) => {
@@ -61,10 +69,7 @@ export const editWord = (id, editedWord) => {
 export const deleteWord = (id) => {
   const data = {
     method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    headers: headers(),
   };
   return (dispatch) => {
     fetch(`${url}/words/${id}`, data)

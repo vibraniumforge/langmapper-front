@@ -3,6 +3,16 @@ const url =
     ? "http://localhost:3001/api/v1"
     : "https://secure-refuge-32252.herokuapp.com/api/v1";
 
+const token = () => localStorage.getItem("jwt");
+
+const headers = () => {
+  return {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${token()}`,
+  };
+};
+
 export const getLanguages = () => {
   return (dispatch) => {
     fetch(`${url}/languages`)
@@ -13,21 +23,24 @@ export const getLanguages = () => {
 };
 
 export const getLanguageById = (id) => {
+  const params = {
+    method: "GET",
+    headers: headers(),
+  };
   return (dispatch) => {
-    fetch(`${url}/languages/${id}`)
+    fetch(`${url}/languages/${id}`, params)
       .then((res) => res.json())
       .then((res) => dispatch({ type: "GET_LANGUAGE_BY_ID", payload: res }))
       .catch((err) => console.log(err));
   };
 };
 
+// No POST
+
 export const editLanguage = (id, editedLanguage) => {
   const params = {
     method: "PATCH",
-    headers: {
-      Accept: "application/json",
-      "content-type": "application/json",
-    },
+    headers: headers(),
     body: JSON.stringify({ language: editedLanguage }),
   };
   return (dispatch) => {
@@ -42,10 +55,7 @@ export const deleteLanguage = (id) => {
   return (dispatch) => {
     const params = {
       method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "content-type": "application/json",
-      },
+      headers: headers(),
     };
     fetch(`${url}/languages/${id}`, params)
       .then((res) => res.json())
@@ -53,6 +63,7 @@ export const deleteLanguage = (id) => {
       .catch((err) => console.log(err));
   };
 };
+
 // =================================================
 
 export const getAllMacrofamilyNames = () => {
