@@ -102,10 +102,12 @@ class SearchTranslationsByWord extends React.Component {
             handleOnSubmit={this.handleOnSubmit}
           />
         </form>
-        {(this.state.searchedWord &&
+        {/* {(this.state.searchedWord &&
           this.props.searchedTranslationsByWord.length > 0) ||
         (this.props.searchWord &&
-          this.props.searchedTranslationsByWord.length > 0) ? (
+          this.props.searchedTranslationsByWord.length > 0) ? ( */}
+        {this.props.searchedTranslationsByWord &&
+        this.props.searchedTranslationsByWord.length > 0 ? (
           <>
             <MiniTable
               searchedWord={this.state.searchedWord || this.props.searchWord}
@@ -133,7 +135,7 @@ const mapStateToProps = (state) => ({
   wordNames: state.words.wordNames,
   translationToUpdate: state.translations.translationToUpdate,
   wordDefinition: state.words.wordDefinition,
-  searchWord: state.translations.searchWord,
+  //   searchWord: state.translations.searchWord,
 });
 
 const mapDispatchToProps = (dispatch) => {
