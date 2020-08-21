@@ -10,6 +10,7 @@ const MiniTable = (props) => {
             {props.searchedMacrofamily ? <th>Macrofamily</th> : null}
             {props.searchedLanguage ? <th>Language</th> : null}
             {props.searchedWord ? <th>Word</th> : null}
+            {props.searchedQuery ? <th>Query</th> : null}
             {props.wordDefinition ? <th>Definition</th> : null}
             {props.count ? <th>Count</th> : null}
           </tr>
@@ -22,6 +23,7 @@ const MiniTable = (props) => {
             ) : null}
             {props.searchedLanguage ? <td>{props.searchedLanguage}</td> : null}
             {props.searchedWord ? <td>{props.searchedWord}</td> : null}
+            {props.searchedQuery ? <td>{props.searchedQuery}</td> : null}
             {props.wordDefinition ? <td>{props.wordDefinition}</td> : null}
             {props.count ? <td>{props.count}</td> : null}
           </tr>
