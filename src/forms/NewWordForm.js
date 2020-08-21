@@ -24,7 +24,7 @@ class NewWordForm extends Component {
     // const newWord = {
     //   word_name: this.state.wordName,
     // };
-    this.props.createWord(this.state.wordName);
+    this.props.createWord(this.state.wordName.toLowerCase());
   };
 
   cancelFormAction = () => {
