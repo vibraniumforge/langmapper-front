@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { withRouter, NavLink } from "react-router-dom";
 
 export const ViewAllWordsResultCard = (props) => {
-  console.log(props);
   return (
     <div className="word-result-card">
       <h1>{props.word.word_name}</h1>
