@@ -6,9 +6,12 @@ import { logout } from "../actions/userActions.js";
 import { createWord } from "../actions/wordActions.js";
 
 //prettier-ignore
-// const rejected = ["Concrete", "Vine", "Wind", "Blueberry", "Chariot", "Chicken", "Cloth", "Dawn", "Gull", "Lightning", "Lizard", "Noon", "Robin", "Trout", "Weasel" ]
+// const rejected = ["Concrete", "Vine", "Wind", "Blueberry", "Chariot", "Chicken", "Cloth",
+// "Dawn", "Gull", "Lizard", "Noon", "Robin", "Trout", "Weasel", "Loom"]
 //prettier-ignore
-const chemicals = ["Gold", "Silver", "Copper", "Iron", "Tin", "Lead", "Salt", "Water", ]
+// maybe add =[ "Brain", "Heart", "Lung", "Donkey", "Wing", "Lynx", "Sand", "Flea", "Dragonfly", "Olive". "Ox", "Bible"]
+//prettier-ignore
+const chemicals = ["Gold", "Silver", "Copper", "Iron", "Tin", "Lead", "Salt", "Water"]
 const materials = ["Amber", "Silk", "Tar", "Wood", "Clay"];
 //prettier-ignore
 const domesticAnimals = ["Horse", "Cow", "Sheep", "Pig", "Dog", "Cat", "Goat"]
@@ -21,21 +24,25 @@ const reptiles = ["Frog", "Turtle", "Snake"];
 const fish = ["Fish", "Shark"];
 const plants = ["Tree", "Flower", "Grass", "Forest"];
 //prettier-ignore
-const food = ["Apple",  "Strawberry", "Raspberry", "Carrot"];
+const food = ["Apple", "Strawberry", "Raspberry", "Carrot"];
 //prettier-ignore
-const agriculturalProducts = ["Honey", "Milk", "Egg", "Beer", "Wine", "Wheat", "Bread", "Wool"];
+const agriculturalProducts = ["Honey", "Milk", "Egg", "Wheat", "Wool"];
+const refinedAgriculturalProducts = ["Beer", "Wine", "Bread", "Cheese"];
 //prettier-ignore
-const bodyParts = ["Blood", "Tongue", "Tooth", "Ear", "Eye", "Nose", "Hand", "Finger", "Leg"];
+const headParts = ["Tongue", "Tooth", "Ear", "Eye", "Nose"];
+//prettier-ignore
+const bodyParts = ["Blood", "Hand", "Finger", "Leg"];
 const seasons = ["Winter", "Summer", "Autumn"];
 const heavens = ["Sun", "Moon", "Sky", "Star"];
 const time = ["Day", "Night"];
 //prettier-ignore
-const weather = ["Snow", "Rain", "Hail", "Ice", "Frost", "Cloud", "Fog", "Rainbow", "Thunder", ];
+const weather = ["Snow", "Rain", "Hail", "Ice", "Frost"];
+const atmosphere = ["Cloud", "Fog", "Rainbow", "Thunder", "Lightning"];
 const geography = ["Sea", "Mountain", "Lake", "River", "Island"];
 const military = ["Shield", "Sword", "Bow", "Arrow", "Spear"];
 //prettier-ignore
 const technology = ["Wheel", "Sail", "Boat", "Oven", "Fire", "Anvil", "Hammer", "Yoke"];
-const textiles = ["Thread", "Needle", "Thimble", "Loom", "Rope"];
+const textiles = ["Thread", "Needle", "Thimble", "Rope"];
 
 const sum = [
   chemicals,
@@ -49,11 +56,14 @@ const sum = [
   plants,
   food,
   agriculturalProducts,
+  refinedAgriculturalProducts,
+  headParts,
   bodyParts,
   seasons,
   heavens,
   time,
   weather,
+  atmosphere,
   geography,
   military,
   technology,
@@ -69,7 +79,8 @@ sum.forEach((array) => {
 });
 
 const delay = process.env.REACT_APP_NODE_ENV === "development" ? 90000 : 20000;
-const twoGW = ["iron", "copper"];
+// const twoGW = ["iron", "copper"];
+
 class LogOut extends Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
