@@ -78,7 +78,7 @@ class SearchEtymologiesContent extends React.Component {
         this.props.searchedTranslationsByEtymology.length > 0 ? (
           <>
             <MiniTable
-              searchedWord={this.state.searchedWord}
+              searchedQuery={this.state.searchedWord}
               count={this.props.searchedTranslationsByEtymology.length}
             />
             <SearchEtymologiesContentResultsContainer
