@@ -55,6 +55,7 @@ class CreateEtymologyMap extends React.Component {
     });
   };
 
+  //   the submit with the autofill
   //   handleOnSubmit = (e, userInput) => {
   //     e.preventDefault();
   //     Promise.all([
@@ -102,6 +103,7 @@ class CreateEtymologyMap extends React.Component {
       this.props.clearSearchTranslationsByArea(),
       this.props.isLoading(),
       this.props.getWordDefinition(this.state.selectedWord),
+      //   with other search
       //   this.props.searchTranslationsByArea(
       //     this.state.selectedArea,
       //     this.state.selectedWord
@@ -129,17 +131,28 @@ class CreateEtymologyMap extends React.Component {
     this.props.history.push(`/edit_translation/${translationId}`);
   };
 
-  //   isSafari = () => {
-  //     // const isSafari = navigator.userAgent.indexOf("Safari") > -1;
-  //     // this.setState({ isSafari: isSafari }, () =>
-  //     //   console.log(this.state.isSafari)
-  //     // );
-  //     const browser = Bowser.getParser(window.navigator.userAgent);
-  //     console.log(browser.getBrowser()["name"]);
-  //     if (browser.getBrowser()["name"] === "Safari") {
-  //       this.setState({ isSafari: true }, () => console.log(this.state.isSafari));
-  //     }
-  //   };
+  randomWord = (e) => {
+    e.preventDefault();
+    let randomWord;
+    if (this.props.wordNames && this.props.wordNames.length > 0) {
+      let randomNumber = Math.floor(
+        Math.random() * this.props.wordNames.length
+      );
+      randomWord = this.props.wordNames[randomNumber].word_name;
+    }
+    // let randomArea;
+    // if (
+    //   this.props.languageAreaNames &&
+    //   this.props.languageAreaNames.length > 0
+    // ) {
+    //   let randomNumber = Math.floor(
+    //     Math.random() * this.props.languageAreaNames.length
+    //   );
+    //   randomArea = this.props.languageAreaNames[randomNumber].name;
+    // }
+    // this.setState({ selectedWord: randomWord, selectedArea: randomArea });
+    this.setState({ selectedWord: randomWord });
+  };
 
   render() {
     //   const allAreas =
@@ -154,6 +167,7 @@ class CreateEtymologyMap extends React.Component {
             return <option key={word.id}>{word.word_name}</option>;
           })
         : null;
+
     // const allWords =
     //   this.props.wordNames && this.props.wordNames.length
     //     ? this.props.wordNames.map((word) => {
@@ -202,6 +216,14 @@ class CreateEtymologyMap extends React.Component {
             }
             disabled={!this.state.selectedArea || !this.state.selectedWord}
           />
+          <button
+            type="button"
+            onClick={(e) => this.randomWord(e)}
+            className={this.state.selectedArea ? "submit-btn" : "disabled-btn"}
+            disabled={!this.state.selectedArea}
+          >
+            Random Word
+          </button>
         </form>
 
         {shouldRender ? (
@@ -230,28 +252,7 @@ class CreateEtymologyMap extends React.Component {
                     aria-label="Europe map"
                     xlinkHref={this.props.translationMapByEtymology}
                   ></img>
-                  {/* Link */}
-                  {/* <object
-                      xlinkHref={this.props.translationMapByEtymology}
-                      data={this.props.translationMapByEtymology}
-                      type="image/svg+xml"
-                      className="map"
-                      alt="Europe map"
-                      aria-label="Europe map"
-                    ></object> */}
                 </a>
-                {/* <img
-                    type="image/svg+xml"
-                    className="map"
-                    alt="Europe map"
-                    aria-label="Europe map"
-                    xlinkHref={this.props.translationMapByEtymology}
-                  ></img> */}
-                {/* below gives clickable link, but blank 300x150 image */}
-                {/* <svg
-                    className="map"
-                    xlinkHref={this.props.translationMapByEtymology}
-                  ></svg> */}
               </>
             ) : (
               <a
@@ -295,6 +296,7 @@ const mapDispatchToProps = (dispatch) => {
       getWordNames,
       getAllLanguageAreaNames,
       getWordDefinition,
+      //   instead of europe map
       //   searchTranslationsByArea,
       searchTranslationsByAreaEuropeMap,
       searchTranslationsByEtymologyImg,
