@@ -31,7 +31,7 @@ class CreateEtymologyMapResultsContainer extends Component {
               {/* <th>Macrofamily</th> */}
               <th>Family</th>
               <th>Translation</th>
-              <th>Romanization</th>
+              {/* <th>Romanization</th> */}
               <th>Gender</th>
               <th>Etymology</th>
               <th>Link</th>
