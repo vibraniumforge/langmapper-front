@@ -18,7 +18,7 @@ class Navbar extends Component {
           </li>
         </ul>
         <ul className="second-ul">
-          <li className="dropdown functions">
+          <li className="dropdown">
             <svg
               width="1em"
               height="1em"
@@ -48,7 +48,7 @@ class Navbar extends Component {
             </ul>
           </li>
 
-          <li className="dropdown functions">
+          <li className="dropdown">
             <svg
               width="1em"
               height="1em"
@@ -108,7 +108,7 @@ class Navbar extends Component {
               </NavLink>
             </ul>
           </li>
-          <li className="dropdown functions">
+          <li className="dropdown">
             <svg
               width="1em"
               height="1em"
