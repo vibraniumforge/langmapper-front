@@ -14,6 +14,7 @@ class CreateEtymologyMapResultsContainer extends Component {
                   key={translation.id}
                   translation={translation}
                   onHandleEdit={this.props.onHandleEdit}
+                  onHandleDelete={this.props.onHandleDelete}
                 />
               );
             } else {
