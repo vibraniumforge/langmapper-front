@@ -15,12 +15,6 @@ const CreateEtymologyRow = (props) => {
   return (
     <tr key={translation.id}>
       <td>{translation.name}</td>
-      {/* <td>
-        {translation.macrofamily === "Indo-European"
-          ? "I.E."
-          : translation.macrofamily}
-      </td>
-      <td>{translation.family}</td> */}
       <td>
         {languageFormatHelper(translation.macrofamily, translation.family)}
       </td>
