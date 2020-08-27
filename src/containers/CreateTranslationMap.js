@@ -22,6 +22,7 @@ import {
   clearSearchTranslationsByAreaImg,
   clearSearchTranslationsByArea,
   getTranslationById,
+  deleteTranslation,
 } from "../actions/translationActions.js";
 
 class CreateTranslationMap extends React.Component {
@@ -97,6 +98,35 @@ class CreateTranslationMap extends React.Component {
     this.props.history.push(`/edit_translation/${translationId}`);
   };
 
+  onHandleDelete = (e, translationId) => {
+    e.preventDefault();
+    this.props.deleteTranslation(translationId);
+    this.props.history.goBack();
+  };
+
+  randomWord = (e) => {
+    e.preventDefault();
+    let randomWord;
+    if (this.props.wordNames && this.props.wordNames.length > 0) {
+      let randomNumber = Math.floor(
+        Math.random() * this.props.wordNames.length
+      );
+      randomWord = this.props.wordNames[randomNumber].word_name;
+    }
+    // let randomArea;
+    // if (
+    //   this.props.languageAreaNames &&
+    //   this.props.languageAreaNames.length > 0
+    // ) {
+    //   let randomNumber = Math.floor(
+    //     Math.random() * this.props.languageAreaNames.length
+    //   );
+    //   randomArea = this.props.languageAreaNames[randomNumber].name;
+    // }
+    // this.setState({ selectedWord: randomWord, selectedArea: randomArea });
+    this.setState({ selectedWord: randomWord });
+  };
+
   render() {
     // const allAreas =
     //   this.props.languageAreaNames && this.props.languageAreaNames.length > 0
@@ -154,6 +184,14 @@ class CreateTranslationMap extends React.Component {
             }
             disabled={!this.state.selectedArea || !this.state.selectedWord}
           />
+          <button
+            type="button"
+            onClick={(e) => this.randomWord(e)}
+            className={this.state.selectedArea ? "submit-btn" : "disabled-btn"}
+            disabled={!this.state.selectedArea}
+          >
+            Random Word
+          </button>
         </form>
         {render ? (
           <div>
@@ -181,28 +219,7 @@ class CreateTranslationMap extends React.Component {
                     aria-label="Europe map"
                     xlinkHref={this.props.translationMapByArea}
                   ></img>
-                  {/* Link */}
-                  {/* <object
-                      xlinkHref={this.props.translationMapByArea}
-                      data={this.props.translationMapByArea}
-                      type="image/svg+xml"
-                      className="map"
-                      alt="Europe map"
-                      aria-label="Europe map"
-                    ></object> */}
                 </a>
-                {/* <img
-                    type="image/svg+xml"
-                    className="map"
-                    alt="Europe map"
-                    aria-label="Europe map"
-                    xlinkHref={this.props.translationMapByArea}
-                  ></img> */}
-                {/* below gives clickable link, but blank 300x150 image */}
-                {/* <svg
-                    className="map"
-                    xlinkHref={this.props.translationMapByArea}
-                  ></svg> */}
               </>
             ) : (
               <a
@@ -222,6 +239,7 @@ class CreateTranslationMap extends React.Component {
             <CreateTranslationMapResultsContainer
               searchedTranslationsByArea={this.props.searchedTranslationsByArea}
               onHandleEdit={this.onHandleEdit}
+              onHandleDelete={this.onHandleDelete}
             />
           </div>
         ) : this.state.searchedWord ? (
@@ -254,6 +272,7 @@ const mapDispatchToProps = (dispatch) => {
       clearSearchTranslationsByAreaImg,
       clearSearchTranslationsByArea,
       getTranslationById,
+      deleteTranslation,
     },
     dispatch
   );
