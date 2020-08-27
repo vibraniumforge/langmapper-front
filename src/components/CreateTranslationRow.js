@@ -15,20 +15,14 @@ const CreateTranslationRow = (props) => {
   return (
     <tr key={translation.id}>
       <td>{translation.name}</td>
-      {/* <td>
-        {translation.macrofamily === "Indo-European"
-          ? "I.E."
-          : translation.macrofamily}
-      </td>
-      <td>{translation.family}</td> */}
       <td>
         {languageFormatHelper(translation.macrofamily, translation.family)}
       </td>
-      <td>{translation.translation}</td>
+      {/* <td>{translation.translation}</td> */}
       <td>
         {translation.translation === translation.romanization
-          ? null
-          : translation.romanization}
+          ? translation.translation
+          : `${translation.translation} - ${translation.romanization}`}
       </td>
       <td
         className={
