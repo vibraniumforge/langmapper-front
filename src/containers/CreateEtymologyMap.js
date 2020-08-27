@@ -131,6 +131,12 @@ class CreateEtymologyMap extends React.Component {
     this.props.history.push(`/edit_translation/${translationId}`);
   };
 
+  onHandleDelete = (e, translationId) => {
+    e.preventDefault();
+    this.props.deleteTranslation(translationId);
+    this.props.history.goBack();
+  };
+
   randomWord = (e) => {
     e.preventDefault();
     let randomWord;
@@ -272,6 +278,7 @@ class CreateEtymologyMap extends React.Component {
             <CreateEtymologyMapResultsContainer
               searchedTranslationsByArea={this.props.searchedTranslationsByArea}
               onHandleEdit={this.onHandleEdit}
+              onHandleDelete={this.onHandleDelete}
             />
           </div>
         ) : this.state.searchedWord ? (
