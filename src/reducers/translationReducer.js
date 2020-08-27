@@ -63,27 +63,6 @@ export default function translationReducer(state = initialState, action) {
             : translation;
         }),
         isLoading: false,
-        // searchedTranslationsByArea: state.searchedTranslationsByArea.map(
-        //   (translation) => {
-        //     return translation.t_id === action.payload.id
-        //       ? (translation = updatedTranslation)
-        //       : translation;
-        //   }
-        // ),
-        // searchedTranslationsByLanguage: state.searchedTranslationsByLanguage.map(
-        //   (translation) => {
-        //     return translation.t_id === action.payload.id
-        //       ? (translation = updatedTranslation)
-        //       : translation;
-        //   }
-        // ),
-        // searchedTranslationsByWord: state.searchedTranslationsByWord.map(
-        //   (translation) => {
-        //     return translation.t_id === action.payload.id
-        //       ? (translation = updatedTranslation)
-        //       : translation;
-        //   }
-        // ),
       };
     case "DELETE_TRANSLATION":
       const newTranslations = state.translations.filter(
@@ -173,14 +152,13 @@ export default function translationReducer(state = initialState, action) {
     case "SEARCH_TRANSLATIONS_BY_ETYMOLOGY":
       return {
         ...state,
-        searchedTranslationsByEtymology: action.payload,
         isLoading: false,
+        searchedTranslationsByEtymology: action.payload,
       };
     case "CLEAR_SEARCH_TRANSLATIONS_BY_ETYMOLOGY":
       return {
         ...state,
         searchedTranslationsByEtymology: [],
-        isLoading: false,
       };
 
     case "SEARCH_TRANSLATIONS_BY_MACROFAMILY":
