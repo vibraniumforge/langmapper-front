@@ -14,6 +14,7 @@ class CreateGenderMapResultsContainer extends Component {
                   key={translation.id}
                   translation={translation}
                   onHandleEdit={this.props.onHandleEdit}
+                  onHandleDelete={this.props.onHandleDelete}
                 />
               );
             } else {
@@ -33,7 +34,7 @@ class CreateGenderMapResultsContainer extends Component {
               {/* <th>Macrofamily</th> */}
               <th>Family</th>
               <th>Translation</th>
-              <th>Romanization</th>
+              {/* <th>Romanization</th> */}
               <th>Gender</th>
               <th>Etymology</th>
               <th>Link</th>
