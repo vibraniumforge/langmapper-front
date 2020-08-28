@@ -7,8 +7,7 @@ if (process.env.REACT_APP_NODE_ENV === "development") {
   console.log(process.env);
   //   console.log(process.env.DEVELOPMENT_URI);
   //   console.log(process.env.PRODUCTION_URI);
-  console.log(process.env.REACT_APP_NODE_ENV);
-  console.log(url);
+  console.log(`${process.env.REACT_APP_NODE_ENV} - ${url}`);
 }
 
 const token = () => localStorage.getItem("jwt");
@@ -309,3 +308,16 @@ export const clearSearchTranslationsByAreaEuropeMap = () => {
     dispatch({ type: "CLEAR_SEARCH_TRANSLATIONS_BY_AREA_EUROPE_MAP" });
   };
 };
+
+// export const getSearchArea = (area) => {
+//   return {
+//     type: "GET_SEARCH_AREA",
+//     payload: area,
+//   };
+// };
+
+// export const clearGetSearchArea = () => {
+//   return (dispatch) => {
+//     dispatch({ type: "CLEAR_GET_SEARCH_AREA" });
+//   };
+// };
