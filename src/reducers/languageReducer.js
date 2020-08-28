@@ -6,6 +6,7 @@ const initialState = {
   macrofamilyNames: [],
   languageAreaNames: [],
   languagesCount: 0,
+  searchedLanguage: "",
 };
 
 export default function languageReducer(state = initialState, action) {
@@ -89,6 +90,17 @@ export default function languageReducer(state = initialState, action) {
         languageAreaNames: action.payload,
       };
     }
+    case "GET_SEARCH_LANGUAGE": {
+      return {
+        ...state,
+        searchedLanguage: action.payload,
+      };
+    }
+    case "CLEAR_GET_SEARCH_LANGUAGE":
+      return {
+        ...state,
+        searchedLanguage: "",
+      };
     default:
       return state;
   }
