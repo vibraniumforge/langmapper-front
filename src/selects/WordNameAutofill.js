@@ -27,7 +27,6 @@ export class WordNameAutofill extends Component {
 
   onChange = (e) => {
     const { wordNames } = this.props;
-    console.log(wordNames);
     const userInput = e.currentTarget.value;
     const filteredWordNames = wordNames.filter((wordName) => {
       return wordName.toLowerCase().indexOf(userInput.toLowerCase()) > -1;
