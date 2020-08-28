@@ -140,7 +140,6 @@ export const getLanguagesCount = () => {
 };
 
 export const getSearchLanguage = (language) => {
-  console.log(language);
   return {
     type: "GET_SEARCH_LANGUAGE",
     payload: language,
