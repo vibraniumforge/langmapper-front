@@ -29,7 +29,9 @@ export const ViewAllWordsResultCard = (props) => {
           to="/search_all_translations_by_word"
           onClick={(e) => props.onHandleSubmit(e, props.word.word_name)}
         >
-          View all Translations
+          <button type="button" className="submit-btn">
+            View Translations
+          </button>
         </NavLink>{" "}
       </p>
       {props.loggedIn ? (
