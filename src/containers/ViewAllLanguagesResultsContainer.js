@@ -11,6 +11,7 @@ class ViewAllLanguagessResultsContainer extends Component {
                 language={language}
                 onHandleDelete={this.props.onHandleDelete}
                 onHandleEdit={this.props.onHandleEdit}
+                onHandleSubmit={this.props.onHandleSubmit}
                 key={language.id}
               />
             );
