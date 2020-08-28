@@ -138,3 +138,17 @@ export const getLanguagesCount = () => {
       .catch((err) => console.log(err));
   };
 };
+
+export const getSearchLanguage = (language) => {
+  console.log(language);
+  return {
+    type: "GET_SEARCH_LANGUAGE",
+    payload: language,
+  };
+};
+
+export const clearGetSearchLanguage = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_SEARCH_LANGUAGE" });
+  };
+};
