@@ -115,6 +115,12 @@ export const getWordDefinition = (word) => {
   };
 };
 
+export const clearGetWordDefinition = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_WORD_DEFINITION" });
+  };
+};
+
 export const clearGetWords = () => {
   return (dispatch) => {
     dispatch({ type: "CLEAR_GET_WORDS" });
@@ -124,12 +130,6 @@ export const clearGetWords = () => {
 export const clearGetWordById = () => {
   return (dispatch) => {
     dispatch({ type: "CLEAR_GET_WORD_BY_ID" });
-  };
-};
-
-export const clearGetWordDefinition = () => {
-  return (dispatch) => {
-    dispatch({ type: "CLEAR_GET_WORD_DEFINITION" });
   };
 };
 
