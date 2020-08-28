@@ -79,6 +79,8 @@ export const deleteWord = (id) => {
   };
 };
 
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 export const getWordNames = () => {
   return (dispatch) => {
     fetch(`${url}/words/get/word_names`)
@@ -128,5 +130,19 @@ export const clearGetWordById = () => {
 export const clearGetWordDefinition = () => {
   return (dispatch) => {
     dispatch({ type: "CLEAR_GET_WORD_DEFINITION" });
+  };
+};
+
+export const getSearchWord = (word) => {
+  console.log(word);
+  return {
+    type: "GET_SEARCH_WORD",
+    payload: word,
+  };
+};
+
+export const clearGetSearchWord = () => {
+  return (dispatch) => {
+    dispatch({ type: "CLEAR_GET_SEARCH_WORD" });
   };
 };
