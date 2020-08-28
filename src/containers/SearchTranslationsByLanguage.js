@@ -7,15 +7,17 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { getLanguages } from "../actions/languageActions.js";
+import {
+  getLanguages,
+  getSearchLanguage,
+  clearGetSearchLanguage,
+} from "../actions/languageActions.js";
 
 import {
   searchTranslationsByLanguage,
   clearSearchTranslationsByLanguage,
   getTranslationById,
   deleteTranslation,
-  getSearchLanguage,
-  clearGetSearchLanguage,
 } from "../actions/translationActions.js";
 
 class SearchTranslationsByLanguage extends React.Component {
