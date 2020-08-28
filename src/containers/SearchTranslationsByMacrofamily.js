@@ -6,7 +6,11 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { getWords, getWordDefinition } from "../actions/wordActions.js";
+import {
+  getWords,
+  getWordDefinition,
+  clearGetWordDefinition,
+} from "../actions/wordActions.js";
 import { getAllMacrofamilyNames } from "../actions/languageActions.js";
 import {
   getTranslationById,
@@ -52,6 +56,7 @@ class SearchTranslationsByMacrofamily extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
+    this.props.clearGetWordDefinition();
     this.props.searchTranslationsByMacrofamily(this.state.selectedMacrofamily);
     this.setState({
       searchedMacrofamily: this.state.selectedMacrofamily,
@@ -138,6 +143,7 @@ const mapDispatchToProps = (dispatch) => {
     {
       getWords,
       getWordDefinition,
+      clearGetWordDefinition,
       getTranslationById,
       deleteTranslation,
       getAllMacrofamilyNames,
