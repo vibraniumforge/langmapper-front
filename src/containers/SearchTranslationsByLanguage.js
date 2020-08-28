@@ -49,7 +49,7 @@ class SearchTranslationsByLanguage extends React.Component {
   handleOnSubmit = (e, languageName) => {
     e.preventDefault();
     this.props.getSearchLanguage(languageName);
-
+    this.props.searchTranslationsByLanguage(languageName);
     this.setState({
       //   searchedLanguage: this.state.selectedLanguage,
       searchedLanguage:
