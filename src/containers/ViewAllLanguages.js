@@ -5,13 +5,18 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { isLoading } from "../actions/translationActions.js";
+import {
+  isLoading,
+  searchTranslationsByLanguage,
+} from "../actions/translationActions.js";
 
 import {
   getLanguages,
   getLanguageById,
   editLanguage,
   deleteLanguage,
+  getSearchLanguage,
+  clearGetSearchLanguage,
 } from "../actions/languageActions.js";
 
 import Spinner from "../components/Spinner.js";
@@ -19,6 +24,7 @@ import Spinner from "../components/Spinner.js";
 class ViewAllLanguages extends Component {
   componentDidMount() {
     this.props.getLanguages();
+    this.props.clearGetSearchLanguage();
   }
 
   onHandleEdit = (e, languageId) => {
@@ -32,6 +38,13 @@ class ViewAllLanguages extends Component {
     this.props.deleteLanguage(languageId);
   };
 
+  onHandleSubmit = (e, languageName) => {
+    e.preventDefault();
+    this.props.searchTranslationsByLanguage(languageName);
+    this.props.getSearchLanguage(languageName);
+    this.props.history.push(`/search_all_translations_by_language`);
+  };
+
   render() {
     return (
       <>
@@ -39,6 +52,7 @@ class ViewAllLanguages extends Component {
           <ViewAllLanguagesResultsContainer
             onHandleDelete={this.onHandleDelete}
             onHandleEdit={this.onHandleEdit}
+            onHandleSubmit={this.onHandleSubmit}
             languages={this.props.languages}
           />
         ) : (
@@ -61,6 +75,9 @@ const mapDispatchToProps = (dispatch) => {
       editLanguage,
       deleteLanguage,
       isLoading,
+      searchTranslationsByLanguage,
+      getSearchLanguage,
+      clearGetSearchLanguage,
     },
     dispatch
   );
