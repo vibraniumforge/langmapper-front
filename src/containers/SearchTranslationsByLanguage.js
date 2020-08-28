@@ -14,6 +14,8 @@ import {
   clearSearchTranslationsByLanguage,
   getTranslationById,
   deleteTranslation,
+  getSearchLanguage,
+  clearGetSearchLanguage,
 } from "../actions/translationActions.js";
 
 class SearchTranslationsByLanguage extends React.Component {
@@ -31,17 +33,6 @@ class SearchTranslationsByLanguage extends React.Component {
     this.props.getLanguages();
   }
 
-  handleOnSubmit = (e, languageName) => {
-    e.preventDefault();
-
-    this.props.searchTranslationsByLanguage(languageName);
-    this.setState({
-      //   searchedLanguage: this.state.selectedLanguage,
-      searchedLanguage:
-        languageName.charAt(0).toUpperCase() + languageName.slice(1),
-    });
-  };
-
   onHandleEdit = (e, translationId) => {
     e.preventDefault();
     this.props.getTranslationById(translationId);
@@ -51,6 +42,17 @@ class SearchTranslationsByLanguage extends React.Component {
   onHandleDelete = (e, translationId) => {
     e.preventDefault();
     this.props.deleteTranslation(translationId);
+  };
+
+  handleOnSubmit = (e, languageName) => {
+    e.preventDefault();
+    this.props.getSearchLanguage(languageName);
+
+    this.setState({
+      //   searchedLanguage: this.state.selectedLanguage,
+      searchedLanguage:
+        languageName.charAt(0).toUpperCase() + languageName.slice(1),
+    });
   };
 
   render() {
@@ -85,14 +87,16 @@ class SearchTranslationsByLanguage extends React.Component {
           <>
             {" "}
             <MiniTable
-              searchedLanguage={this.state.searchedLanguage}
+              searchedLanguage={
+                this.state.searchedLanguage || this.props.searchedLanguage
+              }
               count={this.props.searchedTranslationsByLanguage.length}
             />
             <SearchTranslationsByLanguageResultsContainer
               searchedTranslationsByLanguage={
                 this.props.searchedTranslationsByLanguage
               }
-              searchedLanguage={this.state.searchedLanguage}
+              //   searchedLanguage={this.state.searchedLanguage}
               onHandleDelete={this.onHandleDelete}
               onHandleEdit={this.onHandleEdit}
             />
@@ -107,6 +111,7 @@ const mapStateToProps = (state) => ({
   languages: state.languages.languages,
   searchedTranslationsByLanguage:
     state.translations.searchedTranslationsByLanguage,
+  searchedLanguage: state.languages.searchedLanguage,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -117,6 +122,8 @@ const mapDispatchToProps = (dispatch) => {
       clearSearchTranslationsByLanguage,
       getTranslationById,
       deleteTranslation,
+      getSearchLanguage,
+      clearGetSearchLanguage,
     },
     dispatch
   );
