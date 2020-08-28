@@ -7,9 +7,12 @@ import { createWord } from "../actions/wordActions.js";
 
 //prettier-ignore
 // const rejected = ["Concrete", "Vine", "Wind", "Blueberry", "Chariot", "Chicken", "Cloth",
-// "Dawn", "Gull", "Lizard", "Noon", "Robin", "Trout", "Weasel", "Loom", "Olive", "Ox", "Dragonfly"]
+// "Dawn", "Gull", "Lizard", "Noon", "Robin", "Trout", "Weasel", "Loom", "Olive", "Ox", "Dragonfly"
+// "Log",]
 //prettier-ignore
-// forSureAdd=["Donkey", "Wing", "Lynx", "Mushroom", "Brain", "Sand", "Salmon", "Heart", "Lung", "Song", "Liver", "Flea", "Pear"]
+// forSureAdd=["Donkey", "Wing", "Lynx", "Mushroom", "Brain", "Sand", "Salmon", "Heart", "Lung", "Song",
+// "Liver", "Flea", "Pear", "Coal", "Shoe", "Key", "King", "Bird". "Leaf", "Seed", "Feather", "Leaf", "Castle", "Candle"]
+// []
 //prettier-ignore
 // maybeAdd =[ "Bible"]
 //prettier-ignore
