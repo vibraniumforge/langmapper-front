@@ -1,6 +1,7 @@
 import React from "react";
 import EditAndDeleteButtons from "./EditAndDeleteButtons.js";
 import { connect } from "react-redux";
+import { withRouter, NavLink } from "react-router-dom";
 
 export const ViewAllLanguagesResultCard = (props) => {
   return (
@@ -55,6 +56,18 @@ export const ViewAllLanguagesResultCard = (props) => {
         <strong>Notes: </strong>
         {props.language.notes}
       </p>
+      <p>
+        {" "}
+        <NavLink
+          activeClassName="selected"
+          to="/search_all_translations_by_language"
+          onClick={(e) => props.onHandleSubmit(e, props.language.name)}
+        >
+          <button type="button" className="submit-btn">
+            View Translations
+          </button>
+        </NavLink>{" "}
+      </p>
       {props.loggedIn ? (
         <>
           <EditAndDeleteButtons
@@ -72,4 +85,6 @@ const mapStateToProps = (state) => ({
   loggedIn: state.users.loggedIn,
 });
 
-export default connect(mapStateToProps, null)(ViewAllLanguagesResultCard);
+export default withRouter(
+  connect(mapStateToProps, null)(ViewAllLanguagesResultCard)
+);
