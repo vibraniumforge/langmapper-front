@@ -21,6 +21,8 @@ import {
   getWordNames,
   getWordDefinition,
   clearGetWordDefinition,
+  getSearchWord,
+  clearGetSearchWord,
 } from "../actions/wordActions.js";
 
 class SearchTranslationsByWord extends React.Component {
@@ -62,6 +64,7 @@ class SearchTranslationsByWord extends React.Component {
   handleOnSubmit = (e, userInput) => {
     e.preventDefault();
     this.props.isLoading();
+    this.props.getSearchWord(userInput);
     this.props.searchTranslationsByWord(userInput);
     this.props.getWordDefinition(userInput);
     this.setState({ searchedWord: userInput, selectedWord: "" });
@@ -110,7 +113,7 @@ class SearchTranslationsByWord extends React.Component {
         this.props.searchedTranslationsByWord.length > 0 ? (
           <>
             <MiniTable
-              searchedWord={this.state.searchedWord || this.props.searchWord}
+              searchedWord={this.state.searchedWord || this.props.searchedWord}
               wordDefinition={this.props.wordDefinition}
               count={this.props.searchedTranslationsByWord.length}
             />
@@ -135,7 +138,7 @@ const mapStateToProps = (state) => ({
   wordNames: state.words.wordNames,
   translationToUpdate: state.translations.translationToUpdate,
   wordDefinition: state.words.wordDefinition,
-  //   searchWord: state.translations.searchWord,
+  searchedWord: state.words.searchedWord,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -149,6 +152,8 @@ const mapDispatchToProps = (dispatch) => {
       searchTranslationsByWord,
       getWordDefinition,
       clearGetWordDefinition,
+      getSearchWord,
+      clearGetSearchWord,
     },
     dispatch
   );
