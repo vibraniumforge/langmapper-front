@@ -4,6 +4,7 @@ const initialState = {
   wordNames: [],
   wordsCount: 0,
   wordDefinition: "",
+  searchedWord: "",
 };
 
 export default function wordReducer(state = initialState, action) {
@@ -47,6 +48,9 @@ export default function wordReducer(state = initialState, action) {
         ...state,
         words: newWords,
       };
+
+    //   ====================================================
+
     case "GET_WORD_NAMES":
       return {
         ...state,
@@ -60,7 +64,7 @@ export default function wordReducer(state = initialState, action) {
     case "GET_WORD_DEFINITION":
       return {
         ...state,
-        wordDefinition: action.payload,
+        wordDefinition: action.payload[0],
       };
 
     case "CLEAR_GET_WORD_BY_ID":
@@ -77,6 +81,17 @@ export default function wordReducer(state = initialState, action) {
       return {
         ...state,
         words: [],
+      };
+
+    case "GET_SEARCH_WORD":
+      return {
+        ...state,
+        searchedWord: action.payload,
+      };
+    case "CLEAR_GET_SEARCH_WORD":
+      return {
+        ...state,
+        searchedWord: "",
       };
     default:
       return state;
