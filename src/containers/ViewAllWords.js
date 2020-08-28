@@ -13,6 +13,8 @@ import {
   deleteWord,
   clearGetWords,
   getWordDefinition,
+  getSearchWord,
+  clearGetSearchWord,
 } from "../actions/wordActions.js";
 
 import {
@@ -49,9 +51,10 @@ class ViewAllWords extends Component {
 
   onHandleSubmit = (e, wordName) => {
     e.preventDefault();
-    this.props.history.push(`/search_all_translations_by_word`);
     this.props.searchTranslationsByWord(wordName);
     this.props.getWordDefinition(wordName);
+    this.props.getSearchWord(wordName);
+    this.props.history.push(`/search_all_translations_by_word`);
   };
 
   render() {
@@ -98,6 +101,8 @@ const mapDispatchToProps = (dispatch) => {
       clearGetWords,
       searchTranslationsByWord,
       getWordDefinition,
+      getSearchWord,
+      clearGetSearchWord,
     },
     dispatch
   );
