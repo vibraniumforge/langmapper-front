@@ -7,49 +7,55 @@ import { createWord } from "../actions/wordActions.js";
 
 //prettier-ignore
 // const rejected = ["Concrete", "Vine", "Wind", "Blueberry", "Chariot", "Chicken", "Cloth",
-// "Dawn", "Gull", "Lizard", "Noon", "Robin", "Trout", "Weasel", "Loom", "Olive", "Ox", "Dragonfly"
+// "Dawn", "Gull", "Lizard", "Noon", "Robin", "Trout", "Weasel", "Loom", "Olive", "Ox", "Dragonfly", "Ruby"
 // "Log",]
 //prettier-ignore
-// forSureAdd=["Donkey", "Wing", "Lynx", "Mushroom", "Brain", "Sand", "Salmon", "Heart", "Lung", "Song",
-// "Liver", "Flea", "Pear", "Coal", "Shoe", "Key", "King", "Bird". "Leaf", "Seed", "Feather", "Leaf", "Castle", "Candle"]
-// []
+// forSureAdd=[]
 //prettier-ignore
 // maybeAdd =[ "Bible"]
 //prettier-ignore
-const chemicals = ["Gold", "Silver", "Copper", "Iron", "Tin", "Lead", "Salt", "Water"]
-const materials = ["Amber", "Silk", "Tar", "Wood", "Clay"];
+const elements = ["Gold", "Silver", "Copper", "Iron", "Tin", "Lead" ]
+const chemicals = ["Brass", "Bronze", "Salt", "Water"];
 //prettier-ignore
-const domesticAnimals = ["Horse", "Cow", "Sheep", "Pig", "Dog", "Cat", "Goat"]
+const materials = ["Amber", "Silk", "Tar", "Wood", "Clay", "Sand", "Coal", "Oil"];
 //prettier-ignore
-const birds = ["Swan", "Goose", "Owl", "Falcon", "Crow", "Dove", "Eagle" ]
+const domesticAnimals = ["Horse", "Cow", "Ox", "Sheep", "Pig", "Dog", "Cat", "Goat", "Donkey"]
 //prettier-ignore
-const animals = ["Wolf", "Fox", "Bear", "Mouse", "Otter", "Lion", "Deer"]
-const insects = ["Butterfly", "Spider", "Ant", "Bee", "Wasp"];
+const birds = ["Bird", "Feather", "Wing", "Swan", "Goose", "Owl", "Falcon", "Crow", "Dove", "Eagle" ]
+//prettier-ignore
+const animals = ["Wolf", "Fox", "Bear", "Mouse", "Otter", "Lion", "Deer", "Lynx", "Rabbit"]
+//prettier-ignore
+const insects = ["Butterfly", "Spider", "Ant", "Bee", "Wasp", "Flea"];
 const reptiles = ["Frog", "Turtle", "Snake"];
-const fish = ["Fish", "Shark"];
-const plants = ["Tree", "Flower", "Grass", "Forest"];
+const fish = ["Fish", "Shark", "Salmon"];
 //prettier-ignore
-const food = ["Apple", "Strawberry", "Raspberry", "Carrot"];
+const plants = ["Tree", "Flower", "Grass", "Forest", "Leaf", "Seed", "Mushroom"];
+//prettier-ignore
+const food = ["Apple", "Strawberry", "Raspberry", "Carrot", "Pear"];
 //prettier-ignore
 const agriculturalProducts = ["Honey", "Milk", "Egg", "Wheat", "Wool"];
 const refinedAgriculturalProducts = ["Beer", "Wine", "Bread", "Cheese"];
 //prettier-ignore
-const headParts = ["Tongue", "Tooth", "Ear", "Eye", "Nose"];
+const headParts = ["Tongue", "Tooth", "Ear", "Eye", "Nose", "Mouth"];
 //prettier-ignore
-const bodyParts = ["Blood", "Hand", "Finger", "Leg"];
+const bodyParts = ["Blood", "Hand", "Finger", "Leg", "Bone"];
+const organs = ["Brain", "Heart", "Lung", "Liver", "Stomach"];
 const seasons = ["Winter", "Summer", "Autumn"];
 const heavens = ["Sun", "Moon", "Sky", "Star"];
-const time = ["Day", "Night"];
+const time = ["Day", "Night", "Tide"];
 //prettier-ignore
 const weather = ["Snow", "Rain", "Hail", "Ice", "Frost"];
 const atmosphere = ["Cloud", "Fog", "Rainbow", "Thunder", "Lightning"];
 const geography = ["Sea", "Mountain", "Lake", "River", "Island"];
 const military = ["Shield", "Sword", "Bow", "Arrow", "Spear"];
+const buildings = ["Castle", "Bridge"];
+const culture = ["Song", "King"];
 //prettier-ignore
-const technology = ["Wheel", "Sail", "Boat", "Oven", "Fire", "Anvil", "Hammer", "Yoke"];
+const technology = ["Wheel", "Sail", "Boat", "Oven", "Fire", "Anvil", "Hammer", "Yoke", "Candle", "Shoe", "Key"];
 const textiles = ["Thread", "Needle", "Thimble", "Rope"];
 
 const sum = [
+  elements,
   chemicals,
   materials,
   domesticAnimals,
@@ -64,6 +70,10 @@ const sum = [
   refinedAgriculturalProducts,
   headParts,
   bodyParts,
+  organs,
+];
+
+const sum2 = [
   seasons,
   heavens,
   time,
@@ -71,6 +81,8 @@ const sum = [
   atmosphere,
   geography,
   military,
+  buildings,
+  culture,
   technology,
   textiles,
 ];
@@ -83,8 +95,13 @@ sum.forEach((array) => {
   });
 });
 
+sum2.forEach((array) => {
+  array.forEach((word) => {
+    Good_words.push(word);
+  });
+});
+
 const delay = process.env.REACT_APP_NODE_ENV === "development" ? 90000 : 20000;
-// const twoGW = ["iron", "copper"];
 
 class LogOut extends Component {
   handleOnSubmit = (e) => {
