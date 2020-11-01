@@ -19,14 +19,8 @@ export default function wordReducer(state = initialState, action) {
         ...state,
         wordToUpdate: action.payload,
       };
-    //   what to do below
     case "CREATE_WORD":
-      return;
-    //   {
-    // ...state,
-    // words: action.payload,
-    // words: [...state.words, action.payload],
-    //   };
+      return { words: [...state.words, action.payload] };
     case "EDIT_WORD":
       const editedWord = {
         id: action.payload.id,
