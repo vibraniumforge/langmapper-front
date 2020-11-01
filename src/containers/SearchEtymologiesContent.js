@@ -1,6 +1,7 @@
 import React from "react";
 import SearchEtymologiesContentResultsContainer from "./SearchEtymologiesContentResultsContainer.js";
 import MiniTable from "../components/MiniTable.js";
+import Spinner from "../components/Spinner.js";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -46,6 +47,7 @@ class SearchEtymologiesContent extends React.Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
     this.props.isLoading();
+    this.props.clearSearchTranslationsByEtymology();
     this.props.searchTranslationsByEtymology(this.state.selectedWord);
     this.setState({
       searchedWord: this.state.selectedWord,
@@ -74,8 +76,7 @@ class SearchEtymologiesContent extends React.Component {
             className={this.state.selectedWord ? "submit-btn" : "disabled-btn"}
           />
         </form>
-        {this.state.searchedWord &&
-        this.props.searchedTranslationsByEtymology.length > 0 ? (
+        {this.state.searchedWord ? (
           <>
             <MiniTable
               searchedQuery={this.state.searchedWord}
@@ -91,6 +92,9 @@ class SearchEtymologiesContent extends React.Component {
               onHandleEdit={this.onHandleEdit}
             />
           </>
+        ) : null}
+        {this.props.isLoadingNow ? (
+          <Spinner isLoading={this.props.isLoading} />
         ) : null}
       </>
     );
