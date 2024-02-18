@@ -6,8 +6,8 @@ import { loginUser } from "../actions/userActions.js";
 
 class Login extends Component {
   state = {
-    username: "",
-    password: "",
+    username: "thelinguist",
+    password: "alphabet",
   };
 
   handleOnChange = (e) => {

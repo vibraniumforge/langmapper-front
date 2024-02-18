@@ -1,9 +1,13 @@
-const url =
-  process.env.REACT_APP_NODE_ENV === "development"
-    ? "http://localhost:3001/api/v1"
-    : "https://secure-refuge-32252.herokuapp.com/api/v1";
+const url = process.env.REACT_APP_DEVELOPMENT_URI;
 
 if (process.env.REACT_APP_NODE_ENV === "development") {
+  console.log(process.env);
+  //   console.log(process.env.DEVELOPMENT_URI);
+  //   console.log(process.env.PRODUCTION_URI);
+  console.log(`${process.env.REACT_APP_NODE_ENV} - ${url}`);
+}
+
+if (process.env.REACT_APP_NODE_ENV === "production") {
   console.log(process.env);
   //   console.log(process.env.DEVELOPMENT_URI);
   //   console.log(process.env.PRODUCTION_URI);

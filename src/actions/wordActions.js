@@ -1,7 +1,9 @@
-const url =
-  process.env.REACT_APP_NODE_ENV === "development"
-    ? "http://localhost:3001/api/v1"
-    : "https://secure-refuge-32252.herokuapp.com/api/v1";
+// const url =
+//   process.env.REACT_APP_NODE_ENV === "development"
+//     ? "http://localhost:3001/api/v1"
+//     : "https://secure-refuge-32252.herokuapp.com/api/v1";
+
+const url = process.env.REACT_APP_DEVELOPMENT_URI;
 
 const token = () => localStorage.getItem("jwt");
 
